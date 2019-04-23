@@ -27,11 +27,11 @@ I will explain the usage of IRAF/PyRAF in conda environment, so it may slightly 
 >
 > ```
 > KCD095628.fits  KCD095629.fits  KCD095630.fits  KCD095631.fits
->
+> 
 > bias:
 > KCD095601.fits  KCD095603.fits  KCD095605.fits  KCD095607.fits  KCD095609.fits  KCD095626.fits
 > KCD095602.fits  KCD095604.fits  KCD095606.fits  KCD095608.fits  KCD095610.fits  KCD095627.fits
->
+> 
 > flat:
 > KCD095734.fits  KCD095736.fits  KCD095738.fits  KCD095740.fits  KCD095742.fits
 > KCD095735.fits  KCD095737.fits  KCD095739.fits  KCD095741.fits  KCD095743.fits
@@ -41,19 +41,21 @@ I will explain the usage of IRAF/PyRAF in conda environment, so it may slightly 
 >
 > ```
 > vega_7s.fits
->
+> 
 > bias:
 > bias-1.fits  bias-2.fits  bias-3.fits
->
+> 
 > dark:
 > dark-001_7.fits  dark-002_7.fits
->
+> 
 > flat:
 > flat_30-001.fits  flat_30-002.fits  flat_30-003.fits
->
+> 
 > ref:
 > ne_30.fits  ne_60.fits
 > ```
+>
+> Because of the size of images, I did not include them in this GitHub repo. If you want, please contact me via (dbstn95@gmail.com)! The HR30 data are actully publicly available via SMOKA and the Vega data are obtained in the class.
 
 
 
