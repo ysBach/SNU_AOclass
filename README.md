@@ -1,4 +1,4 @@
-# 2019AO
+# AO2019
 TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes are primarily made by **Yoonsoo P. Bach**. I tried not to make typo, logically wrong statement, etc. If any problem is there in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
 
 
@@ -43,9 +43,9 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 Part 0: Preparation
 
-* [00-0_Preface.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/00-0_Preface.md)
-* [00-1_Softwares.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/00-1_Softwares.md)
-* [00-2_UNIX.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/00-2_UNIX.md)
+* [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
+* [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
+* [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
 * Looking at the preprocessed images, thinking about photometry
 * Statistics
 
@@ -72,14 +72,14 @@ Part X: Long-Slit Spectroscopy
 
 Part **S**: Non-Python **S**oftwares or **S**ervices
 
-* [S01_IRAF.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/S01_IRAF.md)
+* [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
 * astrometry.net
 * SExtractor
 * 
 
 Part **A**: **A**ppendices
 
-* [A01_HW.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/A01_HW.md)
+* [A01_HW.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A01_HW.md)
 
-* [A02_TRIPOL.md](https://github.com/ysBach/2019AO/blob/master/Notebooks/A02_TRIPOL.md)
+* [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
 
