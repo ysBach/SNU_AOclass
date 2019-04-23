@@ -2,11 +2,11 @@
 
 This time, we will learn very basic things on UNIX. You can find good references from anywhere, and I will explain very basic things which are essential to follow the course materials.
 
-Some good references are in this repo ([link](https://github.com/ysBach/2019AO/tree/master/references)):
+Some good references are in this repo ([link](https://github.com/ysBach/AO2019/tree/master/references)):
 
-1. [00_UNIX_Tutorial_01.pdf](https://github.com/ysBach/2019AO/blob/master/references/00_UNIX_Tutorial_01.pdf) and [00_UNIX_Tutorial_02.pdf](https://github.com/ysBach/2019AO/blob/master/references/00_UNIX_Tutorial_02.pdf) by UCSD.
+1. [00_UNIX_Tutorial_01.pdf](https://github.com/ysBach/AO2019/blob/master/references/00_UNIX_Tutorial_01.pdf) and [00_UNIX_Tutorial_02.pdf](https://github.com/ysBach/AO2019/blob/master/references/00_UNIX_Tutorial_02.pdf) by UCSD.
    * I think it is enough to read Tutorial 1 and 2 of the first file.
-2. [00_Park_Basic_LINUX.pdf](https://github.com/ysBach/2019AO/blob/master/references/00_Park_Basic_LINUX.pdf) by Keunhong Park (former SNU graduate student) in **Korean**.
+2. [00_Park_Basic_LINUX.pdf](https://github.com/ysBach/AO2019/blob/master/references/00_Park_Basic_LINUX.pdf) by Keunhong Park (former SNU graduate student) in **Korean**.
 
 
 

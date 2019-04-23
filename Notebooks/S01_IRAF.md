@@ -78,7 +78,7 @@ or run PyRAF by typing
     $ pyraf
 I recommend to use PyRAF, since AstroConda does not fully guarantee the stability of IRAF CL. The `IMEXAM`, for example, does not correctly work if you use `cl`. You will see the following on terminal with the prompt "`-->`":
 
-![IRAF_01](images/IRAF_01.png)
+![IRAF_01](figs/IRAF_01.png)
 
 - **NOTE**:
 
@@ -96,7 +96,7 @@ I recommend to use PyRAF, since AstroConda does not fully guarantee the stabilit
 
      This might be necessary for images obtained from some personal ccds. The real pixel value should be ``real_value = pixel * BSCALE + BZERO``. People sacrificed the 15th bit of 16-bit system, and used it as a “sign” bit. Usually, ``BZERO = 2**15 = 32768``, and ``BSCALE=1.0``. If you do not add these header keywords to the image header, you will result in many negative values from bias/dark/flat raw images, which eventually lead you to a wrong result. For more information, please see the [astropy documentation](http://docs.astropy.org/en/stable/io/fits/#unsigned-integers). 
 
-     ​
+     
 
 ## 2. Display Image
 
@@ -111,7 +111,7 @@ Display the image:
 * **TIP**: It's better to append the ampersand (`&`) at the end of `ds9`. Try without it and see what happens.
 * **TIP**: Always try to use `tab` key on your keyboard to "autocomplete"!
 
-![IRAF_02](images/IRAF_02.png)
+![IRAF_02](figs/IRAF_02.png)
 
 In the `HR30/` directory, you have four images and `bias/` and `flat/` directories. The four images are the real images. I first will make master bias and flat.
 
@@ -123,7 +123,7 @@ There are many plotting packages in IRAF too, e.g., [``IMPLOT``](http://stsdas.s
 --> implot vega_7s.fits
 ```
 
-![IRAF_implot](images/IRAF_implot.png)
+![IRAF_implot](figs/IRAF_implot.png)
 
 Click on the ``Graphics`` window, and hit ``:`` key, then you will see small box at the bottom of the window. The left image is obtained by typing ``:a 30`` and then ``:l 700`` (average over 30 pixels around line (row) 700), and the right image is obtained by ``:a 30`` and then ``:c 500``. On the images, there will be a small T-shaped tick on the right y-axis (red arrows). This indicates which line/column you are looking at.
 
@@ -146,7 +146,7 @@ Then
 
 We will combine all 12 images in the `bias/` directory, and make one output named `bias.fits` using so-called **median combine**, while all other options left as default:
 
-![IRAF_bias_combine](images/IRAF_bias_combine.png)
+![IRAF_bias_combine](figs/IRAF_bias_combine.png)
 
 In IRAF commands, `@filename` means "open the file named `filename`, and put the contents here". Since `bias.list` contains the list of file names of bias images, 
 
@@ -171,7 +171,7 @@ To make master flat, you have to subtract master bias from combined flat image. 
 
 I want to make the combined image as `flat0.fits` first. Then save the result of subtracting bias, i.e., "`flat0 - bias`", as `flat.fits`. Do the median combine first:
 
-![IRAF_flat_combine](images/IRAF_flat_combine.png)
+![IRAF_flat_combine](figs/IRAF_flat_combine.png)
 
 Now copy the master bias to here and subtract it from the combined flat:
 
@@ -246,7 +246,7 @@ I usually avoid teaching these because it veils what's happening in IRAF, and th
 
 For bias (zero) combine, use the following settings:
 
-![IRAF_zerocombine](images/IRAF_zerocombine.png)
+![IRAF_zerocombine](figs/IRAF_zerocombine.png)
 
 * Many students fails to do it because they put something in ``ccdtype``. Let it be blank unless header information is correctly set!
 * Don't bother to much for ``rdnoise`` and ``gain``, since they are used only for ``reject==ccdclip`` or ``reject==crreject``. See the [Zerocombine Manual](http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?zerocombine).
@@ -257,7 +257,7 @@ For bias (zero) combine, use the following settings:
 
 For dark combine, use the following settings:
 
-![IRAF_darkcombine](images/IRAF_darkcombine.png)
+![IRAF_darkcombine](figs/IRAF_darkcombine.png)
 
 * Please let ``ccdtype`` blank as before.
 
@@ -267,7 +267,7 @@ For dark combine, use the following settings:
 
 * The zero-corrected dark may have negative values and the mean is around 0.
 
-  ​
+  
 
 >If you do ``DARKCOMBINE``, the input dark files may be changed (automatically zero subtracted). If you type ``--> ccdlist``, you can see [Z] to each dark files, which means the zero correction has already been done. This can be avoided by using ``CCDPROC``: 
 >
@@ -277,7 +277,7 @@ For dark combine, use the following settings:
 >
 >set: ``input=@dark.list, (output)=dark.fits, (zerocor)=yes, (zero)=bias.fits.`` See below:
 >
->![IRAF_ccdproc_zerocor](images/IRAF_ccdproc_zerocor.png)
+>![IRAF_ccdproc_zerocor](figs/IRAF_ccdproc_zerocor.png)
 >
 >Or ``COMBINE`` or ``IMCOMBINE`` to get the median-combined dark, and then subtract ``bias.fits`` by I``MARITH``:
 >
@@ -292,7 +292,7 @@ For dark combine, use the following settings:
 
 For dark combine, use the following settings:
 
-![IRAF_flatcombine](images/IRAF_flatcombine.png)
+![IRAF_flatcombine](figs/IRAF_flatcombine.png)
 
 * Please let ``ccdtype`` blank as before.
 * Don't bother to much for ``rdnoise`` and ``gain``, since they are used only for ``reject==ccdclip`` or ``reject==crreject``. See the [Flatcombine Manual](http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?flatcombine).
@@ -496,7 +496,7 @@ In the previous **Question**, I asked you what will happen if the min/max values
 
 * **Question**: When doing photometry (which we'll do in next section), people prefer `DAOEDIT` over `IMEXAM`. Why do you think so? Can you see what is the major difference between the outputs of these two?
 
-  ​
+  
 
 ## 8. More on Photometry
 
@@ -512,7 +512,7 @@ Then set the parameters as in the figure below.
 
 (You can open up the parameter editor of DATAPARS, etc, by clicking on the `PSET datapars` OR typing `--> epar datapars`.)
 
-![IRAF_PHOT_1](images/IRAF_PHOT_1.png)
+![IRAF_PHOT_1](figs/IRAF_PHOT_1.png)
 
 You can hit `Save & Quit` after setting all the values. They are explained below:
 
@@ -561,7 +561,7 @@ Hit `?` to see the help. Usually you will use `f` (of `space bar` if you want to
 
 If you hit `f` on a certain star, some kind of radial plot will appear with three vertical lines:
 
-![IRAF_PHOT_2](images/IRAF_PHOT_2.png)
+![IRAF_PHOT_2](figs/IRAF_PHOT_2.png)
 
 The image shows the plot of pixel values (`Intensity`) with respect to the radial distance from the calculated photocenter of the star near the cursor. In the lower axis, radial distance is shown in pixel units, and upper axis shows the scale units. 
 
@@ -703,7 +703,7 @@ We then may need one more step, i.e., trimming (cropping the image). Go display 
 --> implot flat.fits
 ```
 
-![IRAF_implot_vega_flat](images/IRAF_implot_vega_flat.png)
+![IRAF_implot_vega_flat](figs/IRAF_implot_vega_flat.png)
 
 * Left image: typing ``:a 30`` and then ``:l 700`` (average over 30 pixels around line (row) 700)
 * Right image: typing ``:a 30`` and then ``:c 500`` (average over 30 pixels around column 500).
@@ -730,7 +730,7 @@ to overwrite the original image by the trimmed image.
 > --> epar ccdproc
 > ```
 >
-> ![IRAF_ccdproc_all](images/IRAF_ccdproc_all.png)
+> ![IRAF_ccdproc_all](figs/IRAF_ccdproc_all.png)
 >
 > Click on Execute. You may see some results like this (exact values may differ):
 >
@@ -815,7 +815,7 @@ apextract/:
 
 Set parameters as in the figure. If you want the IRAF to automatically find aperture (you can modify it later by yourself, but you can get an idea how it finds the aperture), you can just set everything as default with turning the background subtraction on.
 
-​	![IRAF_apall](images/IRAF_apall.png)
+​	![IRAF_apall](figs/IRAF_apall.png)
 
 ```
 --> epar apextract
@@ -827,7 +827,7 @@ Edit apertures for vega? ('yes'):
 
 If you hit ``?``, the command will show you the help page. Hit ``q``, and you may be able to get out of the help page. The following images show four basic steps you have to do first:
 
-![IRAF_apall_2](images/IRAF_apall_2.png)
+![IRAF_apall_2](figs/IRAF_apall_2.png)
 
 The screens of yours can be very different from this!
 
@@ -842,7 +842,7 @@ The screens of yours can be very different from this!
 
 You may have to answer for few times, depending on the ``APALL`` epar setting. Type return again and again until you see the following left figure:
 
-![IRAF_aptrace](images/IRAF_aptrace.png)
+![IRAF_aptrace](figs/IRAF_aptrace.png)
 
 This is the aperture trace. The fitting does not look good, but if you see closely, the error is only few pixels order. But you may still want better fit.
 
@@ -864,7 +864,7 @@ You may have the trimmed reference (calibration) lamp image.
 --> epar identify
 ```
 
-![IRAF_identify](images/IRAF_identify.png)
+![IRAF_identify](figs/IRAF_identify.png)
 
 * Set ``coordlist`` to appropriate line profile text files. If you are not provided any files such as ``ne.dat``, leave it as default.
 * ``section`` is usually set as ``middle column`` or ``middle line``. It will show you the middle column/line cut (1-D plot).
@@ -880,7 +880,7 @@ The "desired" line spectrum of the lamp should be provided by the observatory. S
 
 Now we have to let IRAF know what the wavelengths of about some peaks in the graphics. IRAF then automatically use the “peaks” data file to find all other peaks. Let’s see how it works:
 
-![IRAF_identify_2](images/IRAF_identify_2.png)
+![IRAF_identify_2](figs/IRAF_identify_2.png)
 
 1. Left: Use ``w`` ``e`` ``e`` and ``w`` ``a`` to zoom the spectrum. Put the cursor near one of the peaks (e.g., the largest peak at 5852.49 Angstrom). Then type ``m`` (for mark). At the bottom of the graphics, type the rough wavelength value (e.g., “5852”). Hit return. At the bottom, there will be the found wavelength value. It is found from the Ne.dat file, using your input value.
 
@@ -932,7 +932,7 @@ Then plot:
 --> splot vega_final
 ```
 
-![IRAF_splot](images/IRAF_splot.png)
+![IRAF_splot](figs/IRAF_splot.png)
 
 * Left: Hit ``space``. You will see ``x``, ``y``, ``z`` values. ``y`` is the cursor’s y-value and ``z`` is the actual y value (flux) of the plot.
 * Right: See below.
