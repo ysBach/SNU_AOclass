@@ -87,7 +87,6 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 * [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
 * astrometry.net
 * SExtractor
-* 
 
 #### Part <u>A</u>: <u>A</u>ppendices
 
@@ -101,30 +100,36 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 
 ### 2019-04-22 (Mon)
 
-Using the ``Book``'s Statistics chapter 
+* **Materials**: ``Book``'s *Statistics* chapter 
 
 1. Statistics
-   * Confidence Interval
+   * Confidence Interval (CI)
    * The Central Limit Theorem and the meaning of it
    * Some distributions (Student t, Poisson) and Poisson process
 
+
+
 ### 2019-04-24 (Wed)
 
-Using the ``Book``'s Idea of Photometry chapter and KMTNet data
+* **Materials**: ``Book``'s *Idea of Photometry* chapter and KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
 
 1. Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`)
-   * Frame WCS lock, blinking, regions, colormap, scale, smoothing (ds9)
+   * Frame WCS lock, blinking (ds9)
+   * Regions, colormap, scale, smoothing (ds9)
    * Analysis using starcatalog and SkyBot (ds9)
 2. Idea of Photometry
    * Point Spread Function (PSF)
    * Aperture summation
    * Sky estimation
 
+3. Help desk for the installation
+   * Git, Anaconda, ds9, etc.
+
 
 
 ### 2019-04-29 (Mon)
 
-Using the ``Book``'s Idea of Photometry chapter and KMTNet data
+* **Materials**: ``Book``'s *Idea of Photometry* chapter and KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
 
 1. Photometry using python (once preprocessed image is provided)
 2. What if WCS is broken: Astrometry.net
