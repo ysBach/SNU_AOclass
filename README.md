@@ -41,7 +41,19 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 
 
-Part 0: Preparation
+### Book
+
+Fundamental ideas, formulation, and definition/theorems are given in the book material. Look at the `Books` directory in this repo or just the compiled TeX: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf)
+
+**The codes** to make simple plots in the Book are given mostly as ipython notebooks in `Books/codes` of this repo. I recommend [this nbviewer hosting](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
+
+
+
+### Notebooks
+
+The demonstration (python codes) for more elaborating examples are given as separate Notebooks in [this link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/). The contents are:
+
+#### Part 0: Preparation
 
 * [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
@@ -49,7 +61,7 @@ Part 0: Preparation
 * Looking at the preprocessed images, thinking about photometry
 * Statistics
 
-Part 1: Aperture (Simple PSF) Photometry
+#### Part 1: Aperture (Simple PSF) Photometry
 
 * photometric preprocessing
 * Circular aperture and annulus photometry
@@ -57,27 +69,27 @@ Part 1: Aperture (Simple PSF) Photometry
 * Differential (relative) photometry: light curve of a variable object
 * Absolute photometry: getting the absolute magnitude of an object with known distance
 
-Part 2: Extended Objects
+#### Part 2: Extended Objects
 
 * SExtractor sky estimation
 * Morphological characterization
 
-Part X: General PSF Photometry & Polarimetry
+#### Part X: General PSF Photometry & Polarimetry
 
 
 
-Part X: Long-Slit Spectroscopy
+#### Part X: Long-Slit Spectroscopy
 
 * Spectroscopic preprocessing
 
-Part **S**: Non-Python **S**oftwares or **S**ervices
+#### Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
 * [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
 * astrometry.net
 * SExtractor
 * 
 
-Part **A**: **A**ppendices
+#### Part <u>A</u>: <u>A</u>ppendices
 
 * [A01_HW.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A01_HW.md)
 
@@ -85,12 +97,40 @@ Part **A**: **A**ppendices
 
 
 
-| Date             | Contents                                                     | TA              |
-| ---------------- | ------------------------------------------------------------ | --------------- |
-| 2019-04-22 (Mon) | Statistics                                                   | Yoonsoo P. Bach |
-| 2019-04-24 (Wed) | Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`) | Yoonsoo P. Bach |
-|                  | Idea of Photometry                                           |                 |
-|                  |                                                              |                 |
-|                  |                                                              |                 |
-|                  |                                                              |                 |
-|                  |                                                              |                 |
+## Schedule
+
+### 2019-04-22 (Mon)
+
+Using the ``Book``'s Statistics chapter 
+
+1. Statistics
+   * Confidence Interval
+   * The Central Limit Theorem and the meaning of it
+   * Some distributions (Student t, Poisson) and Poisson process
+
+### 2019-04-24 (Wed)
+
+Using the ``Book``'s Idea of Photometry chapter and KMTNet data
+
+1. Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`)
+   * Frame WCS lock, blinking, regions, colormap, scale, smoothing (ds9)
+   * Analysis using starcatalog and SkyBot (ds9)
+2. Idea of Photometry
+   * Point Spread Function (PSF)
+   * Aperture summation
+   * Sky estimation
+
+
+
+### 2019-04-29 (Mon)
+
+Using the ``Book``'s Idea of Photometry chapter and KMTNet data
+
+1. Photometry using python (once preprocessed image is provided)
+2. What if WCS is broken: Astrometry.net
+
+
+
+### 2019-05-01 (Wed)
+
+Photometric preprocessing
