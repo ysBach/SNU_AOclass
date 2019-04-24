@@ -83,3 +83,14 @@ Part **A**: **A**ppendices
 
 * [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
 
+
+
+| Date             | Contents                                                     | TA              |
+| ---------------- | ------------------------------------------------------------ | --------------- |
+| 2019-04-22 (Mon) | Statistics                                                   | Yoonsoo P. Bach |
+| 2019-04-24 (Wed) | Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`) | Yoonsoo P. Bach |
+|                  | Idea of Photometry                                           |                 |
+|                  |                                                              |                 |
+|                  |                                                              |                 |
+|                  |                                                              |                 |
+|                  |                                                              |                 |
