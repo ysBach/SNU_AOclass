@@ -1,0 +1,17 @@
+
+new_plot_window 
+Plots now directed towards imexam2
+
+gauss_center 
+xc=499.689383	yc=500.017265
+
+aper_phot 
+x              y              radius         flux           mag(zpt=25.00) sky/pix        fwhm(pix)
+499.69         500.02         5              442.29         18.39          82.22          4.19
+
+gauss_center 
+xc=398.643257	yc=428.005363
+
+aper_phot 
+x              y              radius         flux           mag(zpt=25.00) sky/pix        fwhm(pix)
+398.64         428.01         5              5857.04        15.58          82.23          4.58

@@ -1,0 +1,54 @@
+
+gauss_center 
+xc=398.643257	yc=428.005363
+
+aper_phot 
+x              y              radius         flux           mag(zpt=25.00) sky/pix        fwhm(pix)
+398.64         428.01         5              5857.04        15.58          82.23          4.58
+
+gauss_center 
+xc=398.643252	yc=428.005982
+
+radial_profile 
+Background per pixel: 82.843251
+
+radial_profile 
+Max. pix. flux =   232.724
+amp =   217.843
+fwhm =     4.471
+
+gauss_center 
+xc=398.643243	yc=428.005435
+
+curve_of_growth 
+
+at (x,y)=398,428
+radii:[1 2 3 4 5 6 7 8]
+flux:[47.603243902651855, 1403.9049647463496, 3411.4160725652728, 4531.046662574266, 5019.239376985242, 6108.001868080915, 6053.805472226035, 6355.927128812687]
+
+gauss_center 
+xc=499.689383	yc=500.017265
+
+aper_phot 
+x              y              radius         flux           mag(zpt=25.00) sky/pix        fwhm(pix)
+499.69         500.02         5              442.29         18.39          82.22          4.19
+
+gauss_center 
+xc=499.685939	yc=500.016499
+
+radial_profile 
+Background per pixel: 81.969500
+
+radial_profile 
+Max. pix. flux =    57.054
+amp =  5194.864
+fwhm =     7.714
+
+gauss_center 
+xc=499.689383	yc=500.017265
+
+curve_of_growth 
+
+at (x,y)=499,500
+radii:[1 2 3 4 5 6 7 8]
+flux:[-141.81701608881042, -61.67966256080808, 106.75388034719072, 130.1604848886036, -169.12796264506596, 397.46531997274724, 47.76981958896431, 204.3722213842484]
