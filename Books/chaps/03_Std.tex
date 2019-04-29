@@ -118,10 +118,35 @@ To illustrate the result, I used the SDSS filter system as shown in \cref{fig:ai
 \label{fig:air-ext-bbrad}
 \end{figure}
 
-As can be seen, the extinction is stronger for high temperature objects (lower color index), so we should have $ k_f'' < 0 $. The difference of extinction between the objects gets smaller as we look at longer wavelength.
+As can be seen, the extinction is stronger for high temperature objects (lower color index), so likely $ k_f'' < 0 $. The difference of extinction between the objects gets smaller as we look at longer wavelength. Thus, $ k_f'' \sim 0 $ except for B or u filters.
 
 These facts can be understood intuitively. The higher the temperature the spectrum will have more fraction of energe at shorter wavelength. Considering that the atmospheric extinction is stronger at shorter wavelength (see black markers in \cref{fig:air-ext-bbrad}), high termperature object will get more ``penalty'' when it comes into the atmosphere. That is why high temperature object is more strongly extincted. But as can be seen, the extinction gets nearly constant at wavelengths of r and i bands. Then this effect will get weaker and that is the reason for smaller discrepancy in $ \Delta m $ values at longer wavelength.
 
+SmithJA+ (2002, AJ, 123, 2121) determined the coefficients for SDSS filters at 1.0 m Ritchey--Chr\'{e}tien telescope at the USNO Flagstaff Station, from the observations in 1998--2000:
+\begin{table}[ht!]
+\caption{The extinction coefficients of SDSS from SmithJA+ (2002, AJ, 123, 2121).}
+\label{tab: SDSS ext}
+\centering
+  \begin{tabular}{c||lllll}
+  Parameter  & u$ ' $ & g$ ' $ & r$ ' $ & i$ ' $ & z$ ' $ \\
+  \hline
+  $ k_f' $ & $ > +0.5 $ & $ +0.20 \pm 0.05 $ & $ +0.10 \pm 0.05 $ & $ +0.05 \pm 0.05 $ & $ +0.05 \pm 0.05 $\\
+  $ k_f'' $ method 1 
+    & $ -0.021 \pm 0.003 $
+    & $ -0.016 \pm 0.003 $ 
+    & $ -0.004 \pm 0.003 $
+    & $ +0.006 \pm 0.003 $ 
+    & $ +0.003 \pm 0.003 $ \\
+  $ k_f'' $ method 2
+    & $ -0.032 $ 
+    & $ -0.015 $
+    &  $ 0.000 $
+    & $ +0.005 $
+    & $ +0.006 $
+  \end{tabular}
+\end{table}
+
+The $ k_f' $ value fluctuates much for each night (see Fig 6 of the original publication), so I just took representative values from visual inspection. The $ k_f'' $ values were obtained by two independent pipelines, \texttt{superExcal} (method 1) and \texttt{solve\_network} (method 2). Both are quite consistent except for the u filter.
 
 
 %Atmosphere diminishes the flux of the object. For an optical depth of $ \tau $, an object with initial flux $ I_0 $ will be observed as $ I = I_0 e^{-\tau} $ and its magnitude will be increased (because flux is decreased) by $ \Delta m = -2.5 \lg (I / I_0) = \frac{2.5}{\lg e} \tau = 1.086 \tau $. But $ \tau = \int n \sigma dl $ for the number density of particles $ n $, the extinction cross-section $ \sigma $, and traveling distance $ l $. The total traveling distance, $ L $, is $ L_0 / \cos z = L_0 X $ where $ X $ is the airmass. Thus, a simple approximation that $ \tau \propto L $ will result in $ \Delta m \propto X $. 
@@ -160,5 +185,27 @@ These facts can be understood intuitively. The higher the temperature the spectr
 %  \Delta m_f = k_f' X + k_f'' C X ~.
 %\end{equation}
 %\end{thm}
+
+The atmospheric extinction coefficients $ (k_f',\, k_f'') $ all change as a function of time. We just hope they are reasonably constant during our observation of our targets and standard stars. From experience, we know $ k_f'' $ is almost very small for filters longer than u or B-band, but is not necessarily ignorable because $ k_f'' XC $ might be larger than the accuracy you want to obtain. 
+
+\begin{ex}[Ignoring the Second Order Extinction Term]
+Consider an observation at $ X = 2 $ of $ C = 0.2 $ star. If you ignore the second order extinction term, you are making $ k_f'' XC = 0.4 k_f'' $ of uncertainty. According to \cref{tab: SDSS ext}, this is most likely smaller than 0.01 magnitude. 
+
+The Sun has $ C = \mathrm{g' - r'} \sim 0.5 $, and the error becomes $ 1.0 k_f'' $ and it is $ < \m{0.01} $ only for riz bands.
+
+The red M0 stars have $ C = \mathrm{g' - r'} \lesssim 1.5 $ and the error is now $ 3.0 k_f'' $. The accuracy of $ \m{0.01} $ can be achieved in riz bands, but risky.
+\end{ex}
+
+The calculation above is only for SDSS observatory at altitude of 2.3 km. But fortunately, BuchheimB (2005, SASS, 24, 111) found that the $ k_f'' \lesssim 0.005 $ for V band even at many low-altitude observatories (including Bochum observatory at altitude 200 m, Vainu Bappu Observatory at altitude 700 m), so likely we expect the correction from the second-order extinction term is small enough.
+
+
+\section{Transformation Coefficient}
+The sensitivity of the optics is also a function of $ \lambda $. The argument is identical to atmospheric extinction, but $ X $ is now a constant. Then the same logic leads us to the conclusion that there should be a color term which tunes the final output of the CCD count, and that is the $ k_f C $ (``transformation'') term.
+
+The $ z_f $ term is 
+
+The transformation coefficient, which I denoted $ k_f $, is fortunately nearly constant for the given device. Warner argues that it is enough to update $ k_f $ value only about 2--4 times a year, unless you physically changed the device elements (e.g., filter, CCD, lens, etc).
+
+
 
 
