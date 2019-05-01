@@ -27,9 +27,17 @@ You may have your preferences to use this repo. One of the possible suggestions 
 
 ```
 $ cd <Where you want to download this lecture note>
-# For the first time only:
+```
+
+For the first time only:
+
+```
 $ git clone https://github.com/ysBach/AO2019.git
-# From the second time:
+```
+
+From the second time:
+
+```
 $ git pull
 ```
 
