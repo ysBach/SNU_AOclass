@@ -28,7 +28,7 @@ You may have your preferences to use this repo. One of the possible suggestions 
 ```
 $ cd <Where you want to download this lecture note>
 # For the first time only:
-$ git clone https://github.com/ysBach/AO_LectureNotes.git
+$ git clone https://github.com/ysBach/AO2019.git
 # From the second time:
 $ git pull
 ```
@@ -138,7 +138,7 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 ### 2019-04-29 (Mon)
 
 * **Materials**: 
-  * ``Book``'s *Idea of Photometry*, *Standardization* chapter
+  * ``Book``'s *Idea of Photometry* chapter
   * KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
   * [``imexam`` notebook](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/01-imexam.ipynb)
   * [FITS handling notebook](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb)
@@ -154,6 +154,17 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 
 
 ### 2019-05-01 (Wed)
+
+* Materials:
+  * ``Book``'s *Standardization* chapter
+  * [Query](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb) notebook
+
+1. Standardization process
+2. Query UCAC, Pan-STARRS stars in the image when WCS is given.
+
+
+
+### 2019-05-06 (Mon)
 
 1. Photometric preprocessing
 2. Aperture Photometry using python (photutils and astroquery)
