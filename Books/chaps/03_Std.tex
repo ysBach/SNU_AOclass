@@ -33,9 +33,9 @@ and
 \begin{itemize}
 \item $ f $: The filter (V, B, g', etc).
 \item $ X $: airmass (secant of zenith angle).
-\item $ M_f $: The standard apparent magnitude (or the true apparent magnitude) at filter $ f $. Also called the extra-atmospheric magnitude.
+\item $ M_f $: The standard apparent magnitude (or the true apparent magnitude) at filter $ f $.
 \item $ m_f $: The instrumental magnitude, i.e., $ -2.5 \lg N $.
-\item $ m_{0f} $: The $ m_f $ value we would have obtained if we were in space ($ X = 0 $).
+\item $ m_{0f} $: The extra-atmospheric magnitude, i.e., the $ m_f $ value we would have obtained if we were in space ($ X = 0 $).
 \item $ C $: The true color index, e.g., $ \mathrm{B} - \mathrm{V} $ or $ \mathrm{r'} - \mathrm{i'} $.
 \item $ k_f' $: The first order extinction coefficient at filter $ f $.
 \item $ k_f'' $: The second order extinction coefficient at filter $ f $.
@@ -56,7 +56,7 @@ From \cref{eq: std}\footnote{$ z_{f} $ must be a constant unless the device is a
     + \Delta z_\mathrm{V}
     \neq \mathrm{v} - \mathrm{v}_0 ~.
 \end{equation}
-So the calculation given in the example is true only if the airmass of the object and standard star are identical AND the true color indices of them are identical, we cannot simply equate the right hand side of \cref{eq: Pogson}, which is $ \mathrm{v} - \mathrm{v}_0 $, to the left hand side. In space, $ X = 0 $ and $ \Delta z \approx 0 $, so only the $ k_f $ term remains. This is why space observation is powerful.
+So the calculation given in the example is true only if the airmass of the object and standard star are identical AND the true color indices of them are identical. Otherwise, we cannot simply equate the right hand side of \cref{eq: Pogson} ($ = \mathrm{v} - \mathrm{v}_0 $) to the left hand side ($ = V - V_0 $). In space, $ X = 0 $ and $ \Delta z \approx 0 $, so only the $ k_f $ term remains. This is why space observation is powerful.
 
 \section{Understanding the Standardization Formula}
 
@@ -77,18 +77,20 @@ Consider an object with spectrum $ S_0(\lambda) $ is at an airmass of $ X $ and 
       \qty( \frac{\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) e^{-\tau(\lambda) X} d\lambda}
       {\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) d\lambda} ) ~.
 \end{equation}
-Here $ e^{-\tau(\lambda) X} $ is actually an approximation of $ e^{\int -\tau(\lambda) dX} $. Using Taylor expansions, $ e^{-\tau(\lambda) X} \approx 1 - \tau(\lambda) X $ and $ \lg (1 - A) \approx - A $, 
+Here $ e^{-\tau(\lambda) X} $ is actually an approximation of $ e^{\int -\tau(\lambda) dX} $. Using Taylor expansions, $ e^{-\tau(\lambda) X} \approx 1 - \tau(\lambda) X $ and $ \lg (1 - A) \approx - A / \ln 10 $, 
 \begin{equation}
 \begin{aligned}
     m_f - m_{0f} 
     &\approx -2.5 \lg 
       \qty( 1 - \frac{\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) \tau(\lambda) d\lambda}
         {\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) d\lambda} X ) 
-    \approx 2.5 \frac{\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) \tau(\lambda) d\lambda}
+    \approx \frac{2.5}{\ln 10} 
+      \frac{\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) \tau(\lambda) d\lambda}
             {\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) d\lambda} X ~.
 \end{aligned}  
 \end{equation}
-Remembering $ I = I_0 e^{-\tau X} $, so $ \Delta m = -2.5 \lg (I / I_0) = 1.086 \tau X $, the y-axis of \cref{fig:air-ext-and-filter} is $ \sim 1.1 \tau $. Therefore, the approximation above is reasonable since $ \tau X \ll 1 $ for optical. (although this may break down in some cases like short wavelength high airmass observation, but the error due to this approximation may not be severe). 
+
+Remembering $ I = I_0 e^{-\tau X} $, we have $ \Delta m = -2.5 \lg (I / I_0) = 1.086 \tau X $. Then the $ y $-axis of \cref{fig:air-ext-and-filter} is $ \sim 1.1 \tau $, so you can roughly understand that the $ y $-axis of the figure is similar to $ \tau $. Therefore, $ \tau X \ll 1 $ is reasonable. In cases such as short wavelength (shorter than B/g) and high airmass observation, this assumption may break down. The error due to the approximation, however, may not be severe compared to other error sources (e.g., changing weather). 
 
 Now we want to further assume that, $ \tau(\lambda) \approx c_1 + c_2 \lambda $ within the wavelength range of $ (\lambda_1, \lambda_2) $. This is similar to approximating the black markers in \cref{fig:air-ext-and-filter} within each filter as a line because its y-axis is nothing but $ 1.1 \tau $. Then
 \begin{equation}
