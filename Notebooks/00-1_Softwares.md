@@ -321,11 +321,13 @@ and `!ds9 image*.fits -single &`, etc, will work identically. There is another t
 
 If you want to download it, type
 
-    conda install -c astropy ginga
+    $ conda install -c astropy ginga
 
 It is made to serve the role as SAO ds9, but to perform some useful calculations that ds9 cannot do by default. ds9 has tremendous power when it is used *with* IRAF, but that is not a favorable solution for Python users. So Ginga is made to fully funtional with Python only, as well as to be able to interact with IRAF as ds9 does.
 
-You can use `ginga &` on terminal or `ecl> !ginga &` on IRAF console. Although you can do `ginga image.fits &` as you did for ds9, it is usually better to use interactive drag-and-drop way to open image than command line. In Ginga, you can also use `tools -> FBrowser`.
+You can use `$ ginga &` on terminal or `ecl> !ginga &` on IRAF console. Although you can do `ginga image.fits &` as you did for ds9, it is usually better to use interactive drag-and-drop way to open image than command line. In `ginga`, you can also use `Operation -> utils -> FBrowser`.
+
+The most important feature of `ginga` is to use it for interactive FWHM estimation and radial profile check, which is done by ``pick``: [documentation](https://ginga.readthedocs.io/en/latest/manual/plugins_local/pick.html?highlight=pick).
 
 I couldn't find how to use Ginga with IRAF yet.... Though [this official site](http://ginga.readthedocs.io/en/latest/manual/plugins_global/iraf.html) says you can. I think this is a [known bug](https://trello.com/c/6mt7oBXZ/44-iraf-plugin-implemented) that you actually cannot.
 
