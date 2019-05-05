@@ -99,8 +99,8 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 #### Part <u>A</u>: <u>A</u>ppendices
 
 * [A01_HW.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A01_HW.md)
-
 * [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
+* [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
 
 
 
