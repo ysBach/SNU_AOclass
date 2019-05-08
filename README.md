@@ -43,7 +43,7 @@ $ git pull
 
 
 
-## TA Lecture Notes Outline
+## Seminar Contents
 
 The following lecture notes *only* gives you idea how to use tools for data reduction. **You must be aware of what you are doing!** Identical procedure to the lecture note may give different results, depending on what you've done other than what I did when I make the notes.
 
@@ -59,36 +59,18 @@ Fundamental ideas, formulation, and definition/theorems are given in the book ma
 
 ### Notebooks
 
-The demonstration (python codes) for more elaborating examples are given as separate Notebooks in [this link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/). The contents are:
+The demonstration (python codes) for more elaborating examples are given as separate Notebooks in [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
+
+
+
+Some of Part 0, S, and A are not covered in the class.
 
 #### Part 0: Preparation
 
 * [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
 * [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
-* Looking at the preprocessed images, thinking about photometry
-* Statistics
-
-#### Part 1: Aperture (Simple PSF) Photometry
-
-* photometric preprocessing
-* Circular aperture and annulus photometry
-* Getting the instrumental magnitude: aperture photometry to a single star
-* Differential (relative) photometry: light curve of a variable object
-* Absolute photometry: getting the absolute magnitude of an object with known distance
-
-#### Part 2: Extended Objects
-
-* SExtractor sky estimation
-* Morphological characterization
-
-#### Part X: General PSF Photometry & Polarimetry
-
-
-
-#### Part X: Long-Slit Spectroscopy
-
-* Spectroscopic preprocessing
+* Statistics (See the Book above)
 
 #### Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
@@ -123,6 +105,7 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 * **Materials**:
   * ``Book``'s *Idea of Photometry* chapter
   * KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
+  * Install ``SAO ds9``
 
 1. Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`)
 
@@ -148,33 +131,29 @@ The demonstration (python codes) for more elaborating examples are given as sepa
 * **Materials**: 
   * ``Book``'s *Idea of Photometry* chapter
   * KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
-  * [``imexam`` notebook](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/01-imexam.ipynb)
-  * [FITS handling notebook](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb)
 
-1. Do quick-and-dirty photometry
-   * Using ``imexam`` on ``ds9`` or ``ginga``.
-2. How to handle FITS files using python
-   * ``astropy.io.fits`` 
-   * Study ``astropy.units`` by yourself.
-3. The standardization
-   * The concept of atmospheric extinction
+1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` to do crude photometry.
 
+   - Currently I couldn't find a way to use ``imexam`` on Windows.
+   - If you want, please open new [**issues**](https://github.com/spacetelescope/imexam/issues) to ``imexam`` developers.
 
+2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple manipulation of FITS files using ``astropy.io.fits``.
+
+   
 
 ### 2019-05-01 (Wed)
 
 * Materials:
   * ``Book``'s *Standardization* chapter
-  * [Query](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb) notebook
 
-1. Standardization process
-2. Query UCAC, Pan-STARRS stars in the image when WCS is given.
-
+1. Standardization process of the Book.
+2. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Query catalogued objects using `astroquery` if WCS is given (UCAC, Pan-STARRS, JPL HORIZONS).
 
 
-### 2019-05-06 (Mon)
 
-1. Photometric preprocessing
+### 2019-05-08 (Wed)
+
+1. [Note A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb): Photometric preprocessing demonstration from TRIPOL (2019-05-03)
 2. Aperture Photometry using python (photutils and astroquery)
 3. What if WCS is broken: Astrometry.net
 
