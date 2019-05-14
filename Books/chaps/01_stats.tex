@@ -1,5 +1,7 @@
 \chapter{Statistics}
 
+\textit{In any chapter in this book, especially in this chapter, I will assume (1) you have really basic knowledge on statistics, e.g., what ``Gaussian'', ``probability'', ``standard normal distribution'' means and/or (2) you know how to use Google so that you can find concepts which you don't know.}
+
 Let's start with a question. 
 \begin{ex}
   For the \textbf{same star}, consider the following three scenarios:
@@ -285,7 +287,7 @@ where $ m_1 = \m{14.0} \pm \m{0.1} $ and $ m_2 $ is the other (from researcher 2
 
 Now we have to choose which formula to use. When two measurements with $ \bar{x}_1 \pm s_1 $ and $ \bar{x}_2 \pm s_2 $ from the number of observations $ n_1 $ and $ n_2 $ are given, and $ \mu_1 $ and $ \mu_2 $ are the true means of two sampling distributions that will be tested under the hypothesis testing, there are two different formulae:
 \begin{itemize}
-\item The true variances are unknown and different:
+\item The true variances are unknown and different (Satterthwhite approximation\footnote{SatterthwhiteFE (1946, Biometrics Bulletin, 2, 110), ``An Approximate Distribution of Estimates of Variance Components.''}):
 \begin{equation}
   t = \frac{(\bar{x}_1 - \bar{x}_2) - (\mu_1 - \mu_2) }{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}}
 \end{equation}
@@ -382,7 +384,7 @@ Here $ o(h) $ is any function such that $ \lim_{h \rightarrow 0} o(h) / h = 0 $.
 \item [4.] For a very small interval $ h $, the probability of two or more ``counting'' (Poisson process) occurs in that interval is nearly 0.
 \end{itemize}
 These must be independent of whether the counting happened outside of the interval, because the second item of the definition states the increment is independent.
-
+\newpage
 \begin{ex}[Photon Counting and Poisson Process]
 The photon counting process of astronomy resembles the Poisson Process. If $ N(t) $ is the number of photons or electrons under the exposure time $ t $, it is trivial that the first two items of the definition is satisfied. Next, use the rephrased version of the next items. The number of photons hitting CCD with infinitesimal time interval $ h = dt $ must be 0 or 1, but not larger than 1 (e.g., if a pixel count is 10,000 after 10 sec of exposure, we can take $ h \ll \SI{10}{s} / 10,000 = \SI{1}{ms} $ to meet this condition). Thus, photon counting is a Poisson process.
 \end{ex}
@@ -428,7 +430,18 @@ There are two hospitals A and B. New babies are born as either sex chromosome XX
 \end{ex}
 
 
+\section{Error Propagation}
+When we have to calculate the uncertainty of a parameter derived from other parameters that have their own uncertainties, what we usually use is the \textit{error propagation}. For example, $ \mathrm{g'} = 14.0 \pm 0.1 $ and $ \mathrm{r'} = 15.0 \pm 0.1 $, what is the uncertainty of the $ \mathrm{g' - r'} $ color? Many astronomers will say it is $ -1.0 \pm 0.14 $, where the error here is $ \sqrt{\sigma_\mathrm{g'}^2 + \sigma_\mathrm{r'}^2} $ ($ \sigma $ is the error-bar). If the temperature is $ T = 100 \pm 1 \si{K} $, what is the bolometric luminosity ($ L = \sigma_\mathrm{SB} T^4 $)? Now people will say $ \Delta L / L \approx \frac{4 \sigma_\mathrm{SB} T^3 \Delta T }{\sigma_\mathrm{SB} T^4} = 4 \Delta T / T = 4 \% $. 
 
+This is, however, only an approximation, and in reality, we need more complicated calculation. Note that it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the rough estimation of the error-bar.
+
+
+
+
+\section{The Chi-Square Minimization}
+You may have heard of it, or simply the \textit{least square} something. Least square or the chi-square minimization is a process to find the set(s) of model parameters which has the biggest (or bigger than threshold) \textit{likelihood} in Bayesian statistics. The set of ``best'' model parameters is the one with the largest likelihood, so we call it the maximum likelihood estimator, \textbf{MLE}.
+
+Consider independent and identically distributed (\textit{i.i.d.}) random variables\footnote{Random variables $ X_{i} $ for $ i = 0, \cdots, N $ are called i.i.d. if they (1) follow identical probability distribution, say $ f(x) $, and (2) $ f(X = x) = f(X_1 = x_1) \times \cdots \times f(X_N = x_N) $, where $ x = (x_1, \cdots , x_N) $ (same for $ X $). }, e.g., flux as a function of $ \lambda $. It is independent because the measurement at each wavelength itself is independent from that of any other wavelength. It is identically distributed because and we will assume each error-bar is Gaussian. The second assumption is not necessarily correct, and actually that happens many times (e.g., flux is Gaussian distributed but magnitude is not, because it is log of Gaussian distribution).
 
 % Propagation of Errors
 % chi square

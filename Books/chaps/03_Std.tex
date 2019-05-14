@@ -46,7 +46,7 @@ I will explain the terms related to $ m_{0f} $ and then the other terms. Note th
 
 %The example I showed with \cref{eq: Pogson} is the case when $ k_f = k_f' = k_f'' = 0 $, or equivalently $ k_f = 0 $ and $ X = 0 $. In such a case, the true apparent magnitude is $ \mathrm{V} = \mathrm{v} + z_\mathrm{V} = -2.5 \lg N + z_\mathrm{V} $ where $ \mathrm{v} $ is the instrumental magnitude and $ z_\mathrm{V} $ is just a constant\footnote{}. Same goes true for the standard star, so $ \mathrm{V}_0 = \mathrm{v}_0 + z_\mathrm{V} = -2.5 \lg N_0 + Z_\mathrm{V} $. Then \cref{eq: Pogson} makes sense and $ \mathrm{V}- \mathrm{V}_0 = \mathrm{v} - \mathrm{v}_0 $. If the coefficients are non-zero, you can see that 
 
-From \cref{eq: std}\footnote{$ z_{f} $ must be a constant unless the device is affected by external disturbance in our simple model dealt in this chapter. In reality it is true that this zero point fluctuate at each exposure, and that is because of the imperfect readout process of CCD electronics. $ \Delta z_\mathrm{V} \approx 0 $ is assumed in this chapter.}:
+From \cref{eq: std}\footnote{$ z_{f} $ must be a constant unless the device is affected by external disturbance in our simple model dealt in this chapter. In reality it is true that this zero point fluctuate at each exposure, and that is because of the imperfect readout process of CCD electronics. $ \Delta z_\mathrm{V} \approx 0 $ is assumed in this chapter. Although you may be unconfortable, but this is what is assumed even in professional space telescope data reduction processes, so please bear with me.}:
 \begin{equation}
   \mathrm{V} - \mathrm{V}_0 
     = (\mathrm{v} - \mathrm{v}_0)
@@ -215,6 +215,22 @@ The sensitivity of the optics is also a function of $ \lambda $. The argument is
 The transformation coefficient, which I denoted $ k_f $, is fortunately nearly constant for the given device. Warner argues that it is enough to update $ k_f $ (Warner uses notation of $ T_f $) value only about 2--4 times a year, unless you physically changed the device elements (e.g., filter, CCD, lens, etc). Moreover, from experience, we know that this is nearly zero: $ |k_f| \lesssim 0.1 $. Many cases $ |k_f| \lesssim 0.01 $. Since the range of color indices are $ \mathrm{max}(\Delta C) \lesssim \m{1} $, we have $ |k_f C| \lesssim 0.1 $, and in many cases, $ |k_f C| \lesssim 0.01 $.
 
 
+\subsection{A Note on Linearity} \label{ss: linearity note}
+As we noted at the beginning part of this chapter, CCD is highly linear. That means, $ N = g N_e = \alpha N_\gamma $ where $ N $ is the pixel count (after \emph{bias} and \emph{dark} subtraction), $ N_e $ is the total number of photo-electrons, $ g $ is the electronic gain of the CCD (a constant; unit of counts per electrons), and $ N_\gamma $ is the photon incident to the CCD from the true photon number $ N_\mathrm{\gamma 0} $. No higher-order terms, no other constants. The $ \alpha $ value may differ from pixel to pixel due to the inhomogeneity of optics or CCD pixels, but they are homogeneized by the so-called \emph{flat fielding}, so here I can safely say it is strictly constant over all the pixels. 
+
+Any kind of extinction (atmosphere or optics in front of the CCD) is multiplicative only to the linear term, i.e., $ N_\gamma = N_{\gamma 0} \times \mathrm{something_1} $ (e.g., $ e^{-\tau} $). There is neither higher-order terms like $ N_{\gamma 0}^2 $ nor addition of constant. Therefore, $ N = \mathrm{something_2} \times N_\mathrm{\gamma 0} $ and the instrumental magnitude
+\begin{equation}
+  m_f 
+    := -2.5 \lg N 
+    = \mathrm{something_3} - 2.5 \lg N_{\gamma 0}
+    \equiv \mathrm{something_3} + M_f ~.
+\end{equation} 
+Thus, thanks to the linearity of CCD, we have no additional coefficient \emph{multiplied} in front of $ m_f $ or $ M_f $. If, for example, $ N $ were $ \alpha N_\gamma + \alpha' $, or there were other terms in the extinction (proportional to $ N^2 $ or a constant radiation from the optics), this simple relation wouldn't hold.
+
+%In reality, the broad-band photometry (the  has some tricky problem. For a simple illustration, assume (1) we don't have atmosphere, (2) have a flat throughput: $ f(\lambda) = 1 $ for $ \lambda = [\lambda_1, \lambda_2] $ and zero otherwise, (3) CCD and optics has no wavelength-dependency in its sensitivity. We observed two stellar black-body spectra of temperatures $ T_a $ and $ T_b $ ($ T_a < T_b $). Because of different radii of or distance to the stars, consider they are shooting identical number of photons per time to Earth, i.e., $ \int_{\lambda_1}^{\lambda_2} S(\lambda) / (hc / \lambda) d\lambda $ is the same for two stars. The CCD will produce the same number of photo-electrons when it is hit by, e.g., 100 photons of $ \lambda_1 $ or 100 photons of $ \lambda_2 $. Thus, the two stars will appear to have identical brightness.
+
+To emphasize, \emph{you should not worry about whether to \emph{multiply} something in front of $ M_f $ or $ m_f $ to satisfy \cref{eq: std}}. Their coefficients \emph{must be unity}. From our experiences, most observational experts and electrical engineers would say that you should only care about this if you are sure that some parts of the optics have serious problems (e.g., your CCD underwent serious problem and shows non-linearity). 
+
 \section{Differential Photometry}
 Now that we justified the usage of \cref{eq: std}, let's find the cases of application. The simplest case is the \textit{differential photometry}. 
 
@@ -269,22 +285,53 @@ Sometimes
 \item we don't have multi-filter (also called the ``multi-color'') observation data of the  target, or
 \item the linear fit to $ M - m $ VS $ C_{xy} $ is not possible because there are only few stars and/or narrow color range. 
 \end{enumerate}
-For the first case, although we can get $ (a_x, b_x) $, we don't know the $ C_{xy} $ (mathematically identical to state that we don't have parameters with subscript $ y $ to plug into \cref{eq: 2-filter diff phot sol}). For the second case, it is just impossible to get $ (a_x, b_x) $. Then we have to assume a little more and do a \textit{single-filter} differential photometry.
+For the first case, although we can get $ (a_x, b_x) $, we don't know the $ C_{xy} $ (mathematically identical to state that we don't have parameters with subscript $ y $ to plug into \cref{eq: 2-filter diff phot sol}). For the second case, it is just impossible to get $ (a_x, b_x) $. Then we have to assume a little more and do a \textit{single-filter} differential photometry. This is used in the cases when $ b_f C = (k_f - k_f'' X) C $ is smaller than the photometric accuracy we seek for. 
 
-This is used in the cases when $ b_f C = (k_f - k_f'' X) C $ is smaller than the photometric accuracy we seek for. This happens, e.g., when the uncertainty of $ M_f $ is larger than $ b_f C $. Then we simply drop that term because the uncertainty due to this term will be smaller than the final uncertainty. Thus,
+\begin{ex}[Can we really ignore that term?]
+  Consider observatinos made in wavelength ranges around V or gri bands. From \cref{tab: SDSS ext}, $ |k_f''| \sim 0.000 \mathrm{-} 0.020 $ and we expect that $ k_f \lesssim 0.02 $ for most optics. Since $ k_f'' $ is mostly negative, $ k_f - k_f'' X $ is likely be positive, but not always (see \cref{tab: SDSS ext}). Also we have $ 1 < X \lesssim 2 $ in most cases. Then if you play with many combinations of numbers, $ b_f C = (k_f - k_f'' X) C \lesssim 0.05 C $ and most likely much smaller than that. Note that the color index is mostly $ -1 \lesssim C \lesssim +1 $.
+\end{ex}
+
+Now we simply drop that term because the uncertainty due to this term will be smaller than the final uncertainty. Thus,
 \begin{equation} \label{eq: 1-filter diff phot}
-  M_f \approx m_f + (z_f - k_f' X) = m_f + Z_f ~.
+  M_f - m_f = (k_f - k_f'' X) C + z_f - k_f' X \approx z_f - k_f' X \equiv Z_f ~.
 \end{equation}
+Sometimes people call $ Z_f $ just ``zero point'', although rigorously the zero point should be $ z_f $. 
 
-In the same FOV, they should have almost identical airmass and zero point. Therefore, under the same filter $ f $, we have $ Z_f \simeq \mathrm{const} $ for all the objects (of course including our target) in the same CCD image. This is the different point from previous multi-filter observation, and this happens because we ignored color. What we have to do here is to find that constant by plotting $ M_f $ and $ m_f $ of the field objects, and fit a linear line. In the process of finding the $ Z_f $ (sometimes people call it just ``zero point'', although rigorously the zero point should be $ z_f $), one should note that the slope must be unity. For this reason sometimes we fit a line while \textit{fixing the slope as unity}. 
+In the same FOV, they should have almost identical airmass and zero point. Therefore, under the same filter $ f $, we have $ Z_f \simeq \mathrm{const} $ for all the objects (of course including our target) in the same CCD image. This is the different point from previous multi-filter observation, and this happens because we ignored color-dependent terms. What we have to do here is to find that constant.
 
-If we set the slope as a free parameter, as well as the zero point, and if the best-fit slope deviated far from 1, that means (1) many field objects are variable or highly non-blackbody-like galaxies so that they are not suitable as ``standard stars'' and the basic assumptions of \cref{eq: std} break down, (2) the color term is not actually negligible so \cref{eq: 1-filter diff phot} is not a good approximation, (3) catalog $ M_f $ suffer from unknown uncertainties or systematic errors so the catalog value is not reliable, (4) $ m_f $ was measured incorrectly, (5) many other possibilities. 
+There are three identical processes to do that, but each of these will show you slightly different impression:
+\begin{table}[ht!]
+\caption{Differential Photometry Linearity Curves}
+\label{tab: 1-filter diff phot}
+\centering
+  \begin{tabular}{cc|c|l}
+   $ x $-axis & $ y $-axis & Appearance & Comments \\
+  \hline
+  $ M_f $ & $ m_f $       & straight line & 
+  $ |\mathrm{slope} - 1| \gtrsim 0.01 $ means somethings are \\
+  && slope of unity & critically wrong (assumptions or your device)\\
+  \hline
+  $ M_f $ & $ M_f - m_f $ & constant value & 
+  Scatter is larger for large $ M_f $ objects \\
+  && regardless of $ M_f $ & ($ \because $ faint object's mag is less accurate) \\
+  \hline
+  $ C $  & $ M_f - m_f $ & constant value & 
+  If you can see a clear trend, \\
+  && regardless of $ M_f $ & the color-terms in \cref{eq: std} was not negligible.\\
+\end{tabular}
+\end{table}
+
+People many times call the first graph as \emph{linearity curve}, and I will call any process to investigate these three graphs (or other related plots) as linearity curve analysis.
+
+For the first case: I have seen some extreme cases when $ |\mathrm{slope} - 1| \sim 0.02 $, but that was only when I intentionally did not remove non-stellar objects from the curve\footnote{So if graphs don't appear as they should, please first check you have correctly removed non-stellar objects from your linearity curve analysis.}. If I correctly remove them, the slope never deviated more than 0.005.
+
+If graphs do not look as expected, that means (1) many field objects are variable or highly non-blackbody-like galaxies so that they are not suitable as ``standard stars'' and the basic assumptions of \cref{eq: std} break down, (2) the color term is not actually negligible so \cref{eq: 1-filter diff phot} is not a good approximation, (3) catalog $ M_f $ suffer from unknown uncertainties or systematic errors so the catalog value is not reliable, (4) $ m_f $ was measured incorrectly, (5) many other possibilities. 
 
 
 \section{Photometry Using Standard Stars}
 The idea is similar to multi-filter differential photometry, but we use the real standard stars. Except for few fields of standard stars (where many standard stars are located within small FOV), \textit{there is only one single standard star in a CCD image}. This makes it different from the differential photometry.
 
-Consider a standard star with ID $= i $ is observed for $ N_i $ times, and denote each observation as $ j $ $ (j = 1, \cdots, N_i) $, and write the parameters of \cref{eq: std} as $ M_{f, i} $, $ C_{i} $ ($ M $ and $ C $ are fixed values for a standard star, so no $ j $ is needed), $ m_{f, i}^{(1)} $, $ X_{f, i}^{(1)} $, etc. We here assume the zero point, $ z_f $, and the coefficients $ k_f $, $ k_f' $, and $ k_f'' $ are almost constant over the night\footnote{Even SDSS standard stars were also observed and analyzed under this assumption. See SmithJA (2002, AJ, 123, 2121)}. Then
+Consider a standard star with ID $= i $ is observed for $ N_i $ times, and denote each observation as $ j $ $ (j = 1, \cdots, N_i) $, and write the parameters of \cref{eq: std} as $ M_{f, i} $, $ C_{i} $ ($ M $ and $ C $ are fixed values for a standard star, so no $ j $ is needed), $ m_{f, i}^{(j)} $, $ X_{f, i}^{(j)} $, etc. We here assume the zero point, $ z_f $, and the coefficients $ k_f $, $ k_f' $, and $ k_f'' $ are almost constant over the night\footnote{Even SDSS standard stars were also observed and analyzed under this assumption. See SmithJA (2002, AJ, 123, 2121)}. Then
 \begin{equation}
 \begin{cases}
   M_{f, i} - m_{f, i}^{(1)}

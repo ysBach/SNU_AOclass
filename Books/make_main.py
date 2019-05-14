@@ -24,9 +24,9 @@ firststr = r'''\documentclass[11pt,a4paper]{book}
 \usepackage{bm}
 \usepackage{xcolor}
 \usepackage[font=small]{caption}
-\usepackage[euler]{textgreek}
 \usepackage[perpage]{footmisc}
 \usepackage{pythonhighlight}
+\usepackage{fancyhdr}
 
 \usepackage[shortlabels]{enumitem}
 \setlist[itemize]{noitemsep}
@@ -42,6 +42,25 @@ firststr = r'''\documentclass[11pt,a4paper]{book}
 
 \renewcommand{\baselinestretch}{1.1}
 \renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+
+\fancyhf{} % clear the headers
+\fancyhead[R]{%
+   % We want italics
+   %\itshape
+   % The chapter number only if it's greater than 0
+   \ifnum\value{chapter}>0 Ch\ \thechapter. \fi
+   % The chapter title
+   \leftmark}
+\fancyfoot[C]{\thepage}
+
+%\fancyhf{}
+%\rhead{Ch \thechapter. \rightmark}
+\lhead{SNU AO Seminar Notes}
+\chead{Y. P. Bach}
+%\rfoot{\thepage}
 
 % below from https://tex.stackexchange.com/questions/80286/can-i-define-a-new-unit-that-behaves-like-ang-in-siunitx
 \newcommand*{\hms}[2][]{{
@@ -101,14 +120,16 @@ firststr = r'''\documentclass[11pt,a4paper]{book}
 \centering
 \vspace*{5cm}
 \par\normalfont\fontsize{35}{35}\sffamily\selectfont
-\textbf{TA Seminar Notes}\\
+\textbf{SNU AO Seminar Notes}\\
 {\LARGE Astronomical Observation and Lab at Seoul National University}\par % Book title
 \vspace*{1cm}
 {\Huge Yoonsoo P. Bach}\par % Author name
+\vspace*{5cm}
+{\normalsize This book is prepared since 2019 Spring,} \par
+{\normalsize Seminars are given since 2016 Fall.} \par
 \endgroup
 
 \tableofcontents
-
 '''
 
 with open("main.tex", "w+") as mf:
