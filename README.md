@@ -72,6 +72,18 @@ Some of Part 0, S, and A are not covered in the class.
 * [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
 * Statistics (See the Book above)
 
+
+
+#### Part 1: Photometry
+
+1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` 
+2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
+3. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): `astroquery` (Vizier and JPL HORIZONS)
+4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
+5. [Note 05](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry (`ysfitsutilspy` and `ysphotutilspy`)
+
+
+
 #### Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
 * [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
@@ -83,6 +95,8 @@ Some of Part 0, S, and A are not covered in the class.
 * [A01_HW.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A01_HW.md)
 * [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
 * [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
+
+* A04_SNUO1Mpy_Tutorial
 
 
 
@@ -134,9 +148,8 @@ Some of Part 0, S, and A are not covered in the class.
 
 1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` to do crude photometry.
 
-   - Currently I couldn't find a way to use ``imexam`` on Windows.
-   - If you want, please open new [**issues**](https://github.com/spacetelescope/imexam/issues) to ``imexam`` developers.
-
+   - Currently I couldn't find a way to use ``imexam`` on Windows. If you want, please open new [**issues**](https://github.com/spacetelescope/imexam/issues) to ``imexam`` developers.
+   
 2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple manipulation of FITS files using ``astropy.io.fits``.
 
    
@@ -146,18 +159,27 @@ Some of Part 0, S, and A are not covered in the class.
 * Materials:
   * ``Book``'s *Standardization* chapter
 
-1. Standardization process of the Book.
-2. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Query catalogued objects using `astroquery` if WCS is given (UCAC, Pan-STARRS, JPL HORIZONS).
+1. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Query catalogued objects using `astroquery` if WCS is given (UCAC, Pan-STARRS, JPL HORIZONS).
 
 
 
 ### 2019-05-08 (Wed)
 
 1. [Note A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb): Photometric preprocessing demonstration from TRIPOL (2019-05-03)
-2. Aperture Photometry using python (photutils and astroquery)
 3. What if WCS is broken: Astrometry.net
 
 
 
-### 2019-05-06 (Mon)
+### 2019-05-13 (Mon)
+
+* Materials:
+  * ``Book``'s *Standardization* chapter
+
+1. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Review
+2. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star using python (photutils and astroquery)
+3. [Note 05](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry to get standardized magnitude of asteroid
+
+
+
+### 2019-05-15 (Wed)
 
