@@ -185,3 +185,8 @@ Some of Part 0, S, and A are not covered in the class.
 ### 2019-05-15 (Wed)
 
 1. [Note 06](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
+
+
+
+### 2019-05-20 (Mon)
+
