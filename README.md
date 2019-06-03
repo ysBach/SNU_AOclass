@@ -82,6 +82,8 @@ Some of Part 0, S, and A are not covered in the class.
 4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
 5. [Note 05](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry (`ysfitsutilspy` and `ysphotutilspy`)
 6. [Note 06](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
+7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
+8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
 
 
 
@@ -189,4 +191,6 @@ Some of Part 0, S, and A are not covered in the class.
 
 
 ### 2019-05-20 (Mon)
+
+1. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
 
