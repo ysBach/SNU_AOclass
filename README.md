@@ -84,6 +84,7 @@ Some of Part 0, S, and A are not covered in the class.
 6. [Note 06](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
 7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
 8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
+9. [Note 09](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/09-PSF_Phot.ipynb): Do photometry from the extracted PSF
 
 
 
