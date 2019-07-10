@@ -100,7 +100,7 @@ Some of Part 0, S, and A are not covered in the class.
 * [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
 * [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
 
-* A04_SNUO1Mpy_Tutorial
+* [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
 
 
 
