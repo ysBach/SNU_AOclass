@@ -5,14 +5,14 @@ TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes
 
 ## Short History
 
-| Semester    | Instructor                  | TA                                        |
-| ----------- | --------------------------- | ----------------------------------------- |
-| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (only seminar) |
-| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)   |
-| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)   |
-| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)           |
-| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)           |
-| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                           |
+| Semester    | Instructor                  | TA                                      |
+| ----------- | --------------------------- | --------------------------------------- |
+| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
+| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
+| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
+| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)         |
+| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)         |
+| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                         |
 
 - In 2019: Made this repo.
 - In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_LectureNotes) and [website](https://ysbach.github.io/AO_LectureNotes/). Many documents changed from ipynb to md.
