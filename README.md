@@ -70,6 +70,7 @@ Some of Part 0, S, and A are not covered in the class.
 * [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
 * [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
+* [00-3_Python.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-3_Python.md)
 * Statistics (See the Book above)
 
 
