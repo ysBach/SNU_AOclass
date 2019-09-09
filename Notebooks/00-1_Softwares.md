@@ -1,6 +1,6 @@
 # Software Installations
 
-In this chapter, we will install the necessary apps/softwares/packages that we will use throughout this course. It includes:
+In this chapter, we will **install** the necessary apps/softwares/packages that we will use throughout this course. It includes:
 
 * **Git** and **Slack**
 * **Anaconda**: including most of necessary packages, e.g., **Astropy**
