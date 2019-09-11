@@ -7,6 +7,7 @@ TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes
 
 | Semester    | Instructor                  | TA                                      |
 | ----------- | --------------------------- | --------------------------------------- |
+| 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo,Yoonsoo P. Bach (unofficial) |
 | 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
 | 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
 | 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
