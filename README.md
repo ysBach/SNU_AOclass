@@ -73,6 +73,7 @@ Some of Part 0, S, and A are not covered in the class.
 * [00-3_Python.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-3_Python.md)
 * [00-4_Python_in_Astronomy.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-4_Python_in_Astronomy.md)
 * Statistics (See the Book above)
+* [references](https://github.com/ysBach/AO2019/tree/master/references) (Many references you may want to refer to)
 
 
 
@@ -104,96 +105,4 @@ Some of Part 0, S, and A are not covered in the class.
 
 * [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
 
-
-
-## Schedule
-
-### 2019-04-22 (Mon)
-
-* **Materials**: 
-  * ``Book``'s *Statistics* chapter 
-
-1. Statistics
-   * Confidence Interval (CI)
-   * The Central Limit Theorem and the meaning of it
-   * Some distributions (Student t, Poisson) and Poisson process
-
-
-
-### 2019-04-24 (Wed)
-
-* **Materials**:
-  * ``Book``'s *Idea of Photometry* chapter
-  * KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
-  * Install ``SAO ds9``
-
-1. Visual detection of asteroids from KMTNet SAAO data (`SAO ds9`)
-
-   * First introduction to FITS file (header, data, HDU, etc)
-
-   * Frame WCS lock, blinking (ds9)
-   * Regions, colormap, scale, smoothing (ds9)
-   * Analysis using starcatalog and SkyBot (ds9)
-
-2. Idea of Photometry
-
-   * Point Spread Function (PSF)
-   * Aperture summation
-   * Sky estimation
-
-3. Help desk for the installation
-   * Git, Anaconda, ds9, etc.
-
-
-
-### 2019-04-29 (Mon)
-
-* **Materials**: 
-  * ``Book``'s *Idea of Photometry* chapter
-  * KMTNet data (see `data/20180413SAAO_p4179*.fits` of this repo)
-
-1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` to do crude photometry.
-
-   - Currently I couldn't find a way to use ``imexam`` on Windows. If you want, please open new [**issues**](https://github.com/spacetelescope/imexam/issues) to ``imexam`` developers.
-   
-2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple manipulation of FITS files using ``astropy.io.fits``.
-
-   
-
-### 2019-05-01 (Wed)
-
-* Materials:
-  * ``Book``'s *Standardization* chapter
-
-1. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Query catalogued objects using `astroquery` if WCS is given (UCAC, Pan-STARRS, JPL HORIZONS).
-
-
-
-### 2019-05-08 (Wed)
-
-1. [Note A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb): Photometric preprocessing demonstration from TRIPOL (2019-05-03)
-3. What if WCS is broken: Astrometry.net
-
-
-
-### 2019-05-13 (Mon)
-
-* Materials:
-  * ``Book``'s *Standardization* chapter
-
-1. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): Review
-2. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star using python (photutils and astroquery)
-3. [Note 05](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry to get standardized magnitude of asteroid
-
-
-
-### 2019-05-15 (Wed)
-
-1. [Note 06](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
-
-
-
-### 2019-05-20 (Mon)
-
-1. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
 
