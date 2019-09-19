@@ -27,7 +27,7 @@ Answer the following questions with **one line** code. [2 points each]
 5. Make the following directory using one line code: ``class_01_appendix/code_snippets``.
    - Hint: Use ``.mkdir(parents=True)``
 6. Make a list of all the files and directories in the current directory.
-   - Hint: ``flist = list(TOPPATH)``
+   - Hint: ``flist = list(TOPPATH.glob('*'))``
 7. Find how many files and directories are in the current directory.
    - Hint: ``len(flist)``
 8. Check whether ``newdir`` is an existing path.
