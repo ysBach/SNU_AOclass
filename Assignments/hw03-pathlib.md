@@ -58,20 +58,32 @@ Answer the following problems [2 points each]
    - Another possiblility is to use ``for fpath in filelist:`` and use ``if fpath in filelist2:`` etc.
    - A simpler pythonic way is to use ``list(set(filelist).union(filelist2))``.
    - Tip: If you want union of more than 2 lists, you should do ``list(set().union(a, b, c, d))``.
-8. Make a list ``allfiles`` of all the file paths in your ``TOPPATH``.
-   - Hint: ``allfiles = list(TOPPATH.glob('*'))``
+   
+8. Make a list ``allfiles`` of all the txt file paths in your ``TOPPATH``.
+   
+   - Hint: ``allfiles = list(TOPPATH.glob('*.txt'))``
+   
 9. Append a fake path ``tttt00.txt`` to ``allfiles``.
+   
    - Hint: ``allfiles.append(TOPPATH/'tttt00.txt')``
-10. Delete ``allfiles[0]``. 
+   
+10. Sort the list ``allfiles`` and print it.
+    
+    * Hint: use ``.sort()`` appropriately, and just ``print(allfiles)``
+    
+11. Delete ``allfiles[0]``. 
+
     - Hint: ``allfiles[0].unlink()``
-11. Delete all the files you made.
+
+12. Delete all the files you made.
+
     - Hint: Use for loop. Then ``if fpath.exists():`` and ``fpath.unlink()``.
 
 
 
-Advanced [8 points]
+Advanced [6 points]
 
-Python has a very useful ``try-except-finally`` clause. 
+Python has a very useful``try-except-finally`` clause. 
 
 Do ``touch`` to all the paths in ``filelist3`` again. 
 
