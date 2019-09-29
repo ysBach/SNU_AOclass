@@ -2,8 +2,9 @@
 TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes are primarily made by **Yoonsoo P. Bach**. I tried not to make typo, logically wrong statement, etc. If any problem is there in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
 
 
-
 ## 1. Short History
+<details><summary>click</summary>
+<p>
 
 | Semester    | Instructor                  | TA                                      |
 | ----------- | --------------------------- | --------------------------------------- |
@@ -19,11 +20,13 @@ TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes
 - In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_LectureNotes) and [website](https://ysbach.github.io/AO_LectureNotes/). Many documents changed from ipynb to md.
 - In 2017: Made GitHub repo [AO_2017](https://github.com/ysBach/AO_2017) and [website](https://ysbach.github.io/AO_2017/). 
 - In 2016: No GitHub, but just MS Word-based lecture notes of PyRAF.
-
+</p>
+</details>
 
 
 ## 2. To Use This Repo
-
+<details><summary>click</summary>
+<p>
 You may have your preferences to use this repo. One of the possible suggestions is to clone/fork this repo and pull regularly to keep updated:
 
 ```
@@ -41,7 +44,8 @@ From the second time:
 ```
 $ git pull
 ```
-
+</p>
+</details>
 
 
 ## 3. Seminar Contents
