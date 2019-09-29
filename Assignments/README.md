@@ -6,8 +6,8 @@
 | 02   | python's ``pathlib``                               | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw02-pathlib.md) |
 | 03   | python's ``pathlib``, including ``for`` and ``if`` | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw03-pathlib.md) |
 | 04   | ``numpy``                                          | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw04-numpy.md) |
-| 05   | ``pandas``                                         |                                                              |
-| 06   | ``matplotlib``                                     |                                                              |
+| 05   | Statistics using ``numpy``                         | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw05-numpy.md) |
+| 06   | ``pandas`` to analyze asteroid's light curve       | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw06-pandas.md) |
 | 07   | ``astropy.io.fits`` and ``astropy.nddata.CCDData`` |                                                              |
 | 08   | Making functions to manipulate FITS files          |                                                              |
 | 09   |                                                    |                                                              |
