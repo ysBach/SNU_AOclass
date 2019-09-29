@@ -4,11 +4,11 @@ In this directory, I will put materials you can study and soem external referenc
 
 
 
-| Notes     | Contents                                                     | Link |
-| --------- | ------------------------------------------------------------ | ---- |
-| (no note) | You will learn ``pathlib`` and other simple python grammars throughout the first few homework assignments. |      |
-| numpy     | Basic numpy to a bit advanced masking.                       |      |
-| pandas    | Basic pandas, including iteration and grouping.              |      |
+| Notes     | Contents                                                     | Link                                                         |
+| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| (no note) | You will learn ``pathlib`` and other simple python grammars throughout the first few homework assignments. |                                                              |
+| numpy     | Basic numpy to a bit advanced masking.                       | [link](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/python_prep/01-numpy.ipynb) |
+| pandas    | Basic pandas, including iteration and grouping.              | [link](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/python_prep/02-pandas.ipynb) |
 
 
 
