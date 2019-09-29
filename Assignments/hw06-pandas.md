@@ -145,3 +145,10 @@ Things go well in this case with ``loc``, but I used ``at``.
 * ``at`` is quicker, but you can access to only one single location
 
 See [here](https://stackoverflow.com/questions/37216485/pandas-at-versus-loc)
+
+
+
+The full light curve of this asteroid, from the 2-night observation at SNU is like this:
+
+<img src="figs/asteroid_light_curve.png" style="zoom:25%;" />
+
