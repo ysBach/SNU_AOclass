@@ -1,4 +1,4 @@
-## Problem Set 05 [40 points]
+## Problem Set 06 [40 points]
 
 ### Instructions
 
