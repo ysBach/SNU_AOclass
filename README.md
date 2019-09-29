@@ -71,8 +71,7 @@ Some of Part 0, S, and A are not covered in the class.
 * [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
 * [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
-* [00-3_Python.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-3_Python.md)
-* [00-4_Python_in_Astronomy.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-4_Python_in_Astronomy.md)
+* Go to [python prep directory](https://github.com/ysBach/AO2019/tree/master/Notebooks/python_prep) and study python by yourself.
 * Statistics (See the Book above)
 * [references](https://github.com/ysBach/AO2019/tree/master/references) (Many references you may want to refer to)
 
@@ -80,7 +79,7 @@ Some of Part 0, S, and A are not covered in the class.
 
 #### Part 1: Photometry
 
-1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` 
+1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` (Maybe it's not usable on Windows...?)
 2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
 3. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): `astroquery` (Vizier and JPL HORIZONS)
 4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
@@ -100,7 +99,6 @@ Some of Part 0, S, and A are not covered in the class.
 
 #### Part <u>A</u>: <u>A</u>ppendices
 
-* [A01_HW.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A01_HW.md)
 * [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
 * [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
 
