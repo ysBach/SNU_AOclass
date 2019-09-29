@@ -3,7 +3,7 @@ TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes
 
 
 
-## Short History
+## 1. Short History
 
 | Semester    | Instructor                  | TA                                      |
 | ----------- | --------------------------- | --------------------------------------- |
@@ -22,7 +22,7 @@ TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes
 
 
 
-## To Use This Repo
+## 2. To Use This Repo
 
 You may have your preferences to use this repo. One of the possible suggestions is to clone/fork this repo and pull regularly to keep updated:
 
@@ -44,27 +44,28 @@ $ git pull
 
 
 
-## Seminar Contents
+## 3. Seminar Contents
 
 The following lecture notes *only* gives you idea how to use tools for data reduction. **You must be aware of what you are doing!** Identical procedure to the lecture note may give different results, depending on what you've done other than what I did when I make the notes.
 
 
 
-### Book
+### 3-1. Book
 
-Fundamental ideas, formulation, and definition/theorems are given in the book material. Look at the `Books` directory in this repo or just the compiled TeX: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf)
+Fundamental ideas, formulation, and definition/theorems are given in the book material. Look at the `Books` directory in this repo or 
 
-**The codes** to make simple plots in the Book are given mostly as ipython notebooks in `Books/codes` of this repo. I recommend [this nbviewer hosting](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
-
-
-
-### Notebooks
-
-The demonstration (python codes) for more elaborating examples are given as separate Notebooks in [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
+* the compiled TeX: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
+* **The codes** to make plots in the PDF:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
 
 
 
-Some of Part 0, S, and A are not covered in the class.
+### 3-2. Lecture Notebooks
+
+All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
+
+
+
+* _NOTE_: Some of Part 0, S, and A are not covered in the class.
 
 #### Part 0: Preparation
 
@@ -88,6 +89,12 @@ Some of Part 0, S, and A are not covered in the class.
 7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
 8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
 9. [Note 09](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/09-PSF_Phot.ipynb): Do photometry from the extracted PSF
+
+
+
+#### Part 2: Spectroscopy
+
+1. 
 
 
 
