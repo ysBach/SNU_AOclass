@@ -62,7 +62,7 @@ You can fill in the ``?`` parts in the Hints and use that to answer the question
 2. Print the first 3 rows of the ``df``.
    * Hint: use ``.head()``
 3. Print the last 3 rows of the ``df``.
-   * Hint: use ``.tale()``
+   * Hint: use ``.tail()``
 4. See ``df.describe()``. What is the roughly estimated mean magnitude?
 5. Print the latex code for the data to make a table.
    * Hint: use ``print(df.to_latex(index=False))``

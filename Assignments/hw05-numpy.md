@@ -101,8 +101,8 @@ Consider you created M universes which have identical mean value of X (e.g., Hub
     true_sigma = 3
     n_sample = 10
     
-    data_ci = np.random.normal(loc=?, scale=?**2, size=(n_sample, 100000))
-    avgs_ci = data_ci.mean(axis=?)
+    data_ci = np.random.normal(loc=?, scale=?, size=(n_sample, 100000))
+    avgs_ci = data_ci.mean(axis=?)  # Hint: must have length 100000
     stds_ci = data_ci.std(axis=?, ddof=1)
     ses_ci = stds_ci / np.sqrt(data_ci.shape[?])
     
