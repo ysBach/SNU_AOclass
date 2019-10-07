@@ -8,7 +8,7 @@
 | 04   | ``numpy``                                          | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw04-numpy.md) |
 | 05   | Statistics using ``numpy``                         | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw05-numpy.md) |
 | 06   | ``pandas`` to analyze asteroid's light curve       | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw06-pandas.md) |
-| 07   | ``astropy.io.fits`` and ``astropy.nddata.CCDData`` |                                                              |
+| 07   | ``astropy.io.fits`` to make fake star images       | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw07-astropy_fits.md) |
 | 08   | Making functions to manipulate FITS files          |                                                              |
 | 09   |                                                    |                                                              |
 | 10   |                                                    |                                                              |
