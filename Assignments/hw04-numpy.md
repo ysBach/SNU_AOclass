@@ -60,6 +60,7 @@ While answering the problems, follow these rules:
 11. Make a vector ``v`` such that ``v[i] = i**2``, and ``print(v.shape)`` results in ``(100,)``. 
     
     * Hint: use ``np.arange``
+    * Check ``v[0] == 0``
 12. Select only the odd-index elements of ``v``, and reshape it to ``(2, 25)`` array and save it as ``w``.
     * Hint: using ``array[::2]`` will give even-index elements. How can you get the odd-index elements?
     - Hint: Reshaping is done by ``array.reshape(n1, n2)``.
