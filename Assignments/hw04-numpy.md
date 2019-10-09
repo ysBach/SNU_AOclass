@@ -51,7 +51,7 @@ While answering the problems, follow these rules:
 8. From ``B``, extract only the elements larger than 0.5.
    
    - Hint: ``mask = B > 0.5`` will give you the "mask". How can you select elements only when it is ``True``? Think about the usage of mask as ``array[mask]``.
-9. From ``B``, change all the elements smaller than 0.5 to the sign-inverted value of the original value.
+9. Update all the elements in ``B`` smaller than 0.5 to the sign-inverted value of the original value.
    
    - Hint: Do similar masking, but you can do something like ``array[mask] = -1*array[mask]``.
 10. Calculate the sample standard deviation of ``B``.
