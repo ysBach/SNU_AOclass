@@ -113,13 +113,13 @@ RDNOISE =                  9.0 / [e-] The (Gaussian) read noise.
 
 5. Make a dark frame called ``dark_300s``, from ``exptime`` and ``dark_epsec``, and assuming dark current is Poissonian.
 
-   * Hint: ``dark_300s = np.random.poisson(dark_epsec * ?, size=final_image.shape)`` and convert this electron map to ADU by ``gain_epadu``.
+   * Hint: ``dark_300s = np.random.poisson(dark_epsec * ?, size=final_image.shape)`` .
 
 5. Add readnoise to ``dark_300s`` using ``add_rdnoise`` and overwrite ``dark_300s``.
 
    * Hint: ``dark_300s = add_rdnoise(image_adu=dark_300s/?, rdnoise_e=rdnoise_e, gain_epadu=gain_epadu)``
 
-6. Check that ``np.mean(dark)`` is as you expected.
+6. Check that ``np.mean(dark_300s)`` is as you expected.
 
 7. Save ``dark_300s`` as a FITS file to ``top/'dark_300.fits'`` which resembles the ``final_image``'s header above.
 
@@ -141,10 +141,12 @@ RDNOISE =                  9.0 / [e-] The (Gaussian) read noise.
 Consider the vignetting (sensitivity or the "flat") is in the form of a circular Gaussian, centered at ``sens_center_xy`` and standard deviation ``sens_sigma`` pixel. Let's make the flat map based on these.
 
 9. First, make meshgrid ``xx`` and ``yy``, which will contain the x and y values for each of the ``(50, 100)`` pixels. The resulting ``xx`` and ``yy`` will have the same shape as ``(50, 100)``.
-   * Hint: Use ``np.mgrid[] ``, i.e., ``yy, xx = np.mgrid[:final_image.shape[?], :final_image.shape[?]]`` 
-
+   
+* Hint: Use ``np.mgrid[] ``, i.e., ``yy, xx = np.mgrid[:final_image.shape[?], :final_image.shape[?]]`` 
+  
 10. Check ``xx`` indeed is the x-values of the ``(50, 100)``-shaped image.
 11. Make the r-square map called ``rsq``, which is of shape ``(50, 100)`` and contains the distance from the position ``sens_center_xy``. 
+    
     * Hint: ``rsq = (xx - sens_center_xy[?])**2 + (yy - sens_center_xy[?])**2``
 12. Finally, use the Gaussian function to make the sensitivity map.
     * Hint: ``sens = np.exp(-? / (2 * ?**2))``.
@@ -189,13 +191,12 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
     * You can check the results by ``plt.imshow(stars, origin='lower')``
 
 16. Make a new bias and dark. Using the previously made flat (``sens``), simulate a raw image (bias, dark added, flat pattern added, and add readnoise).
-
     * Hint: The exposure time is 300s as described in the beginning of this homework.
     * Hint: Make bias and dark as before, but do not add readnoise yet. 
     * Hint: Then ``stars_adu = bias + (dark + sens*stars)/?``.
     * Hint: Add readnoise now by ``stars_adu = add_rdnoise(image_adu=stars_adu, rdnoise_e=rdnoise_e, gain_epadu=gain_epadu)``
 
-17. Save ``sens`` as a FITS file to ``top/'image0001.fits'`` which resembles the ``final_image``'s header above.
+17. Save ``stars_adu`` as a FITS file to ``top/'image0001.fits'`` which resembles the ``final_image``'s header above.
 
     * Hint: Use the following (This is the ``final_image``, so look at the sample header in the beginning of this homework):
 
@@ -214,8 +215,8 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
 
     ```python
     master_paths = dict(bias=top/"bias.fits",
-                        dark=top/"dark_300.fits",
-                        flat=top/"flat.fits")
+                           dark=top/"dark_300.fits",
+                           flat=top/"flat.fits")
     master_frames = {}
     for k, v in master_paths.items():
         master_frames[k] = fits.open(?)[?]
@@ -227,7 +228,7 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
 
     * Hint: Use the following:
 
-      ```python
+    * ```python
       hdr = rawim.header.copy()
       try: 
           _ = hdr["PROCESS"]
@@ -273,7 +274,7 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
 
       Fill in the blanks such that ``image0001_bdf.fits`` has the following header:
 
-      ```
+      ```python
       SIMPLE  =                    T / conforms to FITS standard                      
       BITPIX  =                  -32 / array data type                                
       NAXIS   =                    2 / number of array dimensions                     
@@ -309,19 +310,13 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
 
 21. Delete your files and directory.
 
-    ```python
-    for fpath in ?.glob("*"):
-        fpath.unlink()
-    top.?()
-    ```
 
-    
 
 [4 points]
 
 In the above, we used ``IntegratedPRF``, which has slightly different meaning than PSF in ``photutils``. Gaussian function will calculate the pixel value as the Gaussain function value at the pixel center ($f(x_i, y_i)$ for the i-th pixel), while ``IntegratedPRF`` is the **integrated** value of the Gaussian function values within the pixel $\left( \int_{x_i - \Delta x/2}^{x_i + \Delta x/2} \int_{y_i - \Delta y/2}^{y_i + \Delta y/2} f(x, y) dx dy \right)$. To see the difference, we need a test.
 
-21. Fill in the blanks to see the map of $\frac{\mathrm{IntegratedPRF~case}-\mathrm{SimpleGaussian~case}}{\mathrm{\mathrm{IntegratedPRF~case} + \mathrm{sky}}}$ (there's no sky in the numerator because they cancel out):
+22. Fill in the blanks to see the map of $\frac{\mathrm{IntegratedPRF~case}-\mathrm{SimpleGaussian~case}}{\mathrm{\mathrm{IntegratedPRF~case} + \mathrm{sky}}}$ (there's no sky in the numerator because they cancel out):
 
 14. ```python
     # Here, no noise will be added, because the purpose is to see the difference 
@@ -358,47 +353,47 @@ In the code, the resulting image will show the fractional difference, assuming t
 
 Now let's see how it changes for the sky level.
 
-22. Fill in the blanks:
+23. Fill in the blanks:
 
-    ```python
-    # Here, no noise will be added, because the purpose is to see the difference 
-    # (between Integrated PRF and simple Gaussian function value)
-    seeing_sigma_pix = seeing_arcsec / pixel_scale
-    seeing = dict(x_stddev=seeing_sigma_pix, y_stddev=seeing_sigma_pix)
-    
-    mins = []
-    maxs = []
-    skylevels = np.arange(0.1, 1000, 200)
-    
-    print("skylevel electrons: min difference, max difference")
-    for skylevel in ?:
-        stars_psf = np.zeros_like(final_image)  # Simple function value case
-        stars_int = np.zeros_like(final_image)  # Integrated value case
-        for _, prop in stars_props.items():
-            amp = prop["flux"] / (2*np.pi * seeing_sigma_pix**2)
-            g_psf = Gaussian2D(amplitude=amp, 
-                               x_mean=prop[?], 
-                               y_mean=prop[?], 
-                               **seeing)
-            g_int = IntegratedGaussianPRF(**prop, sigma=seeing_sigma_pix)
-            stars_psf += g_psf(xx, yy)
-            stars_int += g_int(xx, yy)
-        diff = (stars_int - stars_psf) / (stars_int + ?)  
-        vmin = 100*np.min(diff)
-        vmax = 100*np.max(diff)
-        mins.append(vmin)
-        maxs.append(vmax)
-        print("{:18.0f}: {:^13.5f}%, {:^13.5f}%".format(skylevel, ?, ?))
-    
-    fig, axs = plt.subplots(1, 1, figsize=(7, 5))
-    axs.plot(skylevels, mins)
-    axs.plot(skylevels, maxs)
-    axs.set(xlabel='skylevel [electrons]', ylabel='min/max difference [%]')
-    plt.tight_layout()
-    plt.show()
-    ```
+```python
+# Here, no noise will be added, because the purpose is to see the difference 
+# (between Integrated PRF and simple Gaussian function value)
+seeing_sigma_pix = seeing_arcsec / pixel_scale
+seeing = dict(x_stddev=seeing_sigma_pix, y_stddev=seeing_sigma_pix)
 
-    
+mins = []
+maxs = []
+skylevels = np.arange(0.1, 1000, 200)
+
+print("skylevel electrons: min difference, max difference")
+for skylevel in ?:
+    stars_psf = np.zeros_like(final_image)  # Simple function value case
+    stars_int = np.zeros_like(final_image)  # Integrated value case
+    for _, prop in stars_props.items():
+        amp = prop["flux"] / (2*np.pi * seeing_sigma_pix**2)
+        g_psf = Gaussian2D(amplitude=amp, 
+                           x_mean=prop[?], 
+                           y_mean=prop[?], 
+                           **seeing)
+        g_int = IntegratedGaussianPRF(**prop, sigma=seeing_sigma_pix)
+        stars_psf += g_psf(xx, yy)
+        stars_int += g_int(xx, yy)
+    diff = (stars_int - stars_psf) / (stars_int + ?)  
+    vmin = 100*np.min(diff)
+    vmax = 100*np.max(diff)
+    mins.append(vmin)
+    maxs.append(vmax)
+    print("{:18.0f}: {:^13.5f}%, {:^13.5f}%".format(skylevel, ?, ?))
+
+fig, axs = plt.subplots(1, 1, figsize=(7, 5))
+axs.plot(skylevels, mins)
+axs.plot(skylevels, maxs)
+axs.set(xlabel='skylevel [electrons]', ylabel='min/max difference [%]')
+plt.tight_layout()
+plt.show()
+```
+
+
 
 The importance of this difference depends on the situation. If you just want a simple rough fitting to the profile, both will give similar results (centroid position, FWHM, etc). But if you want to get accurate PSF, it is better to choose Integrated version. 
 
