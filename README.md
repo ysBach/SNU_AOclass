@@ -105,7 +105,7 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 #### Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
 * [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
-* astrometry.net
+* [S02_Installing_Astrometry_dot_net.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S02_Installing_Astrometry_dot_net.md)
 * SExtractor
 
 #### Part <u>A</u>: <u>A</u>ppendices
