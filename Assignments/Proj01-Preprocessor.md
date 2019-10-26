@@ -2,27 +2,27 @@
 
 In this project, you will make a set of functions and scripts. 
 
-## Problem
+## Problems [80 pt]
 
 Make a code script, and/or module and/or package, which may include functions, classes, or whatever you may need (as many as you wish), to do the followings:
 
-1. **Automatically classify** any input FITS file into one of ``['bias', 'dark', 'flat', 'comp', 'objt']``. 
+1. **Automatically classify** any input FITS file into one of ``['bias', 'dark', 'flat', 'comp', 'objt']``.
    * The ``flat`` can either be flat lamp image, dome flat, or sky flat. 
    * The ``comp`` is the comparison (arc lamp) in spectroscopy. 
    * The ``objt`` is the light frame image of any celestial object, other than calibration frames.
-2. **Combine** to make master bias, dark, and flat.
+2. **Combine** to make master bias, dark, and flat. [1 & 2 = 40 pt]
    * bias must be median combined. 
    * dark must be median combined for *each exposure time*. Then bias subtracted.
    * For each flat, it must be first bias and dark subtracted. Use the dark of the same exposure time as your flat. Then normalize each flat by its average. Then the normalized flats must be median combined for *each filter* (in polarimetry, for each wave-plate angle; in spectroscopy, for each slit/grating/... setting). 
    * Depending on your choice, you can use sigma clipping for combining processes.
    * You may develope combiner by yourself, but also you can use [``ccdproc.combine``](https://ccdproc.readthedocs.io/en/latest/image_combination.html) 
-3. **Save** the obtained master bias, dark, and flat.
+3. **Save** the obtained master bias, dark, and flat. [10 pt]
    * Each dark and flat files must have indicators for its exposure time, filter, etc, to distinguish it from the other images of the same kind.
-4. Do **preprocessing** for `comp` and `objt` (bias subtraction, dark subtraction, flat correction).
+4. Do **preprocessing** for `comp` and `objt` (bias subtraction, dark subtraction, flat correction). [20 pt]
    * Note that dark must be used with the same exposure time, and flat must be with the same filter or other settings.
    * You may do cosmic-ray rejection, by benchmarking the L.A.Cosmic.
 
-5. **Save** the preprocessed images as separate files.
+5. **Save** the preprocessed images as separate files. [10 pt]
 
    * You may put them in a separate directory, which will be easier for you to check.
 
