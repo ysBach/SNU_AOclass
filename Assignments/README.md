@@ -1,5 +1,7 @@
 # Homework Assignments
 
+## Simle Homework
+
 | Num  | Contents                                           | Link                                                         |
 | ---- | -------------------------------------------------- | ------------------------------------------------------------ |
 | 01   | To familiarize with python's basic types.          | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/hw01.md) |
@@ -15,11 +17,13 @@
 | 11   |                                                    |                                                              |
 | 12   |                                                    |                                                              |
 
-Topics to be covered...
 
-* combining FITS files (``ccdproc``)
-* Fitting a function (``scipy`` and ``astropy.modeling``)
-* aperture and annulus photometry (``photutils``)
-* Query stars (``astroquery``)
-* 
+
+## Projects
+
+| Num  | Contents     | Link                                                         |
+| ---- | ------------ | ------------------------------------------------------------ |
+| 01   | Preprocessor | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/Proj01-Preprocessor.md) |
+|      |              |                                                              |
+|      |              |                                                              |
 
