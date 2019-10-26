@@ -32,16 +32,59 @@ Make a code script, and/or module and/or package, which may include functions, c
 
 1. You must use the header information, not the file names or hand-written log.
 
-2. Please try **not** import packages **other than**
+2. Please try **not** to import packages **other than**
 
    * python default packages (e.g., `pathlib`, `itertools`, etc)
 
-   * Basic science packages: ``numpy``, ``scipy``, ``astropy``
+   * Basic science packages: ``numpy``, ``scipy``, ``astropy``, ``scikit learn``
    * Basic astropy-affiliated packages: ``ginga``, ``imexam``, ``ccdproc``, ``photutils``, ``specutils``
-   * But you may benchmark the source codes from other packages. For instance, "**Python users in Astronomy**" group of Facebook, and the Gist/snippets they communicate with, or random GitHub repo, or our lecture notes or ``ysfitsutilpy``, ``ysphotutilpy``, ``TRIPOLpy``, and ``SNUO1Mpy``. Many times, the ready-made packages may not fulfill your needs. You must write codes by yourself by benchmarking the packages' source codes.
+   * But you may benchmark the source codes from other packages. For instance, "[**Python users in Astronomy**](https://www.facebook.com/groups/astropython/)" group of Facebook, and the Gist/snippets they communicate with, or random GitHub repo, or our lecture notes or ``ysfitsutilpy``, ``ysphotutilpy``, ``TRIPOLpy``, and ``SNUO1Mpy``. Many times, the ready-made packages may not fulfill your needs. You must write codes by yourself by benchmarking the packages' source codes.
 
-3. Later you may use the codes for your semester project work. Please try to make it **as reusable as possible**.
+3. Later you may use the codes for your semester project work. Please try to make it **as reusable as possible**. (Google for "DRY principle")
 
 ### NOTE
 
 It's always better to archive what you've done into the header information. After bias, dark, and flat corrections, for instance, add history and comments to FITS header as we did in the homework.
+
+Also you may refer to the snippet we used in the class:
+
+```python
+from pathlib import Path
+from astropy.io import fits
+import pandas as pd
+#%%
+allfits = list(Path("2019-10-15").glob("*.fit"))
+hdul = fits.open(allfits[0])
+data = hdul[0].data
+hdr = hdul[0].header
+
+print(data[:1,:10])
+#%%
+fpaths = dict(bias=[], dark={}, flat=[], comp=[], objt=[])
+objt_name = []
+
+allfits.sort()
+
+for fpath in allfits:
+    hdr = fits.getheader(fpath)
+    imagetyp = hdr["IMAGETYP"].lower()
+    exptime = float(hdr["EXPTIME"])
+    obs_object = hdr["OBJECT"]
+    if imagetyp.startswith("bias frame") and exptime == 0.:
+        fpaths['bias'].append(fpath)
+    elif imagetyp.startswith('dark frame'):
+        try:
+            fpaths['dark'][exptime]
+        except KeyError:
+            fpaths['dark'][exptime] = []
+        fpaths['dark'][exptime].append(fpath)
+        
+    elif imagetyp.startswith('flat field'):
+        fpaths['flat'].append(fpath)
+    elif imagetyp.startswith('light frame') and obs_object.lower() == 'comp':
+        fpaths['comp'].append(fpath)
+    else:
+        fpaths['objt'].append(fpath)
+        objt_name.append(hdr["OBJECT"])
+```
+
