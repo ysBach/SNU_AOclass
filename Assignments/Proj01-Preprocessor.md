@@ -4,6 +4,10 @@ In this project, you will make a set of functions and scripts.
 
 ## Problems [80 pt]
 
+Download your raw FITS files from https://sao.snu.ac.kr (as we learned in the class). If you don't have any data, you can just test with other teams' data sets, and utilize the code for your data when you acquire it.
+
+
+
 Make a code script, and/or module and/or package, which may include functions, classes, or whatever you may need (as many as you wish), to do the followings:
 
 1. **Automatically classify** any input FITS file into one of ``['bias', 'dark', 'flat', 'comp', 'objt']``.
