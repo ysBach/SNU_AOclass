@@ -73,7 +73,7 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 #### Part 0: Preparation
 
-* [00-0_Preface.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-0_Preface.md)
+* [00-0_Preface.md](Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
 * [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
 * Go to [python prep directory](https://github.com/ysBach/AO2019/tree/master/Notebooks/python_prep) and study python by yourself.
