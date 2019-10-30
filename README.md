@@ -69,20 +69,22 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 
 
-* _NOTE_: Some of Part 0, S, and A are not covered in the class.
+* Some of Part 0, S, and A are not covered in the class.
 
 #### Part 0: Preparation
 
 * [00-0_Preface.md](Notebooks/00-0_Preface.md)
-* [00-1_Softwares.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-1_Softwares.md)
-* [00-2_UNIX.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/00-2_UNIX.md)
-* Go to [python prep directory](https://github.com/ysBach/AO2019/tree/master/Notebooks/python_prep) and study python by yourself.
+* [00-1_Softwares.md](Notebooks/00-1_Softwares.md)
+* [00-2_UNIX.md](Notebooks/00-2_UNIX.md)
+* Go to [python prep directory](Notebooks/python_prep) and study python by yourself.
 * Statistics (See the Book above)
-* [references](https://github.com/ysBach/AO2019/tree/master/references) (Many references you may want to refer to)
+* [references](references/) (Many references you may want to refer to)
 
 
 
 #### Part 1: Photometry
+
+All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
 
 1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` (Maybe it's not usable on Windows...?)
 2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
@@ -104,13 +106,13 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 #### Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
-* [S01_IRAF.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S01_IRAF.md)
-* [S02_Installing_Astrometry_dot_net.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/S02_Installing_Astrometry_dot_net.md)
-* SExtractor
+* [S01_IRAF.md](Notebooks/S01_IRAF.md)
+* [S02_Installing_Astrometry_dot_net.md](Notebooks/S02_Installing_Astrometry_dot_net.md)
+* SExtractor (see notes in [references/](references/))
 
 #### Part <u>A</u>: <u>A</u>ppendices
 
-* [A02_TRIPOL.md](https://github.com/ysBach/AO2019/blob/master/Notebooks/A02_TRIPOL.md)
+* [A02_TRIPOL.md](Notebooks/A02_TRIPOL.md)
 * [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
 
 * [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
