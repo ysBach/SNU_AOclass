@@ -241,3 +241,184 @@ After the sky subtraction, I plotted the Box plot of the image with x-axis 70 to
 As can be noticed, SEx background estimation\footnote{We tend to call ``background'' rather than ``sky'' when we are dealing with SExtractor.}, unlike the annulus sky estimation technique, is estimating the sky values at all the pixels, not for each source. Thus, it takes much longer time. Also you can see that lots of parameters (rejection percentile, box size, filter size, interpolation method and related parameters, etc) should be set for SEx to work! In some cases, astronomers run SExtractor again and again to do get expected results, and find best combination of such parameters. But these parameters of course depend on the instruments, sky conditions, etc, so if the results are suspicious, some fine tuning must be made or you have to find different ways to do photometry than SExtractor.
 
 
+\section{Aperture in Real Reduction}
+We most frequently use circular aperture photometry. To determine how large the aperture should be, we need information about the radial profile of the PSF. Historically, there are three important radial profiles: Gaussian, Moffat, and Penny:
+\begin{enumerate}
+\item \href{https://en.wikipedia.org/wiki/Gaussian_function}{Gaussian}. The Gaussian function.
+\item \href{https://en.wikipedia.org/wiki/Moffat_distribution}{Moffat}. A purely empirical function. 
+\item Penny. A purely empirical function.
+\end{enumerate}
+(links to Wikipedia)
+
+Among parameters for PSFs, one that is very widely used in astronomy is the FWHM (full width at half-maximum), as described before. FWHM is defined as the distance between the two points which have the value $\frac{1}{2} f_\mathrm{max}$, i.e., $ f(r = \mathrm{HWHM}) = \frac{1}{2} f_\mathrm{max} $ for $ \mathrm{HWHM} = \mathrm{FWHM}/2 $. FWHM is also used for Lorenzian profile, which has infinite standard deviation (the second centered moment diverges, so the standard deviation is not defined, but FWHM can). The profiles of PSFs and their FWHMs are described below.
+
+In the descriptions below, I will assume the center $ \textbf{r}_0 $ is clearly fixed and the PSF is azimuthally symmetric (circular) and thus $ r = \abs{\textbf{r} - \textbf{r}_0} $ is the only free parameter except for other parameters described in the model.
+
+\subsection{Gaussian}
+The circular, i.e., azimuthally symmetric Gaussian PSF is like this:
+\begin{equation}\label{eq: profile gauss}
+  f_\mathrm{Gauss}(r|A, \sigma) = A e^{ -r^2 / 2\sigma^2 } 
+\end{equation}
+Here, $r$ is the distance from the center ($r_0$), and $\sigma$ is the standard deviation of the profile. This is the most famous form when it comes to numerical calculation, because all the normalization constants are not so important in PSF fitting.
+
+The normalization constant $A = \qty( \frac{1}{\sqrt{2 \pi \sigma^2}} )^N$ for an $ N $-D Gaussian, such that the integration is normalized, i.e., $ \int_{-\infty}^{+\infty} f_\mathrm{Gauss}(r) 2\pi r dr = 1$. The 2-D Gaussian of integrated flux $ I $ is, therefore,
+\begin{equation}\label{eq: profile gauss flux}
+  f_\mathrm{Gauss}(r|I, \sigma) = \frac{I}{2 \pi \sigma^2} e^{ -r^2 / 2\sigma^2 }
+\end{equation}
+This is useful because the total integrated flux is an input parameter. Conversion between this and \cref{eq: profile gauss} is very easy.
+
+The FWHM is calculated by setting $f_{\rm Gauss}(r = \mathrm{HWHM}) = \frac{A}{2}$. First we obtain $ (\mathrm{HWHM})^2 = (2 \ln 2) \sigma^2 $ and thus,
+\begin{equation}\label{eq: FWHM gauss}
+  \mathrm{FWHM (circ Gauss)} := 2 \sqrt{2 \ln 2} \sigma ~.
+\end{equation}
+
+Re-formulating \cref{eq: profile gauss flux} with FWHM ($ F $ for brevity):
+\begin{equation}\label{eq: profile gauss fwhm}
+  f_{\rm Gauss}(r|I, F) = I \frac{4\ln 2}{\pi F^2} e^{ - (4 \ln 2) r^2 / F^2 } ~.
+\end{equation}
+This is not widely used, although both $ I $ and $ F $ are what we're most interested in. Rather, people tend to convert $ F $ to $ \sigma $ and use \cref{eq: profile gauss} or \cref{eq: profile gauss flux}.
+
+\subsection{Moffat}
+The first suggestion of using Moffat profile was made in 1969 by A. F. J. Moffat in \href{https://ui.adsabs.harvard.edu/abs/1969A\%26A.....3..455M}{Moffat AFJ 1969, A\&A, 3, 455} (). It is purely an empirical function, and is one of the most widely accepted form, because of its simple form yet powerful in fitting many circular profiles. Comparison of notations is given in \cref{tab: Moffat}.
+
+\begin{table}
+\label{tab: Moffat}
+\caption{Moffat profile comparison. \texttt{astropy}'s notation is strikingly confusing, because of its \texttt{alpha} notation, which completely goes against the original Moffat paper and other software implementations (e.g., IRAF). Note: \texttt{AsPyLib} is developed by J. Caron in Python 2 and the development is halted since 2013.}
+\centering
+\begin{tabular}{cccl}
+  \hline
+  Symbol &
+  \href{http://docs.astropy.org/en/stable/api/astropy.modeling.functional_models.Moffat2D.html\#astropy.modeling.functional_models.Moffat2D}{astropy} & 
+  \href{http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?psfmeasure}{IRAF}, \href{http://www.aspylib.com/doc/aspylib_fitting.html}{AsPyLib} & 
+  Description \\
+  \hline
+  $ r $ & & & radial distance from the center ($ r_0 = (x_0, y_0) $) \\
+  $ R $ & \texttt{gamma} & \texttt{alpha} & core width \\
+  $ \beta $& \texttt{alpha} & \texttt{beta} & power \\
+  \hline
+\end{tabular}
+\end{table}
+
+The circular, i.e., azimuthally symmetric Moffat PSF is:
+\begin{equation}\label{eq: profile moffat}
+  f_\mathrm{Moffat} (r|A, R, \beta) = A \left [ 1 + \left ( \frac{r}{R} \right )^2 \right ]^{-\beta} ~.
+\end{equation}
+The parameter $R$ is called the core width and $\beta$ is called the power. As in Gaussian case, this is the most widely used form in numerical calculation.
+
+Normalizing as we did for Gaussian, $ \int_{-\infty}^{+\infty} f_\mathrm{Moffat}(r) 2\pi r dr = 1 $, we have the constant $ A = \frac{\beta - 1}{\pi R^2} $. Therefore, Moffat profile has a restriction that $ \beta > 1 $. The Moffat profile for the integrated flux $ I $ is, similar to Gaussian,
+\begin{equation}\label{eq: profile moffat flux}
+  f_\mathrm{Moffat}(r|I, R, \beta) = I \frac{\beta - 1}{\pi R^2} \left [ 1 + \left ( \frac{r}{R} \right )^2 \right ]^{-\beta}
+\end{equation} 
+Similar to Gaussian, this is also widely used.
+
+The FWHM is calculated by setting $f_\mathrm{Moffat}(\mathrm{HWHM}) = \frac{A}{2}$. As we did in Gauss example, we obtain $ \mathrm{HWHM}^2 = R^2 (2^{1/\beta}-1) $,
+\begin{equation}\label{eq: FWHM moffat}
+  \mathrm{FWHM}(\mathrm{circMoffat}) = 2 R \sqrt{2^{1/\beta}-1} ~.
+\end{equation}
+
+Using FWHM ($ F $ for brevity), we re-formulate Moffat profile \cref{eq: profile moffat flux}\footnote{\href{https://ui.adsabs.harvard.edu/abs/2001MNRAS.328..977T/abstract}{Trujillo+2001, MNRAS, 328, 977}}:
+\begin{equation}\label{eq: profile moffat fwhm}
+  f_\mathrm{Moffat}(r|I, F, \beta)
+    = I \frac{4(2^{1/\beta} - 1) (\beta - 1)}{\pi F^2}
+      \left [ 1 + 4(2^{1/\beta} - 1) \left ( \frac{r}{F} \right )^2 \right ]^{-\beta} ~.
+\end{equation}
+
+\begin{thm}[High power Moffat is Gaussian]
+For $ \beta \rightarrow \infty $,
+\begin{equation}
+  f_{\rm Moffat} (r|I, F, \infty) = f_{\rm Gauss}(r|I, F) ~.
+\end{equation}
+Practically $ \beta \gtrsim 100 $ is enough for this approximation.
+\end{thm}
+Proof: For $ \beta \rightarrow \infty $, we approximate $ 2^{1/\beta} - 1 \approx \frac{\ln 2}{\beta} $, so
+\begin{equation*}
+  f_\mathrm{Moffat}(r|I, F, \infty)
+    \approx I \frac{\tilde{A}}{\pi} 
+      \lim_{\beta \rightarrow \infty} \frac{\beta-1}{\beta} 
+      \left [ 1 + \frac{\tilde{A} r^2}{\beta} \right ]^{-\beta} ~,
+\end{equation*}
+for $ \tilde{A} = \frac{4 \ln 2}{F^2} $. Note that $ \lim_{\beta \rightarrow \infty} \left [ 1 + \frac{\tilde{A}}{\beta} \right ]^{-\beta} \equiv e^{-\tilde{A}} $ and $ \frac{\beta-1}{\beta} $ becomes unity. Substituting these, we get the approximated formula identical to \cref{eq: profile gauss fwhm}, or to \cref{eq: profile gauss} with \cref{eq: FWHM gauss}. Q.E.D.
+
+
+\subsection{Penny}
+It was Franz\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1973JRASC..67...81F/abstract} {FranzOG 1973, JRASC, 67, 81}}, who first used Lorenzian-like profile for stars. Then Penny\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1979MNRAS.187..829P/abstract} {PennyAJ 1979, MNRAS, 187, 829}} used it with linear interpolation in sky level to do the UBV photometry for visual binaries close to each other. After that, Penny and Dickens\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1986MNRAS.220..845P/abstract} {PennyAJ \& DickensRJ, 1986, MNRAS, 220, 845}, which is cited for more than 110 times as of Oct 2019}, using their own package (\texttt{STARMAN}), introduced Gaussian and Lorentzian mixed model\footnote{Unfortunately, however, both the original Penny \& Dickens paper and \href{https://ui.adsabs.harvard.edu/abs/1995StaUN.141.....P/abstract}{Penny (1995, StaUN 141)} pp.44--45 have so many typos in the star profile formulae...}. 
+
+The original profile suggested by Penny is a sum of a circular Gaussian and elliptical modified-Lorentzian:
+\begin{equation}\label{eq: profile penny}
+  \begin{aligned}
+    f(r &| A, Q, \sigma_1, \sigma_2, \sigma_3, \sigma_4, P, \theta, P_Q, R_Q)  \\
+    &= A 
+      \left \{ 
+        \frac{1}
+        {1 + \left[ 
+          \left( \frac{x'}{\sigma_1} \right)^2 
+          + \left( \frac{y'}{\sigma_2} \right)^2 
+          \right ]
+          ^{\frac{P}{2} 
+            \left( 1 + \sqrt{\left( \frac{x'}{\sigma_3} \right)^2 
+              + \left( \frac{y'}{\sigma_4} \right)^2 } \right) 
+           }}
+        + Q \exp \left [ - \left ( \frac{r}{R_Q} \right )^{P_Q} \right ]
+      \right \}
+  \end{aligned} ~,
+\end{equation}
+for
+\begin{equation*}
+  \binom{x'}{y'} = \binom{x_0}{y_0} 
+  + \mqty(\cos \theta & \sin \theta \\ -\cos \theta & \sin \theta) \binom{x}{y}
+\end{equation*}
+where $ \textbf{r}_0 = (x_0, y_0) $ is the center, and $ \theta $ is the tilting angle of the Lorentzian. The notation $ \sigma_{1,2,3,4} $ are $ R_\mathrm{maj} $ (\texttt{RX}), $ R_\mathrm{min} $ (\texttt{RY}), $ RP_\mathrm{maj} $ (\texttt{PRX}), and $ RP_\mathrm{min} $ (\texttt{PRY}) in the \texttt{POORMAN}'s notations. It is no more widely used, because of the large number of free parameters.
+
+In IRAF, it is implemented\footnote{The source code is at \href {https://github.com/iraf-community/iraf/blob/master/noao/digiphot/daophot/daolib/profile.x} {\texttt{noao.digiphot.daophot.dailib.profile.x}}.} in two ways: \texttt{penny1} and \texttt{penny2}. 
+
+
+
+\footnote{Although there is no reference, ``Photometry using IRAF v. 2.5.1'' (2012-03-25) by Keunhong Park, Jinhyuk Ryu, Insung Jang, and Ho Seong Hwang notes that (p. 8): ``\texttt{penny1} or \texttt{penny2} of IRAF fits the analytical stellar profiles well, while \texttt{moffat15} or \texttt{moffat25} fits the stellar profiles well if observed on cloudy nights.'' I cannot even understand the meaning of it...}
+
+Simple way of using it is, assuming $ Q = 0 $, $ P = 2 $, and $ \sigma_3, \sigma_4 \rightarrow \infty $, so that
+\begin{equation}\label{eq: profile penny12}
+  f(r|A, \theta, \sigma_1, \sigma_2, 
+\end{equation}
+
+
+
+
+\subsection{IRAF}
+In \href{https://iraf.net/irafhelp.php?val=imexam&help=Help+Page}{IRAF \texttt{imexamine} task}, the centroiding is done by fitting Gaussian or Moffat to the pixel values. The weighting for each pixel is
+\begin{equation}\label{eq: imexam weighting}
+  w = \left \{ 
+  \begin{array}{cr}
+    r^{-2} & r \le \mathrm{HWHM} \\
+    e^{-\left ( \frac{r}{\mathrm{HWHM}} - 1 \right )^2} & r > \mathrm{HWHM}
+  \end{array}
+  \right . ~,
+\end{equation}
+which is different from usual least square statistic (which uses $ w = 1/\sigma^2 $).
+
+Two more parameters are calculated, namely, ellipticity $ e $ and angle $ \mathrm{pa} $:
+\begin{equation}
+  e = \sqrt{\frac{ (M_{xx} - M_{yy})^2 + 4 M_{xy}^2}{M_{xx} + M_{yy}}}
+  \quad;\quad
+  \mathrm{pa}
+    = \frac{1}{2} \atan(\frac{2 M_{xy}}{M_{xx} - M_{yy}}) ~,
+\end{equation}
+where the moments
+\begin{equation}
+  M_{ij} = \frac{\sum I i j}{\sum I}
+\end{equation}
+for pixel value $ I $ and $ i, j \in [x, y] $. 
+
+In realistic photometry, such as \href{https://iraf.net/irafhelp.php?val=psfmeasure&help=Help+Page}{IRAF \texttt{psfmeasure} task}, we must use $ I - \mathrm{sky} $ instead of $ I $. 
+
+Some old packages including \texttt{ROMAFOT}, \texttt{STARMAN}, \texttt{DAOPHOT}, \texttt{DoPHOT}, \texttt{WOLF}, \texttt{LUND}, \texttt{CAPELLA} are summarized in \href{http://web.ipac.caltech.edu/staff/fmasci/home/astro_refs/WhyPSFfit.pdf}{this lecture note} and \href{https://ui.adsabs.harvard.edu/abs/1992ASPC...25..297S/abstract}{StetsonPB 1992, ASPC, 25, 297}
+
+
+
+
+
+
+
+
+
+
+

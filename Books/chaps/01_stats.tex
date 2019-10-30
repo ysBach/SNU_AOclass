@@ -1,4 +1,4 @@
-\chapter{Statistics}
+\chapter{Statistics - Basic}
 
 \textit{In any chapter in this book, especially in this chapter, I will assume (1) you have really basic knowledge on statistics, e.g., what ``Gaussian'', ``probability'', ``standard normal distribution'' means and/or (2) you know how to use Google so that you can find concepts which you don't know.}
 
@@ -175,7 +175,11 @@ print(f"Confidence Interval: [{lo:.4f}, {hi:.4f}]")
 The 1-$ \sigma $ error-bar of the median is more difficult to handle than that of the mean (CLT: Thm \ref{thm: clt}). But we can get a result from simplifying assumptions, which are not necessarily true for real observations:
 
 \begin{thm}[Uncertainty of Median]
-  Consider $ n (\gg 1) $ samples are independently drawn from $ X \sim \mathcal{G}(\mu, \sigma^2) $, a general distribution with finite mean and variance $ \mu $ and $ \sigma^2 $. The uncertainty of the median estimator is 
+  Consider $ n (\gg 1) $ samples are independently drawn from $ X \sim \mathcal{G}(\mu, \sigma^2) $, a general continuous distribution with finite mean and variance $ \mu $ and $ \sigma^2 $ with pdf $ p(x) $. The uncertainty of the median estimator is 
+  \begin{equation}\label{eq: err median general}
+    \Delta \mathrm{med} \approx \frac{1}{2 p(\nu_0) \sqrt{n - 1}}
+  \end{equation}
+  and if $ \mathcal{G} =  \mathcal{N} $, i.e., a normal distribution,
   \begin{equation}\label{eq: err median}
     \Delta \mathrm{med} 
       \approx \sqrt{\frac{\pi / 2}{n - 1}} s 
@@ -185,8 +189,8 @@ The 1-$ \sigma $ error-bar of the median is more difficult to handle than that o
   \end{equation}
   where $ s $ is the sample standard deviation and $ \Delta \mathrm{mean} = s / \sqrt{n} $ is the error-bar of the mean from Thm \ref{thm: practical clt}.
 \end{thm}
+\begin{proof}[of general distribution]
 To prove it, say the true median is $ \nu_0 $ and samples $ \{ x_1, \cdots, x_n \} $ are sorted as increasing order. For an integer $ m $, set $ n = 2m + 1 $, because $ n \gg 1 $. The sample median is then $ \nu = x_{m + 1} $.
-
 The probability of having sample median $ \nu $ is calculable by noting that we have to sample $ m $ of sample with $ x_i \le \nu $ and the other $ m $ with $ x_i > \nu $:
 \begin{equation*}
   f(\nu) = \frac{n!}{m! m!} q^m (1 - q)^{m} ~,
@@ -224,7 +228,10 @@ This has the form of Gaussian distribution ($ \propto e^{-(x - \mu)^2 / 2\sigma^
   \quad\rightarrow \quad
   \Delta \mathrm{med} \approx \frac{1}{2 p(\nu_0) \sqrt{n - 1}} ~.
 \end{equation}
+Q.E.D.
+\end{proof}
 
+\begin{proof}[of Gaussian distribution]
 Now if $ p(x) $ is a Gaussian, median is equal to mean, so the pdf becomes $ p(\nu_0) = p(\mu) = \frac{1}{\sqrt{2\pi} \sigma} $, and
 \begin{equation*}
   \nu \sim \mathcal{N} \qty( \nu_0, \frac{\pi / 2}{n - 1} \sigma^2 ) ~.
@@ -241,6 +248,7 @@ will follow a $ t $-distribution with degrees of freedom $ (n - 1) $ by Def \ref
   \Delta \mathrm{med} \approx \sqrt{\frac{\pi / 2}{n - 1}} s  ~.
 \end{equation}
 Q.E.D.
+\end{proof}
 
 
 
@@ -268,7 +276,7 @@ This is not a practically meaningful definition, but philosophically important. 
 
 I will close this section with an excerpt from Walpole p.234:
 
-\textit{The interpretation of a CI is often misunderstood. It is tempting to conclude that the parameter falls inside the CI with probability of(, e.g.,) 0.95. A CI merely suggests that if the experiment is conducted and data are observed again and again, about 95\% of such intervals will contain the true parameter.}
+\textit{The interpretation of a CI is often misunderstood. It is tempting to conclude that the parameter falls inside the CI with probability of(, e.g.,) 0.95. (But this is not ture.) A CI merely suggests that if the experiment is conducted and data are observed again and again, about 95\% of such intervals will contain the true parameter.}
 
 
 
@@ -431,7 +439,7 @@ There are two hospitals A and B. New babies are born as either sex chromosome XX
 
 
 \section{Error Propagation}
-When we have to calculate the uncertainty of a parameter derived from other parameters that have their own uncertainties, what we usually use is the \textit{error propagation}. For example, $ \mathrm{g'} = 14.0 \pm 0.1 $ and $ \mathrm{r'} = 15.0 \pm 0.1 $, what is the uncertainty of the $ \mathrm{g' - r'} $ color? Many astronomers will say it is $ -1.0 \pm 0.14 $, where the error here is $ \sqrt{\sigma_\mathrm{g'}^2 + \sigma_\mathrm{r'}^2} $ ($ \sigma $ is the error-bar). If the temperature is $ T = 100 \pm 1 \si{K} $, what is the bolometric luminosity ($ L = \sigma_\mathrm{SB} T^4 $)? Now people will say $ \Delta L / L \approx \frac{4 \sigma_\mathrm{SB} T^3 \Delta T }{\sigma_\mathrm{SB} T^4} = 4 \Delta T / T = 4 \% $. 
+When we have to calculate the uncertainty of a parameter derived from other parameters that have their own uncertainties, what we usually use is the \textit{error propagation}. For example, $ \mathrm{g'} = 14.0 \pm 0.1 $ and $ \mathrm{r'} = 15.0 \pm 0.1 $, what is the uncertainty of the $ \mathrm{g' - r'} $ color? Many astronomers will say it is $ -1.0 \pm 0.14 $, where the error here is $ \sqrt{\sigma_\mathrm{g'}^2 + \sigma_\mathrm{r'}^2} $ ($ \sigma $ is the error-bar). If the temperature is $ T = 100 \pm 1 \si{K} $, what is the fractional uncertainty of bolometric luminosity ($ L = \sigma_\mathrm{SB} T^4 $)? Now people will say $ \Delta L / L \approx \frac{4 \sigma_\mathrm{SB} T^3 \Delta T }{\sigma_\mathrm{SB} T^4} = 4 \Delta T / T = 4 \% $. 
 
 This is, however, only an approximation, and in reality, we need more complicated calculation. Note that it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the rough estimation of the error-bar.
 
@@ -442,6 +450,32 @@ This is, however, only an approximation, and in reality, we need more complicate
 You may have heard of it, or simply the \textit{least square} something. Least square or the chi-square minimization is a process to find the set(s) of model parameters which has the biggest (or bigger than threshold) \textit{likelihood} in Bayesian statistics. The set of ``best'' model parameters is the one with the largest likelihood, so we call it the maximum likelihood estimator, \textbf{MLE}.
 
 Consider independent and identically distributed (\textit{i.i.d.}) random variables\footnote{Random variables $ X_{i} $ for $ i = 0, \cdots, N $ are called i.i.d. if they (1) follow identical probability distribution, say $ f(x) $, and (2) $ f(X = x) = f(X_1 = x_1) \times \cdots \times f(X_N = x_N) $, where $ x = (x_1, \cdots , x_N) $ (same for $ X $). }, e.g., flux as a function of $ \lambda $. It is independent because the measurement at each wavelength itself is independent from that of any other wavelength. It is identically distributed because and we will assume each error-bar is Gaussian. The second assumption is not necessarily correct, and actually that happens many times (e.g., flux is Gaussian distributed but magnitude is not, because it is log of Gaussian distribution).
+
+
+\clearpage
+\begin{equation}\label{key}
+  P(\mathbf{\theta}|D, I) = \frac{P(D|\mathbf{\theta}, I) P(\mathbf{\theta}|I)}{P(D, I)}
+\end{equation}
+\begin{equation}\label{key}
+  P(\theta|D, I) \propto P(D | \theta, I) P(\theta|I)
+\end{equation}
+
+$ (x_i, y_i) $, independent, $ y \sim N(y_i, \sigma_i^2) $
+\begin{equation}\label{key}
+  \sum_{i} (y_i - f(x_i| \theta))^2
+\end{equation}
+
+\begin{equation}\label{key}
+  P(D = \{y_i\}) = \Pi_i A e^{-(f(x_i|\theta)-y_i)^2/2\sigma_i^2} 
+\end{equation}
+
+\begin{equation}\label{key}
+  \ln P(D = \{y_i\}) = \ln A \sum_i -(f(x_i|\theta)-y_i)^2/2\sigma_i^2
+\end{equation}
+Maximizing $ P $ == maximizing $ \ln P $ == mininizing summation.
+\begin{equation}\label{key}
+  \chi^2 = \sum_i \frac{(y_i - f(x_i | \theta))^2}{\sigma_i^2}
+\end{equation}
 
 % Propagation of Errors
 % chi square
