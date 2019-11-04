@@ -1,0 +1,95 @@
+\chapter{CCD and Detector}
+In this chapter, I will deal with some miscellaneous but important topics about CCD or detectors (e.g., there is no available CCD in infrared wavelength, so technically they're not CCD). 
+
+\section{Gain and Readout Noise}
+Now that you are familiar with preprocessing and data reduction. In the error-analysis, you may have used the gain and readout noise to estimate the pixel noise. But how can we determine the gain and readout noise? Frequently both of them are \textit{provided from the CCD manufacturer}, but sometimes the user has to determine them. There are few ways to determine those two.
+
+\subsection{Gain and Readout Noise in FITS Header}
+The two parameters usually appear in the FITS header. Gain appears as the keyword \texttt{GAIN}, but many times people use the keyword \texttt{EGAIN}, which is not preferred. The readout noise is also called the read noise in short, and appear as \texttt{RDNOISE}. Sometimes \texttt{RONOISE} is used, but not preferred.
+
+\subsection{Janesick's Method}
+Janesick's method is the most classical way of deriving the gain and readout noise value. Although it's the most widely used in many textbooks, they mostly don't provide even simple ideas of proof, I here provide the full proof as well as the formulae.
+
+\begin{thm}[Janesick's Method] \label{thm: janesick method}
+If the two flat images have pixel values of $ F_1 $ and $ F_2 $ and two biases have $ B_1 $ and $ B_2 $ (all in ADU), the gain and readout noise are
+\begin{equation}\label{eq: janesick method}
+  g = \frac{ (\bar{F}_1 + \bar{F}_2) - (\bar{B}_1 + \bar{B}_2)}{\sigma^2_{F_1 - F_2} - \sigma^2_{B_1 - B_2}} ~\mathrm{[e/ADU]}
+  \quad;\quad
+  R = g\frac{\sigma_{B_1 - B_2}}{\sqrt{2}} ~\mathrm{[e]}
+\end{equation}
+Here $ \bar{X} $ means the average of all the pixels in the frame $ X $, and $ \sigma_X $ is the true standard deviation of the frame $ X $, estimated from the sample standard deviation $ \sigma_X \approx \sqrt{(\sum_i (X_i - \bar{X})^2) / (N - 1)} $.
+\end{thm}
+
+\begin{proof}[of Janesick's Method]
+Note that in this theorem, by saying \textit{flat}, we are implicitly assuming that those frames should share the identical expected values. Also the pixel-wise sensitivity variation is ignored, as well as cosmic-ray events, bad pixels, etc.
+
+The bias frame is nothing but the offset voltage added with readout noise. Therefore, if the true bias level is $ b $ in ADU, any bias image will follow a normal distribution:
+\begin{equation*}
+  B \sim \mathcal{N} \qty( b, \qty(\frac{R}{g})^2 ) ~\mathrm{[ADU]}
+  \quad \rightarrow \quad
+  B_1 - B_2 \sim \mathcal{N} \qty( 0, 2\qty(\frac{R}{g})^2 ) ~\mathrm{[ADU]}
+\end{equation*}
+where $ g $ is introduced in the denominator to convert $ R $, in [e], to [ADU]. Hence, 
+\begin{equation*}
+  \sigma^2_{B_1 - B_2} \approx \mathtt{np.std(B_1 - B_2, ddof=1)}
+    = 2\frac{R^2}{g^2} ~,
+\end{equation*}
+so the second equation is proven. 
+
+The (raw) flat image consist of photons with dark plus bias level. Therefore, if $ f $ is the true flat level plus dark in ADU, any flat will roughly follow a normal distribution, similar to the bias case: 
+\begin{equation*}
+  F \mathrel{\dot{\sim}} \mathcal{N} \qty( f + b, \frac{f}{g} + \qty(\frac{R}{g})^2 ) ~\mathrm{[ADU]}
+  \quad \rightarrow \quad  
+  \left \{
+  \begin{aligned}
+    F_1 - F_2 &\mathrel{\dot{\sim}} 
+      \mathcal{N} \qty( 0, 2\frac{f}{g} + 2 \qty(\frac{R}{g})^2 ) &~\mathrm{[ADU]}\\
+    (F_1 + F_2) - (B_1 + B_2) & \mathrel{\dot{\sim}} 
+      \mathcal{N} \qty(2f, 2 \frac{f}{g} + 4 \qty( \frac{R}{g} )^2) &~\mathrm{[ADU]}
+  \end{aligned}
+  \right .
+\end{equation*}
+The first term in the variance is the Poisson noise term\footnote{Reminder: the Poisson noise term is also called photon noise or shot noise in astronomy. Both photoelectron from true flat and dark current follow Poisson distribution. The Poisson distribution is usually assumed to be Gaussian, because $ f/g \gg 1 $ (Poisson distribution asymptotically approaches to Gaussian when the mean value gets larger, as we saw in Thm \ref{thm: Pois gauss}).} and the second term is the readoise term, respectively. From these, you can extract
+\begin{align*}
+  \sigma^2_{F_1 - F_2} - \sigma^2_{B_1 - B_2} 
+    &\approx \mathtt{np.std(F_1 - F_2, ddof=1)**2} - \mathtt{np.std(B_1 - B_2, ddof=1)**2}
+    &&\approx 2\frac{f}{g}\\
+  (\bar{F}_1 + \bar{F}_2) - (\bar{B}_1 + \bar{B}_2)
+   &= \mathtt{np.mean((F_1 + F_2) - (B_1 + B_2))} 
+   &&\approx 2f
+\end{align*}
+This proves the first equation.
+
+Q.E.D.
+\end{proof}
+
+Although we can use any one flat and one bias out of two of each to obtain $ F_i - B_i \mathrel{\dot{\sim}} \mathcal{N} (f, f/g + 2(R/g)^2) $, Janesick's method uses all the information from all the four frames at once. In real application, we may take a lot of bias and flat frames, say $ N_b $ and $ N_f $ frames, respectively. Then select 2 from each, making $ \binom{N_b}{2} \times \binom{N_f}{2} $ possible gain and readout noise estimations. We can use the mean of those results to estimate the gain and readout noise and their uncertainties by sample standard deviation of the estimates. Because there always are vignetting in flat frames, you \textbf{must extract only the smooth part of flat} (and thus the corresponding region in bias) for this analysis to meet the assumptions given in the beginning of the proof, and should not na\"{i}vely use all the pixels in the image.
+
+Also note that, in real physical unit system, both $ \mathrm{e/ADU} $ and $ \mathrm{e} $ are unitless, so don't be confused if you see something like $ \sqrt{R^2/g} $ has the unit of ADU, not $ \sqrt{\mathrm{e \cdot ADU}} $.
+
+
+\subsection{Graphical Method}
+There is another method, which has no name as far as I know. It fits a linear line to some values. \textbf{This method is preferred over Janesick's method}, because (1) it's a linear regression so you can simply estimate the uncertainty of $ g $ and $ R $ from simple statistics, (2) using the identical data obtained from this method, you can check the linearity of the detector. 
+
+Consider you have a master bias $ B $ and master dark $ D^{(i)} $ for any exposure time $ t_i \in \{ t_1, t_2, \cdots, t_N \} $ ($ t_1 < t_2 < \cdots < t_N $). Then assume similar conditions used in Janesick's method: you have a incident flat which is assumed to produce identical number of photoelectrons per time, $ I_0 \,\mathrm{[ADU/s]}$, on our detector. Also the flat frame has no sensitivity variation in the pixels we select. Take $ N^{(i)}_f (\ge 2) $ flat images at each $ t_i $, so that the expected value of each exposure time will be $ I_0 t_i $. 
+
+\begin{thm}
+For each exposure, select 2 flats among $  N^{(i)}_f $ flat frames, and calculate the variance of the difference between two frames, $ \sigma^2 \qty({F^{(i)}_j - F^{(i)}_k}) $ $ (j \neq k) $, so that you have $ \binom{N_f^{(i)}}{2} $ values. Then
+\begin{equation}
+  \frac{\sigma^2 \qty({F^{(i)}_j - F^{(i)}_k})}{2}
+    = \frac{1}{g} f_i + \qty(\frac{R}{g})^2
+  \quad\rightarrow\quad
+  \left \{
+  \begin{aligned}
+    g &= \frac{1}{\mathrm{slope}} &&~\mathrm{[e/ADU]} \\
+    R &= g \sqrt{\mathrm{intercept}} &&~\mathrm{[e]}
+  \end{aligned}
+  \right .
+\end{equation}
+where $ f^{(i)} = I_0t_i - b - d^{(i)} \approx \mathrm{mean} \qty( \sum_j (F^{(i)}_j - B - D^{(i)}) ) $ is the true flat (bias and dark subtracted) in ADU. There will be $  N^{(i)}_f $ points for the fixed $ f^{(i)} $ value on the $ x $-axis, and the number of $ x $ values is $ N $. You can fit a linear function, and from the slope and intercept, you obtain the gain and readout noise.
+\end{thm}
+There is actually no need to prove this: from Thm \ref{thm: janesick method}, we already derived $ F_1 - F_2 \mathrel{\dot{\sim}} \mathcal{N} (f, 2f/g + 2(R/g)^2) $, thus the above equation is proven. The assumptions used are that all flats share same bias (true bias $ b $ is estimated from the master bias $ B $), any two flats of the identical exposure time share identical dark (true bias $ d^{(i)} $ of exposure time $ t_i $ is estimated from the master dark $ D^{(i)} $), all flats share identical gain and readout noise, and that $ \mathrm{mean} \qty( \sum_j (F^{(i)}_j - B - D^{(i)}) ) $ can be used as the estimator for the true signal in ADU. One may think some extended version of assumptions such as the variation of the detector's temperature is ignorable, etc. All these assumptions are too trivial for well-established instruments, so manytimes we just do not explicitly state these.
+
+Usually the error-bar of $ f^{(i)} $ will be very small because you will use tens of thousands of pixels to estimate this, and the CLT (Thm \ref{thm: clt}) decreases the error-bar. There is no need to spend long time to accurately derive the error-bar in the $ y $-direction either, because this kind of \textit{performance evaluation} is a one-time task per year or so, and hence you can just plot a huge number of $ y $ values rather than thinking about error-bars of each point. Then assume all points share identical error-bars and proceed the line fitting.
+
+As mentioned before, the data used in this analysis can be \textbf{recycled for the linearity check}. We can simply plot $ f^{(i)} $ as a function of $ t_i $, and you should see a linear line. Depending on the dynamic range of the detector, the linearity will break at some exposure $ t_i > t_{i_\mathrm{crit}} $. The $ F^{(i_\mathrm{crit})} \approx f^{(i_\mathrm{crit})} + b + d^{(i_\mathrm{crit})} $ will then be the maximum ADU value you should trust. Any pixel value higher than that must be cautiously dealt when you do the data analysis.
