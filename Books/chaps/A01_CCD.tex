@@ -31,10 +31,10 @@ The bias frame is nothing but the offset voltage added with readout noise. There
 \end{equation*}
 where $ g $ is introduced in the denominator to convert $ R $, in [e], to [ADU]. Hence, 
 \begin{equation*}
-  \sigma^2_{B_1 - B_2} \approx \mathtt{np.std(B_1 - B_2, ddof=1)}
+  \sigma^2_{B_1 - B_2} 
     = 2\frac{R^2}{g^2} ~,
 \end{equation*}
-so the second equation is proven. 
+so the second equation is proven. Since the LHS is approximated by the sample standard deviation, you can write $ \sigma^2_{B_1 - B_2} \approx $ \pyth{np.std(B1-B2, ddof=1)**2} in python.
 
 The (raw) flat image consist of photons with dark plus bias level. Therefore, if $ f $ is the true flat level plus dark in ADU, any flat will roughly follow a normal distribution, similar to the bias case: 
 \begin{equation*}
@@ -52,13 +52,11 @@ The (raw) flat image consist of photons with dark plus bias level. Therefore, if
 The first term in the variance is the Poisson noise term\footnote{Reminder: the Poisson noise term is also called photon noise or shot noise in astronomy. Both photoelectron from true flat and dark current follow Poisson distribution. The Poisson distribution is usually assumed to be Gaussian, because $ f/g \gg 1 $ (Poisson distribution asymptotically approaches to Gaussian when the mean value gets larger, as we saw in Thm \ref{thm: Pois gauss}).} and the second term is the readoise term, respectively. From these, you can extract
 \begin{align*}
   \sigma^2_{F_1 - F_2} - \sigma^2_{B_1 - B_2} 
-    &\approx \mathtt{np.std(F_1 - F_2, ddof=1)**2} - \mathtt{np.std(B_1 - B_2, ddof=1)**2}
-    &&\approx 2\frac{f}{g}\\
+    &\approx 2\frac{f}{g}\\
   (\bar{F}_1 + \bar{F}_2) - (\bar{B}_1 + \bar{B}_2)
-   &= \mathtt{np.mean((F_1 + F_2) - (B_1 + B_2))} 
-   &&\approx 2f
+   &\approx 2f
 \end{align*}
-This proves the first equation.
+This proves the first equation. Since the $ \sigma $ values are approximated by the sample standard deviation, $ \sigma^2_{F_1 - F_2} - \sigma^2_{B_1 - B_2} \approx $ \pyth{np.std(F1-F2, ddof=1)**2 - np.std(B1-B2, ddof=1)**2} in python, and from simple mathematics, $ (\bar{F}_1 + \bar{F}_2) - (\bar{B}_1 + \bar{B}_2) = $ \pyth{np.mean((F1+F2) - (B1+B2))} in python.
 
 Q.E.D.
 \end{proof}
