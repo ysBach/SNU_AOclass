@@ -2,6 +2,18 @@
 
 In this project, you will make a set of functions and scripts. 
 
+
+
+Please submit a simple report (including the code, showing *some* results, and giving simple explanations) which you think the TA can evaluate whether you finished the task appropriately. You may need to re-use these in your final report. 
+
+You may refer to the presentation material from this repo (the first lecture material of the TA seminar).
+
+
+
+You don't need to answer all the questions separately. But all these processes are essential to get the final result of this project. Thus, please regard these items (Problems) as checklist: You don't have to make an answer sheet like "answer to number 1: blahblah". Just make codes which work well, and present the results.
+
+
+
 ## Problems [80 pt]
 
 Download your raw FITS files from https://sao.snu.ac.kr (as we learned in the class). If you don't have any data, you can just test with other teams' data sets, and utilize the code for your data when you acquire it.
