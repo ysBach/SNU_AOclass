@@ -316,7 +316,7 @@ Let's now add three stars. The seeing FWHM is ``seeing_arcsec`` in arcsecond and
 
 In the above, we used ``IntegratedPRF``, which has slightly different meaning than PSF in ``photutils``. Gaussian function will calculate the pixel value as the Gaussain function value at the pixel center ($f(x_i, y_i)$ for the i-th pixel), while ``IntegratedPRF`` is the **integrated** value of the Gaussian function values within the pixel $\left( \int_{x_i - \Delta x/2}^{x_i + \Delta x/2} \int_{y_i - \Delta y/2}^{y_i + \Delta y/2} f(x, y) dx dy \right)$. To see the difference, we need a test.
 
-22. Fill in the blanks to see the map of $\frac{\mathrm{IntegratedPRF~case}-\mathrm{SimpleGaussian~case}}{\mathrm{\mathrm{IntegratedPRF~case} + \mathrm{sky}}}$ (there's no sky in the numerator because they cancel out):
+22. Fill in the blanks to see the map of $\frac{\mathrm{IntegratedPRF\ case}-\mathrm{SimpleGaussian\ case}}{\mathrm{\mathrm{IntegratedPRF\ case} + \mathrm{sky}}}$ (there's no sky in the numerator because they cancel out):
 
 14. ```python
     # Here, no noise will be added, because the purpose is to see the difference 
