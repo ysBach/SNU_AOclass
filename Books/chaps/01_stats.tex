@@ -441,7 +441,16 @@ There are two hospitals A and B. New babies are born as either sex chromosome XX
 \section{Error Propagation}
 When we have to calculate the uncertainty of a parameter derived from other parameters that have their own uncertainties, what we usually use is the \textit{error propagation}. For example, $ \mathrm{g'} = 14.0 \pm 0.1 $ and $ \mathrm{r'} = 15.0 \pm 0.1 $, what is the uncertainty of the $ \mathrm{g' - r'} $ color? Many astronomers will say it is $ -1.0 \pm 0.14 $, where the error here is $ \sqrt{\sigma_\mathrm{g'}^2 + \sigma_\mathrm{r'}^2} $ ($ \sigma $ is the error-bar). If the temperature is $ T = 100 \pm 1 \si{K} $, what is the fractional uncertainty of bolometric luminosity ($ L = \sigma_\mathrm{SB} T^4 $)? Now people will say $ \Delta L / L \approx \frac{4 \sigma_\mathrm{SB} T^3 \Delta T }{\sigma_\mathrm{SB} T^4} = 4 \Delta T / T = 4 \% $. 
 
-This is, however, only an approximation, and in reality, we need more complicated calculation. Note that it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the rough estimation of the error-bar.
+The way how we do this is that, for a function $ f = f(x| a, b, c) $ where $ (a, b, c) $ is a set of parameters:
+\begin{equation}\label{eq: error propagation}
+  (\Delta f)^2 \approx 
+    \qty(\frac{\partial f}{\partial a} \Delta a)^2
+    + \qty(\frac{\partial f}{\partial b} \Delta b)^2
+    + \qty(\frac{\partial f}{\partial c} \Delta c)^2
+\end{equation}
+If any parameters are dependent, we need a covariance term $ \sigma_{ab} $ for instance, and this is one of the reasons why the above error-propagation is only an approximation. This formual itself is similar to getting the gradient. 
+
+Note that this is only an approximation, and in reality, we need more complicated calculation. Note that it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the rough estimation of the error-bar.
 
 
 
@@ -451,32 +460,68 @@ You may have heard of it, or simply the \textit{least square} something. Least s
 
 Consider independent and identically distributed (\textit{i.i.d.}) random variables\footnote{Random variables $ X_{i} $ for $ i = 0, \cdots, N $ are called i.i.d. if they (1) follow identical probability distribution, say $ f(x) $, and (2) $ f(X = x) = f(X_1 = x_1) \times \cdots \times f(X_N = x_N) $, where $ x = (x_1, \cdots , x_N) $ (same for $ X $). }, e.g., flux as a function of $ \lambda $. It is independent because the measurement at each wavelength itself is independent from that of any other wavelength. It is identically distributed because and we will assume each error-bar is Gaussian. The second assumption is not necessarily correct, and actually that happens many times (e.g., flux is Gaussian distributed but magnitude is not, because it is log of Gaussian distribution).
 
-
-\clearpage
-\begin{equation}\label{key}
-  P(\mathbf{\theta}|D, I) = \frac{P(D|\mathbf{\theta}, I) P(\mathbf{\theta}|I)}{P(D, I)}
+The Bayes' theorem will be studeid in later, but let me introduce it first to grap the meaning of chi-square statistic:
+\begin{align*}
+  P(\mathbf{\theta}|D, I) &= \frac{P(D|\mathbf{\theta}, I) P(\mathbf{\theta}|I)}{P(D, I)} \\
+  P(\theta|D, I) &\propto P(D | \theta, I) P(\theta|I)
+\end{align*}
+When we have data points, $ (x_i, y_i) $, which are all independent, and $ y \sim N(y_i, \sigma_i^2) $. Then one of the most na\"{i}ve goodness-of-fit statistic variables can be the square-sumed error:
+\begin{equation}\label{eq: sse}
+  \mathrm{SSE} = \sum_{i} (y_i - f(x_i| \theta))^2
 \end{equation}
-\begin{equation}\label{key}
-  P(\theta|D, I) \propto P(D | \theta, I) P(\theta|I)
-\end{equation}
-
-$ (x_i, y_i) $, independent, $ y \sim N(y_i, \sigma_i^2) $
-\begin{equation}\label{key}
-  \sum_{i} (y_i - f(x_i| \theta))^2
-\end{equation}
-
-\begin{equation}\label{key}
+Since $ y_i $ are all Gaussian, the probability of obtaining such data is obtained from the multiplication law:
+\begin{equation*}
   P(D = \{y_i\}) = \Pi_i A e^{-(f(x_i|\theta)-y_i)^2/2\sigma_i^2} 
-\end{equation}
-
-\begin{equation}\label{key}
+\end{equation*}
+or taking log:
+\begin{equation}
   \ln P(D = \{y_i\}) = \ln A \sum_i -(f(x_i|\theta)-y_i)^2/2\sigma_i^2
 \end{equation}
-Maximizing $ P $ == maximizing $ \ln P $ == mininizing summation.
-\begin{equation}\label{key}
+Now getting parameters which maximize $ P $ is identical to (1) getting them which maximize $ \ln P $, and this is also identical to (2) getting them which mininize the summation in the exponent. Therefore, the exponent is defined as the chi-square statistic as:
+\begin{equation}\label{eq: chi-square statistic}
   \chi^2 = \sum_i \frac{(y_i - f(x_i | \theta))^2}{\sigma_i^2}
 \end{equation}
 
-% Propagation of Errors
-% chi square
 
+
+
+\section{Interpolation}
+When we fit an analytic function to the data, we usually use a statistic (e.g., the chi-square value or the BIC) that indicates the goodness-of-fit (also called figure of merit). But what if we don't know or not interested in the true analytic function behind the scene? For example, for aperture trace or sense function in spectroscopy, we have absolutely no idea what is the true analytic function. In this situation, \textbf{interpolation} comes in. 
+
+\begin{defn}[Interpolation]
+An interpolation function is a function that smoothly connects \textit{all} the observed data points.
+\end{defn}
+
+For instance, a linear interpolation is a function which connects all the data points with linear segments as in \cref{fig:interpolation}. In cubic spline, you fit a 3rd order polynomial function (total 4 unknowns). For points $ (x_i, y_i) $ where $ i = 0 \ldots n $, we want to obtain $ n $ spline curves $ S_i(x) $ for $ i = 0 \ldots n-1 $. All such interpolation functions should be \textit{smoothly connected} to each other by
+\begin{itemize}
+  \item $ S_i (x_i ) = y_i      \quad(i = 0 , \ldots , n-1). $
+  \item $ S_{i-1} (x_i ) = y_i  \quad(i = 1 , \ldots , n). $
+  \item $ S^\prime_i (x_i) = S^\prime_{i-1} (x_i)\quad(i = 1 , \ldots , n-1). $
+  \item $ S^{\prime\prime}_i (x_i) = S^{\prime\prime}_{i-1} (x_i) \quad(i = 1 , \ldots , n-1). $
+  \item $ S^{\prime\prime}_0 (x_0) = S^{\prime\prime}_{n-1} (x_n) =0 $.
+\end{itemize}
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.7\linewidth]{figs/interpolation}
+  \caption{A display of linear/cubic spline interpolations and spline fittings.}
+  \label{fig:interpolation}
+\end{figure}
+
+In python, you can use
+\begin{python}
+from scipy.interpolate import UnivariateSpline
+# linear spline interpolation
+interp_1 = UnivariateSpline(x, y, s=0, k=1)
+# cubic spline interpolation
+interp_3 = UnivariateSpline(x, y, s=0, k=3)
+
+# use it as y_interp_1 = interp_1(x_values)
+\end{python}
+The parameter \texttt{s} is the smoothing factor. That is, 
+\begin{equation}
+  \sum_{i=1}^{n} w_i^2 (y_i - S(x_i))^2 \le s ~.
+\end{equation}
+If no error-bar is present, we can just ignore $ w_i $ (weights), and if there exists $ \sigma_i $, we can use $ w_i = 1/\sigma_i $, and the above equation becomes nothing but a chi-square. In that case, the $ \chi^2 $ smaller than the total degrees of freedom (roughly the number of data points) is a good measure, so \pyth{s = len(x)} is a good guess for spline fitting. If you put $ s = 0 $, it means $ S(x_i) $ must be the same as $ y_i $, i.e., the fitted function must go through all the data points: this is the interpolation. 
+
+From the figure, cubic spline interpolation is more smooth and the linear one looks too discrete, so you may always want to use cubic version. A caveat is that cubic spline has large fluctuation when there is any large scatter, as seen from $ x = 5 $ and $ x = 6 $. This ``shooting'' effect is severe when you fit a sense function (spectroscopic flux calibration) to a spectroscopic standard star: if the star has an absorption line, the cubic fit will be problematic near that wavelength region. 
