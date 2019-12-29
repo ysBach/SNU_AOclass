@@ -1,23 +1,25 @@
-# AO2019
-TA seminar notes for the AO classes in 2019 at SNU, Korea. All the lecture notes are primarily made by **Yoonsoo P. Bach**. I tried not to make typo, logically wrong statement, etc. If any problem is there in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
+# SNU_AOclass
+TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lecture notes are primarily made by **Yoonsoo P. Bach**. I tried not to make typo, logically wrong statement, etc. If any problem is there in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
 
 
 ## 1. Short History
 <details><summary>click</summary>
 <p>
 
-| Semester    | Instructor                  | TA                                      |
-| ----------- | --------------------------- | --------------------------------------- |
-| 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo,Yoonsoo P. Bach (unofficial) |
-| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
-| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
-| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial) |
-| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)         |
-| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)         |
-| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                         |
+| Semester    | Instructor                  | TA                                       |
+| ----------- | --------------------------- | ---------------------------------------- |
+| 2020 Spring | professor Masateru Ishiguro | ?, Yoonsoo P. Bach (unofficial)          |
+| 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo, Yoonsoo P. Bach (unofficial) |
+| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
+| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
+| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
+| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)          |
+| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)          |
+| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                          |
 
+- In 2020: The name of the repo changed. All previous repos (2017, 2018) are **archived**.
 - In 2019: Made this repo.
-- In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_LectureNotes) and [website](https://ysbach.github.io/AO_LectureNotes/). Many documents changed from ipynb to md.
+- In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_2018). Many documents changed from ipynb to md.
 - In 2017: Made GitHub repo [AO_2017](https://github.com/ysBach/AO_2017) and [website](https://ysbach.github.io/AO_2017/). 
 - In 2016: No GitHub, but just MS Word-based lecture notes of PyRAF.
 </p>
@@ -56,10 +58,10 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 ### 3-1. Book
 
-Fundamental ideas, formulation, and definition/theorems are given in the book material. Look at the `Books` directory in this repo or 
+Look at the `Books` directory in this repo or 
 
 * the compiled TeX: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
-* **The codes** to make plots in the PDF:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
+* **The codes and notebooks** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
 
 
 
@@ -67,9 +69,9 @@ Fundamental ideas, formulation, and definition/theorems are given in the book ma
 
 All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
 
-
-
 * Some of Part 0, S, and A are not covered in the class.
+
+
 
 #### Part 0: Preparation
 
@@ -83,8 +85,6 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 
 #### Part 1: Photometry
-
-All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
 
 1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` (Maybe it's not usable on Windows...?)
 2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
