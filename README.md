@@ -102,10 +102,10 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 #### Part 2: Spectroscopy
 
-1. [Spectroscopy statistics](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Simulation.ipynb): Is there really a line emission?
-2. [Spectroscopy justification](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_in_Python.ipynb): Comparison of my personal notebook with IRAF results on Subaru FOCAS data
+1. [Statistics](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Simulation.ipynb): Is there really a line emission?
+2. [Justification](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_in_Python.ipynb): Comparison of my personal notebook with IRAF results on Subaru FOCAS data
    * Adopted by [PyReduc project](https://keheintz.github.io/PyReduc/) ([github](https://github.com/keheintz/PyReduc)) as of 2020 Apr.
-3. [Spectroscopy by SNUO 1m telescope](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Example.ipynb)
+3. [SNUO 1m telescope](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Example.ipynb): Spectrograph data from SNUO
 
 
 
