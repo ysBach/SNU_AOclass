@@ -197,19 +197,24 @@ Among these affiliated packages, I recommend you to download:
 
 To download, type
 
-    conda install -c astropy photutils ccdproc astroscrappy astroquery aplpy
+    conda install -c astropy photutils ccdproc astroscrappy aplpy
+
+For astroquery, it is recommended to download the most recent one:
+
+```
+$ cd <your_github_download_directory>
+$ git clone https://github.com/astropy/astroquery.git
+$ cd astroquery
+$ python setup.py install
+```
 
 
 
 ### 5.2. Testing Packages
 
-You can simply test the installation by tests. Run ipython from terminal: 
-
-```
-ipython
-```
-
-Then you are now in the ipython console, and type
+<details><summary>click</summary>
+<p>
+You can simply test the installation by tests. Run ipython or Jupyter notebook/lab, and type
 
 ``` python
 >>> import astropy, photutils
@@ -241,7 +246,8 @@ Some tests are known to fail when run from the IPython prompt; especially, but n
 
 The astropy will do the tests automatically (takes ~ 10 minutes). There might be some errors, but usually they are not important, so you can ignore them. If "`astropy.test()`" itself does not work, please check whether the installation of Anaconda had been done correctly.
 
-
+</p>
+</details>
 
 ## 6. Editors
 
