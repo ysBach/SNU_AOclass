@@ -163,6 +163,8 @@ When the download is done, install Anaconda following the website's instruction.
 
 ## 4. IRAF/PyRAF (*optional*)
 
+<details><summary>click</summary>
+<p>
 **IRAF/PyRAF works only on UNIX, and you cannot run it correctly on Windows.**
 
 There have been a lot of different ways to install IRAF: First people had to download with a lot of commands including "`cd ..`", "`wget blahblah`", etc. Then STScI developed a huge pack of all necessary softwares, named **Ureka**. But using *Ureka is deprecated* since April 2016. Now we use [**AstroConda**](http://astroconda.readthedocs.io/en/latest/installation.html). There are reasons for these transformations, and you may be able to find the reasons as time goes, if you are interested.
@@ -174,6 +176,9 @@ In terminal, type the followings (This may take **tens of minutes** depending on
     conda create -n iraf python=2.7 iraf-all pyraf-all stsci
 
 The name of the environment, ``iraf``, is ``iraf27`` in the original official website, but I just prefer ``iraf`` because it's shorter. You can set it as any name you like.
+
+</p>
+</details>
 
 
 
