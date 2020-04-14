@@ -71,7 +71,7 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 * Some of Part 0, S, and A are not covered in the class.
 
-* Tutorial data available [here](https://www.dropbox.com/sh/3a1j3495o08yweh/AACSPhIhLwut38yYX8mjvX3ka?dl=0) from my Dropbox.
+* **Tutorial data** available [here](https://www.dropbox.com/sh/3a1j3495o08yweh/AACSPhIhLwut38yYX8mjvX3ka?dl=0) from my Dropbox.
 
 
 
