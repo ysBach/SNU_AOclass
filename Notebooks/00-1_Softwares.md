@@ -61,7 +61,7 @@ Some useful links:
    * I encourage you to **download & install the app** at the [downloads page](https://slack.com/downloads/). 
      * Slack is usable on LINUX, Mac, Windows, Android phone, iPhone, etc.
      * So I suggest you to **install it both on your PC and phone**.
-     * When login with your second device, put the workspace id (e.g., `2019AO1`) and use the email/pw you enrolled with your first device.
+     * When login with your second device, put the workspace id (e.g., `2020AO1`) and use the email/pw you enrolled with your first device.
 
 
 
@@ -71,7 +71,7 @@ The following analogy works:
 
 | Slack concept | Similar concepts                                   | Examples                         |
 | ------------- | -------------------------------------------------- | -------------------------------- |
-| **workspace** | A course in ETL, a website (모임, 그룹)            | `2018AO1`, `2019AO2`             |
+| **workspace** | A course in ETL, a website (모임, 그룹)            | `2018AO1`, `2019AO2`, `2020AO1`  |
 | **channels**  | boards in such group or website (게시판, 채팅채널) | `team_hrdiagram`, `announcement` |
 
 
@@ -95,7 +95,7 @@ Especially, 1, 4 and 5 are the main reasons we dropped Kakao-talk or the likes w
 
 ![](figs/slack.png)
 
-In our workspace, ``2019ao1.slack.com``, you can see the left side bar:
+In our workspace, ``2020ao1.slack.com``, you can see the left side bar:
 
 * At the top, you can see the workspace name and your ID. Click it and set your profile from the drop down menu.
 
