@@ -6,18 +6,18 @@ TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lec
 <details><summary>click</summary>
 <p>
 
-| Semester    | Instructor                  | TA                                       |
-| ----------- | --------------------------- | ---------------------------------------- |
-| 2020 Spring | professor Masateru Ishiguro | ?, Yoonsoo P. Bach (unofficial)          |
-| 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo, Yoonsoo P. Bach (unofficial) |
-| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
-| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
-| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)  |
-| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)          |
-| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)          |
-| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                          |
+| Semester    | Instructor                  | TA                                         |
+| ----------- | --------------------------- | ------------------------------------------ |
+| 2020 Spring | professor Masateru Ishiguro | Jooyeon Geem, Yoonsoo P. Bach (unofficial) |
+| 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo, Yoonsoo P. Bach (unofficial)   |
+| 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)    |
+| 2018 Fall   | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)    |
+| 2018 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)    |
+| 2017 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach (& Da-Eun Kang)            |
+| 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)            |
+| 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                            |
 
-- In 2020: The name of the repo changed. All previous repos (2017, 2018) are **archived**.
+- In 2020: The name of the repo changed (Jan). All previous repos (2017, 2018) are **archived** (Jan).
 - In 2019: Made this repo.
 - In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_2018). Many documents changed from ipynb to md.
 - In 2017: Made GitHub repo [AO_2017](https://github.com/ysBach/AO_2017) and [website](https://ysbach.github.io/AO_2017/). 
@@ -60,8 +60,8 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 Look at the `Books` directory in this repo or 
 
-* the compiled TeX: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
-* **The codes and notebooks** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
+* PDF: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
+* **The codes** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
 
 
 
@@ -70,6 +70,8 @@ Look at the `Books` directory in this repo or
 All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
 
 * Some of Part 0, S, and A are not covered in the class.
+
+* Tutorial data available [here](https://www.dropbox.com/sh/3a1j3495o08yweh/AACSPhIhLwut38yYX8mjvX3ka?dl=0) from my Dropbox.
 
 
 
@@ -100,7 +102,10 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 #### Part 2: Spectroscopy
 
-1. 
+1. [Spectroscopy statistics](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Simulation.ipynb): Is there really a line emission?
+2. [Spectroscopy justification](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_in_Python.ipynb): Comparison of my personal notebook with IRAF results on Subaru FOCAS data
+   * Adopted by [PyReduc project](https://keheintz.github.io/PyReduc/) ([github](https://github.com/keheintz/PyReduc)) as of 2020 Apr.
+3. [Spectroscopy by SNUO 1m telescope](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Example.ipynb)
 
 
 
