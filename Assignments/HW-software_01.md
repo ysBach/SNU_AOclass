@@ -11,6 +11,8 @@ You may refer to
 
 1 points each
 
+(I will check each one of your Slack accounts in our workspace)
+
 1. Watch the videos below (yes|no)
    1. https://slack.com/#what-is-slack (2m 33s; retrieved 2020-04-14)
    2. https://slack.com/features#why-slack (1m 59s; retrieved 2020-04-14)
@@ -19,6 +21,7 @@ You may refer to
 3. Change your name to your real name in English, profile picture to whatever you like.
 4. Send a DM (private message) to me saying hello.
 5. What are the differences between workspace and channels? (describe in about 1-2 lines)
+   * **TIP**: see the lecture note linked above.
 
 
 
@@ -32,14 +35,16 @@ All important notices will be made via both Slack & ETL, but **all other notices
 
 1 points each.
 
+(I will check whether you did these correctly by visiting your repo and looking at the commit histories)
+
 1. Make a GitHub account. What's your ID?
 2. Apply for GitHub student account at [here](https://education.github.com/pack). You will get the education pack soon (maybe it will take few days). Did you get the pack? (yes|no)
 3. Make a test public repo by yourself using any name. Initialize with README. Make at least one commit by changing README.md or adding other files (see lecture presentation). What is the link to your repo?
    * Note: You must be able to see your commit at GitHub within 1 minute. If you cannot, check whether you did add/commit/push correctly. Search on google by yourselves to learn how to do these.
-4. Write ``*.txt`` to the top line of ``.gitignore`` file. add/commit/push ``.gitignore`` file.
+4. Write ``*.txt`` to the top line of ``.gitignore`` file. Then add/commit/push ``.gitignore`` file.
    * Tip: ``.gitignore`` is a hidden file. You may have to tune the file explorer (finer for mac) option to see this file.
-5. Make a fake file ``test2.txt`` and do ``git status``. Can you see ``test2.txt``.
-6. Open an issue at your test repo (you can put any content as you like). Then do ``git add`` anything, make a commit with message like "Fixes #1", and push. Is your issue closed? 
+5. Make a fake file ``test2.txt`` (``$ touch test2.txt``) and do ``git status``. Can you see ``test2.txt``? (yes|no)
+6. Open an issue at your test repo (you can put any content as you like). Then do ``git add`` anything, make a commit with message like "Fixes #1", and push. Is your issue closed? (yes|no)
    * I will visit your repo to check whether you correctly closed this issue.
    * In the future (when you "work"), you may learn fork, commit to the forked repo, and request a pull request (PR). The way you closed your first _issue_ is how you will do to close isseus.
 
