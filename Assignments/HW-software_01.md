@@ -9,7 +9,7 @@ You may refer to
 
 ## 1. Slack
 
-1 points each
+2 points each
 
 (I will check each one of your Slack accounts in our workspace)
 
@@ -33,7 +33,7 @@ All important notices will be made via both Slack & ETL, but **all other notices
 
 ## 2. GitHub
 
-1 points each.
+2 points each.
 
 (I will check whether you did these correctly by visiting your repo and looking at the commit histories)
 
@@ -52,7 +52,7 @@ All important notices will be made via both Slack & ETL, but **all other notices
 
 ## 3. SAO ds9, Astrometry.net
 
-1 points each
+2 points each
 
 1. Install the most recent version of SAO DS9 on your computer. (yes|no)
 2. Follow the steps below:
@@ -78,7 +78,7 @@ If you have LINUX on your computer, you may try the offline version of the astro
 
 ## 4. Python & conda
 
-1 points each
+2 points each
 
 I am assuming you have already downloaded/installed python (Anaconda recommended). If not, please refer to our lecture note [here](https://github.com/ysBach/SNU_AOclass/blob/master/Notebooks/00-1_Softwares.md#3-anaconda). **Be careful when you are setting PATH option**.
 
