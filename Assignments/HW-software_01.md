@@ -65,7 +65,7 @@ If you have LINUX on your computer, you may try the offline version of the astro
 
 
 
-## 4. Python
+## 4. Python & conda
 
 1 points each
 
@@ -75,4 +75,13 @@ I am assuming you have already downloaded/installed python (Anaconda recommended
    ```
    $ conda install -c astropy ccdproc photutils astroscrappy aplpy
    ```
+   
 1. Open Jupyter notebook or IPython console (if you don't know what these are, google it). import each of the above packages and print the versions of them (e.g., ``import ccdproc`` and ``print(ccdproc.__version__)``).
+
+1. While installing affiliated packages, what does ``-c`` mean (answer in one word)?
+
+   - **TIP**: Search for ``conda install -c``.
+
+4. If you do ``conda create -n``, what does it creat (answer in one word)?
+   * **TIP**: Search for conda environment
+
