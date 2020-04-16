@@ -1,0 +1,193 @@
+\chapter{Statistics in Photometry}
+
+So far we've seen how the photometry should be done. But we haven't seriously discussed how to analize the uncertainties, i.e., the error-bars of each measurement such as magnitude. 
+
+\section{Pixel-wise Uncertainty}
+An object frame consist of at least bias, dark, flat, cosmic-ray, target's signal, and sky, as well as readout noise. For the $ j $-th pixel, they are denoted as:
+\begin{itemize}
+\item $ \tilde{N}_j $: the raw pixel value of the object frame in ADU.
+\item $ B_j $: the bias in ADU.
+\item $ D_j $: the dark in ADU.
+\item $ F_j $: the flat in ADU (\textit{not necessarily} normalized; see \textbf{Note} at the end).
+\item $ C_j $: the cosmic-ray in ADU.
+\item $ I_j $: the object signal count in ADU.
+\item $ S_j $: the sky signal in ADU.
+\end{itemize}
+In some cases, such as infrared detectors, the gain and readout noise may differ for each pixel, so I will denote gain and readout noise of the $ j $-th pixel as $ g_j \,[\mathrm{e/ADU}]$ and $ R_j \,[\mathrm{e}] $. Then we define the bias-subtracted pixel value
+\begin{equation}
+  N_j = \tilde{N}_j - B_j = D_j + (I_j + S_j + C_j) F_j
+\end{equation}
+Note that the dark is not affected by the flat value. Since this pixel value should follow a Poisson distribution, which is approximated as a Gaussian distribution,
+\begin{equation}
+  N_j 
+    \simdot \mathcal{N} \left (
+      N_j ,~ 
+      \frac{N_j}{g_j} + \left (\frac{R_j}{g_j} \right )^2 
+    \right ) ~.
+\end{equation}
+
+\subsection{Dark Estimation}
+To estimate dark $ D_j $, you should have taken nearly tens of dark frames, and combined it. From the median value of the frames, you may have obtained the estimation of the dark $ \hat{D}_j $ (for brevity, I will just use $ D_j $ without the caret $ \hat{\cdot} $). During the combination, you can obtain the uncertainty of the dark at the $ j $-th pixel, $ \Delta D_j $, as
+\begin{equation}
+   \Delta D_j = \mathrm{sstd} (D_j^{i}) ~,
+\end{equation}
+where $ D_j^{i} $ is the dark current (ADU) of the $ j $-th pixel at the $ i $-th dark frame, $ \mathrm{sstd} $ is the sample standard deviation function. Here it is assumed $ D_j $ roughly follows a Gaussian distribution so that $ \mathrm{sstd} $ becomes an unbiased estimator\footnote{An unbiased estimator of a random variable $ X $, $ \hat{X} $ is defined such that the expectation value of $ \hat{X} $ is the same as the true value $ X_\mathrm{true} $.} of the true standard deviation. Note that you should \emph{not} divide it by the number of dark frames (such as Thm \ref{thm: clt}), because \textbf{what you will need is not the uncertainty of the \emph{mean} value, but the uncertainty of one pixel value that will have been added to the object frame}. 
+%, and $ N_\mathrm{Dark} $ is the number of dark frames. This is based on the CLT (Thm \ref{thm: clt}). Note the strong point of the CLT helps us here: CLT holds regardless of the distribution of $ D_j^{i} $! Even if we don't know anything about its distribution, we can use CLT without caring about it.
+
+Therefore, to the first order,
+\begin{equation}
+\begin{aligned}
+  \tilde{O}_j = N_j - D_j 
+    &\simdot \mathcal{N} 
+      \left ( \tilde{O}_j,~ 
+        \frac{N_j}{g_j} + \left (\frac{R_j}{g_j} \right )^2 + (\Delta D_j)^2 \right ) \\
+  \mathrm{or}
+    &\simdot \mathcal{N} 
+        \left ( \tilde{O}_j,~ 
+          \frac{\tilde{O}_j}{g_j} 
+          + \frac{D_j}{g_j} 
+          + \left (\frac{R_j}{g_j} \right )^2 
+          + (\Delta D_j)^2 \right ) ~.
+\end{aligned}
+\end{equation}
+
+\subsection{Flat Estimation}
+Unlike the dark current, which is a probabilistic electron generation, the flat, i.e., the pixel sensitivity, is a characterestic value of the detector and optics, so it should not change at each exposure. Therefore, following the CLT (Thm \ref{thm: clt}): 
+\begin{equation}
+   \Delta F_j = \frac{\mathrm{sstd} (F_j^{i})}{\sqrt{N_\mathrm{Flat}}} ~,
+\end{equation}
+where $ F_j^{i} $ is the flat frame pixel value (ADU) of the $ j $-th pixel at the $ i $-th flat frame, $ \mathrm{sstd} $ is the sample standard deviation function and $ N_\mathrm{Flat} $ is the number of the used flat frames. 
+
+Generally speaking, $ F_j $ must be about $ 10^4 $ ADU or more, so that the signal-to-noise ratio from Poisson statistics is larger than about 100. Moreover, you should have obtained, say, $ N_\mathrm{flat} = 9 $, this will increase by a factor of 3. Therefore, the uncertainty in the flat $ \Delta F_j $, is around 0.1 \% order. In some observatories, people take hundreds of flats at one time to get flat as good as roughly 0.01 \% order, assuming it won't change over certain period of time.
+
+Although there are mathematically known ratio distribution, i.e., the pdf of $ Z := X/Y $ where $ X, Y \sim \mathcal{N}(\mu_{X, Y}, \sigma_{X, Y}^2) $ and the covariance is zero, what we are interested in is only a rough estimation of the uncertainties\footnote{If you are interested in, see FiellerEC (1932) Biometrika, 24, 428; HinkleyDV (1969) Biometrika, 56, 635;  D\'{i}az-Franc\'{e}s+RubioFJ (2013) Statistical Papers, 54, 309, as well as \href{https://en.wikipedia.org/wiki/Ratio_distribution}{Wikipedia}. For the ratio of $ N_j/F_j $, i.e., when the denominator has so high signal-to-noise ratio, the distribution is roughly a Gaussian with $ \mathcal{N}(\mu_X, \sigma_X^2) $ as we assume in this section.}. From the propagation of error, 
+\begin{equation}
+\begin{aligned}
+  O_j = \frac{N_j - D_j}{F_j} = I_j + S_j + C_j
+    &\simdot \mathcal{N} 
+      \left ( O_j,~ 
+        O_j^2 \left [ 
+        \left (\frac{\Delta \tilde{O}_j}{\tilde{O}_j} \right )^2 
+        + \left (\frac{\Delta F_j}{F_j} \right )^2 \right ] \right ) ~.
+\end{aligned}
+\end{equation}
+Substituting previously obtained distribution of $ \tilde{O}_j $,
+\begin{equation}
+  O_j 
+    \simdot \mathcal{N} 
+      \left ( O_j,~ 
+        \frac{O_j}{g_jF_j} 
+        + \frac{D_j}{g_j F_j^2} 
+        + \left (\frac{R_j}{g_j F_j} \right )^2 
+        + \left  (\frac{\Delta D_j}{F_j} \right )^2
+        + O_j^2 \left (\frac{\Delta F_j}{F_j} \right )^2
+        \right ) ~.
+\end{equation}
+
+%Note that this variance is also obtained by the following logic: $ F_j $ has too high signal-to-noise ratio, $ \Delta F_j / F_j \ll 1 $, we can just assume $ F_j $ is a perfectly known constant without any uncertainty. Then $ O_j = \tilde{O}_j / F_j \simdot \mathcal{N}(O_j, (\Delta \tilde{O}_j)^2 / F_j^2) $, which is what we have above.
+
+
+\subsection{Final Pixel-wise Uncertainty}
+Many times the $ C_j $ is removed by the so-called \emph{cosmic-ray rejection} algorithms. 
+\begin{thm}[Pixel-wise Error]
+The final, cosmic-ray removed pixel value will follow
+\begin{equation} \label{eq: pix error}
+\begin{aligned}
+  O_j^\mathrm{cr} = \frac{N_j - D_j}{F_j} - C_j = I_j + S_j 
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{O_j}{g_jF_j} 
+        + \frac{D_j}{g_j F_j^2} 
+        + \left (\frac{R_j}{g_j F_j} \right )^2 
+        + \left (\frac{\Delta D_j}{F_j} \right )^2 
+        + O_j^2 \left (\frac{\Delta F_j}{F_j} \right )^2
+        \right ) \\
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{N_j}{g_jF_j^2} 
+        + \left (\frac{R_j}{g_j F_j} \right )^2 
+        + \left  (\frac{\Delta D_j}{F_j} \right )^2 
+        + O_j^2 \left (\frac{\Delta F_j}{F_j} \right )^2
+        \right ) 
+\end{aligned}
+\end{equation}
+Here, $ O_j $ is the bias, dark, and flat corrected pixel value before the cosmic-ray removal, while $ N_j $ is only bias-subtracted pixel value. Usually the uncertainty from the estimation for $ C_j $ is ignored as it is too difficult to estimate. 
+\end{thm}
+
+In practical application, the following approximations may be used:
+\begin{enumerate}
+\item Calculating the $ \Delta D_j $ term all the time is annoying, and moreover, it will be much smaller than the $ O_j $ term. Therefore, people just ignore it and set it to 0. Theoretically, however, $ \Delta D_j > (R_j/g_j) $, because $\Delta D_j = \mathrm{sstd} (D_j^{i}) $ and $ D_j^{i} \simdot \mathcal{N} \left (D_j^{i},~ D_j^{i}/g_j + (R_j/g_j)^2 \right ) $. Therefore, more reasonable approximation, or the lower limit of the uncertainty, would be $ R_j/g_j $. 
+\item Frequently, $ \Delta F_j/F_j $ is much smaller than $ \Delta \tilde{O}_j/\tilde{O}_j $ (or we can increase $ N_\mathrm{Flat} $ to force that this holds), so the flat-error term is negligible. StetsonPB, for instance, asked the user to give a constant $ \Delta F_j/F_j \equiv \sigma_F $ for all pixels, such as 0, 0.01, or 0.0075, in \texttt{DAOPHOT}.
+\item Many times we use the normalized flat (for more discussion, see below) such that its mean or median is 1, so $ F_j \sim 1 $ for all pixel. Then all $ F_j $ in \cref{eq: pix error} can be just ignored.
+\item The $ D_j $ term is negligible for many times. It is not negligible only for hot pixels where $ D_j \gg 1 $, but likely the observer did not put the target of interest at where hot pixels present. Moreover, state-of-the-art CCDs, such as Subaru FOCAS for instance, has too small dark current $ D_j < 0.1 \,\mathrm{e/s} $. Therefore, most important parts in the object frames will have negligible $ D_j $ compared to $ O_j^\mathrm{cr} $. Therefore, this term is also ignored many times.
+\end{enumerate}
+
+Summarizing, \cref{eq: pix error} is approximated as
+\begin{equation} 
+\begin{aligned}
+  O_j^\mathrm{cr} 
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{O_j}{g_jF_j} 
+        + \frac{D_j}{g_j F_j^2} 
+        + \left (\frac{R_j}{g_j F_j} \right )^2 
+        + \left  (\frac{\Delta D_j}{F_j} \right )^2 
+        + O_j^2 \left (\frac{\Delta F_j}{F_j} \right )^2
+        \right ) \\
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{O_j}{g_jF_j} 
+        + \frac{D_j}{g_j F_j^2} 
+        + 2 \left (\frac{R_j}{g_j F_j} \right )^2
+        + \sigma_F O_j^2 
+        \right ) \\
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{O_j}{g_j} 
+        + \frac{D_j}{g_j } 
+        + 2 \left (\frac{R_j}{g_j} \right )^2
+        + \sigma_F O_j^2
+        \right ) \\
+    &\simdot \mathcal{N} 
+      \left ( O_j^\mathrm{cr},~ 
+        \frac{O_j}{g_j} 
+        + 2 \left (\frac{R_j}{g_j} \right )^2
+        + \sigma_F O_j^2
+        \right ) \\
+\end{aligned}
+\end{equation}
+Most frequently people even drop the factor 2 and $ \sigma_F $, and write $ O_j^\mathrm{cr} \simdot \mathcal{N} \left ( O_j^\mathrm{cr},~ O_j/g_j + (R_j/g_j)^2 \right ) $. 
+
+\subsubsection{Note}
+\textbf{The flat frames are frequently assumed to be normalized}, i.e., the mean or median of $ F_j $ values of the frame is around 1. In the generalized error estimation given in this book, this normalization is not important. However, astronomers (including all tasks of IRAF) have conventionally used a very simplified version of error estimation, that is, the Poisson component of the pixel error is approximated as $ \sqrt{O_j/g_j} $: $ O_j \simdot \mathcal{N} (O_j, O_j/g_j) $. Note the factor $ F_j $ is missing! The true signal-to-noise ratio is $ O_j / \Delta O_j \approx \sqrt{O_j / (g_j F_j)} $, while in this approximation, it is $ \sqrt{O_j / g_j} $. If the flat was normalized, $ F_j \sim 1 $, so these two are similar. If it were not normalized, however, the signal-to-noise ratio in this classical approximation will be underestimated by a factor of $ \sqrt{F_j} \sim \sqrt{10^4 \,(\mathrm{ADU})} = 100 $!! You will be calculating wrong uncertainty in that case.
+
+
+From STSDAS package, \texttt{stsdas/pkg/hst\_calib/wfpc/noise/fitnoise.x}: noise = R if pixel value not positive, otherwise, $ \sqrt{R^2 + N/g + (N \times \texttt{scalen}/100)^2} $ where \texttt{scalen} is maybe an uncertainty of pixel (flat uncertainty?) in percentage.
+
+%#################################################################################
+%#										#
+%# NOISEFUNC --	Calculate the square-root of the variance expected at the 	#
+%#		given DN level, based upon the noise model parameters.  	#
+%#										#
+%#	Initial code:	7/91 by RAShaw						#
+%
+%real procedure noisefn(dn) 
+%
+%include	"nmcom.h"
+%
+%#  Calling argument
+%real	dn		# Value of pixel in Data Numbers
+%
+%# Local variables
+%real	tmp
+%real	noise		# Function value
+%
+%begin
+%	tmp = scalen / 100.
+%	if (dn <= 0.) 
+%	    noise = readn 
+%	else
+%	    noise = sqrt (readn * readn + dn / gain + dn * dn * tmp * tmp) 
+%	return (noise)
+%end
+
