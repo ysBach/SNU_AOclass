@@ -41,10 +41,11 @@ All important notices will be made via both Slack & ETL, but **all other notices
 2. Apply for GitHub student account at [here](https://education.github.com/pack). You will get the education pack soon (maybe it will take few days). Did you get the pack? (yes|no)
 3. Make a test public repo by yourself using any name. Initialize with README. Make at least one commit by changing README.md or adding other files (see lecture presentation). What is the link to your repo?
    * Note: You must be able to see your commit at GitHub within 1 minute. If you cannot, check whether you did add/commit/push correctly. Search on google by yourselves to learn how to do these.
-4. Write ``*.txt`` to the top line of ``.gitignore`` file. Then add/commit/push ``.gitignore`` file.
+4. Clone your repo to your local workspace by ``$ git clone <repo_url>`` to the terminal (see lecture presentation PPT file)
+5. Write ``*.txt`` to the top line of ``.gitignore`` file. Then add/commit/push ``.gitignore`` file.
    * Tip: ``.gitignore`` is a hidden file. You may have to tune the file explorer (finer for mac) option to see this file.
-5. Make a fake file ``test2.txt`` (``$ touch test2.txt``) and do ``git status``. Can you see ``test2.txt``? (yes|no)
-6. Open an issue at your test repo (you can put any content as you like). Then do ``git add`` anything, make a commit with message like "Fixes #1", and push. Is your issue closed? (yes|no)
+6. Make a fake file ``test2.txt`` (``$ touch test2.txt``) and do ``git status``. Can you see ``test2.txt``? (yes|no)
+7. Open an issue at your test repo (you can put any content as you like). Then do ``git add`` anything, make a commit with message like "Fixes #1", and push. Is your issue closed? (yes|no)
    * I will visit your repo to check whether you correctly closed this issue.
    * In the future (when you "work"), you may learn fork, commit to the forked repo, and request a pull request (PR). The way you closed your first _issue_ is how you will do to close isseus.
 
