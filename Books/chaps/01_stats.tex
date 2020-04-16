@@ -1,6 +1,6 @@
 \chapter{Statistics - Basic}
 
-\textit{In any chapter in this book, especially in this chapter, I will assume (1) you have really basic knowledge on statistics, e.g., what ``Gaussian'', ``probability'', ``standard normal distribution'' means and/or (2) you know how to use Google so that you can find concepts which you don't know.}
+\textit{In any chapter in this book, especially in this chapter, I will assume (1) you have really basic knowledge on statistics, e.g., what ``Gaussian'', ``probability'', ``standard normal distribution'', ``random variable'' means and/or (2) you know how to use Google so that you can find concepts which you don't know. The reasons we cannot touch much of the mathematical details are because what we have to deal with in this class is rather a practical usages of statistics in astronomy, and because I have not been a good math student.}
 
 Let's start with a question. 
 \begin{ex}
@@ -15,11 +15,11 @@ Let's start with a question.
 
 Some of the previous course takers answered that they coincide, because the ``3-sigma rule'' says, e.g., for case A, $ m_1 = \m{14.0} \pm \m{0.3} $ \& $ m_2 = \m{15.0} \pm \m{3.0} $ overlaps with each other. Crudely speaking, this makes sense, but it is of course not the ``publication level'' reasoning.
 
-To give you the answer: It is an ill-defined question. The answer can change based on the number of observations each reasercher used for the determination of the magnitude. If we assume that number is 5 for both researchers, for example, we can give some meaningful answers: We \textit{cannot reject} $ m_1 = m_2 $ for case A \& B with 90 \% confidence, and we \textit{can reject} $ m_1 = m_2 $ for case C with 90 \% confidence. Depending on the confidence level, the answer may change. Also the expression that \textit{can/cannot reject} is very important! You shouldn't say you \textit{accept $ m_1 = m_2 $}. Let me explain why throughout this chapter.
+To give you the answer: It is an ill-defined question. The answer can change based on many factors; to pick one, the number of observations each reasercher used for the determination of the magnitude. If we assume that number is 5 for both researchers, for example, we can give some meaningful answers: We \textit{cannot reject} $ m_1 = m_2 $ for case A \& B with 90 \% confidence, and we \textit{can reject} $ m_1 = m_2 $ for case C with 90 \% confidence. Depending on the confidence level, the answer may also change. Note that the expression that \textit{can/cannot reject} is very important! You should \textbf{NOT} say you \textit{accept $ m_1 = m_2 $}, never ever. Let me explain why throughout this chapter.
 
 
 \section{The $ n $-$ \sigma $} \label{sec: n-sigma notation}
-Maybe you are familiar of the 1-$ \sigma $, 2-$ \sigma $, and 3-$ \sigma $ words (cf. \cref{fig:nsigmawiki}). For example, mean $ \pm 1$-$ \sigma $ contains $ 68.27\cdots \% $ of the total area. Similarly 3-$ \sigma $ conatains $ 99.73\cdots \% $ of it, so it is very unlikely to get a sample outside of the mean $ \pm 3 $-$ \sigma $. 
+Maybe you are familiar of the 1-$ \sigma $, 2-$ \sigma $, and 3-$ \sigma $ words (cf. \cref{fig:nsigmawiki}). For example, mean $ \pm 1$-$ \sigma $ contains $ 68.27\cdots \% $ of the total area of a normal distribution. Similarly 3-$ \sigma $ conatains $ 99.73\cdots \% $ of it, so it is very unlikely to get a sample outside of the mean $ \pm 3 $-$ \sigma $. 
 
 \begin{figure}[ht!]
   \centering
@@ -31,10 +31,12 @@ Maybe you are familiar of the 1-$ \sigma $, 2-$ \sigma $, and 3-$ \sigma $ words
 In this sense, the ``$ n $-$ \sigma $'' is defined as the $ x $-axis value which gives the integrated area of certain value. More precisely, we have to call this confidence interval (CI):
 
 \begin{defn}[$ n $-$ \sigma $ Confidence Interval; CI]
-  1-$ \sigma $ CI is the interval such that the integrated area is $ 0.6827\cdots $ of the total area. Similarly, 2-$ \sigma $ CI is that with $ 0.9545\cdots $, 3-$ \sigma $ CI is that with $ 0.9973\cdots $, etc. 
+  $ n $-$ \sigma $ \textbf{confidence interval} is defined as \textit{an} interval which contains $ \Phi(n) - \Phi(-n) $ of the total area, usually centered at the mean or median, where $ \Phi := (2\pi)^{-1/2} \int_{-\infty}^{x} e^{t^2/2} dt $ is the cumulative distrubution function of standard normal distribution. 
 \end{defn}
 
-Mathematically it is more correct to call, e.g., 1-$ \sigma $ CI as the $ 68.27\cdots \% $ CI. We also define the significance level $ \alpha $ as 100\% minus this percentage, i.e., the 1-$ \sigma $ CI is of significance level $ \alpha = 1 - 0.6827\cdots = 0.3173\cdots $:
+Following this definition, 1-$ \sigma $ CI is the interval such that the integrated area is $ 0.6827\cdots $ of the total area. Similarly, 2-$ \sigma $ CI is that with $ 0.9545\cdots $, 3-$ \sigma $ CI is that with $ 0.9973\cdots $, etc. The term CI is not necessarily limited to Gaussian (normal) distribution: You can apply it to any distribution, and give an interval such as $ 0.11 ^{+0.03}_{-0.01} $ as the 1-$ \sigma $ CI, for instance.
+
+Sometimes it is more convenient to call, e.g., 1-$ \sigma $ CI as the $ 68.27\cdots \% $ CI. We also define the \textit{significance level} $ \alpha $ as 100\% minus this percentage, i.e., the 1-$ \sigma $ CI is of significance level $ \alpha = 1 - 0.6827\cdots = 0.3173\cdots $:
 \begin{equation}
   \text{1-}\sigma \text{ CI}
   \quad \equiv \quad 
@@ -42,18 +44,16 @@ Mathematically it is more correct to call, e.g., 1-$ \sigma $ CI as the $ 68.27\
   \quad \equiv \quad 
   \text{CI of significance level } 0.3173 \cdots ~.
 \end{equation}
-In natural sciences we often use $ n $-$ \sigma $ CI, but in mathematics and other branches of sciences and engineering, the 90 \%, 95 \%, and 99 \% CIs, i.e., CIs with significance level $ \alpha = 0.10,\, 0.05,$ and $ 0.01 $ are used more often.
+In physical and astronomical sciences we often use the terminology of ``$ n $-$ \sigma $ CI'', but in mathematics and other branches of sciences and engineering, the ``$ k $\,\% CI'' or the ``significance level $ \alpha $'' are used dominantly. Among them, 90\,\%, 95\,\%, and 99\,\% CIs, i.e., CIs with significance level $ \alpha = 0.10,\, 0.05,$ and $ 0.01 $ are found frequently.
 
-Because when we say ``$ n $-$ \sigma $'', we are just omitting the term ``CI'' at the end of it, this is not $ n $ times the standard deviation ($ \sigma $): What we mean by ``$ n $-$ \sigma $'' is actually ``$ n $-$ \sigma $ CI'' and is \textit{not necessarily} $ n \times \sigma $. 
-
-They are the same for, e.g., Gaussian distribution. For Gaussian (normal) distribution, which is a distribution that appears very often in natural sciences, such a 2-$ \sigma $ is nothing but 2 times the standard deviation ($ \sigma $). For almost all of the distributions other than Gaussian, this is not the case.
+Because when we say ``$ n $-$ \sigma $'', we are just omitting the term ``CI'' at the end of it, this is not $ n $ times the standard deviation ($ \sigma $): What we mean by ``$ n $-$ \sigma $'' is actually ``$ n $-$ \sigma $ CI'' and is \textit{not necessarily} $ n \times \sigma $. They are the same for, e.g., Gaussian distribution, because the $ n $-$ \sigma $ terminology is \textit{defined} using it. For Gaussian (normal) distribution, which is a distribution that appears very often in natural sciences, such as 2-$ \sigma $ is nothing but 2 times the standard deviation ($ \sigma $). For almost all of the distributions other than Gaussian, this is not the case.
 
 
 
 \section{The Meaning of $ \pm $ Sign}
-Simple answer: The $ \pm $ sign means the 1-$ \sigma $ confidence interval (CI). It is also simply called as the ``error-bar''. 
+Simple answer: The $ \pm $ sign means the 1-$ \sigma $ confidence interval (CI). It is also called the ``\textbf{error-bar}''. 
 
-Honestly speaking, the $ \pm $ sign, i.e., the 1-$ \sigma $ CI, does \textit{not} fully describe the uncertainty. The best way to show or describe the uncertainty is to show a graph of probability distribution function (pdf or p.d.f.) as in \cref{fig:figposterior01}. In many but not all publications or books, people do not show this, because (1) the distribution is very similar to Gaussian or certain widely known distribution and it is clearly written in the text or assumed as all the readers know that, (2) detailed calculation is not of interest and/or does not affect the final result, (3) the writer is lazy. 
+Mathematically speaking, the $ \pm $ sign, i.e., the 1-$ \sigma $ CI, does \textit{not} fully describe the uncertainty. The best way to show or describe the uncertainty is to show a graph of \textbf{probability distribution function} (\textbf{pdf} or p.d.f.) as in \cref{fig:figposterior01}. In many publications or books, people do not show this, because (1) the distribution is very similar to Gaussian or a widely known distribution and it is clearly written in the text or assumed as all the readers know that, (2) detailed calculation is not of interest and/or does not affect the final result, (3) the writer is lazy. 
 
 \begin{figure}[ht!]
 \centering
@@ -63,9 +63,9 @@ Honestly speaking, the $ \pm $ sign, i.e., the 1-$ \sigma $ CI, does \textit{not
 \end{figure}
 
 
-The uncertainty ranges shown in the figure ($ 4.0 \pm 0.1 $ and $ 3.0^{+3.0}_{-2.0} $) are determined such that the lower/upper bounds include $ 68.27 \cdots \% $ of the total area. It is trivial for a Gaussian distribution: mean $ \pm $ 1-$ \sigma $. But if the distribution is asymmetric (right panel of the figure), there are few choices to set such bounds. First and the most widely used one is to set the bounds such that the distance between upper/lower bounds are minimized (but include $ 68.27 \cdots \% $ of the total area). Second is to make it symmetric while include $ 68.27 \cdots \% $ of the total area, so that you can use $ \pm $ sign for simplicity ($ 3.0 \pm 2.\mathrm{XX} $ for example). Third choice would be something like FWHM: find $ x $-axis values such that the pdf value is $ 0.5 \times \mathrm{pdf_{max}} $. The last two bounds are simple to calculate but not as accurate as the first choice.
+The uncertainty ranges shown in \cref{fig:figposterior01} ($ 4.0 \pm 0.1 $ and $ 3.0^{+3.0}_{-2.0} $) are determined such that the lower/upper bounds include $ 68.27 \cdots \% $ of the total area. It is trivial for a Gaussian distribution: mean $ \pm $ 1-$ \sigma $. But if the distribution is asymmetric (right panel of the figure), there are few choices to set such bounds. First and the most widely used one is to set the bounds such that the distance between upper/lower bounds are minimized (but include $ 68.27 \cdots \% $ of the total area). Second is to make it symmetric while include $ 68.27 \cdots \% $ of the total area, so that you can use $ \pm $ sign for simplicity ($ 3.0 \pm 2.3 $ for example). Third choice would be something like FWHM: find $ x $-axis values such that the pdf value is $ 0.5 \times \mathrm{pdf_{max}} $. The last two bounds are simple to calculate but not as accurate as the first choice.
 
-Very assymetric probability distributions appear in cosmological sciences\footnote{Google ``posterior distribution cosmological constants''.} and exhaustive statiscal analyses are conducted on such models to reject cosmological models. The reason is that, in cosmology, we have only one single sample (our universe), and the statistical analyses given the observational data is of utmost importance. Of course similar exhaustive statistical analyses should be conducted on any research field if the data/object/target is of such importance. 
+Very assymetric probability distributions appear, e.g., in cosmological sciences\footnote{Google ``posterior distribution cosmological constants''.}, and exhaustive statiscal analyses are conducted on such models to \textit{reject} (I repeat; \textit{reject, not accept}) cosmological models. The reason is that, in cosmology, we have only one single sample (our universe), and the statistical analyses given the observational data is of utmost importance. Of course similar exhaustive statistical analyses should be conducted on any research field if the data/object/target is of such importance. We don't do that in many observational studies purely because (1) we don't have human power to do all that and (2) the results won't change much (but no one in history thoroughly checked this).
 
 
 
@@ -85,7 +85,7 @@ The Central Limit Theorem (CLT) is at the heart of all the observational or expe
   \end{equation}
 \end{thm}
 
-There is one more important theorem, which we usually skip to mention:
+The standard deviation (second moment) is sometimes undefined. An example is the Cauchy distribution, and I will show you later with an example when this distribution can appear. There is one more important theorem, which we usually skip to mention:
 
 \begin{thm}[Sample Variance Distribution] \label{thm: s and sigma}
   Consider a random sample (observation, measurement, etc) with size $ n $ and the sample variance is $ S^2 $. Then $ (n - 1) S^2 / \sigma^2 $ follows a chi-squared distribution with degrees of freedom $ (n - 1) $, where $ \sigma^2 $ is the variance of the population:
@@ -392,7 +392,7 @@ Here $ o(h) $ is any function such that $ \lim_{h \rightarrow 0} o(h) / h = 0 $.
 \item [4.] For a very small interval $ h $, the probability of two or more ``counting'' (Poisson process) occurs in that interval is nearly 0.
 \end{itemize}
 These must be independent of whether the counting happened outside of the interval, because the second item of the definition states the increment is independent.
-\newpage
+
 \begin{ex}[Photon Counting and Poisson Process]
 The photon counting process of astronomy resembles the Poisson Process. If $ N(t) $ is the number of photons or electrons under the exposure time $ t $, it is trivial that the first two items of the definition is satisfied. Next, use the rephrased version of the next items. The number of photons hitting CCD with infinitesimal time interval $ h = dt $ must be 0 or 1, but not larger than 1 (e.g., if a pixel count is 10,000 after 10 sec of exposure, we can take $ h \ll \SI{10}{s} / 10,000 = \SI{1}{ms} $ to meet this condition). Thus, photon counting is a Poisson process.
 \end{ex}
@@ -424,7 +424,7 @@ As $ x \rightarrow \infty $, the Poisson distribution approaches normal distribu
 \end{thm}
 Although I will omit here, the proof uses Stirling's formula $ x! \approx \sqrt{2\pi x} x^x e^{-x} $ and $ \ln[ (1 + \varepsilon)^{\lambda t (1 + \varepsilon) + 1 / 2 }] \approx \lambda t \varepsilon + \lambda t \varepsilon^2 / 2 $, where $ x = \lambda t ( 1 + \varepsilon ) $ with $ \lambda t \gg 1 $ and $ \varepsilon \ll 1 $. Stirling's formula has relative error of less than 1 \% when $ x = 1 $ and is almost negligible for any $ x $ of interest in many cases. Considering all the approximations in the proof, we can safely assume that Poisson distribution is quite Gaussian (normal) in many astronomical contexts, unless $ x $ is very small ($ \lesssim 10 $..?).
 
-\begin{ex}[Photon Counting and Poisson Noise]
+\begin{ex}[Photon Counting and Poisson Noise] \label{ex: poisnoise}
 We saw the photon or electron counting is a Poisson process. Thus, we can use \cref{eq: Pois pdf,eq: Pois mean std}. For example, if we collected 10,000 electrons, the 1-$ \sigma $ uncertainty (1-$ \sigma $ CI) or the standard deviation of this counting is $ \sqrt{10,000} = 100 $, so we denote $ N = 10,000 \pm 100 $. Since the $ N $ is large enough, Thm \ref{thm: Pois gauss} says this is just a Gaussian distribution of mean 10,000 and standard deviation 100 (1 \% of the mean). Since magnitude is $ (\mathrm{const}) - 2.5 \lg (\mathrm{count}) $, differentiation gives a first-order estimation of the uncertainty in the magnitude $ \Delta m = -\frac{2.5}{\ln 10} \frac{\Delta (\mathrm{count})}{\mathrm{count}} = \m{0.01} $ (error-bar), which is small enough for some scientific purposes.
 \end{ex}
 
@@ -446,11 +446,17 @@ The way how we do this is that, for a function $ f = f(x| a, b, c) $ where $ (a,
   (\Delta f)^2 \approx 
     \qty(\frac{\partial f}{\partial a} \Delta a)^2
     + \qty(\frac{\partial f}{\partial b} \Delta b)^2
-    + \qty(\frac{\partial f}{\partial c} \Delta c)^2
+    + \qty(\frac{\partial f}{\partial c} \Delta c)^2 ~.
 \end{equation}
-If any parameters are dependent, we need a covariance term $ \sigma_{ab} $ for instance, and this is one of the reasons why the above error-propagation is only an approximation. This formual itself is similar to getting the gradient. 
+Here, $ (\Delta f)^2 $ is the variance of the function $ f $, $ \Delta X $ is the standard error (such that $ X \pm \Delta X $ is the 1-$ \sigma $ CI for $ X $), and we frequently use $ \Delta f $, the standard error of $ f $, as \emph{the error-bar}. 
+If any parameters are dependent, we need a covariance term $ \sigma_{ab} $ for instance, and this is one of the reasons why the above error-propagation is only an approximation. This formula itself is similar to getting the gradient. In different notation, e.g., sum of pixel values, $ I := \sum_{i} I_i $, which is reasonable to assume $ I_i $'s are independent, the identical formula becomes
+\begin{equation}\label{eq: error propagation 2}
+  (\Delta I)^2 
+    \equiv \left ( \Delta \left ( \sum I_i\right ) \right )^2 
+    = \sum_{i} (\Delta I_i)^2 ~.
+\end{equation}
 
-Note that this is only an approximation, and in reality, we need more complicated calculation. Note that it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the rough estimation of the error-bar.
+Note that this is only an approximation, and in reality, we need more complicated calculation. Also it is impossible to know how accurate this approximation is, before you conduct detailed calculation. The reason astronomers use it in spite of the pitfall is because most cases we are only interested in the \emph{rough} estimation of the error-bar. 
 
 
 
@@ -460,7 +466,7 @@ You may have heard of it, or simply the \textit{least square} something. Least s
 
 Consider independent and identically distributed (\textit{i.i.d.}) random variables\footnote{Random variables $ X_{i} $ for $ i = 0, \cdots, N $ are called i.i.d. if they (1) follow identical probability distribution, say $ f(x) $, and (2) $ f(X = x) = f(X_1 = x_1) \times \cdots \times f(X_N = x_N) $, where $ x = (x_1, \cdots , x_N) $ (same for $ X $). }, e.g., flux as a function of $ \lambda $. It is independent because the measurement at each wavelength itself is independent from that of any other wavelength. It is identically distributed because and we will assume each error-bar is Gaussian. The second assumption is not necessarily correct, and actually that happens many times (e.g., flux is Gaussian distributed but magnitude is not, because it is log of Gaussian distribution).
 
-The Bayes' theorem will be studeid in later, but let me introduce it first to grap the meaning of chi-square statistic:
+We will study Bayes' theorem later, but let me introduce it first to grap the meaning of chi-square statistic:
 \begin{align*}
   P(\mathbf{\theta}|D, I) &= \frac{P(D|\mathbf{\theta}, I) P(\mathbf{\theta}|I)}{P(D, I)} \\
   P(\theta|D, I) &\propto P(D | \theta, I) P(\theta|I)
@@ -471,17 +477,17 @@ When we have data points, $ (x_i, y_i) $, which are all independent, and $ y \si
 \end{equation}
 Since $ y_i $ are all Gaussian, the probability of obtaining such data is obtained from the multiplication law:
 \begin{equation*}
-  P(D = \{y_i\}) = \Pi_i A e^{-(f(x_i|\theta)-y_i)^2/2\sigma_i^2} 
+  P(D = \{y_i\}) = \prod_i A e^{-(f(x_i|\theta)-y_i)^2/2\sigma_i^2} 
 \end{equation*}
 or taking log:
 \begin{equation}
-  \ln P(D = \{y_i\}) = \ln A \sum_i -(f(x_i|\theta)-y_i)^2/2\sigma_i^2
+  \ln P(D = \{y_i\}) = \ln A - \sum_i \frac{ (f(x_i|\theta) - y_i)^2}{2\sigma_i^2}
 \end{equation}
-Now getting parameters which maximize $ P $ is identical to (1) getting them which maximize $ \ln P $, and this is also identical to (2) getting them which mininize the summation in the exponent. Therefore, the exponent is defined as the chi-square statistic as:
+Now getting parameters which maximize $ P $ is identical to (1) getting them which maximize $ \ln P $, and this is also identical to (2) getting them which mininize the summation in the exponent. Therefore, the exponent, which is chi-square statistic:
 \begin{equation}\label{eq: chi-square statistic}
-  \chi^2 = \sum_i \frac{(y_i - f(x_i | \theta))^2}{\sigma_i^2}
+  \chi^2 = \sum_i \frac{(y_i - f(x_i | \theta))^2}{\sigma_i^2} ~,
 \end{equation}
-
+should be minimized to get the most probable answer to the fitting problem. If the error-bars of all data points are identical, $ \sigma_i $ is nothing but a constant, so minimizing chi-square is identical to minimizing SSE.
 
 
 
@@ -525,3 +531,121 @@ The parameter \texttt{s} is the smoothing factor. That is,
 If no error-bar is present, we can just ignore $ w_i $ (weights), and if there exists $ \sigma_i $, we can use $ w_i = 1/\sigma_i $, and the above equation becomes nothing but a chi-square. In that case, the $ \chi^2 $ smaller than the total degrees of freedom (roughly the number of data points) is a good measure, so \pyth{s = len(x)} is a good guess for spline fitting. If you put $ s = 0 $, it means $ S(x_i) $ must be the same as $ y_i $, i.e., the fitted function must go through all the data points: this is the interpolation. 
 
 From the figure, cubic spline interpolation is more smooth and the linear one looks too discrete, so you may always want to use cubic version. A caveat is that cubic spline has large fluctuation when there is any large scatter, as seen from $ x = 5 $ and $ x = 6 $. This ``shooting'' effect is severe when you fit a sense function (spectroscopic flux calibration) to a spectroscopic standard star: if the star has an absorption line, the cubic fit will be problematic near that wavelength region. 
+
+
+\section{Change of Variables}
+In a formal error-propagation calculation, the change of variables is very important, because sometimes the physical paramters which describe the function you are interested in may be different from the observables which you obtain from expeirments or observations. We actually do the change of variables without much mathematical instroduction. An example is when $ m = -2.5 \lg I $, we differentiate it to get $ \Delta m = \frac{2.5}{\ln 10} \frac{\Delta I}{I} \approx 1.086 \frac{\Delta I}{I}$ (as in Ex \ref{ex: poisnoise}). This way, we changed the error of the variable $ I $ to that of $ m $. Formally, if a conversion happens from parameters (or random variables) $ X_1,\,\cdots,\, X_M $ to $ Y_1,\,\cdots,\, Y_M $, we use Jacobian
+\begin{equation}\label{eq: change_of_var}
+\begin{aligned}
+  f(Y_1,\,\cdots,\, Y_M) \delta Y_1 \cdots \delta Y_M 
+    &= g(X_1,\,\cdots,\, X_M) \delta X_1 \cdots \delta X_M 
+  \\
+  f(Y_1,\,\cdots,\, Y_M) 
+    &= \qty| \pdv{(Y_1,\,\cdots,\, Y_M)}{(X_1,\,\cdots,\, X_M)} | g(X_1,\,\cdots,\, X_M)
+\end{aligned}
+\end{equation}
+where, e.g., 
+\begin{equation}\label{eq: jacobian}
+  \qty| \pdv{(Y_1,\, Y_2)}{(X_1,\, X_2)} | :=
+  \mqty| \pdv{Y_1}{X_1} & \pdv{Y_1}{X_2} \\ \pdv{Y_2}{X_1} & \pdv{Y_2}{X_2} | ~.
+\end{equation}
+
+\begin{ex}[Cauchy distribution: Lighthouse Problem]\label{ex: lighthouse}
+\textit{(This is taken from Sivia (\S 2.4), which is recited from GullSF 1988, which also adopted it from ``Cambridge Part 1A examples sheet''.)}
+
+Consider a lighthouse at $ (x, y) = (\alpha, \beta) $. The lighthous emits an infinitely thin lightray to a uniformly random direction $ \theta $ (angle counterclockwise from $ -y $ direction), as in \cref{fig: lighthouse}. What is the probability distribution of $ x_k $ for the $ k $-th position on the shore which receives the light?
+
+Sicne $ \theta $ is uniformly distributed, the pdf is $ f(\theta_k | \alpha, \beta) = 1/\pi $ (uniform over $ \pm \pi/2 $; You may use $ 1/2\pi $ considering uniform over $ \pm \pi $, but that will change the result only by up to a multiplication of a constant, 2). Since $ \tan \theta_k = (x_k - \alpha)/\beta $, the change of variable gives
+\begin{equation*}
+  g(x_k | \alpha, \beta) = \pdv{\theta_k}{x_k} f(\theta_k | \alpha, \beta)
+    = \frac{1}{\pi} \frac{\beta}{\beta^2 + (x_k - \alpha)^2} ~.
+\end{equation*}
+This is the Cauchy distribution with the ``$ \gamma $'' parameter equals $ \beta $. 
+
+Mathematically, Cauchy distribution does not have a mean (simple proof can be $ \lim_{a\rightarrow \infty} \int_{-a}^{+a} g(x) dx = 0$ is not equal to $ \lim_{a\rightarrow \infty} \int_{-2a}^{+a} g(x) dx = \infty $). Also the standard deviation cannot be defined since the mean of $ x^2 $ also diverges. If $ \mu $ and $ \sigma $ are undefined, the CLT in the form of Thm \ref{thm: clt} cannot be used.
+\end{ex}
+
+
+\begin{figure}
+\centering
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp9054512614951153] 
+\draw  (29,194.2) -- (420.5,194.2)(68.15,34) -- (68.15,212) (413.5,189.2) -- (420.5,194.2) -- (413.5,199.2) (63.15,41) -- (68.15,34) -- (73.15,41)  ;
+%Shape: Star [id:dp4847863660698495] 
+\draw   (192.25,81) -- (195.85,88.15) -- (203.9,89.29) -- (198.08,94.85) -- (199.45,102.71) -- (192.25,99) -- (185.05,102.71) -- (186.42,94.85) -- (180.6,89.29) -- (188.65,88.15) -- cycle ;
+%Straight Lines [id:da9248807400548928] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (192.25,93) -- (192.25,195) ;
+%Straight Lines [id:da9932130816919462] 
+\draw  [dash pattern={on 0.84pt off 2.51pt}]  (192.25,93) -- (67.5,93) ;
+%Straight Lines [id:da5299276212835915] 
+\draw    (192.25,93) -- (289.11,192.57) ;
+\draw [shift={(290.5,194)}, rotate = 225.79] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-3.29) .. controls (6.95,-1.4) and (3.31,-0.3) .. (0,0) .. controls (3.31,0.3) and (6.95,1.4) .. (10.93,3.29)   ;
+
+% Text Node
+\draw (417,199.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+% Text Node
+\draw (51,21.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+% Text Node
+\draw (187,198.4) node [anchor=north west][inner sep=0.75pt]    {$\alpha $};
+% Text Node
+\draw (52,82.4) node [anchor=north west][inner sep=0.75pt]    {$\beta $};
+% Text Node
+\draw (194,111.4) node [anchor=north west][inner sep=0.75pt]    {$\theta _{k}$};
+% Text Node
+\draw (282,198.4) node [anchor=north west][inner sep=0.75pt]    {$x_{k}$};
+% Text Node
+\draw (356,180) node [anchor=north west][inner sep=0.75pt]   [align=left] {sea};
+% Text Node
+\draw (356,196) node [anchor=north west][inner sep=0.75pt]   [align=left] {land};
+
+
+\end{tikzpicture}
+
+\label{fig: lighthouse}
+\caption{A schematic diagram for the lighthouse problem.}
+\end{figure}
+
+
+\section{Miscellaneous}
+\begin{ex}[Babies in Hospital 1]
+\textit{(Problem provided by prof. Jae-Kwang Kim at the Dept. of Math at KAIST in 2018)}
+
+There are two hospitals A/B, and new babies are born every day. At A/B, $ N_A = 45 $ and $ N_B = 15 $ babies are born everyday, respectively. They both recorded the number of days when $ \ge 60\,\% $ of the babies have XX chromosome, say $ N'_A $ and $ N'_B $. Which will have higher value? For simplicity, assume a baby can only have either XX or XY chromosome, and the probability of being either of these is the same ($ P_X = P_Y = 0.5 $).
+
+For a hospital, assuming the events are independent, the probability of having $ \ge 60\,\% $ of XX babies is
+\begin{equation*}
+  p_{A, B} 
+    = \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} P_X^k P_Y^{N_{A, B}-k}
+    = 0.5^{N_{A, B}} \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} ~,
+\end{equation*}
+for the case of hospitals A/B, respectively. A simple calculation gives this probability are $ p_A = 0.0899 $ ($ \lceil 0.6N_A \rceil = 27 $ for A) and $ p_B = 0.304 $ ($ \lceil 0.6N_B \rceil = 9 $ for B) for hospitals A and B, respectively. For 1 year, 365 days, we can calculate $ N'_A = 32.8 $ and $ N'_B = 111.0 $. Therefore, $ N'_B > N'_A $. 
+\end{ex}
+
+
+\begin{ex}[Babies in Hospital 2]
+\textit{(Problem provided by prof. Jae-Kwang Kim at the Dept. of Math at KAIST in 2018)}
+
+In the problem above, we found hospital B will have more XX babies than A. But with what confidence? In principle, you can just calculate using binomial distribution, but there's a simpler workaround.
+
+Define a random variable $ N_i $, such that it is 1 when $ \ge 60\,\% $ of the babies have XX chromosome on the $ i $-th date; otherwise, 0. Then the expectation of $ N_i $ is $ E(N_i) = p_{A, B} $, for the case of hospitals A/B, respectively. Since $ N_i^2 $ must have identical value as $ N_i $, $ E(N_i^2) = p_{A, B} $. Then the variance becomes $ V(N_i) = E(N_i^2) - E^2(N_i) = p_{A, B} - p_{A, B}^2 = p_{A, B}(1 - p_{A, B}) \equiv p_{A, B} q_{A, B} $.
+
+The total number of days is $ N_{A, B} = \sum_{i=1}^{365} N_i $, and if $ N_i $ are all independent, 
+\begin{equation*}
+\begin{aligned}
+  \mu_{A, B} &= E(N_{A, B}) &&= E\qty(\sum_{i} N_i) = np_{A, B} \\
+  \sigma_{A, B} &= V(N_{A, B}) &&= V\qty(\sum_{i} N_i) = n \times V(N_i) = np_{A, B}q_{A, B}
+\end{aligned}
+\end{equation*}
+where $ n = 365 $. Note that $ N $ follows binomial distribution, which is approximated as Gaussian distribution in this case (roughly speaking when $ p $ is not close to 0 or 1 and $ np $ is large enough). Therefore, $ N_{A, B} \simdot \mathcal{N} \qty( \mu_{A, B}, \sigma_{A, B}^2 ) $, or
+\begin{equation*}
+  N_A \simdot \mathcal{N}(32.8,\, 29.9) = \mathcal{N}(32.8,\, 5.46^2) \quad;\quad
+  N_B \simdot \mathcal{N}(111.0,\, 77.2) = \mathcal{N}(111.0,\, 8.79^2)
+\end{equation*}
+Since this is a case when $ \mu $ and $ \sigma $ are known, we can use standard normal $ z $ statistic for confidence calculation. Take null hypothesis as $ H_0 : d = N_A - N_B = 0 $ and then $ z = \frac{\mu_A - \mu_B}{\sqrt{\sigma_A^2 + \sigma_B^2}} = 12.4 $. That means, we are confident with 12.4-$ \sigma $, which is much larger than 99.999 \%. More realistic null hypothesis is $ H_0 : d = N_A - N_B < 0 $, but this will have only small effect to the result.
+\end{ex}
