@@ -10,7 +10,7 @@ alltex = list(Path("chaps").glob("*.tex"))
 alltex.sort(reverse=False)
 
 firststr = r'''\documentclass[11pt,a4paper]{book}
-\usepackage[top=2.5cm,bottom=2.5cm,left=2.5cm,right=2.5cm,headsep=10pt,letterpaper]{geometry}
+\usepackage[top=2.cm,bottom=2.cm,left=2.cm,right=2.cm,headsep=10pt,letterpaper]{geometry}
 \usepackage{physics}
 \usepackage{siunitx}
 \usepackage{graphicx}
@@ -93,6 +93,7 @@ firststr = r'''\documentclass[11pt,a4paper]{book}
 
 
 \newcommand{\sep}{\quad;\quad}
+\newcommand{\simdot}{\mathrel{\dot{\sim}}}
 
 
 \declaretheorem[

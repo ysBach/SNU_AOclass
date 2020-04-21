@@ -362,10 +362,52 @@ The results are as expected: For Case A, the error-bar of $ m_2 $ is too large, 
 
 
 
-\section{Poisson Noise}
-The Poisson process is a fancy naming for some special ``counting''. In astronomy, we count photons (well, actually the CCD counts the electrons) over time, in social sciences we can count the death toll over time, in experiments we could count the lattice of a randomly shaped crystal over the distance. A formal definition is\footnote{See, e.g., \url{http://dept.stat.lsa.umich.edu/~ionides/620/notes/poisson_processes.pdf} and \url{https://www.probabilitycourse.com/chapter11/11_1_2_basic_concepts_of_the_poisson_process.php}}
+\section{Probability Distributions and Poisson Noise}
+There are a myriad of probability distributions (PDs) in math, due to hard works of mathematicians lived in the era of frequentist statistics. In this section, I will just give some definitions and properties of few of them, which are frequently visited by astronomical literatures.
 
-\begin{defn}[Poisson Process 1]
+\subsection{Binomial Distribution}
+\begin{defn}[Bernoulli Process]
+A Bernoulli process is a process (experiments) which has the following properties (Walpole p.102):
+\begin{enumerate}
+  \item Repeated trials where each trial (outcome) is classified as either a success (1) or failure (0).
+  \item The success probability ($ p $) should remain constant throughout the process.
+  \item Each trial (outcome) must be independent to each other.
+\end{enumerate}
+\end{defn}
+
+A coin-tossing experiment can be a Bernoulli process: The probability of success (heads; H) $ p = 0.5 $ and failure (tails; T) is $ q = 1 - p = 0.5 $. Each coin-tossing is independent of each other. The probability to have the outcome ``HHT'' in this order is $ p \cdot p \cdot q = 1/8 $.
+
+\subsection{Binomial Distribution}
+A binomial distribution arises when we describe the probability distribution of the number $ X $ which is the number of success in $ n $ Bernoulli trials (Walpole p.102). 
+
+\begin{defn}
+A random variable $ X $ follows a binomial distribution ($ X \sim \mathrm{Binom}(n, p) $) has the probability distribution
+  \begin{equation}\label{def: binom}
+    b(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x}
+  \end{equation}
+for the success probability $ p $ of $ n $ Bernoulli trials.
+\end{defn}
+
+For the reason why we use a word ``binomial'', see math textbooks such as Walpole p.103. This distribution has mean, variance, and standard deviation of:
+\begin{thm}[Binomial Distribution Mean and Variance] \label{thm: binom mean var std}
+A binomial distribution with parameters $ n $ and $ p $, it has
+  \begin{equation}\label{eq: binom mean var std}
+    \mathrm{mean} = np \quad;\quad
+    \mathrm{var} = npq \quad;\quad
+    \mathrm{std} = \sqrt{npq} ~.
+  \end{equation}
+\end{thm}
+\begin{proof}[of Binomial Dsitribution Mean and Variance]
+Consider $ O_i $ is the outcome of each Bernoulli trial, i.e., 1 if success and 0 if failure, of the $ i $-th trial. Then $ X = \sum_{i=1}^{n} O_i $. The expected value of $ X $ is $ E(X) = E(\sum_{i=1}^{n} O_i) = E(O_1) + \cdots + E(O_n) $ since they are independent, and this becomes $ E(X) = np $.
+
+For variance, we use a relationship $ \mathrm{Var}(O_i) = E(O_i^2) - (E(O_i))^2 $. But since the value $ O_i^2 $ is identical to $ O_i $, $ E(O_i^2) = E(O_i) $, so $ \mathrm{Var}(O_i) = p(1-p) \equiv pq $ for $ q := 1-p $. $ X = \sum_{i=1}^{n} O_i $ gives $ \mathrm{Var}(X) = \sum_{i=1}^{n} \mathrm{Var}(O_i) = npq $.
+\end{proof}
+
+
+\subsection{Poisson Distribution}
+The Poisson process is a fancy naming for some special ``counting''. In astronomy, we count photons (well, actually the CCD counts the photoelectrons) over time. This is why Poisson process is dealt with so much weight in astronomy. In social sciences we can count the death toll over time, in experiments we could count the lattice of a randomly shaped crystal over the distance. A formal definition of Poisson process is\footnote{See, e.g., \url{http://dept.stat.lsa.umich.edu/~ionides/620/notes/poisson_processes.pdf} and \url{https://www.probabilitycourse.com/chapter11/11_1_2_basic_concepts_of_the_poisson_process.php}}
+
+\begin{defn}[Poisson Process 1] \label{def: Pois1}
 The Poisson process $ N(t) $ for $ t \ge 0 $ ($ t $ can be time, distance, or similar things), with rate $ \lambda $ is defined by
 \begin{enumerate}
 \item $ N(0) = 0 $
@@ -374,18 +416,16 @@ The Poisson process $ N(t) $ for $ t \ge 0 $ ($ t $ can be time, distance, or si
 \end{enumerate}
 \end{defn}
 
-It can be proven that it is identical to 
-
-\begin{defn}[Poisson Process 2]
+The definition of Poisson distribution is given below. It can be proven that it is identical to \newpage
+\begin{defn}[Poisson Process 2] \label{def: Pois2}
 The Poisson process $ N(t) $ for $ t \ge 0 $ ($ t $ can be time, distance, or similar things), with rate $ \lambda $ is defined by
-\begin{enumerate}
-\item $ N(0) = 0 $
-\item $ N(t) $ has independent increment
-\item $ \mathbb{P}(N(h) = 1) = \lambda h + o(h) $ for small $ h $.
-\item $ \mathbb{P}(N(h) \ge 2) = o(h) $ for small $ h $.
-\end{enumerate}
+  \begin{enumerate}
+    \item $ N(0) = 0 $
+    \item $ N(t) $ has independent increment
+    \item $ \mathbb{P}(N(h) = 1) = \lambda h + o(h) $ for small $ h $.
+    \item $ \mathbb{P}(N(h) \ge 2) = o(h) $ for small $ h $.
+  \end{enumerate}
 \end{defn}
-
 Here $ o(h) $ is any function such that $ \lim_{h \rightarrow 0} o(h) / h = 0 $. The last two items in this second definition can be re-phrased like this:
 \begin{itemize}
 \item [3.] For a very small interval $ h $, the probability of one single ``counting'' (Poisson process) occurs in that interval is proportional to the length of $ h $.
@@ -393,14 +433,9 @@ Here $ o(h) $ is any function such that $ \lim_{h \rightarrow 0} o(h) / h = 0 $.
 \end{itemize}
 These must be independent of whether the counting happened outside of the interval, because the second item of the definition states the increment is independent.
 
-\begin{ex}[Photon Counting and Poisson Process]
-The photon counting process of astronomy resembles the Poisson Process. If $ N(t) $ is the number of photons or electrons under the exposure time $ t $, it is trivial that the first two items of the definition is satisfied. Next, use the rephrased version of the next items. The number of photons hitting CCD with infinitesimal time interval $ h = dt $ must be 0 or 1, but not larger than 1 (e.g., if a pixel count is 10,000 after 10 sec of exposure, we can take $ h \ll \SI{10}{s} / 10,000 = \SI{1}{ms} $ to meet this condition). Thus, photon counting is a Poisson process.
-\end{ex}
-
-The Poisson process follow the Poisson distribution:
 
 \begin{defn}[Poisson Distribution] \label{def: Pois pdf}
-The Poisson process of rate $ \lambda $ has the following pdf
+A random variable $ X $ which describes a Poisson process of rate $ \lambda $ follows the Poisson distribution ($ X \sim \mathrm{Pois}(\lambda t) $) and has the following pdf
 \begin{equation} \label{eq: Pois pdf}
   p(x; \lambda t) = \frac{(\lambda t)^{x}}{x!} e^{-\lambda t}
 \end{equation}
@@ -417,25 +452,114 @@ The mean, variance, and the standard deviation of the Poisson distribution $ p(x
   \mathrm{std} = \sqrt{\lambda t} ~.
 \end{equation}
 \end{thm}
-The reason we use $ \lambda t $ not just $ \lambda $ is clear from Thm \ref{thm: Pois mean std}: the mean changes as $ t $ changes, and we want to express $ p(x; \mathrm{mean}) $ rather than $ p(x; \mathrm{mean} / t) $. For instance, if the photon influx is $ \lambda = \SI{10}{photons / s} $, the mean of photon count is a function of time as $ \lambda t $, so for $ t = \SI{10}{s} $, the pdf is $ p(x; \SI{100}{photons}) $. If the particles are distributed with mean density along the line of sight $ \lambda = \SI{0.1}{particle / m} $, the mean of particles along the line of sight is a function of the reaching distance $ \lambda d $, so the pdf for $ d = \SI{5}{m} $ is $ p(x; \SI{0.5}{particles}) $. 
+The reason we use $ \lambda t $ not just $ \lambda $ is clear from Thm \ref{thm: Pois mean std}: the mean changes as $ t $ changes, and we want to express $ p(x; \mathrm{mean}) $ rather than $ p(x; \mathrm{mean} / t) $. For instance, if the photon influx is $ \lambda = \SI{10}{photons / s} $, the mean of photon count is a function of time as $ \lambda t $, so for $ t = \SI{10}{s} $, the pdf is $ p(x; \SI{100}{photons}) $. If the particles are distributed with mean density along the line of sight $ \lambda = \SI{0.1}{particle / m} $, the mean of particles along the line of sight is a function of the reaching distance $ \lambda d $, so the pdf for $ d = \SI{5}{m} $ is $ p(x; \SI{0.5}{particles}) $. We, therefore, \textbf{frequently denote a Poisson distribution of \textit{mean} $ m $}, instead of \textit{rate} $ \lambda $.
 
-\begin{thm}[Poisson to Gaussian] \label{thm: Pois gauss}
-As $ x \rightarrow \infty $, the Poisson distribution approaches normal distribution $ \mathcal{N}( \lambda t, \lambda t ) $.
+\subsection{Relationships Between Distributions}
+There are some relationships I want to emphasize because they will be used to understand statistical processes in astronomy. 
+
+\begin{thm}[Binomial to Poisson]
+For $ X \sim \mathrm{Binom}(n, p) $, if (1) $ n \rightarrow \infty $, (2) $ p \rightarrow 0 $ and (3) $ np \xrightarrow{n \rightarrow \infty} \mu < \infty $, 
+  \begin{equation}\label{eq: binom to pois}
+    X \simdot \mathrm{Pois}(x; \mu = np)
+  \end{equation}
 \end{thm}
-Although I will omit here, the proof uses Stirling's formula $ x! \approx \sqrt{2\pi x} x^x e^{-x} $ and $ \ln[ (1 + \varepsilon)^{\lambda t (1 + \varepsilon) + 1 / 2 }] \approx \lambda t \varepsilon + \lambda t \varepsilon^2 / 2 $, where $ x = \lambda t ( 1 + \varepsilon ) $ with $ \lambda t \gg 1 $ and $ \varepsilon \ll 1 $. Stirling's formula has relative error of less than 1 \% when $ x = 1 $ and is almost negligible for any $ x $ of interest in many cases. Considering all the approximations in the proof, we can safely assume that Poisson distribution is quite Gaussian (normal) in many astronomical contexts, unless $ x $ is very small ($ \lesssim 10 $..?).
+
+Although I did not describe the Gaussian (normal) distribution, I am assuming you are familiar with it. One thing to note is that, both binomial and Poisson distributions are discrete ones, while normal distribution is continuous one. Therefore, the approximations given below, which approximate binomial and Poisson to normal distribution, should be used with care when the discreteness is important.
+
+\begin{thm}[Binomial to Normal] \label{thm: binom to normal}
+For $ X \sim \mathrm{Binom}(n, p) $, it has mean $ np $ and variance $ npq $ (see Thm \ref{thm: binom mean var std}). Then, if $ n \rightarrow \infty $,
+  \begin{equation}\label{eq: binom to normal}
+    X \simdot \mathcal{N}(np, npq)
+  \end{equation}
+\end{thm}
+
+\begin{thm} [Poisson to Normal] \label{thm: pois to normal}
+For $ X \sim \mathrm{Pois}(\lambda t) $, it has mean $ \lambda t $ and variance $ \lambda t $ (see Thm \ref{thm: Pois mean std}). Then, if $ \lambda t \rightarrow \infty $,
+  \begin{equation}\label{eq: pois to normal}
+    X \simdot \mathcal{N}(\lambda t, \lambda t)
+  \end{equation}
+\end{thm}
+Although I will omit here, the proof uses Stirling's formula $ x! \approx \sqrt{2\pi x} x^x e^{-x} $ and $ \ln[ (1 + \varepsilon)^{\lambda t (1 + \varepsilon) + 1 / 2 }] \approx \lambda t \varepsilon + \lambda t \varepsilon^2 / 2 $, where $ x = \lambda t ( 1 + \varepsilon ) $ with $ \lambda t \gg 1 $ and $ \varepsilon \ll 1 $. Stirling's formula has relative error of less than 1 \% when $ x = 1 $ and is almost negligible for any $ x $ of interest in many cases. Considering all the approximations in the proof, we can safely assume that Poisson distribution is quite Gaussian (normal) in many astronomical contexts, unless $ x $ is very small. In practical sense, $ \lambda t > 100 $ is large enough, and in astronomical uses, an error, i.e., error-bar, arise from small mean ($ \lambda t \lesssim 50 $), is not very large compared to other approximations we use in date reduction.
+
+
+\begin{ex}[Babies in Hospital 1]
+\textit{(Problem provided by prof. Jae-Kwang Kim at the Dept. of Math at KAIST in 2018)}
+
+There are two hospitals A/B, and new babies are born every day. At A/B, $ N_A = 45 $ and $ N_B = 15 $ babies are born everyday, respectively. They both recorded the number of days when $ \ge 60\,\% $ of the babies have XX chromosome, say $ N'_A $ and $ N'_B $. Which will have higher value? For simplicity, assume a baby can only have either XX or XY chromosome, and the probability of being either of these is the same ($ P_X = P_Y = 0.5 $).
+
+For a hospital, assuming the events are independent, the probability of having $ \ge 60\,\% $ of XX babies is
+\begin{equation*}
+  p_{A, B} 
+    = \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} P_X^k P_Y^{N_{A, B}-k}
+    = 0.5^{N_{A, B}} \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} ~,
+\end{equation*}
+for the case of hospitals A/B, respectively. A simple calculation gives this probability are $ p_A = 0.0899 $ ($ \lceil 0.6N_A \rceil = 27 $ for A) and $ p_B = 0.304 $ ($ \lceil 0.6N_B \rceil = 9 $ for B) for hospitals A and B, respectively. For 1 year, 365 days, we can calculate $ N'_A = 32.8 $ and $ N'_B = 111.0 $. Therefore, $ N'_B > N'_A $. 
+\end{ex}
+
+In the problem above, we found hospital B will have more XX babies than A. But with what confidence? In principle, you can just calculate using binomial distribution, but there's a simpler workaround.
+
+Define a random variable $ N_i $, such that it is 1 when $ \ge 60\,\% $ of the babies have XX chromosome on the $ i $-th date; otherwise, 0. Then the expectation of $ N_i $ is $ E(N_i) = p_{A, B} $, for the case of hospitals A/B, respectively. Since $ N_i^2 $ must have identical value as $ N_i $, $ E(N_i^2) = p_{A, B} $. Then the variance becomes $ V(N_i) = E(N_i^2) - E^2(N_i) = p_{A, B} - p_{A, B}^2 = p_{A, B}(1 - p_{A, B}) \equiv p_{A, B} q_{A, B} $.
+
+The total number of days is $ N_{A, B} = \sum_{i=1}^{365} N_i $, and if $ N_i $ are all independent, 
+\begin{equation*}
+\begin{aligned}
+  \mu_{A, B} &= E(N_{A, B}) &&= E\qty(\sum_{i} N_i) = np_{A, B} \\
+  \sigma_{A, B} &= V(N_{A, B}) &&= V\qty(\sum_{i} N_i) = n \times V(N_i) = np_{A, B}q_{A, B}
+\end{aligned}
+\end{equation*}
+where $ n = 365 $. Note that $ N $ follows binomial distribution, which is approximated as Gaussian distribution in this case (roughly speaking when $ p $ is not close to 0 or 1 and $ np $ is large enough). Therefore, $ N_{A, B} \simdot \mathcal{N} \qty( \mu_{A, B}, \sigma_{A, B}^2 ) $, or
+\begin{equation*}
+  N_A \simdot \mathcal{N}(32.8,\, 29.9) = \mathcal{N}(32.8,\, 5.46^2) \quad;\quad
+  N_B \simdot \mathcal{N}(111.0,\, 77.2) = \mathcal{N}(111.0,\, 8.79^2)
+\end{equation*}
+Since this is a case when $ \mu $ and $ \sigma $ are known, we can use standard normal $ z $ statistic for confidence calculation. Take null hypothesis as $ H_0 : d = N_A - N_B = 0 $ and then $ z = \frac{\mu_A - \mu_B}{\sqrt{\sigma_A^2 + \sigma_B^2}} = 12.4 $. That means, we are confident with 12.4-$ \sigma $, which is much larger than 99.999 \%. More realistic null hypothesis is $ H_0 : d = N_A - N_B < 0 $, but this will have only small effect to the result.
+
+
+\subsection{Usage in Astronomy}
+As mentioned, photon counting is a key process in observational astronomy, and it is tightly bound to Poisson process. I will try to clarify this concept by the examples below.
+
+\begin{ex}[Photon Counting and Poisson Process]
+The photon counting process of astronomy resembles the Poisson Process. If $ N(t) $ is the number of photons during the exposure time $ t $, it is trivial that the first two items of Def \ref{def: Pois2} is satisfied. The number of photons arriving in an infinitesimal time interval $ h = dt $ must be 0 or 1, but not larger than 1. To illustrate, if a total 10,000 photon should come during 10 sec of exposure, we can take $ h = 1\,\mathrm{ns} \,(\ll \SI{10}{s} / 10,000 = \SI{1}{ms}) $ to meet this condition. Thus, photon counting is a Poisson process.
+\end{ex}
+
+In reality, however, photon counting is done by electronic devices, such as CCD. Before going deeper into the subtlety, let me give another example dealing with photon noise:
 
 \begin{ex}[Photon Counting and Poisson Noise] \label{ex: poisnoise}
-We saw the photon or electron counting is a Poisson process. Thus, we can use \cref{eq: Pois pdf,eq: Pois mean std}. For example, if we collected 10,000 electrons, the 1-$ \sigma $ uncertainty (1-$ \sigma $ CI) or the standard deviation of this counting is $ \sqrt{10,000} = 100 $, so we denote $ N = 10,000 \pm 100 $. Since the $ N $ is large enough, Thm \ref{thm: Pois gauss} says this is just a Gaussian distribution of mean 10,000 and standard deviation 100 (1 \% of the mean). Since magnitude is $ (\mathrm{const}) - 2.5 \lg (\mathrm{count}) $, differentiation gives a first-order estimation of the uncertainty in the magnitude $ \Delta m = -\frac{2.5}{\ln 10} \frac{\Delta (\mathrm{count})}{\mathrm{count}} = \m{0.01} $ (error-bar), which is small enough for some scientific purposes.
+We saw the photon counting is a Poisson process; let me further assume the photoelectron counting process on CCD is, too (photoelectrons are generated by these photons when they excite bound electrons). Thus, we can use \cref{eq: Pois pdf,eq: Pois mean std}. 
+
+For example, if we collected $ \lambda t = 10,000 $ electrons during the exposure time $ t $, the 1-$ \sigma $ uncertainty (1-$ \sigma $ CI) or the standard deviation of this counting is $ \sqrt{10,000} = 100 $, so we denote $ N = 10,000 \pm 100 $. Since the $ \lambda t $ is large enough, Thm \ref{thm: pois to normal} says this is just a Gaussian distribution of mean 10,000 and standard deviation 100 (1 \% of the mean). Since magnitude is $ (\mathrm{const}) - 2.5 \lg (\mathrm{count}) $, differentiation gives a first-order estimation of the uncertainty in the magnitude $ \Delta m = \qty | -\frac{2.5}{\ln 10} \frac{\Delta (\mathrm{count})}{\mathrm{count}} | = \m{0.011} $ (error-bar), which is small enough for some scientific purposes. 
+
+Note that the term $ \frac{\Delta (\mathrm{count})}{\mathrm{count}} = \frac{1}{\sqrt{\mathrm{count}}} $ is inversely proportional to the square root of count itself. The more we collect the count, i.e., the longer the exposure time, we will get smaller error-bar.
 \end{ex}
 
-The next example is not directly related to Poisson process, but related to the binomial distribution (Bernoulli process) which has the pdf of $ b(x; n, p) = \binom{n}{x} p^x (1 - p)^{n - x} $ for getting $ x $ outcomes from $ n $ trials with $ p $ probability to have outcome. The pdf of binomial process approaches Poisson pdf with $ p(x; np) $ when $ n \rightarrow \infty $, $ p \rightarrow 0 $ but $ np $ is finite. Thus, the mean, variance, and standard deviation of such binomial distribution is calculabe using Thm \ref{thm: Pois mean std}.
-\begin{ex}[Babies in Hospital: Provided by Prof. Jae-Kwang Kim at KAIST]
-There are two hospitals A and B. New babies are born as either sex chromosome XX/XY with probability 50:50. Everyday A gives birth to 45 babies and B to 15 babies. Each hospital recorded the number of days when more than 60 \% of babies are girl.
-\begin{enumerate}
-\item Which hospital will have more such days?
-\item With how much confidence can you say so?
-\end{enumerate}
+Now a tricky part comes in:
+\begin{ex}[Photon Counting and Poisson Noise in ADU] \label{ex: poisnoise adu}
+In CCD, the number of photon ($ N_\gamma $) will generate certain number of photoelectrons ($ N_e $), and this is measured by the electric potential (roughly speaking, $ \mathrm{potential} = V_e \propto N_\mathrm{e} e $ where $ e $ is the electron charge). This voltage will be translated into integer numbers by electric circuit, and this integer is said to have a unit ADU (analog-to-digital unit) or DN (data number). In summary, a conversion of this order happens: $ N_\gamma \rightarrow N_e \rightarrow V_e \rightarrow N_\mathrm{ADU} $. We define the (electron) gain $ g \,[\mathrm{electrons/ADU}] $ such that $ N_e = g N_\mathrm{ADU} $. 
+
+If $ g = \SI{2}{e/ADU} $ and $ N_e = 10,000 $ as in the previous example, $ N_\mathrm{ADU} = 5,000 $. If $ N_\mathrm{ADU} $, i.e., the ADU counting is a Poisson process, we must hace $ N_\mathrm{ADU} = 5000 \pm 71 $, which gives magnitude error $ \Delta m_\mathrm{ADU} = \qty | -\frac{2.5}{\ln 10} \frac{71}{5000} | = \m{0.015} $. The error-bar has changed! What has just happened?
+
+The key here is that we only checked the photon counting process is a Poisson process. Rigorously speaking, photoelectron counting and ADU counting are \textbf{not Poisson processes}.
 \end{ex}
+
+Then what process it is for photoelectron counting?
+\begin{ex}[Photoelectron Follows a Binomial Distribution]\label{ex: photoelectron binom}
+Any device which collect photon does not actually collect photon, but they output \textit{something} which is proportional to the number of photons incident to it. In CCD, the output is the number of electrons which is measured by electric potential. The key here is the \emph{conversion of photon into \emph{something} must be a probabilistic process}. In CCD, the conversion happens with a paramter called the quantum efficiency (QE). Therefore, for a fixed number of photon, $ N_\gamma $, which follows a Poisson distribution $ N_\gamma \sim \mathrm{Pois}(N_\gamma) $, the outcome, $ N_e $, will follow a binomial distribution $ N_e \sim \mathrm{Binom}(N_\gamma, QE) $. Verbally put, ``photoelectron will follow a binomial distribution with the paramter $ n $ which follows a Poisson distribution and the parameter $ p $ which is believed to be fixed thanks to engineering process''.
+
+% https://www.facebook.com/groups/astro.r/permalink/2836140943148559/
+Although I will not give a proof, $ N_e \sim \mathrm{Binom}(n=\mathrm{Pois}(N_\gamma), p=QE) $ is approximated as $ N_e \simdot \mathrm{Pois}(N_\gamma QE) $. In observation, since $ N_e \approx N_\gamma QE \gg 1 $, $ N_e \simdot \mathcal{N}(N_e, N_e) $ (Thm \ref{thm: pois to normal}).
+\end{ex}
+
+How about the ADU count?
+
+\begin{ex}[ADU is Approximately Gaussian]
+The ADU counting is a very strange thing: For electron gain $ g $, ADU increase by 1 for every $ g $ electrons, i.e., a step function which is very difficult to deal with in analytical sense. Regardless of its final distribution, it is clear that this conversion to the original $ N_e $ will destroy the original distribution. Fortunately, the count $ N_e $ or $ N_\mathrm{ADU} $ is large enough in most observations, so that the discreteness of conversion is ignorable. Hence, we can treat them as if a smooth continuous convertable variables by $ N_e = g N_\mathrm{ADU} $. Then 
+\begin{equation}\label{eq: adu distribution}
+  N_\mathrm{ADU} \simdot \mathcal{N}(N_e/g, N_e/g^2) \quad\mathrm{or}\quad
+  N_\mathrm{ADU} \simdot \mathcal{N}(N_\mathrm{ADU}, N_\mathrm{ADU}/g)
+\end{equation}
+That means $ N_\mathrm{ADU} $ follows a Gaussian, but not like usual Poisson distribution (because ADU counting is not a Poisson process). Going back to Ex \ref{ex: poisnoise adu}, we have to divide the error-bar of the count by the gain, so $ \Delta m_\mathrm{ADU} = \qty | -\frac{2.5}{\ln 10} \frac{\sqrt{5000/g}}{5000} | = \m{0.011} $, which is identical result as Ex \ref{ex: poisnoise}.
+\end{ex}
+For a mathematical treatment of the ADU conversion (step function), you may find some research papers useful\footnote{See, e.g., Merline W. J. \& Howell S. B. 1995, Exp. Astron. \textbf{6}, \textit{163}, ``A REALISTIC MODEL FOR POINT-SOURCES IMAGED ON ARRAY DETECTORS: THE MODEL AND INITIAL RESULTS''.}.
 
 
 \section{Error Propagation}
@@ -613,39 +737,3 @@ Mathematically, Cauchy distribution does not have a mean (simple proof can be $ 
 
 
 \section{Miscellaneous}
-\begin{ex}[Babies in Hospital 1]
-\textit{(Problem provided by prof. Jae-Kwang Kim at the Dept. of Math at KAIST in 2018)}
-
-There are two hospitals A/B, and new babies are born every day. At A/B, $ N_A = 45 $ and $ N_B = 15 $ babies are born everyday, respectively. They both recorded the number of days when $ \ge 60\,\% $ of the babies have XX chromosome, say $ N'_A $ and $ N'_B $. Which will have higher value? For simplicity, assume a baby can only have either XX or XY chromosome, and the probability of being either of these is the same ($ P_X = P_Y = 0.5 $).
-
-For a hospital, assuming the events are independent, the probability of having $ \ge 60\,\% $ of XX babies is
-\begin{equation*}
-  p_{A, B} 
-    = \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} P_X^k P_Y^{N_{A, B}-k}
-    = 0.5^{N_{A, B}} \sum_{k= \lceil 0.6N_{A, B} \rceil}^{N_{A, B}} \binom{N_{A, B}}{k} ~,
-\end{equation*}
-for the case of hospitals A/B, respectively. A simple calculation gives this probability are $ p_A = 0.0899 $ ($ \lceil 0.6N_A \rceil = 27 $ for A) and $ p_B = 0.304 $ ($ \lceil 0.6N_B \rceil = 9 $ for B) for hospitals A and B, respectively. For 1 year, 365 days, we can calculate $ N'_A = 32.8 $ and $ N'_B = 111.0 $. Therefore, $ N'_B > N'_A $. 
-\end{ex}
-
-
-\begin{ex}[Babies in Hospital 2]
-\textit{(Problem provided by prof. Jae-Kwang Kim at the Dept. of Math at KAIST in 2018)}
-
-In the problem above, we found hospital B will have more XX babies than A. But with what confidence? In principle, you can just calculate using binomial distribution, but there's a simpler workaround.
-
-Define a random variable $ N_i $, such that it is 1 when $ \ge 60\,\% $ of the babies have XX chromosome on the $ i $-th date; otherwise, 0. Then the expectation of $ N_i $ is $ E(N_i) = p_{A, B} $, for the case of hospitals A/B, respectively. Since $ N_i^2 $ must have identical value as $ N_i $, $ E(N_i^2) = p_{A, B} $. Then the variance becomes $ V(N_i) = E(N_i^2) - E^2(N_i) = p_{A, B} - p_{A, B}^2 = p_{A, B}(1 - p_{A, B}) \equiv p_{A, B} q_{A, B} $.
-
-The total number of days is $ N_{A, B} = \sum_{i=1}^{365} N_i $, and if $ N_i $ are all independent, 
-\begin{equation*}
-\begin{aligned}
-  \mu_{A, B} &= E(N_{A, B}) &&= E\qty(\sum_{i} N_i) = np_{A, B} \\
-  \sigma_{A, B} &= V(N_{A, B}) &&= V\qty(\sum_{i} N_i) = n \times V(N_i) = np_{A, B}q_{A, B}
-\end{aligned}
-\end{equation*}
-where $ n = 365 $. Note that $ N $ follows binomial distribution, which is approximated as Gaussian distribution in this case (roughly speaking when $ p $ is not close to 0 or 1 and $ np $ is large enough). Therefore, $ N_{A, B} \simdot \mathcal{N} \qty( \mu_{A, B}, \sigma_{A, B}^2 ) $, or
-\begin{equation*}
-  N_A \simdot \mathcal{N}(32.8,\, 29.9) = \mathcal{N}(32.8,\, 5.46^2) \quad;\quad
-  N_B \simdot \mathcal{N}(111.0,\, 77.2) = \mathcal{N}(111.0,\, 8.79^2)
-\end{equation*}
-Since this is a case when $ \mu $ and $ \sigma $ are known, we can use standard normal $ z $ statistic for confidence calculation. Take null hypothesis as $ H_0 : d = N_A - N_B = 0 $ and then $ z = \frac{\mu_A - \mu_B}{\sqrt{\sigma_A^2 + \sigma_B^2}} = 12.4 $. That means, we are confident with 12.4-$ \sigma $, which is much larger than 99.999 \%. More realistic null hypothesis is $ H_0 : d = N_A - N_B < 0 $, but this will have only small effect to the result.
-\end{ex}
