@@ -63,7 +63,7 @@ Look at the `Books` directory in this repo or
 * PDF: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
 * **The codes** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
 
-
+-----
 
 ### 3-2. Lecture Notebooks
 
@@ -122,4 +122,10 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 * [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
 
+-----
 
+### 3-3. Homework Assignments
+
+See [Assignments directory](Assignments/).
+
+### 
