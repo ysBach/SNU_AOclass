@@ -28,31 +28,37 @@ Order of HW assignments in 2020
 
 
 
-## Example of a Notice to Students
+### Example of a Notice to Students
 
 <details><summary>click</summary>
 <p>
-> Solve [this](https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_03-pathlib.md).
->
-> Please submit as a single PDF file.
->
-> 
->
-> **NOTE**
->
-> While you are solving this, you may need some help from reference materials.
->
-> Look at the descriptions, especially references, at [here](https://github.com/ysBach/SNU_AOclass/tree/master/Notebooks/python_prep) (여기 설명된 참고자료들을 참고하시면 좋습니다)
->
-> Notebooks for numpy, pandas, and astropy may not be helpful for this homework, but it will be helpful for the next ones.
->
-> 
->
-> More basic **exercises** here (no need to submit answer sheet for these; 이건 제출하는 거 아닙니다! 참고하라고 둔 연습용 문제입니다):
->
-> (1) [Basic python](https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_01.md)
->
-> (2) [Basic pathlib](https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_02-pathlib.md)
+```
+Solve this:
+https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_03-pathlib.md
+
+Please submit as a single PDF file.
+
+
+
+NOTE
+
+While you are solving this, you may need some help from reference materials.
+
+Look at the descriptions, especially references, at here (여기 설명된 참고자료들을 참고하시면 좋습니다):
+
+https://github.com/ysBach/SNU_AOclass/tree/master/Notebooks/python_prep
+
+Notebooks for numpy, pandas, and astropy may not be helpful for this homework, but it will be helpful for the next ones.
+
+
+
+More basic exercises here (no need to submit answer sheet for these; 이건 제출하는 거 아닙니다! 참고하라고 둔 연습용 문제입니다):
+
+(1) Basic python - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_01.md
+
+(2) Basic pathlib - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_02-pathlib.md
+```
 
 </p>
 </details>
+
