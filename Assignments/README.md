@@ -35,12 +35,15 @@ Order of HW assignments in 2020
 <pre>
 Solve this:
 https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_03-pathlib.md
+Solve this: https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_03-pathlib.md
 
 Please submit as a single PDF file.
 
+Please open an issue at the repo if you find any typo/error.
 
 
-NOTE
+
+**NOTE**
 
 While you are solving this, you may need some help from reference materials.
 
@@ -52,11 +55,18 @@ Notebooks for numpy, pandas, and astropy may not be helpful for this homework, b
 
 
 
-More basic exercises here (no need to submit answer sheet for these; 이건 제출하는 거 아닙니다! 참고하라고 둔 연습용 문제입니다):
+More basic **exercises** here (no need to submit answer sheet for these; 이건 제출하는 거 아닙니다! 참고하라고 둔 연습용 문제입니다):
 
 (1) Basic python - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_01.md
 
 (2) Basic pathlib - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_02-pathlib.md
+
+
+
+**You have 15+ days till the submission due.**
+
+**Please take your time for self study!!!**
+
 </pre>
 </p>
 </details>
