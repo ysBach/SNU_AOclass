@@ -50,6 +50,8 @@ While answering the problems, follow these rules:
 
 The ``data_str`` is the photometry results of an asteroid (155140) 2005 UD taken at the SNU Astronomical Observatory (SNUO or SAO) 1-m telescope. I selected only 22 data points out of 811 data points. ``jd_target`` is roughly the observation time in JD, ``m_red`` is the reduced magnitude (please regard it as the magnitude of the asteroid), ``dm_red`` is the error of it, and ``serious`` is 1 if the image had serious problem, so should not be used.
 
+> The results from this observation will be published as **Ishiguro, Bach, Geem et al. 2020**, and the reduction/plotting codes are available via [GitHub](https://github.com/ysBach/IshiguroM_etal_155140_2005UD).
+
 
 
 [2 points each]
