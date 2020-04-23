@@ -32,7 +32,7 @@ Order of HW assignments in 2020
 
 <details><summary>click</summary>
 <p>
-```
+<pre>
 Solve this:
 https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_03-pathlib.md
 
@@ -57,8 +57,7 @@ More basic exercises here (no need to submit answer sheet for these; 이건 제�
 (1) Basic python - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_01.md
 
 (2) Basic pathlib - https://github.com/ysBach/SNU_AOclass/blob/master/Assignments/HW-python_02-pathlib.md
-```
-
+</pre>
 </p>
 </details>
 
