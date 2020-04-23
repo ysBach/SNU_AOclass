@@ -11,24 +11,9 @@ In this directory, I will put materials you can study and soem external referenc
 | ``pandas``  | Basic pandas, including iteration and grouping.              | [link](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/python_prep/02-pandas.ipynb) |
 | ``astropy`` | Basic FITS I/O and explanations about FITS, header, extensions. | [link](https://nbviewer.jupyter.org/github/ysBach/AO2019/blob/master/Notebooks/python_prep/03-FITS_and_astropy.ipynb) |
 
+## References - General Python
 
-
-### References - Python in Astronomy
-
-1. Matt Craig's [ccd as book](https://mwcraig.github.io/ccd-as-book/00-00-Preface)
-   - Explains details about the astrnomical images, with worked examples. If you're not familiar with astrnomical data reduction, this is a good reference to start with.
-2. Matt Craig's [reducer](https://reducer.readthedocs.io/en/latest/)
-   - A simple Jupyter Notebook to reduce data, which the author used for his classes.
-   - If you want, you may get ideas from this and use it in your own code.
-3. [astropy tutorial](http://learn.astropy.org/)
-   - I personally think the web is too laggy but some tutorials seem informative, e.g., [UVES spectrum analysis](http://learn.astropy.org/rst-tutorials/UVES.html?highlight=filtertutorials).
-4. The latest or stable official websites for each package, e.g., [astropy](http://docs.astropy.org/en/stable/), [photutils](https://photutils.readthedocs.io/en/latest/) and [ccdproc](https://ccdproc.readthedocs.io/en/latest/) themselves are good references.
-
-
-
-### References - General Python
-
-* Book _Think Python_ (see ``references/``)
+* Book [_Think Python_](https://greenteapress.com/wp/think-python-2e/) 
   * HIGHLY RECOMMENDED!
 * [scipy lecture notes](https://scipy-lectures.org/)
   * Only the chapter 1 is enough maybe.
@@ -46,14 +31,28 @@ The materials below are from [SPLIT Program of SNU](https://eng.snu.ac.kr/reserv
 * 한입에 쏙 파이썬, 김왼손의 왼손코딩 [YouTube](https://www.youtube.com/playlist?list=PLGPF8gvWLYyontH0PECIUFFUdvATXWQEL)
 * Python 강의-김규태(고려대학교) [YouTube](https://www.youtube.com/playlist?list=PLB2ZAVLNuRBN9VCRVzDv6EFohXCWQxT-U)
 * MIT OCW 6.0001 Introduction to Computer Science and Programming in Python. Fall 2016 [YouTube](https://www.youtube.com/playlist?list=PLUl4u3cNGP63WbdFxL8giv4yhgdMGaZNA)
-  
 
 
 
-#### Jupyter Notebook / Jupyter Lab
+### Jupyter Notebook / Jupyter Lab
 
 * What is Jupyter? See [Wikipedia](https://en.wikipedia.org/wiki/Project_Jupyter#Products)
 
 * [Notebook Basics](https://nbviewer.jupyter.org/github/jupyter/notebook/blob/master/docs/source/examples/Notebook/Notebook%20Basics.ipynb) by MS Azure
 * awesome jupyter: [A](https://github.com/markusschanta/awesome-jupyter)
+
+
+
+## References - Python in Astronomy
+
+1. Matt Craig's [ccd as book](https://mwcraig.github.io/ccd-as-book/00-00-Preface)
+   - Explains details about the astrnomical images, with worked examples. If you're not familiar with astrnomical data reduction, this is a good reference to start with.
+2. Matt Craig's [reducer](https://reducer.readthedocs.io/en/latest/)
+   - A simple Jupyter Notebook to reduce data, which the author used for his classes.
+   - If you want, you may get ideas from this and use it in your own code.
+3. [astropy tutorial](http://learn.astropy.org/)
+   - I personally think the web is too laggy but some tutorials seem informative, e.g., [UVES spectrum analysis](http://learn.astropy.org/rst-tutorials/UVES.html?highlight=filtertutorials).
+4. The latest or stable official websites for each package, e.g., [astropy](http://docs.astropy.org/en/stable/), [photutils](https://photutils.readthedocs.io/en/latest/) and [ccdproc](https://ccdproc.readthedocs.io/en/latest/) themselves are good references.
+
+
 
