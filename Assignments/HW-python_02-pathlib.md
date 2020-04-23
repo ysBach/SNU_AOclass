@@ -1,4 +1,4 @@
-## Problem Set 02 [20 point]
+## HW-Python 02 (pathlib) [20 point]
 
 ### Instructions
 

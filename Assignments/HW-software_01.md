@@ -44,8 +44,9 @@ All important notices will be made via both Slack & ETL, but **all other notices
 4. Clone your repo to your local workspace by ``$ git clone <repo_url>`` to the terminal (see lecture presentation PPT file)
 5. Write ``*.txt`` to the top line of ``.gitignore`` file. Then add/commit/push ``.gitignore`` file.
    * Tip: ``.gitignore`` is a hidden file. You may have to tune the file explorer (finer for mac) option to see this file.
+   * If you don't see the hidden file ``.gitignore``, it means you didn't select anything for "Add .gitignore" when you were making the repo. Do ``$ touch .gitignore`` on terminal to make the file.
 6. Make a fake file ``test2.txt`` (``$ touch test2.txt``) and do ``git status``. Can you see ``test2.txt``? (yes|no)
-7. Open an issue at your test repo (you can put any content as you like). Then do ``git add`` anything, make a commit with message like "Fixes #1", and push. Is your issue closed? (yes|no)
+7. [Open an issue](https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue) at your test repo (you can put any content as you like). Then modify any of the file in your local workspace. Do ``git add`` this file, make a commit with message like "Fixes #1", and push. Is your issue closed? (yes|no)
    * I will visit your repo to check whether you correctly closed this issue.
    * In the future (when you "work"), you may learn fork, commit to the forked repo, and request a pull request (PR). The way you closed your first _issue_ is how you will do to close isseus.
 

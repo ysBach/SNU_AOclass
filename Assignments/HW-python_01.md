@@ -8,7 +8,7 @@ This is a set to make you familiarize with Python. I had to design this problem 
 
 
 
-## Problem Set 01 [35 point]
+## HW-Python 01 [35 point]
 
 - **Warn**: Be aware not to miss any period (`.`) or quotation marks (`'` or `"`).
 

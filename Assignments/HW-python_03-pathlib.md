@@ -1,4 +1,4 @@
-## Problem Set 03 [30 point]
+## HW-Python 03 (pathlib) [30 point]
 
 ### Instructions
 
