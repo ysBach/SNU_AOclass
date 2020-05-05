@@ -35,7 +35,7 @@ Answer the following problems [2 points each]
 
    - ```python
      for i in range(1, 11):
-         filelist.append(TOPPATH / f"test{02:d}.txt")
+         filelist.append(TOPPATH / f"test{i:02d}.txt")
      ```
 
    - (You will learn what ``f"{02:d}"`` means later. If you want, google "python format string leading zeros".)
