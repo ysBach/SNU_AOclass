@@ -50,7 +50,7 @@ Answer the following problems [2 points each]
 
 6. Iterate through the paths in ``filelist2``, and make an empty file of that path if it does not exist.
 
-   - Hint: Use for loop such as ``for fpath in fililist2``. 
+   - Hint: Use for loop such as ``for fpath in filelist2``. 
    - Hint: Use ``if fpath.exists():`` inside the for loop.
 
 7. Make a list ``filelist3``, which is the union set (list) of ``filelist`` and ``filelist2``.
