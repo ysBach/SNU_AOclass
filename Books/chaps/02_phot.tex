@@ -89,7 +89,7 @@ Let $ I_i $ for $ i = 1, 2, \cdots , N $ means the $ i $-th pixel with $ (x, y) 
 \begin{equation} \label{eq: centroid}
   \xi_c = \frac{\sum_i I_i \xi_i}{\sum_i I_i} ~.
 \end{equation}
-The uncertainty of this is, considering $ \xi_i $'s are fixed with no uncertainty,
+By using the error-propagation, the uncertainty of $ \xi_c $ is, considering $ \xi_i $'s are fixed with no uncertainty,
 \begin{equation}
   \qty (\Delta \xi_c)^2
     = \qty(\pdv{\xi_c}{I_1})^2 \qty(\Delta I_1)^2 
@@ -107,7 +107,7 @@ so
   = \sum_k \qty(\frac{\xi_k}{\sum_i I_i} - \xi_c)^2 \qty(\Delta I_k)^2
   = \frac{\sum_k (\xi_i - \xi_c)^2 \qty(\Delta I_k)^2}{\sum_i I_i} ~.
 \end{equation}
-Pixels near the object are likely to have high pixel values, so we approximate the uncertainty $ \Delta I_i $ is just the Poisson noise of the pixel value (which is source $ + $ sky $ + $ read noise), i.e., m \cref{eq: Pois mean std}, $ \Delta I_i = \sqrt{I_i} $. Then expanding the square and using the definition of $ \xi_c $, we get
+Pixels near the object are likely to have high pixel values, so we approximate the uncertainty $ \Delta I_i $ is just the Poisson noise of the pixel value (which is source $ + $ sky $ + $ read noise), i.e., \cref{eq: Pois mean std}, $ \Delta I_i = \sqrt{I_i} $. Then expanding the square and using the definition of $ \xi_c $, we get
 \begin{equation} \label{eq: centroid err}
   \Delta \xi_c 
   = \sqrt{\frac{\sum_k (\xi_i - \xi_c)^2 I_k }{\sum_i I_i} }
@@ -241,7 +241,7 @@ After the sky subtraction, I plotted the Box plot of the image with x-axis 70 to
 As can be noticed, SEx background estimation\footnote{We tend to call ``background'' rather than ``sky'' when we are dealing with SExtractor.}, unlike the annulus sky estimation technique, is estimating the sky values at all the pixels, not for each source. Thus, it takes much longer time. Also you can see that lots of parameters (rejection percentile, box size, filter size, interpolation method and related parameters, etc) should be set for SEx to work! In some cases, astronomers run SExtractor again and again to do get expected results, and find best combination of such parameters. But these parameters of course depend on the instruments, sky conditions, etc, so if the results are suspicious, some fine tuning must be made or you have to find different ways to do photometry than SExtractor.
 
 
-\section{Aperture in Real Reduction}
+\section{Aperture Shape in Real Reduction}
 We most frequently use circular aperture photometry. To determine how large the aperture should be, we need information about the radial profile of the PSF. Historically, there are three important radial profiles: Gaussian, Moffat, and Penny:
 \begin{enumerate}
 \item \href{https://en.wikipedia.org/wiki/Gaussian_function}{Gaussian}. The Gaussian function.
@@ -279,7 +279,7 @@ Re-formulating \cref{eq: profile gauss flux} with FWHM ($ F $ for brevity):
 This is not widely used, although both $ I $ and $ F $ are what we're most interested in. Rather, people tend to convert $ F $ to $ \sigma $ and use \cref{eq: profile gauss} or \cref{eq: profile gauss flux}.
 
 \subsection{Moffat}
-The first suggestion of using Moffat profile was made in 1969 by A. F. J. Moffat in \href{https://ui.adsabs.harvard.edu/abs/1969A\%26A.....3..455M}{Moffat AFJ 1969, A\&A, 3, 455} (). It is purely an empirical function, and is one of the most widely accepted form, because of its simple form yet powerful in fitting many circular profiles. Comparison of notations is given in \cref{tab: Moffat}.
+The first suggestion of using Moffat profile was made in 1969 by A. F. J. Moffat in \href{https://ui.adsabs.harvard.edu/abs/1969A\%26A.....3..455M}{Moffat AFJ 1969, A\&A, 3, 455}. It is purely an empirical function, and is one of the most widely accepted form, because of its simple form yet powerful in fitting many circular profiles. Comparison of notations is given in \cref{tab: Moffat}.
 
 \begin{table}
 \label{tab: Moffat}
@@ -289,7 +289,7 @@ The first suggestion of using Moffat profile was made in 1969 by A. F. J. Moffat
   \hline
   Symbol &
   \href{http://docs.astropy.org/en/stable/api/astropy.modeling.functional_models.Moffat2D.html\#astropy.modeling.functional_models.Moffat2D}{astropy} & 
-  \href{http://stsdas.stsci.edu/cgi-bin/gethelp.cgi?psfmeasure}{IRAF}, \href{http://www.aspylib.com/doc/aspylib_fitting.html}{AsPyLib} & 
+  \href{https://iraf.net/irafhelp.php?val=psfmeasure&help=Help+Page}{IRAF}, \href{http://www.aspylib.com/doc/aspylib_fitting.html}{AsPyLib} & 
   Description \\
   \hline
   $ r $ & & & radial distance from the center ($ r_0 = (x_0, y_0) $) \\
@@ -330,7 +330,8 @@ For $ \beta \rightarrow \infty $,
 \end{equation}
 Practically $ \beta \gtrsim 100 $ is enough for this approximation.
 \end{thm}
-Proof: For $ \beta \rightarrow \infty $, we approximate $ 2^{1/\beta} - 1 \approx \frac{\ln 2}{\beta} $, so
+\begin{proof}[of Thm]
+For $ \beta \rightarrow \infty $, we approximate $ 2^{1/\beta} - 1 \approx \frac{\ln 2}{\beta} $, so
 \begin{equation*}
   f_\mathrm{Moffat}(r|I, F, \infty)
     \approx I \frac{\tilde{A}}{\pi} 
@@ -338,7 +339,9 @@ Proof: For $ \beta \rightarrow \infty $, we approximate $ 2^{1/\beta} - 1 \appro
       \left [ 1 + \frac{\tilde{A} r^2}{\beta} \right ]^{-\beta} ~,
 \end{equation*}
 for $ \tilde{A} = \frac{4 \ln 2}{F^2} $. Note that $ \lim_{\beta \rightarrow \infty} \left [ 1 + \frac{\tilde{A}}{\beta} \right ]^{-\beta} \equiv e^{-\tilde{A}} $ and $ \frac{\beta-1}{\beta} $ becomes unity. Substituting these, we get the approximated formula identical to \cref{eq: profile gauss fwhm}, or to \cref{eq: profile gauss} with \cref{eq: FWHM gauss}. Q.E.D.
+\end{proof}
 
+Also, if you look at the pdf of the Students' $ t $-distribution, Moffat is a special case of the $ t $-distribution, but with a simpler re-parameterization (original $ t $-distribution has a clear mathematical reason why it appeared, but it has normalization constants including the Gamma functions, etc, so computationally a bit more complicated). 
 
 \subsection{Penny}
 It was Franz\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1973JRASC..67...81F/abstract} {FranzOG 1973, JRASC, 67, 81}}, who first used Lorenzian-like profile for stars. Then Penny\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1979MNRAS.187..829P/abstract} {PennyAJ 1979, MNRAS, 187, 829}} used it with linear interpolation in sky level to do the UBV photometry for visual binaries close to each other. After that, Penny and Dickens\footnote{ \href {https://ui.adsabs.harvard.edu/abs/1986MNRAS.220..845P/abstract} {PennyAJ \& DickensRJ, 1986, MNRAS, 220, 845}, which is cited for more than 110 times as of Oct 2019}, using their own package (\texttt{STARMAN}), introduced Gaussian and Lorentzian mixed model\footnote{Unfortunately, however, both the original Penny \& Dickens paper and \href{https://ui.adsabs.harvard.edu/abs/1995StaUN.141.....P/abstract}{Penny (1995, StaUN 141)} pp.44--45 have so many typos in the star profile formulae...}. 
@@ -384,16 +387,27 @@ Simple way of using it is, assuming $ Q = 0 $, $ P = 2 $, and $ \sigma_3, \sigma
 
 
 \subsection{IRAF}
-In \href{https://iraf.net/irafhelp.php?val=imexam&help=Help+Page}{IRAF \texttt{imexamine} task}, the centroiding is done by fitting Gaussian or Moffat to the pixel values. The weighting for each pixel is
+Here I describe how IRAF does centroiding in its \href{https://iraf.net/irafhelp.php?val=imexam&help=Help+Page}{IRAF \texttt{imexamine} task}. It is crude but always works decently, so I thought it's a good idea to summarize it for benchmark purpose\footnote{The description below is the description of IRAF \texttt{imexamine} when you hit \texttt{a} key on IRAF. Since \texttt{imexamine} is not only for the 2-D analysis, it consists of parameters for the 1-D extraction (when you hit \texttt{j} or \texttt{k}), for instance. You may want to fit a Gaussian to the pixels along a vertical line (i.e., $ N \times 1 $ array). For those purposes, \texttt{imexamine} has more parameters like \texttt{sigma}, etc. Please don't be confused when you read the doc.
+}.
+
+First, set $ r $, the circular aperture radius (default \texttt{radius=5}). Then the sky level is determined from an annulus with the inner radius \texttt{radius+buffer} (default \texttt{buffer=5}) and the outer radius \texttt{radius+buffer+width} (default \texttt{width=5}), centered at the initial center position. By default (\texttt{xorder=0}, \texttt{yorder=0}), the sky value is set as the median value in this annulus. If both of \texttt{xorder} and \texttt{yorder} are larger than 0, then the 2-D polynomial of these orders is fitted to the pixel values from the annulus. Mathematically speaking, \texttt{xorder=yorder=1} means a constant value (the weighted average value). 
+
+Then the centering is done by fitting 1-D Gaussian or Moffat to the marginalized pixel values (default is Moffat by \texttt{fittype="moffat"}), for the square box with $ \mathrm{width} = \mathrm{height} = 2r $.  In pythonic way, you are fitting 1-D profile to \pyth{np.sum(data, axis=0)} and \pyth{np.sum(data, axis=1)} to get the y and x centers, respectively. The pixels below the average value in this box are masked in the centering process\footnote{Not clear from the doc: How are the weighting scheme applied in this 1-D profile fittings? As in the 2-D profile fit? Or no error-bars?}. 
+
+It is repeated for certain times (default \texttt{iterations=3}), until the updated center position resides in the same pixel as the previous step\footnote{Not clear from the doc: I worried what if the center position is at the edge of the pixel. I guess, maybe, even though the center position is updated from the right edge of the $ i $-th to the left edge of the $ (i+1) $-th pixel, the centering box will remain the same in the upcoming iterations, so the centering process will be halted (converged) at the left edge of the $ (i+1) $-th pixel.}. In every iteration, the aperture radius $ r $ is updated to $ 3\, \mathrm{FWHM} $ using the FWHM obtained from the last iteration (from this definition, $ r $ remains as the initial value if \texttt{iterations=1}). Any pixel outside the image will be assumed to have a constant value (default \texttt{constant=0}). 
+
+The weighting for each pixel is calculated by
 \begin{equation}\label{eq: imexam weighting}
-  w = \left \{ 
+  w (r_{\texttt{i,j}}) = \left \{ 
   \begin{array}{cr}
-    r^{-2} & r \le \mathrm{HWHM} \\
-    e^{-\left ( \frac{r}{\mathrm{HWHM}} - 1 \right )^2} & r > \mathrm{HWHM}
+    r_\mathtt{i,j}^{-2} & r_\mathtt{i,j} \le \mathrm{FWHM}/2 \\
+    e^{-\left ( \frac{r_\mathtt{i,j}}{\mathrm{FWHM}/2} - 1 \right )^2} & r_\mathtt{i,j} > \mathrm{FWHM}/2
   \end{array}
   \right . ~,
 \end{equation}
-which is different from usual least square statistic (which uses $ w = 1/\sigma^2 $).
+where $ \mathrm{FWHM}/2 $ is also called $ \mathrm{HWHM} $ or $ r_\mathrm{half} $ and $ r_\mathtt{i,j} $ is the distance in pixel unit to the \texttt{(i, j)}-th pixel from the center\footnote{Not clear from the doc: Center of the last iteration?}. This weighting scheme is different from usual least square statistic (which uses $ w = 1/\sigma^2 $). 
+
+Once this fitting is done, put a circular aperture with radius $ r $. Because the purpose of \texttt{imexamine} is not an accurate photometry, it crudely estimates the flux by summing the pixel values for pixels which has its center within the aperture (same as putting \pyth{method="center"} to photutils aperture). 
 
 Two more parameters are calculated, namely, ellipticity $ e $ and angle $ \mathrm{pa} $:
 \begin{equation}
@@ -404,15 +418,25 @@ Two more parameters are calculated, namely, ellipticity $ e $ and angle $ \mathr
 \end{equation}
 where the moments
 \begin{equation}
-  M_{ij} = \frac{\sum I i j}{\sum I}
+  M_\mathtt{ij} = \frac{\sum I \times i \times j}{\sum I}
 \end{equation}
 for pixel value $ I $ and $ i, j \in [x, y] $. 
+
+
 
 In realistic photometry, such as \href{https://iraf.net/irafhelp.php?val=psfmeasure&help=Help+Page}{IRAF \texttt{psfmeasure} task}, we must use $ I - \mathrm{sky} $ instead of $ I $. 
 
 Some old packages including \texttt{ROMAFOT}, \texttt{STARMAN}, \texttt{DAOPHOT}, \texttt{DoPHOT}, \texttt{WOLF}, \texttt{LUND}, \texttt{CAPELLA} are summarized in \href{http://web.ipac.caltech.edu/staff/fmasci/home/astro_refs/WhyPSFfit.pdf}{this lecture note} and \href{https://ui.adsabs.harvard.edu/abs/1992ASPC...25..297S/abstract}{StetsonPB 1992, ASPC, 25, 297}
 
 
+\subsubsection*{Note}
+The shape of circular apetures were briefly discussed. In reality, you may encounter apertures of ellipse, box, pill-box, or any other scientifically meaningful ones. Now what you have to understand more is the aperture \emph{size}.
+
+\section{Aperture Size in Real Reduction}
+We will stick to the circular apertures here, too. Any other compilcated apertures may have to be used depending on the scientific reasons. Here I will describe three \emph{ideas} of finding the aperture size. When you have to apply aperture size in professional research, these should not be used blindly, but you have to find your own way which is both mathematically robust and scientifically meaningful for your specific purpose.
+
+\subsection{Maximum SNR (not recommeneded)}
+The singal-to-noise ratio is a 
 
 
 
