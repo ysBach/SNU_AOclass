@@ -38,7 +38,7 @@ $ cd <Where you want to download this lecture note>
 For the first time only:
 
 ```
-$ git clone https://github.com/ysBach/AO2019.git
+$ git clone https://github.com/ysBach/SNU_AOclass.git
 ```
 
 From the second time:
@@ -60,14 +60,14 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 Look at the `Books` directory in this repo or 
 
-* PDF: [main.pdf](https://github.com/ysBach/AO2019/blob/master/Books/main.pdf). 
-* **The codes** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Books/codes/).
+* PDF: [main.pdf](https://github.com/ysBach/SNU_AOclass/blob/master/Books/main.pdf). 
+* **The codes** to make plots:  [link](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/tree/master/Books/codes/).
 
 -----
 
 ### 3-2. Lecture Notebooks
 
-All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/AO2019/tree/master/Notebooks/).
+All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/tree/master/Notebooks/).
 
 * Some of Part 0, S, and A are not covered in the class.
 
@@ -88,15 +88,15 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 
 #### Part 1: Photometry
 
-1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` (Maybe it's not usable on Windows...?)
-2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
-3. [Note 03](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/03-Query.ipynb): `astroquery` (Vizier and JPL HORIZONS)
-4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
-5. [Note 05](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry (`ysfitsutilspy` and `ysphotutilspy`)
-6. [Note 06](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
-7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
-8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
-9. [Note 09](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/09-PSF_Phot.ipynb): Do photometry from the extracted PSF
+1. [Note 01](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/01-imexam.ipynb): ``imexam`` (Maybe it's not usable on Windows...?)
+2. [Note 02](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/02-Opening_FITS.ipynb): Simple ``astropy.io.fits``.
+3. [Note 03](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/03-Query.ipynb): `astroquery` (Vizier and JPL HORIZONS)
+4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
+5. [Note 05](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry (`ysfitsutilspy` and `ysphotutilspy`)
+6. [Note 06](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
+7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
+8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
+9. [Note 09](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/09-PSF_Phot.ipynb): Do photometry from the extracted PSF
 
 
 
@@ -118,9 +118,9 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 #### Part <u>A</u>: <u>A</u>ppendices
 
 * [A02_TRIPOL.md](Notebooks/A02_TRIPOL.md)
-* [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
+* [A03_TRIPOLpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/A03_TRIPOLpy_Tutorial.ipynb)
 
-* [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/AO2019/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
+* [A04_SNUO1Mpy_Tutorial](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/A04_SNUO1Mpy_Tutorial.ipynb)
 
 -----
 
