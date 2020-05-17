@@ -1,3 +1,33 @@
+# Using Docker (Recommended)
+
+0. Download *Index files* (shell script [here](https://github.com/dam90/astrometry/blob/master/index/download_index_files.sh))
+
+1. [Install Docker Desktop](https://www.docker.com/get-started) and open (run) Docker.
+
+2. Download the astrometry docker image
+
+   ``$ docker pull dm90/astrometry`` (~ 1.33 GB)
+
+3. Run:
+
+   * ``$ docker run --name nova --restart unless-stopped -v <path/to/index/files>:/usr/local/astrometry/data -v <path/to/FITS/files>:/Downloads -p 8000:8000 dm90/astrometry``
+   * You have to share the files between the Docker container and host computer, so you need to specify the path to index files and FITS files manually.
+   * Example: ``docker run --name nova --restart unless-stopped -v ~/Downloads/astrometry.net/data:/usr/local/astrometry/data -v ~/Downloads:/Downloads -p 8000:8000 dm90/astrometry``
+
+4. Docker → Dashboard → (you can see a new container "nova") → click CLI (Command-line interface) to open the terminal → use ``solve-field`` as you know.
+
+   * If you do ``$ cd Downloads``, the folder shared above will be accessed. Once you modify files here, those in host will be modified, too.
+
+* **TIP**: You can improve the performance by changing Docker → Settings → Resources (CPU, Memory, ...).
+
+* **NOTE**: I have used Docker for only 1-day as of the time I am writing this. There may be better ways, but this is the best I can do.
+
+* Tested on MBP 2018 15" macOS 10.14.6. The disk space used by Docker and image files (except Index files) is ~ 2 GB.
+
+
+
+# Naive Installation
+
 Download index files of 2MASS (for small field of view)
 
 ```
