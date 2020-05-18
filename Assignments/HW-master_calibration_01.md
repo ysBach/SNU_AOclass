@@ -304,9 +304,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
    * Hint: To load as ``CCDData``, use ``ccd = CCDData.read(filepath, unit='adu')`` and ``hdr = ccd.header``.
    * See the official documentation for [``astropy.nddata.CCDData``](https://docs.astropy.org/en/stable/api/astropy.nddata.CCDData.html).
 
-5. Strangely, header ``"OBJECT"`` is blank for the FITS files. 
-
-6. Set ``datetime`` as ``DATE-OBS`` in astropy time format.
+5. Set ``datetime`` as ``DATE-OBS`` in astropy time format.
 
    * Hint: ``datetime = Time(hdr["DATE-OBS"], format='isot')``. See [``astropy.time`` documentation](https://docs.astropy.org/en/stable/time/).
 
@@ -322,7 +320,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 2. Open the file (using, e.g., Excel) or print ``summary``. Please look at the file and think about how you can classify bias, dark, flat, and object frames using this header information. (I did|I didn't)
 
-3. It's not always easy to open this summary file to know which file is which. The filename should be more informative. Rename all FITS as we did for ``newname``, but let all the original files be stored in a directory ``archive`` (backup data):
+3. It's not always convenient to open and look at this summary file to know which file is which. The filename should be more informative. Rename all FITS as we did for ``newname``, but let all the original files be stored in a directory ``archive`` (backup data):
 
    ```python
    for fpath in allfits:
@@ -354,7 +352,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 ### 3. Master calibration frames
 
-1. For bias, the simplest criteria to select them is if ``OBJECT`` is ``"Bias"``. For safety, let me add one more criteria ``IMAGETYP`` is ``"Dark Frame"``. How to median combine all of them? Simple as below:
+1. For bias, the simplest criteria to select them is if ``OBJECT`` is ``"Bias"``. For safety, let me add one more criteria ``IMAGETYP`` is ``"Dark Frame"``. How to median combine all of them? Simple as below. Make a master (median-combined) bias frame ``mbias.fits`` in ``CALDIR``.
 
    ```python
    mbias = yfu.combine_ccd(
@@ -373,7 +371,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 3. See the statistics of bias by ``yfu.give_stats(mbias)``. You may see the doc by ``yfu.give_stats?`` from python. What is the rough average value of bias?
 
-4. For dark, story gets a bit complicated. You have to make master dark **for each exposure time**. First, find out what exposure times were used for dark (unique elements of EXPTIME of dark frames). Then combine each darks. **Then we have to subtract bias**.
+4. For dark, story gets a bit complicated. You have to make master dark **for each exposure time**. First, find out what exposure times were used for dark (unique elements of EXPTIME of dark frames). Then combine dark frames in each of the specific exposure time. **Then we have to subtract bias**. Make master dark frame ``mdark_<EXPTIME:.1f>.fits``  in ``CALDIR`` for all the exposure times.
 
    ```python
    dark_summary = summary[(summary["OBJECT"]=="Dark")]
@@ -405,7 +403,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
    * **NOTE**: This is because they're sky flats.
 
-7. Before making master flat, we need to subtract bias and dark from each flat frame. Do the bias and dark subtraction by using the following code.
+7. Before making master flat, we need to subtract bias and dark from each flat frame. Because flats do not have identical exposure time, darks to be subtracted must be differ. Do the bias and dark subtraction for all the flats, and save them as ``<original_name>_bd.fits`` in ``CALDIR``.
 
    ```python
    flat_summary = summary[(summary["OBJECT"]=="Flat") 
@@ -427,10 +425,10 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
        )
    ```
 
-8. The mean flux of the flat differ from file to file. Therefore, we need to normalize each frame by median so that median becomes 1. Because you see star trails in the flat frames, average is not a good option. Also due to the star trails, you'd better combine frames with a rejection such as sigma-clip. All these can be done as below:
+8. The mean count of the flat differ from file to file. Therefore, we need to normalize each frame. Because you see star trails in the flat frames, average is not a good option, so use median for normalization. Also due to the star trails, you'd better combine frames with a rejection such as sigma-clip. Make a master flat in ``float32`` datatype with 2-sigma clipped median combine. Save it as ``mflat_R.fits`` in ``CALDIR``.
 
    ```python
-   flatpaths = list(CALDIR.glob("Flat*_bd.fits"))
+   flatpaths = list(CALDIR.glob("Flat_*_R_*_bd.fits"))
    
    mflat = yfu.combine_ccd(
        fitslist=flatpaths,
@@ -447,6 +445,9 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 ### 4. Wrapup
 
-1. Open ``mbias.fits``. Describe at least 3 features you see from the image (e.g., gradient, bad column, hot pixels, etc).
-2. Close the ds9. Open three files (``mdark_10.0.fits``, ``mdark_20.0.fits``, ``mdark_60.0.fits``) as three tabs on ds9. You may use ``Frame`` → ``New`` → ``Open`` to open three files and then ``Frame`` → ``tile``. Lock images by image coordinate (``Frame`` → ``Lock`` → ``Frame`` → ``Image``). Using zoom in/out (mouse wheel) and mouse middle button (or ``Edit`` → ``pan``) to move your focus to pixel ``(x, y) = (481, 619)``. What is the pixel value in three frames?
-3. Roughly calculate the dark current in ADU/s at that pixel. Assume the detector was at the identical temperature and ignore any noise/cosmic-ray hit.
+1. Open ``mbias.fits``. Describe at least 3 features you see from the image (e.g., gradient, bad column, hot pixels, etc). Close the ds9 after this.
+2. Open three files (``mdark_10.0.fits``, ``mdark_20.0.fits``, ``mdark_60.0.fits``) as three tabs on ds9. You may use ``Frame`` → ``New`` → ``Open`` to open three files and then ``Frame`` → ``tile``. Lock images by image coordinate (``Frame`` → ``Lock`` → ``Frame`` → ``Image``). Using zoom in/out (mouse wheel) and mouse middle button (or ``Edit`` → ``pan``) to move your focus to pixel ``(x, y) = (481, 619)``. What are the pixel values in three frames?
+3. Roughly calculate the dark current in ADU/s at that pixel. Assume the detector was at the identical temperature and ignore any noise/cosmic-ray hit. Close the ds9 after this.
+4. Open ``flat_R.fits``. Describe at least 3 features you see from the image.
+5. Open the header of ``flat_R.fits``. There are many ``HISTORY`` in that which is added by ``ysfitsutilpy``. What are the time spent due to (1) bias subtraction, (2) dark subtraction, and (3) image combination? [1 points each]
+
