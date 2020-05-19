@@ -76,7 +76,7 @@ Answer the following questions. Provide codes. Also provide results if something
 1. Set ``fpath`` as the path to the file.
    
 * Hint: ``fpath = allfits[<an int>]``
-   
+  
 2. Set ``hdul`` as an HDUList object of that file.
    
    * Hint: ``hdul = fits.open(?)``
@@ -87,7 +87,7 @@ Answer the following questions. Provide codes. Also provide results if something
 5. Print out the header of the 0th HDU.
    
 * Hint: ``hdul[0].?`` or ``hdul["PRIMARY"].?``
-   
+  
 6. From the header, what is the header keyword for [1 point each]:
 
    1. the start of the exposure
@@ -108,7 +108,7 @@ Answer the following questions. Provide codes. Also provide results if something
    vv = dict(vmin=1900, vmax=2000)
    
    fig = plt.figure()
-   grid = ImageGrid(fig, 111, nrows_ncols=(1, 1), **imgrid_kw)
+   grid = ImageGrid(fig, 111, **imgrid_kw)
    for ax, cax in zip(grid, grid.cbar_axes):
        im = ax.imshow(hdul[0].data, **vv, origin=?)
        cb = cax.colorbar(im)
@@ -126,7 +126,7 @@ Answer the following questions. Provide codes. Also provide results if something
 
     ```python
     fig = plt.figure()
-    grid = ImageGrid(fig, 111, nrows_ncols=(1, 1), **imgrid_kw)
+    grid = ImageGrid(fig, 111, **imgrid_kw)
     for ax, cax in zip(grid, grid.cbar_axes):
         im = ax.imshow(hdul[0].data, **vv, origin='lower')
         cb = cax.colorbar(im)
