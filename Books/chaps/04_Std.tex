@@ -111,7 +111,7 @@ Now we want to further assume that, $ \tau(\lambda) \approx \tilde{c}_1 + \tilde
       {\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) d\lambda} ) X ~.
 \end{equation}
 Here, $ c_1 $ and $ c_2 $ are also constants. If the filter is fixed (e.g., V-band or SDSS $ \mathrm{g'} $ filter, etc), the only unknown thing in the second term in the parentheses is $ S_0(\lambda) $, i.e., the spectral shape. If it is a black body spectrum, the shape of $ S_0 $ is determined uniquely once the color index $ C $ is known. Even if it is not a perfect black body, it is reasonable to assume the spectral shape, $ S_0(\lambda) $, and color index, $ C $, have \textit{nearly} one-to-one relationship\footnote{For example, if you look at the color-color diagram of stars, A0, F0, and G0 stars all share similar $ \mathrm{U} - \mathrm{B} $ colors, i.e., color index and spectral shape are not one-to-one. This happens because (1) star spectra are not perfect black bodies and (2) filter profile is not ``flat'' as a function of $ \lambda $. But to the first-order approximation, it is acceptable.}. Fortunately most wildely used color indices (such as $ \mathrm{B}-\mathrm{V} $ or gri colors) are more like one-to-one for \emph{many} (but not all) cases. Thus, $ C $ is an indicator of $ S_0(\lambda) $, so the second term is roughly a function of $ C $, say $ c_2 \tilde{S}(C) $. The final assumption we make here is that the second term is $ c_2 \tilde{S} (C) \approx c_{3f} + c_{4f} C $ as the first-order approximation. Here $ c_{3f} $ and $ c_{4f} $ have subscript $ f $ because they depend on the \textit{filter} profile, but not on the spectral shape under our simplifying assumptions, because all the dependency from the spectral shape is absorbed into $ C $. Then
-\begin{equation}\label{key}
+\begin{equation}
   m_f - m_{0f} 
   \approx 2.5 (c_1 + c_{3f} + c_{4f} C) X 
   \equiv k_f' X + k_f'' CX
@@ -260,116 +260,132 @@ What is a typical value of zero point? From telescopes with diameter $ \gtrsim \
 
 Zero point must be a constant unless the device is affected by external disturbance in our simple model dealt in this chapter. In reality it is true that this zero point fluctuate at each exposure, and that is because of the imperfect readout process of CCD electronics. $ \Delta z_\mathrm{V} \approx 0 $ is assumed in this chapter. Although you may be unconfortable, but this is what is assumed even in professional space telescope data reduction processes, if this fact makes you more comfortable.
 
-\section{Differential Photometry}
+\section{Standardization Applied to Photometry}
 Now that we justified the usage of \cref{eq: std}, let's find the cases of application. The simplest case is the \textit{differential photometry}. 
 
 If there are many celestial objects (of course including your target) in the field of view with known standard magnitudes, we can use them as standard stars. Although there can be variable stars and galaxies\footnote{Galaxies can have spectra significantly different from those of black bodies. Therefore, the coefficients $ k_f $ and $ k_f'' $, which are approximations of spectral shape (i.e., not $ k_f' $), should be different from those derived from standard \textit{stars}, which are black bodies to the first order. But mostly this effect is not serious because, as we discussed before, both $ k_f C $ and $ k_f'' X C $ terms are anyway very small. For this reason, people use $ k_f $ and $ k_f'' $ derived from standard stars for their target galaxies (or any non-black body like spectra). If you really worry about this, you must conduct spectroscopic observation, not broad-band photometry.}, if most of the objects with known magnitudes are non-variable stars, those \textit{outliers} will be smoothed out. Thus, we just assume all the celestial objects in the field of view with known standard magnitudes as ``standard stars''. 
 
 This technique is very widely used in variable star and asteroidal light curve observations. This is widely used than absolute photometry, because it is annoying and difficult to observe standard stars at different airmasses while observing your target, which requires telescope time and human labor. In asteroidal science, even single-filter differential photometry is frequently used. 
 
+\subsection{Differential Photometry: Single-Filter}
 
-\subsection{Multi-Filter Differential Photometry}
-When we have more than one filter observation, we can get do the photometry in a rather complete way. As a simple example, consider a 2-filter observation. Rearranging \cref{eq: std} gives
-\begin{equation}
-  M_f - m_f = z_f - k_f' X + (k_f - k_f''X) C ~.
+Consider there are many stars in the FOV with known (catalogued) magnitudes at multiple filters, so that the true apparent magnitude $ M_f $ and color $ C $ are known. Say, from the photometry, we could determine the instrumental magnitude of stars $ m_f $. Rearranging \cref{eq: std}:
+\begin{equation} \label{eq: zeropt}
+  M_f - m_f = (z_f - k_f' X) + (k_f - k_f'' X) C \equiv a_f (X) + b_f (X) C
 \end{equation}
-In the same FOV, they should have almost identical airmass and zero point. If we observe the same field with filter $ x $ (at airmass of $ X_x $) and $ y $ (at airmass of $ X_y $), and denote $ C_{xy} = M_x - M_y $,
+The first term in the RHS, $ a_f (X) $, is a constant for all the stars in the same FITS frame, as they will have nearly identical airmass\footnote{If you observed near the horizon, $ \Delta X $ across the FOV may not be negligible. For accurate photometry, this should also be taken into account.} $ X $ and the identical zero point $ z_f $. $ M_f - m_f = a_f(X) $ for $ C = 0 $, i.e., a perfectly flat spectrum. The second term is color-dependent, but as we discussed before, it is likely to be very small. Sometimes people just call this value (LHS) as ``zero point'', although I will stick to use this term for $ z_f $ for clarity. 
+
+\begin{ex}[How small is the second term?]
+  Consider observatinos made in wavelength ranges around V or gri bands. From \cref{tab: SDSS ext}, $ |k_f''| \sim 0.000 \mathrm{-} 0.020 $ and we expect that $ k_f \lesssim 0.02 $ for most optics. Since $ k_f'' $ is mostly negative, $ k_f - k_f'' X $ is likely be positive, but not always (see \cref{tab: SDSS ext}). Also we have $ 1 < X \lesssim 2 $ in most cases. Then if you play with many combinations of numbers, $ b_f(X) C = (k_f - k_f'' X) C \lesssim 0.05 C $ and most likely much smaller than that. Note that the color index is mostly $ -1 \lesssim C \lesssim +1 $.
+\end{ex}
+
+What we do now is to draw several test plots as in \cref{fig:zeropt}. It is better if the color of the stars span wider than about 0.5 ($ \mathrm{max}(C) - \mathrm{min} (C) \gtrsim 0.5 $). On the left side of the figure, I plotted $ M_f $ VS $ m_f $ for $ f = \mathrm{R} $ (Johnson--Cousins $ \mathrm{R_C} $ filter). The fitted slope is $ \sim 1.015 $, which is near the unity as we expect from linearity. Sometimes it becomes as high as 1.05 throughout the night. Below is a residual plot. Normally, since the uncertainty in the magnitude measurement increases for larger magnitude (fainter star), the scatter of the residual must increase at large magnitude. The right panel of the figure shows the residual as a function of catalogued stars. The color-dependent slope is 0.02, and it was $ \lesssim 0.05 $ throughout the night; this is small indeed as we expected above. As we do not know our target's color, assuming the color uncertainty of $ \pm 0.5 $ will give around $ \pm 0.03 $ \textbf{\emph{systematic offset to the magnitude}} of our target. Note that this is a systematic parallel shift in magnitude, not a random error. Therefore, the \emph{shape} of the light curve will not be affected by this, althought the magnitude \emph{value} may have been affected by a constant.
+
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=\linewidth]{figs/SNUO_STX16803-2005UD-1-1-20181012-190829_zeropoint.pdf}
+\caption{A typical linearity curve with residual (left) and color-zero plot (right) on 2018-10-12 (UT 19:08:29) observation at SNUO 1-m telescope for the field stars near an asteroid (155140) 2005 UD. I used PS1 DR1 catalog, within 13.5 to 15 mag, removed any object with flag of quasar, variable, galaxy, etc, and dropped any pairs of stars if there's any nearby object in PS1 DR1 catalog.}
+\label{fig:zeropt}
+\end{figure}
+
+A summary of the three plots:
+\begin{table}[ht!]
+\caption{Differential Photometry Diagnostic Plots}
+\label{tab: 1-filter diff phot}
+\centering
+  \begin{tabular}{c|cc|c|l}
+  Name & $ x $-axis & $ y $-axis & Appearance & Comments \\
+  \hline
+  Linearity & $ M_f $ & $ m_f $       & straight line & 
+  $ |\mathrm{slope} - 1| \gtrsim 0.01 $ means you need to \\
+  Curve & & & slope of unity & check your photometry and/or device linerity \\
+  \hline
+  Linearity & $ M_f $ & $ M_f - m_f $ & constant value & 
+  Scatter is larger for large $ M_f $ objects \\
+  Residual & & & regardless of $ M_f $ & ($ \because $ faint object's mag is less accurate) \\
+  \hline
+  Color & $ C $  & $ M_f - m_f $ & $ \sim $ constant & 
+  If you can see a clear trend, \\
+  Dependency & & & regardless of $ M_f $ & the color-terms in \cref{eq: zeropt} not negligible.\\
+\end{tabular}
+\end{table}
+
+If graphs do not look as expected, that means (1) many field objects are variable or highly non-blackbody-like galaxies so that they are not suitable as ``standard stars'' and the basic assumptions of \cref{eq: std} break down, (2) the airmass is too high that the 2nd order approximations do not hold, (3) catalog $ M_f $ suffer from unknown uncertainties or systematic errors so the catalog value is not reliable, (4) $ m_f $ was measured incorrectly, (5) many other possibilities. Check these before going further, because your final results may be affected.
+
+
+Consider you determined the $ (a_f, b_f) $ for all the FITS files you obtained through a night, where each FITS file has different airmass. Then, if you 
+\begin{itemize}
+\item plot $ a_f $ as $ X $, the intercept and slope are $ z_f $ and $ -k_f' $,
+\item plot $ b_f $ as $ X $, the intercept and slope are $ k_f $ and $ -k_f'' $.
+\end{itemize}
+
+Note, however, the following assumptions should be met: 
+\begin{enumerate}
+\item Atmospheric conditions (extinction coefficients $ k' $ and $ k'' $), remain constant over the night 
+\item Zero point $ z_f $ remain constant over the night 
+\item The approximations used for \cref{eq: std} (2nd-order approximation) must hold
+\end{enumerate}
+
+Because not all these are met in Seoul sky, the plots you made will not look like to have a linear trend. It can be largely scattered so that a linear fit does not seem to make sense, clear non-linear trend appears (mostly due to the third assumption breaks down at large airmass), etc.
+
+Therefore, as a simple yet reasonable approximation, I assumed $ M_f - m_f $ for all the objects in a single FITS file should be a constant, and found this value. Then added it to the instrumental magnitude $ m_f $ of the target of interest.
+
+
+\subsection{Differential Photometry: Multi-Filter}
+When we have more than one filter observation, we can even eliminate the systematic offset due to the color uncertainty of the object. Just write the equation for two filters, $ x $ and $ y $
 \begin{equation}
 \begin{cases}
-  M_x - m_x &= (z_x - k_x' X_x) + (k_x - k_x''X_x) C_{xy} = a_x + b_x C_{xy} \\
-  M_y - m_y &= (z_y - k_y' X_y) + (k_y - k_y''X_y) C_{xy} = a_y + b_y C_{xy} 
+  M_x - m_x &= (z_x - k_x' X_x) + (k_x - k_x''X_x) C_{xy} = a_x(X_x) + b_x(X_x) C_{xy} \\
+  M_y - m_y &= (z_y - k_y' X_y) + (k_y - k_y''X_y) C_{xy} = a_y(X_y) + b_y(X_y) C_{xy} 
 \end{cases}
 \end{equation}
-Note here that, for field stars with known standard magnitudes, $ M_x $, $ M_y $, and thus $ C_{xy} = M_x - M_y $ should all be known for $ N $ ``standard stars'' in the image. The $ m_x $ and $ m_y $ are direct results from the photometry, so these should also be known from the image. Also, the values involved in $ a $ and $ b $ factors, there is no color-term, i.e., they should be identical for all the objects in the image\footnote{Of course we are assuming the coefficients, i.e., weather and CCD properties are constant over the time of $ x $ and $ y $ image exposures.}. Then what we have to determine are the two sets of constants, $ (a_x, b_x) $ and $ (a_y, b_y) $. 
+Note here that, for field stars with known standard magnitudes, $ M_x $, $ M_y $, and thus $ C_{xy} = M_x - M_y $ should all be known. The $ m_x $ and $ m_y $ are known from a photometry to the image. Although $ z $ values are assumed to be constant throughout the night for the same detector, I explicitly put $ z_x $ and $ z_y $ for generality. Following the logic of single-filter case, if we plot $ M_x - m_x $ as ordinate and $ C_{xy} $ as abscissa for $ N $ field stars, the $ y $-intercept is $ a_x $ and the slope is $ b_x $. Same goes for the $ y $ filter. So  $ (a_x, b_x) $ and $ (a_y, b_y) $ are determined with the uncertainties.
 
-If we plot $ M_x - m_x $ as ordinate and $ C_{xy} $ as abscissa for $ N $ field stars (the ``standard stars''), the y intercept is $ a_x $ and the slope is $ b_x $. Same goes for the $ y $ filter. So  $ (a_x, b_x) $ and $ (a_y, b_y) $ are determined with the uncertainties.
-
-Then for the target, what we have to do is to solve
+Then for the target of interest, which $ M_x $ and $ M_y $ are unknown,
 \begin{equation}
 \begin{cases}
-  M_x^\mathrm{target} - m_x^\mathrm{target} &= a_x + b_x C_{xy}^\mathrm{target} \\
-  M_y^\mathrm{target} - m_y^\mathrm{target} &= a_y + b_y C_{xy}^\mathrm{target}
+  M_x^\mathrm{target} - m_x^\mathrm{target} &= a_x(X_x) + b_x(X_x) C_{xy}^\mathrm{target} \\
+  M_y^\mathrm{target} - m_y^\mathrm{target} &= a_y(X_y) + b_y(X_y) C_{xy}^\mathrm{target}
 \end{cases}
 \end{equation}
-or since $ C_{xy}^\mathrm{target} = M_x^\mathrm{target} - M_y^\mathrm{target} $,
+or since $ C_{xy}^\mathrm{target} = M_x^\mathrm{target} - M_y^\mathrm{target} $, (dropping $ X_x $ and $ X_y $ for brevity)
 \begin{equation}
-  C_{xy}^\mathrm{target} = \frac{m_x^\mathrm{target} - m_y^\mathrm{target} + (a_x - a_y)}{1 - (b_x - b_y)} ~.
+  C_{xy}^\mathrm{target} = \frac{(m_x^\mathrm{target} - m_y^\mathrm{target}) + (a_x - a_y)}{1 - (b_x - b_y)} ~.
 \end{equation}
 Putting this back to the original equation,
 \begin{equation}\label{eq: 2-filter diff phot sol}
 \begin{cases}
   M_x^\mathrm{target}
-    = m_x + a_x + b_x \frac{m_x^\mathrm{target} - m_y^\mathrm{target} + (a_x - a_y)}{1 - (b_x - b_y)} \\
+    = m_x + a_x + b_x \frac{(m_x^\mathrm{target} - m_y^\mathrm{target}) + (a_x - a_y)}{1 - (b_x - b_y)} \\
   M_y^\mathrm{target}
-    = m_y + a_y + b_y \frac{m_x^\mathrm{target} - m_y^\mathrm{target} + (a_x - a_y)}{1 - (b_x - b_y)}
+    = m_y + a_y + b_y \frac{(m_x^\mathrm{target} - m_y^\mathrm{target}) + (a_x - a_y)}{1 - (b_x - b_y)}
 \end{cases}
 \end{equation}
-Now we have the standard magnitude of the target in both $ x $ and $ y $ filters.
+Now we have the standard magnitude of the target in both $ x $ and $ y $ filters. Since we have taken the color of the target into account, \textbf{\emph{there is no systematic offset}} as in single-filter case.
 
-What if we have more than 2 filters, say $ x $, $ y $, and $ z $? Solve for $ x $ and $ y $ as above by using $ (a_x, b_x) $. Then solve for $ y $ and $ z $, but this time using color as $ C_{yz} $, not $ C_{xy} $, using $ (a_x', b_x') $. Theoretically $ a_x = a_x' $, because there is no color term. However, $ b_x \neq b_x' $, because $ k_y'' $ is defined for $ C_{xy} $ for the first case, but it is defined for $ C_{yz} $ for the second case. In reality, because what we get is only the best-fit values with uncertainties, $ a_x $ and $ a_x' $ can also be different (likely within certain amount of error-bar).
+What if we have more than 2 filters, say $ x $, $ y $, and $ z $? Solve for $ x $ and $ y $ as above by using $ (a_x, b_x) $. Then solve for $ y $ and $ z $, but this time using color as $ C_{yz} $, not $ C_{xy} $, using $ (a_y', b_y') $. Theoretically $ a_y = a_y' $, because there is no color term. However, $ b_x \neq b_x' $, because $ k_y'' $ is defined for $ C_{xy} $ for the first case, but it is defined for $ C_{yz} $ for the second case. In reality, because what we get is only the best-fit values with uncertainties, $ a_x $ and $ a_x' $ can also be different (likely within certain amount of error-bar).
 
-\subsection{Single-Filter Differential Photometry}
-Sometimes 
-\begin{enumerate}
-\item we don't have multi-filter (also called the ``multi-color'') observation data of the  target, or
-\item the linear fit to $ M - m $ VS $ C_{xy} $ is not possible because there are only few stars and/or narrow color range. 
-\end{enumerate}
-For the first case, although we can get $ (a_x, b_x) $, we don't know the $ C_{xy} $ (mathematically identical to state that we don't have parameters with subscript $ y $ to plug into \cref{eq: 2-filter diff phot sol}). For the second case, it is just impossible to get $ (a_x, b_x) $. Then we have to assume a little more and do a \textit{single-filter} differential photometry. This is used in the cases when $ b_f C = (k_f - k_f'' X) C $ is smaller than the photometric accuracy we seek for. 
 
-\begin{ex}[Can we really ignore that term?]
-  Consider observatinos made in wavelength ranges around V or gri bands. From \cref{tab: SDSS ext}, $ |k_f''| \sim 0.000 \mathrm{-} 0.020 $ and we expect that $ k_f \lesssim 0.02 $ for most optics. Since $ k_f'' $ is mostly negative, $ k_f - k_f'' X $ is likely be positive, but not always (see \cref{tab: SDSS ext}). Also we have $ 1 < X \lesssim 2 $ in most cases. Then if you play with many combinations of numbers, $ b_f C = (k_f - k_f'' X) C \lesssim 0.05 C $ and most likely much smaller than that. Note that the color index is mostly $ -1 \lesssim C \lesssim +1 $.
-\end{ex}
-
-Now we simply drop that term because the uncertainty due to this term will be smaller than the final uncertainty. Thus,
-\begin{equation} \label{eq: 1-filter diff phot}
-  M_f - m_f = (k_f - k_f'' X) C + z_f - k_f' X \approx z_f - k_f' X \equiv Z_f ~.
-\end{equation}
-Sometimes people call $ Z_f $ just ``zero point'', although rigorously the zero point should be $ z_f $. 
-
-In the same FOV, they should have almost identical airmass and zero point. Therefore, under the same filter $ f $, we have $ Z_f \simeq \mathrm{const} $ for all the objects (of course including our target) in the same CCD image. This is the different point from previous multi-filter observation, and this happens because we ignored color-dependent terms. What we have to do here is to find that constant.
-
-There are three identical processes to do that, but each of these will show you slightly different impression:
-\begin{table}[ht!]
-\caption{Differential Photometry Linearity Curves}
-\label{tab: 1-filter diff phot}
-\centering
-  \begin{tabular}{cc|c|l}
-   $ x $-axis & $ y $-axis & Appearance & Comments \\
-  \hline
-  $ M_f $ & $ m_f $       & straight line & 
-  $ |\mathrm{slope} - 1| \gtrsim 0.01 $ means somethings are \\
-  && slope of unity & critically wrong (assumptions or your device)\\
-  \hline
-  $ M_f $ & $ M_f - m_f $ & constant value & 
-  Scatter is larger for large $ M_f $ objects \\
-  && regardless of $ M_f $ & ($ \because $ faint object's mag is less accurate) \\
-  \hline
-  $ C $  & $ M_f - m_f $ & constant value & 
-  If you can see a clear trend, \\
-  && regardless of $ M_f $ & the color-terms in \cref{eq: std} was not negligible.\\
-\end{tabular}
-\end{table}
-
-People many times call the first graph as \emph{linearity curve}, and I will call any process to investigate these three graphs (or other related plots) as linearity curve analysis.
-
-For the first case: I have seen some extreme cases when $ |\mathrm{slope} - 1| \sim 0.02 $, but that was only when I intentionally did not remove non-stellar objects from the curve\footnote{So if graphs don't appear as they should, please first check you have correctly removed non-stellar objects from your linearity curve analysis.}. If I correctly remove them, the slope never deviated more than 0.005.
-
-If graphs do not look as expected, that means (1) many field objects are variable or highly non-blackbody-like galaxies so that they are not suitable as ``standard stars'' and the basic assumptions of \cref{eq: std} break down, (2) the color term is not actually negligible so \cref{eq: 1-filter diff phot} is not a good approximation, (3) catalog $ M_f $ suffer from unknown uncertainties or systematic errors so the catalog value is not reliable, (4) $ m_f $ was measured incorrectly, (5) many other possibilities. 
 
 
 \section{Photometry Using Standard Stars}
-The idea is similar to multi-filter differential photometry, but we use the real standard stars. Except for few fields of standard stars (where many standard stars are located within small FOV), \textit{there is only one single standard star in a CCD image}. This makes it different from the differential photometry.
+When we need accurate absolute photometry, photometric standard star observation is essential. Unlike ``field stars with known magnitude,'' standard stars are confirmed as non-variable stars with very accurate magnitudes. By observing them, we determine the coefficients ($ k_f $, $ k_f' $, and $ k_f'' $) and zero point ($ z_f $), mostly for at least two filters, and get the magnitude of our target of interest with high accuracy. Hence, I will only talk about multi-filter observation of standard stars.
 
-Consider a standard star with ID $= i $ is observed for $ N_i $ times, and denote each observation as $ j $ $ (j = 1, \cdots, N_i) $, and write the parameters of \cref{eq: std} as $ M_{f, i} $, $ C_{i} $ ($ M $ and $ C $ are fixed values for a standard star, so no $ j $ is needed), $ m_{f, i}^{(j)} $, $ X_{f, i}^{(j)} $, etc. We here assume the zero point, $ z_f $, and the coefficients $ k_f $, $ k_f' $, and $ k_f'' $ are almost constant over the night\footnote{Even SDSS standard stars were also observed and analyzed under this assumption. See SmithJA (2002, AJ, 123, 2121)}. Then
+A different thing for standard star frames is that there is only one star with known magnitude in the FOV, and there will be only one point in the right panel of \cref{fig:zeropt}. Therefore, we select at least two standard stars with different colors, sometimes called a \textbf{\emph{blue--red pair}}. Observe one standard star at an airmass. When the other standard star reaches similar airmass, observe it, so that you have at least two stars at the same airmass. Then you have two points in the right panel of \cref{fig:zeropt} at the given airmass. Repeat this for many airmasses, so that you obtain the $ a_f $ and $ b_f $ for many airmasses for each filter. Following the logic of multi-filter case, you can determine all the coefficients.
+
+If you are not interested in zero point and the transformation coefficient $ k_f $, you can follow this calculation: Consider a standard star with ID $= i $ is observed for $ N_i $ times, and denote each observation as $ j $ $ (j = 1, \cdots, N_i) $, and write the parameters of \cref{eq: std} as $ M_{f, i} $, $ C_{i} $ ($ M $ and $ C $ are fixed values for a standard star, so no $ j $ is needed), $ m_{f, i}^{(j)} $, $ X_{f, i}^{(j)} $, etc. We here assume the zero point, $ z_f $, and the coefficients $ k_f $, $ k_f' $, and $ k_f'' $ are almost constant over the night\footnote{Even SDSS standard stars were also observed and analyzed under this assumption. See SmithJA (2002, AJ, 123, 2121)}. Then
 \begin{equation}
 \begin{cases}
   M_{f, i} - m_{f, i}^{(1)}
-    &= z_f + k_f' X_{f, i}^{(1)} + k_f'' X_{f, i}^{(1)} C_{i} + k_f C_{i} \\
+    &= z_f + k_f' X_{f, i}^{(1)} + k_f'' X_{f, i}^{(1)} C_{i} + k_f C_{i} ~, \\
   M_{f, i} - m_{f, i}^{(2)}
-    &= z_f + k_f' X_{f, i}^{(2)} + k_f'' X_{f, i}^{(2)} C_{i} + k_f C_{i}
+    &= z_f + k_f' X_{f, i}^{(2)} + k_f'' X_{f, i}^{(2)} C_{i} + k_f C_{i} ~, \\
+  \qquad\vdots & \qquad\vdots \\
+  M_{f, i} - m_{f, i}^{(N_i)}
+    &= z_f + k_f' X_{f, i}^{(N_i)} + k_f'' X_{f, i}^{(N_i)} C_{i} + k_f C_{i}   ~.
 \end{cases}
 \end{equation}
-for the first two observations of the same standard star (ID $= i $) at filter $ f $. Subtracting two,
+For the first two observations of the same standard star (ID $= i $) at filter $ f $, subtracting two,
 \begin{equation}
   \Delta m_{f, i}^{(1, 2)} 
     = (k_f' + k_f'' C_i) \Delta X_{f, i}^{(1, 2)} 
@@ -379,4 +395,5 @@ for the first two observations of the same standard star (ID $= i $) at filter $
 \end{equation}
 Of course $ \Delta m_{f, i}^{(1, 2)}  = m_{f, i}^{(1)} - m_{f, i}^{(2)} $ and $ \Delta X_{f, i}^{(1, 2)}  = X_{f, i}^{(1)} - X_{f, i}^{(2)} $. 
 
-Therefore, if we plot $ \qty ( \frac{\Delta m }{\Delta X} )_{f, i} $ as a function of color $ C_i $ of the standard stars with different color indices (colors of them are all known), the linear fit will give intercept of $ k_f' $ and slope of $ k_f'' $. For star $ i $, we have $ N_i $ observations, so we have $ \binom{N_i}{2} = N_i (N_i - 1) / 2 $ points at the single $ C_i $ value. If we have $ N $ standard stars of wide color range, we can have $ N \sum_i \binom{N_i}{2} $ points to fit the linear line.
+Therefore, if we plot $ \qty ( \frac{\Delta m }{\Delta X} )_{f, i} $ as a function of color $ C_i $ of the standard stars with different color indices (colors of them are all known), the linear fit will give intercept of $ k_f' $ and slope of $ k_f'' $. For star $ i $, we have $ N_i $ observations, so we have $ \binom{N_i}{2} = N_i (N_i - 1) / 2 $ points at the single $ C_i $ value. If we have $ N $ standard stars of wide color range, we can have $ N \sum_i \binom{N_i}{2} $ points to fit the linear line. For a simple blue--red pair, $ N = 2 $, so you have two $ x $-axis values (color index), but many points at each $ x $-axis value.
+
