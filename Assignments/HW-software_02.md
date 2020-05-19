@@ -21,7 +21,7 @@ Open the DM(direct message) to yourself. Send messages to yourself (for testing 
 4. For longer code, Use three backquotes (`` ``` ``), and a gray block will appear. Make a simple code block with a content as you wish. Use shift+Enter for newline.
 5. Slack accepts many of markdown syntax. Write any message including bold (use ``*`` or ctrl+B), italic (use `_` or ctrl+I), and strikethrough (use `~` or ctrl+shift+X). Example: `` **bold**, _italic_, and ~strikethrough~``
    * TIP: In Slack, ``*bold*`` works. But in normal markdown, single asterisk means italic and only double asterisk means bold (sigh...).
-6. Write any message using bullet list (use ``* content`` or ctrl+shift+7 and then use shift+enter), numbered list (use ``1. content`` or ctrl+shift+8 and then use shift+enter), and quotation (use ``> content`` or ctrl+shift+9 and then use shift+enter)
+6. Write any message using bullet list (use ``* content`` or ctrl+shift+8 and then use shift+enter), numbered list (use ``1. content`` or ctrl+shift+7 and then use shift+enter), and quotation (use ``> content`` or ctrl+shift+9 and then use shift+enter)
 7. Write any message using emoji by colon(``:``). Example: ``:smirk::thumbsup:`` (use autocomplete!)
 8. Write a message with, e.g., your github repo link (ctrl+shift+U)
 9. Open a thread to any of the message you wrote to yourself (by replying to any of the message).
