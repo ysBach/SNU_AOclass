@@ -36,6 +36,7 @@ Run the following before you run any code below.
 
 ```python
 from pathlib import Path
+import numpy as np
 from astropy.nddata import CCDData
 from astropy.io import fits
 from astropy.time import Time
@@ -49,8 +50,10 @@ USEFUL_KEYS = ["DATE-OBS", "FILTER", "OBJECT", "EXPTIME", "IMAGETYP",
 TOPPATH = Path(?)  # the directory you saved the FITS files
 ORIGDIR = TOPPATH/"archive"
 RAWDIR = TOPPATH/"raw"
+CALDIR = TOPPATH/"calib"
 ORIGDIR.mkdir(parents=True, exist_ok=True)
 RAWDIR.mkdir(parents=True, exist_ok=True)
+CALDIR.mkdir(parents=True, exist_ok=True)
 ```
 
 
@@ -63,7 +66,8 @@ The data available from the tutorial data are **NOT** the original data. The ori
 
 <details><summary>I used the following code for reducing the file size (click)</summary>
 <p>
-**Please do not run this code by yourself if you don't know what this is**.
+**Please do not run this code by yourself**.
+
 
 
 ```python
@@ -310,7 +314,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 7. Print a string in the format of ``<object:s>_<YYYYmmdd-HHMMSS>_<filter:s>_<exposure:.1f>.fits``, such as ``2005UD_20181012-114904_R_60.0.fits``.
    * Hint: The format ``YYYYmmdd-HHMMSS`` means year in 4 digits, month in 2 digits, date in 2 digits, and then hour in 2 digits (24-hour), minute in 2 digits, and second in 2digits. You can use ``datetime_str = datetime.strftime('%Y%m%d-%H%M%S')``
-   * Hint: For formatted string, you can use ``newname = f"{hdr['<keyword>']:s}_{datetime_str}_{hdr['<keyword>']:s}_{hdr['<keyword>']:.1f}.fits")``
+   * Hint: For formatted string, you can use ``newname = f"{hdr['<keyword>']:s}_{datetime_str}_{hdr['<keyword>']:s}_{hdr['<keyword>']:.1f}.fits"``
 
    
 
@@ -378,7 +382,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
    dark_exptimes = np.unique(dark_summary["EXPTIME"])
    dark_exptimes.sort()
    
-   for dark_exptime in dark_exptimes[-1:]:
+   for dark_exptime in dark_exptimes:
        mdark_i = yfu.combine_ccd(
            summary_table=summary,
            type_key=["OBJECT", "IMAGETYP", "EXPTIME"], 
@@ -421,10 +425,9 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
            mdarkpath=CALDIR/f"mdark_{exptime:.1f}.fits",
            output=CALDIR/f"{fpath.stem}_bd.fits",
            normalize_median=True,  
-           dtype='uint16'
        )
    ```
-
+   
 8. The mean count of the flat differ from file to file. Therefore, we need to normalize each frame. Because you see star trails in the flat frames, average is not a good option, so use median for normalization. Also due to the star trails, you'd better combine frames with a rejection such as sigma-clip. Make a master flat in ``float32`` datatype with 2-sigma clipped median combine. Save it as ``mflat_R.fits`` in ``CALDIR``.
 
    ```python
@@ -448,6 +451,6 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 1. Open ``mbias.fits``. Describe at least 3 features you see from the image (e.g., gradient, bad column, hot pixels, etc). Close the ds9 after this.
 2. Open three files (``mdark_10.0.fits``, ``mdark_20.0.fits``, ``mdark_60.0.fits``) as three tabs on ds9. You may use ``Frame`` → ``New`` → ``Open`` to open three files and then ``Frame`` → ``tile``. Lock images by image coordinate (``Frame`` → ``Lock`` → ``Frame`` → ``Image``). Using zoom in/out (mouse wheel) and mouse middle button (or ``Edit`` → ``pan``) to move your focus to pixel ``(x, y) = (481, 619)``. What are the pixel values in three frames?
 3. Roughly calculate the dark current in ADU/s at that pixel. Assume the detector was at the identical temperature and ignore any noise/cosmic-ray hit. Close the ds9 after this.
-4. Open ``flat_R.fits``. Describe at least 3 features you see from the image.
-5. Open the header of ``flat_R.fits``. There are many ``HISTORY`` in that which is added by ``ysfitsutilpy``. What are the time spent due to (1) bias subtraction, (2) dark subtraction, and (3) image combination? [1 points each]
+4. Open ``mflat_R.fits``. Describe at least 3 features you see from the image.
+5. Open the header of ``mflat_R.fits``. There are many ``HISTORY`` in that which is added by ``ysfitsutilpy``. What are the time spent due to (1) bias subtraction, (2) dark subtraction, and (3) image combination? [1 points each]
 
