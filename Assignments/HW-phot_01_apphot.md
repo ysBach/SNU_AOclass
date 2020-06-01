@@ -10,6 +10,9 @@ This is a continuation from [master-frame making homework](./HW-preproc_01_mkmas
   * Find the standardized magnitude of the object
   * Plot the light curve of the asteroid.
 
+* Visually analyze the light curve.
+* Conduct simple science from the results.
+
 
 
 ## Instructions
