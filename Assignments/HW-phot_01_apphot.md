@@ -16,12 +16,6 @@ This is a continuation from [master-frame making homework](./HW-preproc_01_mkmas
 
 **You need at least ~ 1 GB of free space on your computer.**
 
-1. Install ``regions``: 
-
-```
-$ conda install -c astropy regions
-```
-
 Run the following before you run any code below.
 
 ```python
