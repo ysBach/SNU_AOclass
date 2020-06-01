@@ -584,7 +584,9 @@ Rigorously speaking, the centroid position of the star should be re-calculated a
                  xmajgrids=False, xmingrids=False)
    ```
 
+You may have obtained the following result:
 
+![](figs/2005UD_crude_lightcurve.png)
 
 ### 4. Some Science
 
