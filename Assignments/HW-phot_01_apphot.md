@@ -199,8 +199,9 @@ rdnoise = rdnoise_original * np.sqrt(bin_area)
 
 ### 1. Query
 
-1. Make a summary table of all the raw FITS files, sort by ``DATE-OBS`` k.
+1. Make a summary table of all the raw FITS files, sort by ``DATE-OBS``.
    * Hint: ``summary = yfu.make_summary(allfits, keywords=USEFUL_KEYS, sort_by='DATE-OBS')``
+   * It's important to sort by time, because somehow the HORIZONS query gives time-sorted version of the ephemerides, regardless of the epochs we pass to it.
 2. Find the middle time of the exposure.
    * Hint: ``midtimes = Time(summary["DATE-OBS"], format='isot') + summary["EXPTIME"]*u.s/2``
 
@@ -449,7 +450,8 @@ Rigorously speaking, the centroid position of the star should be re-calculated a
    * NOTE: Because of the problem of matplotlib, your computer may suffer memory problem. So please be careful (backup your data before running the above code block) just in case. If that happens, you may remove the code lines which does "plotting" in the ``plotting`` function, and remove all matplotlib related code lines.
    * NOTE: If you want, you may save figure as png, but that consumes much larger disk space than PDF when enough dpi is used (e.g., ``plt.savefig("~~.png", dpi=300)``). 
 
-5. In solar system sciences, we use "reduced magnitude", which is "the magnitude of the identical object under the identical geometric configuration, if the Sun-asteroid distance is 1 au and the observer-asteroid distance is 1 au". From Pogson's formula, derive the relationship between the reduced and standardized magnitude and justify the code in the previous question (no need to show derivation) (I did | I didn't).
+5. Check the images saved (PDF files), and confirm most data has not been affected by the color term or strange stars. If you find something strange, or just for check, open a FITS file with DS9 and load the corresponding region file. (I did|I didn't) 
+6. In solar system sciences, we use "reduced magnitude", which is "the magnitude of the identical object under the identical geometric configuration, if the Sun-asteroid distance is 1 au and the observer-asteroid distance is 1 au". From Pogson's formula, derive the relationship between the reduced and standardized magnitude and justify the code in the previous question (no need to show derivation) (I did | I didn't).
 
 
 
