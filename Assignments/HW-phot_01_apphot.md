@@ -589,13 +589,13 @@ Rigorously speaking, the centroid position of the star should be re-calculated a
 ### 4. Some Science
 
 1. Consider a spherical asteroid of diameter D is viewed at opposition (full-moon phase). The albedo at the opposition at the wavelength of interest is p. If the asteroid is located at 1 au from the Sun and 1 au from the observer, what is the relationship between D, p, and the magnitude H (called the "absolute magnitude" in solar system sciences)? Say the Sun has magnitude m at the wavelength.
-   * Answer: $ D = \frac{2 \,\mathrm{au} \times 10^{m/5}}{\sqrt{p}} \times 10^{-H/5} $. In V-band, using 1 au = 1.496e+8 km and m=-26.74, we can calculate the numerator 1342 km. But historically, people use D ~ 1329 km/sqrt(p) * 10^(-H/5)^. 1329 is anyway within the error-range of V_sun.
+   * Answer: ``D = (2 au * 10^(m/5))/sqrt(p) * 10^(-H/5) ``. In V-band, using 1 au = 1.496e+8 km and m=-26.74, we can calculate the numerator 1342 km. But historically, people use ``D ~ 1329 km/sqrt(p) * 10^(-H/5)``. 1329 is anyway within the error-range of V_sun.
 2. Our target 2005 UD was observed near the opposition (see ``alpha``, the Sun-target-observer angle in the ephemerides), so our standardized magnitude is roughly the absolute magnitude H in R-band. From multi-band photometry, we know it has V-R color of 0.35. What is the H of 2005 UD in V-band?
 3. From polarimetric observations, we also know the p value in V-band is roughly 0.10 +/- 0.01 from some empirical relationships. What is the diameter and rough error-bar of 2005 UD?
-4. For a rigid body of ellipsoidal shape with axes ``a > b = c`` (prolate) with spin axis parallel to c, what is the smallest rotational period for a particle at the farthest tip of the equator to be bounded to the gravity? Assume a constant bulk mass density ρ. (I did | I didn't)
+4. For a rigid body of ellipsoidal shape with axes ``a > b = c`` (prolate) with spin axis parallel to ``c``, what is the smallest rotational period for a particle at the farthest tip of the equator to be bounded to the gravity? Assume a constant bulk mass density ``ρ``. (I did | I didn't)
    * Hint: ``GM/a^2 = aω^2 = (2π/P)^2*a``, ``M = 4πab^2ρ/3`` and solve for P. 
-   * Answer: $ P = \frac{a}{b} \times \sqrt{\frac{3\pi}{G\rho}} $ [sec] or $ P = 2.334 \times \frac{a}{b} \times \left( \frac{\rho}{\mathrm{2,000 kg/m^3}} \right)^{-1/2} $ [hour]
-5. Say we observed 2005 UD perpendicular to its spin axis (sub-observer's point on the equator). Also assume 2005 UD was a prolate ellipsoid with spin axis parallel to c. From the light curve, the oscillation amplitude was 0.3 mag. What is the ratio a/b?
+   * Answer: ``P = a/b * sqrt(3π/Gρ) ``​ [sec] or ``P = 2.334 * a/b * (ρ/2,000 kg/m^3)^{-1/2}`` [hour]
+5. Say we observed 2005 UD perpendicular to its spin axis (sub-observer's point on the equator). Also assume 2005 UD was a prolate ellipsoid with spin axis parallel to ``c``. From the light curve, the oscillation amplitude was 0.3 mag. What is the ratio a/b?
    * Hint: Use Pogson's formula, and note that the observed flux is proportional to the projected area of the asteroid.
 6. Now assume the bulk mass density ρ=2,000 kg/m3 for 2005 UD. Is this rotating fast enough so that the particles can "escape" from the asteroid? (yes | no)
 
