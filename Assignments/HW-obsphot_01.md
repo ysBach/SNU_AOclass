@@ -13,7 +13,7 @@ I am not assuming you to provide perfect answers to these at your first trial, e
 * Minimum altitude must be ~ 30 degree.
 
 * If you observe a 14-mag star in R_C band at airmass 1.4 with EXPTIME=60s, the SNR ~ 65.
-* For StarAlt, you can use ``126.954 37.455 150 +9`` for ``Observatory``. For iObserve, ``KVN (Yonsei)`` wil be a decent choice.
+* For **StarAlt**, you can use ``126.954 37.455 150 +9`` for ``Observatory``. For **iObserve**, ``KVN (Yonsei)`` wil be a decent choice.
 
 
 
