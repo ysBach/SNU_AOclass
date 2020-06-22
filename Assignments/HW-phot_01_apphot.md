@@ -203,8 +203,9 @@ rdnoise = rdnoise_original * np.sqrt(bin_area)
    * Hint: ``summary = yfu.make_summary(allfits, keywords=USEFUL_KEYS, sort_by='DATE-OBS')``
    * It's important to sort by time, because somehow the HORIZONS query gives time-sorted version of the ephemerides, regardless of the epochs we pass to it.
 2. Find the middle time of the exposure.
-   * Hint: ``midtimes = Time(summary["DATE-OBS"], format='isot') + summary["EXPTIME"]*u.s/2``
-
+   
+* Hint: ``midtimes = Time(summary["DATE-OBS"], format='isot') + summary["EXPTIME"]*u.s/2``
+   
 3. Query the ephemerides of 2005 UD at ``midtimes``, set the output (such as astropy Table or pandas DataFrame) to ``eph``.
 
    ```python
@@ -440,8 +441,13 @@ Rigorously speaking, the centroid position of the star should be re-calculated a
    
        # Include all minor details for debugging purpose:
        for c in row.columns:
-           phot_targ[c] = row[c]
-       
+           if c == "file":
+               # This part is essential for Windows users, because
+               # path separator is ``\\``, which is interpreted badly
+               # in table column.... Holy moly Guaca-mole
+               phot_targ[c] = r"{}".format(row[c])
+           else:
+               phot_targ[c] = row[c]
        plt.savefig(figpath)
        
        phot_targs.append(phot_targ)
