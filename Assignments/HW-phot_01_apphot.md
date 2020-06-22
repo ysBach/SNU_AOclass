@@ -444,7 +444,8 @@ Rigorously speaking, the centroid position of the star should be re-calculated a
            if c == "file":
                # This part is essential for Windows users, because
                # path separator is ``\\``, which is interpreted badly
-               # in table column.... Holy moly Guaca-mole
+               # in table column.... Otherwise it raises ``UnicodeDecodeError``. 
+               # Holy moly Guaca-mole
                phot_targ[c] = r"{}".format(row[c])
            else:
                phot_targ[c] = row[c]
