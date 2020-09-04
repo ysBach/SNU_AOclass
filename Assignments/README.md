@@ -1,34 +1,53 @@
 # Homework Assignments
 
-## Simle Homework
+## List of Homework
 
 Order of HW assignments in 2020
 
-1. [HW-software_01](HW-software_01.md)
+### AO 1 (Spring)
+
+1. [HW-software_01](HW-software_01.md) 
+   * Installation of softwares, first basic usages of Slack, GitHub, SAO ds9, and python. 
+   * [Sample solution](HW-software_01-sample_solution.md) I expect from students.
 2. [HW-software_02](HW-software_02.md)
+   * Usage
+   * Interactive aperture photometry using SAO ds9
 3. python basics
    1. [HW-python_01](HW-python_01.md) (not assigned to submit)
+      * Real basics
    2. [HW-python_02-pathlib](HW-python_02-pathlib.md) (not assigned to submit)
+      * Real basics
    3. [HW-python_03-pathlib](HW-python_03-pathlib.md)
+      * Slightly more
 4. python packages
    1. [HW-numpy_01](HW-numpy_01.md) (not assigned to submit)
+      * Real basics
    2. [HW-numpy_02](HW-numpy_02.md) 
+      * Slightly more
    3. [HW-pandas_01](HW-pandas_01.md) 
-   4. [HW-astropy_01-fits](HW-astropy_01-fits.md) 
+      * Simple usage of pandas
+5. Astronomical data
+   1.  [HW-astropy_01-fits](HW-astropy_01-fits.md)
+      * First usage of ``astropy.io.fits`` and WCS.
+   2. [HW-preproc_01_mkmaster](HW-preproc_01_mkmaster.md)
+      * Making master calibration frames (bias/dark/flats).
+      * Simple analysis of master calibration frames from SAO ds9
+   3. [HW-preproc_02_BDFC.md](HW-preproc_02_BDFC.md)
+      * Pre-processing of the science images from master calibration frames.
+6. [HW-phot_01_apphot](HW-phot_01_apphot.md) 
+   * Professional-level aperture photometry of 2005 UD data from SNU observatory (2018 Oct).
+   * Undergraduate-level scientific analysis questions
+
+7. [HW-obsphot_01](HW-obsphot_01.md)
+   * An assignment to ask students to prepare for observational plan.
+   * We couldn't proceed any real observation due to the COVID-19.
+   * After giving feedbacks to students fro prof. and TA, students are asked to re-submit the answer sheet again within ~ 1-2 weeks.
+
+There were mid-term and final exams. Normally we only have mid-term; final is replaced with students' group reports. This time, however, we couldn't conduct any students-led observations, so the final exam is introduced.
 
 
 
-## Projects
-
-| Num  | Contents     | Link                                                         |
-| ---- | ------------ | ------------------------------------------------------------ |
-| 01   | Preprocessor | [here](https://github.com/ysBach/AO2019/blob/master/Assignments/Proj01-Preprocessor.md) |
-|      |              |                                                              |
-|      |              |                                                              |
-
-
-
-### Example of a Notice to Students
+## Example of a Notice to Students
 
 <details><summary>click</summary>
 <p>
