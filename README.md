@@ -64,7 +64,7 @@ Each directory of the following contents has its own README file.
 1. [Book material](Books/) (theoretical parts and codes)
 
 2. [Notebooks](Notebooks/) (practical parts including codes)
-3. Assignments](Assignments/)
+3. [Assignments](Assignments/)
 4. **Tutorial data** available [here](https://www.dropbox.com/sh/3a1j3495o08yweh/AACSPhIhLwut38yYX8mjvX3ka?dl=0) from my Dropbox.
 
 (Plus. [Presentation files](Notebooks/ppt), which are just auxiliary seminar notes)
