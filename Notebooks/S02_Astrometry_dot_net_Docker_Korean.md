@@ -7,9 +7,11 @@
 ### TL;DR (혹은 아래 [사용법](# 사용법) 참고)
 
 1. ``$ docker pull dm90/astrometry``
-2. ``$ docker run --name nova --restart unless-stopped -v <path/to/index/files>:/usr/local/astrometry/data -v <path/to/FITS/files>:/Downloads -p 8000:8000 dm90/astrometry``
-3. Go to Docker Dashboard, click CLI, use ``solve-field`` as you wish!
-4. *Write papers*
+2. Run Docker app
+3. ``$ docker run --name nova --restart unless-stopped -v <path/to/index/files>:/usr/local/astrometry/data -v <path/to/FITS/files>:/Downloads -p 8000:8000 dm90/astrometry``
+   * An example: ``docker run --name nova --restart unless-stopped -v ~/Downloads/astrometry.net/data:/usr/local/astrometry/data -v ~/Downloads/2020-09-18:/Downloads -p 8000:8000 dm90/astrometry``
+4. Go to Docker Dashboard, click CLI, use ``solve-field`` as you wish!
+5. *Write papers*
 
 
 

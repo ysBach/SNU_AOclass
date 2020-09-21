@@ -13,6 +13,7 @@
    * ``$ docker run --name nova --restart unless-stopped -v <path/to/index/files>:/usr/local/astrometry/data -v <path/to/FITS/files>:/Downloads -p 8000:8000 dm90/astrometry``
    * You have to share the files between the Docker container and host computer, so you need to specify the path to index files and FITS files manually.
    * Example: ``docker run --name nova --restart unless-stopped -v ~/Downloads/astrometry.net/data:/usr/local/astrometry/data -v ~/Downloads:/Downloads -p 8000:8000 dm90/astrometry``
+   * NOTE: **must include ``~/`` in front of the path to make it absolute**.
 
 4. Docker → Dashboard → (you can see a new container "nova") → click CLI (Command-line interface) to open the terminal → use ``solve-field`` as you know.
 
