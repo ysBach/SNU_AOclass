@@ -3,6 +3,7 @@ Made by Yoonsoo P. Bach
 * Ver 1.0: 2017 Feb
 * Ver 1.1: 2017 Sep
 * Ver 2.0: 2018 Mar
+* Ver 2.1: 2020 Sep (add "A Note")
 
 # English Preface
 
@@ -15,6 +16,18 @@ These notes were first made for "**Astronomical Observation**" (AO hereafter) of
 This preface contains some comments to explain ground philosophy while making the lecture notes and the reason for transforming from previous IRAF/IDL-based AO system to Python3-based system. 
 
 [TOC]
+
+## A Note
+
+I was lucky to have opportunities to serve as a TA at the AO class at SNU for years. In 2016, I found the system in IRAF and IDL prevailing in astronomy will only hinder our development and lead our academic society to a future dependent to commercial companies; later I also noticed a possibility of legal issues*. IRAF is a large blackbox, which indeed does not work as it is described in the manual or we'd expect (from image combination and aperture photometry to the PyRAF problem**). People have been using it just because there was no alternative, and these hidden bugs do not give error much larger than our expected precision; but we've got to regret we didn't have systematic "testing modules" and just assumed it works correctly.
+
+I have tried my best to discard all pieces of IDL and most of IRAF, and replace all to python. These are the skeletons for photometry/polarimetry tools I developed for my observational research†.
+
+\* See 2.1.3 below. Also P01 in ppt mentions this.
+
+\*\* If you are using PyRAF (nothing but a IRAF wrapper in python), I urge you to check if it REALLY does the calculation you intended. Many times, it does not update the internal parameters. Worse, it does not raise any warning or error, and pretend as if it did everything correctly. I had to abandon all of my research outputs in 2016 after I found PyRAF does not even do aperture photometry correctly. (Many are confused, so a note: PyRAF is not astropy)
+
+† SNUO1Mpy; TRIPOLpy; NICpolpy; Bach, Ishiguro, Jin et al. 2019 (4179 Toutatis, JKAS); Takahashi+2020 (submitted); Pravec et al. (1999 KW4, in prep), Ishiguro, Bach, Jin et al. (2005 UD, in prep); Bach, Ishiguro et al. (Vesta and Ceres, in prep), Craig, McCully, Conseil, Bach (astropy Image-combination in ccdproc); Geem, Ishiguro et al. (1984QY1+, in prep); Heintz and Finbo ([PyReduc](https://keheintz.github.io/PyReduc/))
 
 
 
@@ -54,9 +67,10 @@ For decades, IRAF of NOAO has become a virtual standard of astronomical image re
 
 1. No human power to develop or maintain IRAF
 2. IRAF has some problems since it's an "old" software
-3. Major new facilities in the near future will not use IRAF/IDL
+3. IRAF has some license issue and thus documentation issue happened in the summer of 2019.
+4. Major new facilities in the near future will not use IRAF/IDL
 
-The third one will be explained later, since it includes IDL too.
+The last one will be explained later, since it includes IDL too.
 
 #### 2.1.1. Human Power Issues
 
@@ -67,6 +81,8 @@ IRAF and its core SPP/CL are designed purely for IRAF society. There is virtuall
 Even though such serious problems may be alleviated in the future, it is almost hopeless to “optimize” IRAF. There are a plethora of different ideas and algorithms to make computation faster, and are still being studied by frontier computer scientists, yet they may not be implemented to IRAF.
 
 This is critical, considering one single astronomical image is now becoming size of giga-bytes. My favorite example is [L.A. Cosmic](http://www.astro.yale.edu/dokkum/lacosmic/), which is a tool for removing cosmic-rays from astronomical images. We have both IRAF and Python versions (Python versions from `astroscrappy` actually uses C++, though it is fully usable on Python), and the Python version is order of magnitude faster than that of IRAF version. It can be up to ~100+ times faster, not only because it works efficiently, but also because IRAF does not support efficient parallel computing by default. One of my colleagues had to spend ~ 0.5 day for doing L.A.Cosmic to all her FITS data. IF there was anything wrong with the results, you have to spend 0.5 day again. The amount of data we have to analyze increases exponentially over time. LSST, which will survey all-sky with a depth of Subaru, or JWST, which is next-generation-HST, decided to use Python 3 and C++ against IRAF/IDL (see below)
+
+
 
 #### 2.1.2. IRAF is Old
 
@@ -80,6 +96,14 @@ Second problem of IRAF is because it is an **old** software, i.e., a problem tha
 * CL has no debug functionality, so it is bad for large programming.
  * Each observatory needs its own software for data reduction. SPP and CL are not good for such purpose.
  * Actually, many different observatories makes their own routines with IDL, not IRAF/SPP/CL, and distribute it to the observers.
+
+
+
+#### 2.1.3. License and Documentation Problems
+
+IRAF seems to have a copyright problem which can be sensitive to mention; I hesitate to even mentioning it. If you are interested, you may search for [iraf-community distribution](https://iraf-community.github.io/) (which became public to open source community thanks to the years of hard work of Dr. Streicher). I heard from third persons that this may have been one of the reasons why NASA and STScI started to hide IRAF from the main pages and tried to erase many traces of it. You may remember STScI's removal of IRAF documentation hosting in the summer of 2019 (I harshly blamed it as an irresponsible vandalism action in science done by an institution which once urged scientists to use IRAF).
+
+
 
 ### 2.2. PyRAF and Its Problems
 PyRAF is an alternative, made of Python, to avoid those problems of IRAF, especially to alleviate the complexity / debugging problem of SPP/CL:
