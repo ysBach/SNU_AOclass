@@ -27,8 +27,10 @@ The installation may take some time. If you have nothing to do, read the next se
    * The ``Git Bash`` will be installed on your Windows, and it allows Windows users to use simple UNIX commands on Windows computer too. 
    * Git Bash is better than Anaconda Prompt, which will be installed if you install Anaconda.
 
->Excerpt from [StackOverflow](https://stackoverflow.com/questions/13321556/difference-between-git-and-github):
->
+
+
+Excerpt from [StackOverflow](https://stackoverflow.com/questions/13321556/difference-between-git-and-github):
+
 >**Git** is a revision control system, a tool to manage your source code history.
 >
 >**GitHub** is a hosting service for Git repositories.
@@ -36,6 +38,19 @@ The installation may take some time. If you have nothing to do, read the next se
 >So they are not the same thing: **Git** is the **tool**, **GitHub** is the **service for projects that use Git**.
 >
 >To get your code to GitHub, [have a look here](https://help.github.com/articles/create-a-repo/).
+
+
+
+**Useful Web Tutorials**: https://36-750.github.io/tools/version-control/
+
+**Useful Video tutorials**
+
+* Nicolas: 
+* [코딩 1시간만에 배우기 - 파이썬 (ft. 실리콘밸리 엔지니어) (Korean)](https://www.youtube.com/watch?v=M6kQTpIqpLs)
+* 얄팍한 코딩사전 (Korean; [channel](https://www.yalco.kr/26_git_tutorial_2/)):
+  1. [Git은 뭐고 Github은 뭔가요?](https://youtu.be/Bd35Ze7-dIw)
+  2. [가장 쉬운 Git 강좌 - (상) 혼자작업편](https://www.youtube.com/watch?v=FXDjmsiv8fI&ab_channel=얄팍한코딩사전) 
+  3. [가장 쉬운 Git 강좌 - (하) Github편](https://www.youtube.com/watch?v=GaKjTjwcKQo&ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84)
 
 
 
