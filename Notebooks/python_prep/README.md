@@ -15,8 +15,11 @@ In this directory, I will put materials you can study and soem external referenc
 
 * Book [_Think Python_](https://greenteapress.com/wp/think-python-2e/) 
   * HIGHLY RECOMMENDED!
+* Ivezić et al.'s book ([Amazon](https://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691198306/)) 
+  * The first author is the creator of AstroML available on [GitHub](https://github.com/astroML/astroML).
+  * Recommended if you want to use python in astronomical research.
 * [scipy lecture notes](https://scipy-lectures.org/)
-  * Only the chapter 1 is enough maybe.
+  * Only the chapter 1 is enough maybe for this course.
 * [Jake's _Python Data Science Handbook_](https://github.com/jakevdp/PythonDataScienceHandbook/tree/master/) 
   * This contains too much information for beginners... Maybe you can take a look at ``matplotlib`` part, etc, for fun.
 * Other free books/lectures/materials are everywhere (e.g., google "python free")
