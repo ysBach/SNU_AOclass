@@ -324,6 +324,8 @@ In astronomical image reduction process, you need some tools to display images o
 
 Many useful documentations and YouTube videos: [SAOImageDS9 - Documentation (google.com)](https://sites.google.com/cfa.harvard.edu/saoimageds9/documentation?authuser=0) (retrieved 2021-01-29)
 
+* Among them, a useful DS9 tutorial lecture note by [George J. Bendo (ver. 2020-06-26 as of 2021-01-29)](http://www.jb.man.ac.uk/~gbendo/Sci/Pict/DS9guide.pdf)
+
 SAO ds9 was made for Chandra X-ray observation, but became so powerful that it has been used for decades by virtually all astronomers.  It has many powerful features, and for me it's more convenient than ginga. By the system default, you will use ds9 to open any FITS image.
 
 If you want to run ds9, you can do `ds9 &` on terminal. Once you've got used to ds9, you can do a bit advanced command such as 
