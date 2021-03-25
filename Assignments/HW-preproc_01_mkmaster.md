@@ -305,7 +305,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 3. What are the header keyword for (1) date and time of the start of the exposure, (2) filter, and (3) exposure time? [1 pt each]
 
 4. Load the file in python as ``CCDData`` object, and set ``hdr`` as the header of the file. **Print** the 3 values by header keywords (e.g., ``print(hdr["<keyword>"])`` for keywords you found above.
-   * Hint: To load as ``CCDData``, use ``ccd = CCDData.read(filepath, unit='adu')`` and ``hdr = ccd.header``.
+   * Hint: To load as ``CCDData``, you may use ``ccd = CCDData.read(filepath, unit='adu')`` and ``hdr = ccd.header``.
    * See the official documentation for [``astropy.nddata.CCDData``](https://docs.astropy.org/en/stable/api/astropy.nddata.CCDData.html).
 
 5. Set ``datetime`` as ``DATE-OBS`` in astropy time format.
@@ -320,7 +320,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
 
 ### 2. Rename FITS
 
-1. Sometimes it's useful to make a simple spreadsheet to look all the important header information at once. Run the following code to make a summary file : ``summary = yfu.make_summary(fitslist=allfits, keywords=USEFUL_KEYS, output="20181012.csv", pandas=True)``
+1. Sometimes it's useful to make a simple spreadsheet to look all the important header information at once. Run the following code to make a summary file : ``summary = yfu.make_summary(allfits, keywords=USEFUL_KEYS, output="20181012.csv", pandas=True)``
 
 2. Open the file (using, e.g., Excel) or print ``summary``. Please look at the file and think about how you can classify bias, dark, flat, and object frames using this header information. (I did|I didn't)
 
@@ -349,7 +349,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
    ```python
    allfits = list(RAWDIR.glob("*.fits"))
    allfits.sort()
-   summary = yfu.make_summary(fitslist=allfits, keywords=USEFUL_KEYS, output="20181012.csv", pandas=True)
+   summary = yfu.make_summary(allfits, keywords=USEFUL_KEYS, output="20181012.csv", pandas=True)
    ```
 
 
@@ -363,7 +363,7 @@ It takes ~ 10 sec for each frame, so total ~100 sample frames took ~ 15 min to i
        summary_table=summary, 
        type_key=["OBJECT", "IMAGETYP"], 
        type_val=["Bias", "Dark Frame"], 
-       dtype='uint16'
+       dtype='uint16',
    )
    mbias.write(CALDIR/"mbias.fits") # Save the master bias to calibration directory CALDIR
    # yfu.combine_ccd?  # documentation
