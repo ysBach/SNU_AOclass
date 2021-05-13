@@ -15,6 +15,7 @@ In this directory, I will put materials you can study and soem external referenc
 
 * Book [_Think Python_](https://greenteapress.com/wp/think-python-2e/) 
   * HIGHLY RECOMMENDED!
+* Prof. Jinsoo Park(박진수)'s [lecture notes](https://github.com/jinsooya/lecture-notes)
 * Ivezić et al.'s book ([Amazon](https://www.amazon.com/Statistics-Mining-Machine-Learning-Astronomy/dp/0691198306/)) 
   * The first author is the creator of AstroML available on [GitHub](https://github.com/astroML/astroML).
   * Recommended if you want to use python in astronomical research.
