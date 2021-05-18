@@ -197,79 +197,7 @@ The name of the environment, ``iraf``, is ``iraf27`` in the original official we
 
 
 
-## 5. Astropy and Affiliated Packages
-
-### 5.1. Installation
-
-* **Astropy**: the name of a project which devotes its human power in developing a *single* package containing tools useful for astronomers in Python language([GitHub](https://github.com/astropy/astropy/wiki), [Official website](http://www.astropy.org/), [The most recent stable distribution documentation](http://docs.astropy.org/en/stable/)).  
-* Affilated Packages: Since astropy is a "single core" package, it doesn't have many convenience functionalities for small specific fields of astronomy. So there are some affiliated packages which helps astronomers to fulfill their needs. You may find the list if them [here](http://www.astropy.org/affiliated/). 
-* **TIP**: The astropy (but not affiliated packages) must have been installed on your computer by default while installing Anaconda.
-
-
-
-Among these affiliated packages, I recommend you to download:
-
-* [photutils](http://photutils.readthedocs.io/en/stable/): Photometry related functionalities
-* [ccdproc](http://ccdproc.readthedocs.io/en/stable/): CCD data manipulation
-* [astroscrappy](https://github.com/astropy/astroscrappy): cosmic ray rejection tool
-* [APLPy](https://aplpy.github.io/): Astronomical image displaying tool
-* [astroquery](https://astroquery.readthedocs.io/en/latest/): Querying astronomical catalog data
-
-To download, type
-
-    conda install -c astropy photutils ccdproc astroscrappy aplpy
-
-For astroquery, it is recommended to download the most recent one:
-
-```
-$ cd <your_github_download_directory>
-$ git clone https://github.com/astropy/astroquery.git
-$ cd astroquery
-$ python setup.py install
-```
-
-
-
-### 5.2. Testing Packages
-
-<details><summary>click</summary>
-<p>
-You can simply test the installation by tests. Run ipython or Jupyter notebook/lab, and type
-
-``` python
->>> import astropy, photutils
->>> photutils.test()
->>> astropy.test()
-```
-
-These will take quite long time, especially astropy takes very long time. (So I didn't show you the full result)
-
-You need to do it only once when you first installed these packages. If you want to test only some part of the whole package, you can specify the module, e.g., you can test `astropy.io.fits` by:
-
-```python
->>> astropy.test(package='io.fits')
-```
-
-While the test is going on, look at the names of the directories, like `astropy/table`, `astropy/units`, etc. These are the names we will encounter very frequently, so this test is not only to **test**, but also to get accustomed to the astropy and python language.
-
-Each dot(`.`) means `test passed` and `x` means `test failed`. But some of the failures are just OK. `s` means it is skipped for some reason. 
-
-An example test for **Astropy 1.3.1 and Photutils 0.3.1** (took ~ 10 mins):
-
-```bash
-(long long test explanations....)
-======================== 1056 passed, 2 skipped, 2 xfailed in 82.18 seconds ========================
-(long long test explanations....)
-Some tests are known to fail when run from the IPython prompt; especially, but not limited to tests involving logging and warning handling.  Unless you are certain as to the cause of the failure, please check that the failure occurs outside IPython as well.  See http://docs.astropy.org/en/stable/known_issues.html#failing-logging-tests-when-running-the-tests-in-ipython for more information.
-== 24 failed, 8717 passed, 75 skipped, 42 xfailed, 1 xpassed, 2 pytest-warnings in 573.02 seconds ==
-```
-
-The astropy will do the tests automatically (takes ~ 10 minutes). There might be some errors, but usually they are not important, so you can ignore them. If "`astropy.test()`" itself does not work, please check whether the installation of Anaconda had been done correctly.
-
-</p>
-</details>
-
-## 6. Editors
+## 5. Editors
 
 There are bunch of different editors (including IDEs = Integrated Development Environment) to edit the codes. I personally use spyder (it is installed from Anaconda by default, and you can use it by running `spyder` or type `spyder &` on the terminal). 
 
@@ -281,11 +209,11 @@ I use geany for miscellaneous and short works because it is extremely light. The
 
 I have tried all the aforementioned editors, and settled down to the lightest, fastest, most intuitive/interactive, and yet functional editors after ~ 2 years of trial and error. BUT this is just my personal opinion, and you may find very different solution. I have many friends who use VI only for all the coding works. If you can, I recommend to use VI as your main/sub editor, or at least learn how to use it. I don't use VI just because for me it is too difficult to use it.
 
-### 6.1. Spyder
+### 5.1. Spyder
 
 Spyder has many important and useful functionalities. Because it uses IPython console as its default, it is very convenient to use it as editor and as terminal at the same time. 
 
-#### 6.1.1. Shortcuts
+#### 5.1.1. Shortcuts
 
 Go to Tools -> Preferences (`Ctrl+Alt+Shift+P` on Ubuntu). "Keyboard shortcuts" list all the useful shortcuts. On Ubuntu, followings are the most important and useful ones:
 
@@ -307,7 +235,7 @@ Go to Tools -> Preferences (`Ctrl+Alt+Shift+P` on Ubuntu). "Keyboard shortcuts" 
 * `ctrl+shift+E`: Change the focus to "editor" window
 * `ctrl+shift+I`: Change the focus to "IPython console" window
 
-#### 6.1.2. Useful Settings
+#### 5.1.2. Useful Settings
 
 It is better to let `matplotlib` plotting window to pop-up (than showing the figure in-line). Go to the Preferences --> IPython Console --> Graphics. Set Graphics backend to "Automatic". Turn Spyder off and turn it on again. You will now see a new window pops up when you plot anything, e.g.,
 
@@ -317,10 +245,12 @@ plt.plot([0,1], [1,1])
 ```
 
 
-## 7. Image Displayer
+
+## 6. Image Displayer
+
 In astronomical image reduction process, you need some tools to display images on computer screen to interactively investigate the images. There is a *historical standard*, which is kind of an *affiliated package of IRAF*, [SAO ds9](http://ds9.si.edu/site/Download.html). The most recent version as of Mar 2018 is ver 7.5. I am currently using ver 7.6 beta. Some people use [Maxim DL](http://diffractionlimited.com/product/maxim-dl/), but it's commercial. In the future, as Python gets more and more attention, Ginga will be another powerful option. I am not sure when Ginga will become quite *perfect*, but until then, I recommend you to use both of them. Their pros and cons will be explained from now.
 
-### 7.1. SAO ds9
+### 6.1. SAO ds9
 
 Many useful documentations and YouTube videos: [SAOImageDS9 - Documentation (google.com)](https://sites.google.com/cfa.harvard.edu/saoimageds9/documentation?authuser=0) (retrieved 2021-01-29)
 
@@ -347,7 +277,7 @@ and `!ds9 image*.fits -single &`, etc, will work identically. There is another t
 
 
 
-### 7.2. Ginga: Astropy Affiliated
+### 6.2. Ginga: Astropy Affiliated
 [Ginga](https://ginga.readthedocs.io/en/latest/) (pronounced *ging-ga*, which means galaxy in Japanese; the reason for the name is explained in the link) is an affiliated package of astropy, and is used for FITS image viewer. If you do not want ginga, please refer to SAO ds9 in later section.
 
 If you want to download it, type
