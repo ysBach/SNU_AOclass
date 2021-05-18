@@ -164,7 +164,7 @@ All the IRAF/Astropy packages, as well as usual python packages, will be downloa
 
 **I recommend to use Anaconda3 and use Python 3.6+**. 
 
-> The support for Python 2 will be ceased soon. See, e.g., [PEP373](https://www.python.org/dev/peps/pep-0373/), [Python3Statement](http://www.python3statement.org/). [python clock](https://pythonclock.org/) was made  by Guido (The inventor of Python). All the ``astropy`` and its affiliated packages, ``matplotlib``, and many more which you are familiar with, will not support Python 2 after 2019.
+> The support for Python 2 is ceased. See, e.g., [PEP373](https://www.python.org/dev/peps/pep-0373/), [Python3Statement](http://www.python3statement.org/). [python clock](https://pythonclock.org/) was made  by Guido (The inventor of Python). All the ``astropy`` and its affiliated packages, ``matplotlib``, and many more which you are familiar with, does not support Python 2 after 2019.
 >
 > For useful things in Python 3 compared to 2, see [Python 3 for scientists](https://python-3-for-scientists.readthedocs.io/en/latest/python3_user_features.html).
 
@@ -297,7 +297,7 @@ Go to Tools -> Preferences (`Ctrl+Alt+Shift+P` on Ubuntu). "Keyboard shortcuts" 
     #%%
     # Cell 1
     import numpy as np
-
+    
     #%%
     # Cell 2
     print(np.ones(10))
@@ -361,5 +361,4 @@ You can use `$ ginga &` on terminal or `ecl> !ginga &` on IRAF console. Although
 The most important feature of `ginga` is to use it for interactive FWHM estimation and radial profile check, which is done by ``pick``: [documentation](https://ginga.readthedocs.io/en/latest/manual/plugins_local/pick.html?highlight=pick).
 
 I couldn't find how to use Ginga with IRAF yet.... Though [this official site](http://ginga.readthedocs.io/en/latest/manual/plugins_global/iraf.html) says you can. I think this is a [known bug](https://trello.com/c/6mt7oBXZ/44-iraf-plugin-implemented) that you actually cannot.
-
 
