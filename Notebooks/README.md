@@ -10,11 +10,11 @@
 
 ## Part 0: Preparation
 
-* [00-0_Preface.md](Notebooks/00-0_Preface.md)
-* [00-1_Softwares.md](Notebooks/00-1_Softwares.md)
-* [00-2_UNIX.md](Notebooks/00-2_UNIX.md)
-* [00-3_Prepare_Python.md](Notebooks/00-3_Prepare_Python.md) - **Please read it!**
-* **Go to [python prep directory](Notebooks/python_prep) and study python by yourself.**
+* [00-0_Preface.md](00-0_Preface.md)
+* [00-1_Softwares.md](00-1_Softwares.md)
+* [00-2_UNIX.md](00-2_UNIX.md)
+* [00-3_Prepare_Python.md](00-3_Prepare_Python.md) - **Please read it!**
+* **Go to [python prep directory](python_prep) and study python by yourself.**
 * Statistics (See the [Books](../Books) directory)
 * [references](references/) (Many refereces you may want to refer to)
 
