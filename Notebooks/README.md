@@ -1,6 +1,6 @@
 # Notebooks
 
-All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/tree/master/Notebooks/).
+**!!!**: **All the notes below are accessible at [this nbviewer link](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/tree/master/Notebooks/).**
 
 * Some of Part 0, S, and A are not covered in the class.
 
@@ -13,9 +13,10 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 * [00-0_Preface.md](Notebooks/00-0_Preface.md)
 * [00-1_Softwares.md](Notebooks/00-1_Softwares.md)
 * [00-2_UNIX.md](Notebooks/00-2_UNIX.md)
-* Go to [python prep directory](Notebooks/python_prep) and study python by yourself.
-* Statistics (See the Book above)
-* [references](references/) (Many references you may want to refer to)
+* [00-3_Prepare_Python.md](Notebooks/00-3_Prepare_Python.md) - **Please read it!**
+* **Go to [python prep directory](Notebooks/python_prep) and study python by yourself.**
+* Statistics (See the [Books](../Books) directory)
+* [references](references/) (Many refereces you may want to refer to)
 
 
 
@@ -27,7 +28,7 @@ All the notes below are accessible at [this nbviewer link](https://nbviewer.jupy
 4. [Note 04](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/04-Aperture_Phot_01.ipynb): Aperture Photometry of single star (`photutils` and `astroquery`)
 5. [Note 05](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/05-Differential_Phot.ipynb): Differential Aperture Photometry (`ysfitsutilspy` and `ysphotutilspy`)
 6. [Note 06](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/06-Extended_Sources.ipynb): Extended source (``photutils``)
-   1. [Note 06-1](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/06-1_photutils_SExtractorBackground_and_sep.ipynb): ``SExtractorBackground`` (``photutils``) and ``sep``
+   1. [Note 06-1](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/06-1_photutils_SExtractorBackground_and_sep.ipynb): A technical (advanced) topic, ``SExtractorBackground`` (``photutils``) and ``sep``
 7. [Note 07](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/07-Cosmic_Ray_Rejection.ipynb): Cosmic-Ray rejection (``astroscrappy``)
 8. [Note 08](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/08-PSF_Extraction.ipynb): Extraction of PSF
 9. [Note 09](https://nbviewer.jupyter.org/github/ysbach/SNU_AOclass/blob/master/Notebooks/09-PSF_Phot.ipynb): Do photometry from the extracted PSF
