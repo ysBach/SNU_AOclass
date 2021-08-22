@@ -1,0 +1,75 @@
+\chapter{Growth Curve}
+
+\textbf{NOTE}: This part is heavily based on \texttt{StetsonPB 1990 PASP 102 932}.
+
+Selecting an appropriate aperture radius for circular PSF photometry is not an easy task. Since 1960s, it has been extensively studied including Moffat, and it was blooming in 1990s thanks to many pioneers who tried to combine the analytical description of stellar profile and empirical counterparts. Here I will summarize the most powerful technique called the \textbf{growth curve (GC) analysis}, which maybe out of scope for undergraduate courses, but conceptually easy. 
+
+\section{Introduction}
+In photometry, we need to set the aperture as large as possible if we want to collect all the flux from the star. But wait, how large is large? It should be ``sufficiently large that seeing, tracking, and focus errors do not affect the fraction of the star's flux which falls \textit{outside} the aperture. $ \cdots $ The computer-defined ``aperture'' within which the pixel values are summed in the two-dimensional data array is a direct analog to the physical aperture placed at the telescope focus in a standard photometer.'' (from Stetson 1990). 
+
+Ststson further describes ``$ \cdots $ to measure as many stars as possible through a series of \textit{several} concentric apertures of increasing radius and to calculate the observed magnitude differences between successive apertures for each star. These are plotted as a function of radius, and a smooth curve is sketched through them to yield the average ``growth curve'' of the frame. The average magnitude differences between successive apertures are then read from this curve and summed from the outside inward to yield cumulative corrections from each of the smaller apertures to the system of the largest. This multiple-aperture technique offers several advantages over the simpler two-aperture method.'' (Stetson 1990) The earliest description about the growth curve analysis is, Stetson notes, \texttt{Rich+ 1984, ApJ, 286, 517}.
+
+In short, what we do in GC analysis is like this. First, assume the PSF is circular. If $ i $ is the frame number ($ i $-th CCD frame) and $ j $ is the star id ($ j $-th star):
+\begin{enumerate}
+\item Find the center of the star and fix it ($ \vb{r}_{0, i, j} $)
+\item Set the sky annulus for the frame (say inner/outer radii $ r_{\mathrm{in}, i} $ and $ r_{\mathrm{out}, i} $, respectively, and you may fix it identical for all stars if you want).
+\item Do aperture photometry for many $ r_k $, e.g., $ r_k = 1, 2, \cdots, r_\mathrm{in} $ pixels.
+\item Plot the sky-subtracted delta-magnitude $ \delta_{i, j, k} = m_{i, j}(r_k) - m_{i, j}(r_{k-1}) $ as a function of $ (r_k + r_{k-1})/2 $ for many bright stars.
+\item Find a smooth function which describes this curve (discussed below).
+\item Find, e.g., $ \Delta $ value such that $ \mathrm{True~mag} = m(r = \infty) = m(r = r_k) - \Delta(r_k) $.
+\item Do photometry for $ j $-th star with $ r_{k'} $ (where the SNR gets maximum), and get the true magnitude by $ \Delta(r_{k'}) $.
+\end{enumerate}
+
+
+\section{Stellar Profile}
+We have discussed the stellar profiles like Gaussian and Moffat. Stetson 1990 describes a more general stellar profile\footnote{The original notation was $ I(r, X_i; R_i, A, B, C, D, E) = (B + E X_i) M(r; A) + (1 - B - EX_i) [ C G(r; R_i) + (1 - C) H(r; DR_i) ] $, i.e., $ R_i = \sigma_i $, $ A = \beta $, $ B = a $, $ C = c $, $ D = s $, $ E = b $. I made a more generalization by adding the core width $ R $, which was set to 1 in Stetson's paper.}:
+\begin{equation*}
+  I(r, X_i | R_i) 
+    = [a + b X_i] M(r | R, \beta) 
+      + [1 - (a + b X_i)] \left \{ c G(r | \sigma_i) + [1 - c] H(r | s\sigma_i) \right \} ~.
+\end{equation*}
+Here, using the notations in \cref{eq: profile gauss flux,eq: profile moffat flux}, 
+\begin{equation*}
+\begin{aligned}
+  M(r | R, \beta) 
+    &= f_\mathrm{Moffat}(r | I = 1, R, \beta) 
+    &&= \frac{\beta - 1}{\pi R^2} \left [ 1 + \left (\frac{r}{R} \right )^2 \right ]^{-A} ~, \\
+  G(r | \sigma_i) 
+    &= f_\mathrm{Gauss}(r | I = 1, \sigma_i)
+    &&= \frac{1}{2\pi \sigma_i^2} e^{-r^2/2\sigma_i^2} ~, \\
+  H(r | r_0) 
+    &= \frac{1}{2\pi r_0^2} e^{-r/r_0} ~. &&
+\end{aligned}
+\end{equation*}
+Actually there is no reason to introduce $ s \sigma_i $ instead of a totally new parameter, say $ \tilde{s} $, but Stetson used $ s\sigma_i $. These functions have simple integral form:
+\begin{equation}\label{eq: growth_curve_integral}
+\begin{aligned}
+  M_I(r_k | R, \beta) 
+    &= \int_{0}^{r_k} M(r | I = 1, R, \beta) (2 \pi r) dr
+    &&= 1 - \frac{1}{ \left (1 + (r_k/R)^2 \right )^{\beta - 1}} ~, \\
+  G_I(r_k | \sigma) 
+    &= \int_{0}^{r_k} G(r| I = 1, \sigma_i) (2 \pi r) dr
+    &&= 1 - e^{-r_k^2/2\sigma_i^2} ~, \\
+  H_I(r_k | r_0) 
+    &= \int_{0}^{r_k} H(r | I = 1, r_0) (2 \pi r) dr
+    &&= 1 - \left [ 1 + \frac{r_k}{r_0} \right ] e^{-r_k/r_0} ~, \\  
+\end{aligned}
+\end{equation}
+and all have integral of unity if $ r_k \rightarrow \infty $ (As noted with \cref{eq: profile moffat flux}, $ A > 1 $ is required). The GC is basically an azimuthally averaged profile, so the integrated version of $ I $ is required:
+\begin{equation}\label{eq: daogrowth_profile}
+  I_I(r, X_i) 
+    = [a + b X_i] M_I(r | R, \beta) 
+      + [1 - (a + bX_i)] \left \{ c G_I(r | \sigma_i) + [1 - c] H_I(r | s\sigma_i) \right \} ~.
+\end{equation}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -197,8 +197,9 @@ Usually the error-bar of $ f^{(i)} $ will be very small because you will use ten
 
 As mentioned before, the data used in this analysis can be \textbf{recycled for the linearity check}. We can simply plot $ f^{(i)} $ as a function of $ t_i $, and you should see a linear line. Depending on the dynamic range of the detector, the linearity will break at some exposure $ t_i > t_{i_\mathrm{crit}} $. The $ F^{(i_\mathrm{crit})} = f^{(i_\mathrm{crit})} + b $ will then be the maximum ADU value you should trust. Any pixel value higher than that must be cautiously dealt when you do the data analysis.
 
+A tip is that, it is better to take a fake flat, i.e., a flat with illumination gradient. That is, for each exposure, certain range of pixel values are obtained across the image. Therefore, in both the linear regression and linearity plot, the $ x $-axis (mean ADU) will be filled more densely.
 
-To increase the number of data points in linear regression, you need to take too many flats. A better way is to chop each frame into mesh (e.g., 10 by 10 pixel meshes), and use each such region as one data point. If you have 1 flat at 5 exposures ($ N_f^{(i)} = 1 $ for $ i = 1, .., 5 $) and flat is 1,000 by 1,000 pixels, you can make 10,000 meshes per each exposure! Therefore, a simpler method is :
+To increase the number of data points in linear regression, you need to take too many flats. Another way is to chop each frame into mesh (e.g., 10 by 10 pixel meshes), and use each such region as one data point. If you have 1 flat at 5 exposures ($ N_f^{(i)} = 1 $ for $ i = 1, .., 5 $) and flat is 1,000 by 1,000 pixels, you can make 10,000 meshes per each exposure! Therefore, a simpler method is :
 
 \begin{thm} [Gain and Readnoise Determination - Graphical (recommended)]
 For each flat, subtract bias and chop it into many meshes. For each mesh, calculate pixel mean and variances. If the incident flux is assumed to be homogeneous in this small mesh area, $ \mathrm{variance} = \mathrm{mean}/g + (R/g)^2 $.
