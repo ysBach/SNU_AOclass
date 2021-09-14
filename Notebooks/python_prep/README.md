@@ -54,9 +54,11 @@ The materials below are from [SPLIT Program of SNU](https://eng.snu.ac.kr/reserv
 2. Matt Craig's [reducer](https://reducer.readthedocs.io/en/latest/)
    - A simple Jupyter Notebook to reduce data, which the author used for his classes.
    - If you want, you may get ideas from this and use it in your own code.
-3. [astropy tutorial](http://learn.astropy.org/)
+3. **Lecture note** for [Técnicas Experimentales en Astrofísica](https://guaix.fis.ucm.es/~jaz/master_TEA/tea_book/intro.html)
+   - I was recommended by one of my friend at MPI, and this looks very well structured for beginners. It can be a good complementary material to this lecture note.
+4. [astropy tutorial](http://learn.astropy.org/)
    - I personally think the web is too laggy but some tutorials seem informative, e.g., [UVES spectrum analysis](http://learn.astropy.org/rst-tutorials/UVES.html?highlight=filtertutorials).
-4. The latest or stable official websites for each package, e.g., [astropy](http://docs.astropy.org/en/stable/), [photutils](https://photutils.readthedocs.io/en/latest/) and [ccdproc](https://ccdproc.readthedocs.io/en/latest/) themselves are good references.
+5. The latest or stable official websites for each package, e.g., [astropy](http://docs.astropy.org/en/stable/), [photutils](https://photutils.readthedocs.io/en/latest/) and [ccdproc](https://ccdproc.readthedocs.io/en/latest/) themselves are good references.
 
 
 

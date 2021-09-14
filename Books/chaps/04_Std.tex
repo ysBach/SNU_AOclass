@@ -4,21 +4,21 @@
 The standardization process is a process to convert the instrumental values to physical values. In CCD, what is being read is the potential ($ \propto $ number of electrons $ \propto $ flux). But what does a CCD pixel value mean? $ 1 $ ADU can mean $ \SI{1}{Jy} $ at one CCD but at different one it can mean $ \SI{5}{Jy} $ because it is designed to be insensitive to photons for some reason. Thus, what astronomers do is
 
 \begin{enumerate}
-\item Make a list of objects which have known flux (e.g., star A has spectrum of blahblah, and it has $ \mathrm{V}_\mathrm{std} $ magnitude or flux $ I_\mathrm{std} $ in the V-band). These stars are called \textbf{standard stars}.
+\item Make a list of objects which have known flux (e.g., star A has spectrum of blahblah, and it has $ V_\mathrm{std} $ magnitude or flux $ I_\mathrm{std} $ in the V-band). These stars are called \textbf{standard stars}.
 \item Observe the target and the standard stars simultaneously. If they cannot be in the same field of view, observe them at the same night when airmasses are not too different and weather is not changed largely.
 \end{enumerate}
 Now the power of CCD comes in: It's highly linear, i.e., the pixel counts of $ N $ (of the target of interest) and $ N_\mathrm{std} $ are very much proportional to the original flux, $ I $ and $ I_0 $. Thus, you can use Pogson's formula, because what it requires is only the ratio of flux: 
 \begin{equation}\label{eq: Pogson}
-  \mathrm{V} - \mathrm{V}_\mathrm{std} 
+  V - V_\mathrm{std} 
     = -2.5 \lg \frac{I}{I_\mathrm{std}} 
     =  -2.5 \lg \frac{N}{N_\mathrm{std}} ~.
 \end{equation}
 
 \begin{ex}[Simplest Standardization]
-If the aperture photometry gave pixel count of $ 1000 $ for a standard star of $ \mathrm{V}_\mathrm{std} = \m{10.00} $ and the object had pixel count of $ 500 $, the above formula will give $ \mathrm{V} = \m{10.75} $. 
+If the aperture photometry gave pixel count of $ 1000 $ for a standard star of $ V_\mathrm{std} = \m{10.00} $ and the object had pixel count of $ 500 $, the above formula will give $ V = \m{10.75} $. 
 \end{ex}
 
-In practice\footnote{From here, I extensively refered to Ch. 6 of ``A Practical Guide to Lightcurve Photometry and Analysis'' by Brian D. Warner, 2e.}, especially when stars with catalogued magnitude are not in the same field of view as the target of interest, it is very difficult to use these formulae. In such a case, we have two FITS images to compare: one for target and one for standard star (usually far away from the target). A direct comparison of $ N $ and $ N_0 $ is difficult because
+In practice\footnote{I extensively refered to Ch. 6 of ``A Practical Guide to Lightcurve Photometry and Analysis'' by Brian D. Warner, 2e in this subsection.}, especially when stars with catalogued magnitude are not in the same field of view as the target of interest, it is very difficult to use these formulae. In such a case, we have two FITS images to compare: one for target and one for standard star (usually far away from the target). A direct comparison of $ N $ and $ N_0 $ is difficult because
 \begin{enumerate}
 \item The atmosphre exists. The magnitude we observe on ground is different from the one we would have observed outside of the atmosphere (space). This gives the $ k' $ and $ k'' $ terms in \cref{eq: std} below.
 \item The CCD is not ideally simple. For example, if it is more sensitive to redder wavelength, making red stars brighter than they should be. This gives the $ k $ term in \cref{eq: std} below.
@@ -42,27 +42,29 @@ and
 \item $ M_f $: The \emph{standard} apparent magnitude (or the \emph{true} apparent magnitude) at filter $ f $.
 \item $ m_f $: The \emph{instrumental} magnitude ($ m_f = -2.5 \lg N $).
 \item $ m_{0f} $: The extra-atmospheric magnitude ($ m_f $ value we would have obtained if we were in space $ X = 0 $).
-\item $ C $: The \emph{true} color index\footnote{Not necessarily include filter $ f $, but it is better that the wavelength ranges of the selected two filters ``contain'' the range of $ f $ for interpolation purpose.}, e.g., $ \mathrm{B} - \mathrm{V} $ or $ \mathrm{r'} - \mathrm{i'} $.
+\item $ C $: The \emph{true} color index\footnote{Not necessarily include filter $ f $, but it is better that the wavelength ranges of the selected two filters ``contain'' the range of $ f $ for interpolation purpose. Also in many classical literatures, you will see the $ C $ in this equation is the \textit{observed} color, not the true color. This is just a matter of preference, because anyway it's used as a crude approximation factor, as we will see soon.}, e.g., $ B - V $ or $ r' - i' $.
 \item $ k_f' $: The first order extinction coefficient at filter $ f $.
 \item $ k_f'' $: The second order extinction coefficient at filter $ f $.
 \item $ z_f $: The zero point at filter $ f $.
 \item $ k_f $: The system transform coefficient at filter $ f $.
-\item Note: lower- and upper-cased letters are used for the \emph{instrumental} and \emph{true} magnitudes, respectively\footnote{For example, v, b, $ m_\mathrm{g'} $ are instrumental magnitudes of an object and V, B, and $ M_\mathrm{g'} $ are true appparent magnitudes of it.}.
+\item Note: lower- and upper-cased letters are used for the \emph{instrumental} and \emph{true} magnitudes, respectively\footnote{For example, $ v $, $ b $, $ m_{g'} $ are instrumental magnitudes of an object and $ V $, $ B $, and $ M_{g'} $ are true appparent magnitudes of it.}.
 \end{itemize}
 
-%The example I showed with \cref{eq: Pogson} is the case when $ k_f = k_f' = k_f'' = 0 $, or equivalently $ k_f = 0 $ and $ X = 0 $. In such a case, the true apparent magnitude is $ \mathrm{V} = \mathrm{v} + z_\mathrm{V} = -2.5 \lg N + z_\mathrm{V} $ where $ \mathrm{v} $ is the instrumental magnitude and $ z_\mathrm{V} $ is just a constant\footnote{}. Same goes true for the standard star, so $ \mathrm{V}_0 = \mathrm{v}_0 + z_\mathrm{V} = -2.5 \lg N_0 + Z_\mathrm{V} $. Then \cref{eq: Pogson} makes sense and $ \mathrm{V}- \mathrm{V}_0 = \mathrm{v} - \mathrm{v}_0 $. If the coefficients are non-zero, you can see that 
+%The example I showed with \cref{eq: Pogson} is the case when $ k_f = k_f' = k_f'' = 0 $, or equivalently $ k_f = 0 $ and $ X = 0 $. In such a case, the true apparent magnitude is $ V = v + z_V = -2.5 \lg N + z_V $ where $ v $ is the instrumental magnitude and $ z_V $ is just a constant\footnote{}. Same goes true for the standard star, so $ V_0 = v_0 + z_V = -2.5 \lg N_0 + Z_V $. Then \cref{eq: Pogson} makes sense and $ V- V_0 = v - v_0 $. If the coefficients are non-zero, you can see that 
 
-From \cref{eq: std}:
+If the subscript std again means the value for the standard star, from \cref{eq: std}:
 \begin{equation}
-  \mathrm{V} - \mathrm{V}_\mathrm{std}
-    = (\mathrm{v} - \mathrm{v}_\mathrm{std})
-    + k_\mathrm{V}'(X - X_\mathrm{std})
-    + k_\mathrm{V}''(X C - X_\mathrm{std} C_\mathrm{std})
-    + k_\mathrm{V}(C - C_\mathrm{std})
-    + \Delta z_\mathrm{V}
-    \neq \mathrm{v} - \mathrm{v}_\mathrm{std} ~.
+\begin{aligned}
+  V - V_\mathrm{std}
+    &= (v - v_\mathrm{std})
+    + k_V'(X - X_\mathrm{std})
+    + k_V''(X C - X_\mathrm{std} C_\mathrm{std})
+    + k_V(C - C_\mathrm{std})
+    + \Delta z_V\\
+    &\neq v - v_\mathrm{std} ~.
+\end{aligned}
 \end{equation}
-So the calculation given in the example is true only if the airmass of the object and standard star are identical AND the true color indices of them are identical. Otherwise, we cannot simply equate the right hand side of \cref{eq: Pogson} ($ = \mathrm{v} - \mathrm{v}_\mathrm{std} $) to the left hand side ($ = \mathrm{V} - \mathrm{V}_\mathrm{std} $). In space, we can remove all the atmosphere related terms since $ X = 0 $. Also $ \Delta z \approx 0 $ is assumed (discussed in \cref{ss: zeropt}), so only the $ k_f $ term remains. This is why space observation is powerful.
+So the calculation given in the example is true only if the airmass of the object and standard star are identical AND the true color indices of them are identical. Otherwise, we cannot simply equate the right hand side of \cref{eq: Pogson} ($ = v - v_\mathrm{std} $) to the left hand side ($ = V - V_\mathrm{std} $). In space, we can remove all the atmosphere related terms since $ X = 0 $. Also $ \Delta z \approx 0 $ is assumed (discussed in \cref{ss: zeropt}), so only the $ k_f $ term remains. This is why space observation is powerful.
 
 \section{Understanding the Standardization Formula}
 In this section, I will discuss about the terms in \cref{eq: std} with some realistic data and plots. At the same time, I will give a derivation of the equation. Many textbooks only give the former; I do not want to go against that trend, but I wanted more quantitative explanations and justifications of those at the same time. 
@@ -77,7 +79,20 @@ The atmospheric extinction is dependent on the wavelength as in \cref{fig:air-ex
 \label{fig:air-ext-and-filter}
 \end{figure}
 
-Consider an object with spectrum $ S_0(\lambda) $, measured at space, is observed at an airmass of $ X $. The intensity at filter with profile $ f_f(\lambda) $ without atmosphere is $ \int_{0}^{\infty} S_0(\lambda) f_f(\lambda) d\lambda $. Because $ f_f(\lambda) $ can be set as non-zero for $ \lambda \in (\lambda_1, \lambda_2) $ and 0 otherwise, it can also be written as $ \int_{\lambda_1}^{\lambda_2} S_0(\lambda) f_f(\lambda) d\lambda $. If the spectrum undergoes atmospheric extinction described by optical depth of $ \tau(\lambda) $, the intensity after the filter throughput is $ \int_{\lambda_1}^{\lambda_2} S_0(\lambda) f_f(\lambda)  e^{-\int \tau(\lambda) dX} d\lambda \approx \int_{\lambda_1}^{\lambda_2} S_0(\lambda) f_f(\lambda)  e^{-\tau(\lambda) X} d\lambda$, where $ e^{-\tau(\lambda) X} $ is an approximation of $ e^{\int -\tau(\lambda) dX} $, where the integration is along the optical path along the atmosphere. When extinction is not severe, i.e., $ \tau(\lambda) X \ll 1 $ for all $ \lambda $ of interest, $ e^{-\tau(\lambda) X} \approx 1 - \tau(\lambda) X $ (approx 1). Also when $ A \ll 1 $, $ \lg (1 - A) \approx - A / \ln 10 $ (approx 2). Combining these information, Pogson's formula states
+Consider an object with spectrum $ S_0(\lambda) $, measured at space, is observed at an airmass of $ X $. The intensity at filter with profile $ f_f(\lambda) $ without atmosphere is 
+\begin{equation}
+  \int_{0}^{\infty} S_0(\lambda) f_f(\lambda) d\lambda 
+  = \int_{\lambda_1}^{\lambda_2} S_0(\lambda) f_f(\lambda) d\lambda ~.
+\end{equation}
+This is because $ f_f(\lambda) $ can be set as non-zero for $ \lambda \in (\lambda_1, \lambda_2) $ and 0 otherwise. If the spectrum undergoes atmospheric extinction described by optical depth of $ \tau(\lambda) $, the intensity after the filter throughput is
+\begin{equation}
+  \int_{\lambda_1}^{\lambda_2} 
+    S_0(\lambda) f_f(\lambda) e^{-\int \tau(\lambda) dX} d\lambda 
+  \approx 
+    \int_{\lambda_1}^{\lambda_2} 
+    S_0(\lambda) f_f(\lambda)  e^{-\tau(\lambda) X} d\lambda ~.
+\end{equation}
+Here, $ e^{\int -\tau(\lambda) dX} \approx e^{-\tau(\lambda) X} $ is used, and the integration is along the optical path along the atmosphere. When extinction is not severe ($ \tau(\lambda) X \ll 1 $ for all $ \lambda \in (\lambda_1, \lambda_2)$), $ e^{-\tau(\lambda) X} \approx 1 - \tau(\lambda) X $ (say ``approx 1''). Also when $ A \ll 1 $, $ \lg (1 - A) \approx - A / \ln 10 $ (say ``approx 2''). Combining these information, Pogson's formula states
 \begin{equation}
 \begin{aligned}
   m_f - m_{0f}
@@ -95,22 +110,24 @@ Consider an object with spectrum $ S_0(\lambda) $, measured at space, is observe
 \end{aligned}
 \end{equation}
 
-Remembering $ I(\lambda) = I_0(\lambda) e^{-\tau(\lambda) X} $, we have extinction (magnitude)
+A short digression here. Remembering $ I(\lambda) = I_0(\lambda) e^{-\tau(\lambda) X} $, we have extinction (magnitude)
 \begin{equation*}
   \Delta m(\lambda) 
     = -2.5 \lg \qty( \frac{I(\lambda)}{I_0(\lambda)} ) 
     = 1.086 \tau(\lambda) X ~.
 \end{equation*} 
-Then the $ y $-axis of \cref{fig:air-ext-and-filter} is $ 1.086 \tau(\lambda) $, so you can roughly understand that the $ y $-axis represents $ \tau(\lambda) $. Hence, $ \tau(\lambda) X \ll 1 $ (approx 1) is reasonable. In cases such as short wavelength (shorter than B/g) and high airmass observation, this assumption may break down. This is why classical photometric observers dislike observations at airmass $ X \gtrsim 1.5\mathrm{-}2 $ which corresponds to elevation smaller than $ 48^\circ \mathrm{-} 30^\circ$. For polarimetry, however, only the \emph{ratio} of two electric field vector directions are important, so airmass does not matter\footnote{For example, \texttt{ItoT+2018, NatCo, 9, 2486} demonstrated the polarization degree is not seriously affected by airmass even up to 7 compared to that of 1.03, at least less than 0.05 \%p. This is because atmospheric scattering is basically a \emph{forward} scattering, which should not induce any additional polarization degree although the total intensity should decrease.} The error due to the approximation, however, may not be severe compared to other error sources (e.g., changing weather). 
+Then the $ y $-axis of \cref{fig:air-ext-and-filter} is $ 1.086 \tau(\lambda) \approx \tau(\lambda) $. Thus, you can roughly understand that the $ y $-axis represents $ \tau(\lambda) $. Now you can visually confirm that $ \tau(\lambda) X \ll 1 $ (``approx 1'') is reasonable. In cases such as short wavelength (shorter than $ B $ or $ g $) and high airmass observation, this assumption may break down\footnote{Also for longer wavelegths ($ \lambda \gtrsim 1 \,\mathrm{\mu m} $, including JHK bands), this approximation breaks down severely.}. This is why classical photometric observers dislike observations at airmass $ X \gtrsim 1.5\mathrm{-}2 $ (elevation $ \lesssim 48^\circ \mathrm{-} 30^\circ$). For polarimetry, however, only the \emph{ratio} of two (orthogonal) electric field intensities are important, so airmass does not matter\footnote{For example, \href{https://ui.adsabs.harvard.edu/abs/2018NatCo...9.2486I/abstract}{\texttt{ItoT+2018, NatCo, 9, 2486}} demonstrated the polarization degree is not seriously affected by airmass ($ X = 1.03 \mathrm{-} 7 $). The change in the polarization for $ X = 1 $ and 7 is at most 0.05 \%p. This is because atmospheric scattering is basically a \emph{forward} scattering, which should not induce any additional polarization degree (except for very small scattering angle multiple scatterings), although the total intensity should decrease.} The error due to the approximation, however, may not be severe compared to other error sources (e.g., changing weather). 
 
-Now we want to further assume that, $ \tau(\lambda) \approx \tilde{c}_1 + \tilde{c}_2 \lambda $ within the wavelength range of $ (\lambda_1, \lambda_2) $. This is similar to approximating the black markers in \cref{fig:air-ext-and-filter} within each filter as a line because its y-axis is nothing but $ 1.086 \tau $. Then
+Now coming back to the original logic, we want to further assume that $ \tau(\lambda) \approx \tilde{c}_1 + \tilde{c}_2 \lambda $ for $ \lambda \in (\lambda_1, \lambda_2) $. This is similar to approximating the black markers in \cref{fig:air-ext-and-filter} within each filter as a line because its y-axis is nothing but $ 1.086 \tau \approx \tau $. Then
 \begin{equation}
   m_f - m_{0f} 
     \approx 2.5 
     \qty (c_1 + c_2\frac{\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) \lambda d\lambda}
       {\int_{\lambda_1}^{\lambda_2} S_0(\lambda) f(\lambda) d\lambda} ) X ~.
 \end{equation}
-Here, $ c_1 $ and $ c_2 $ are also constants. If the filter is fixed (e.g., V-band or SDSS $ \mathrm{g'} $ filter, etc), the only unknown thing in the second term in the parentheses is $ S_0(\lambda) $, i.e., the spectral shape. If it is a black body spectrum, the shape of $ S_0 $ is determined uniquely once the color index $ C $ is known. Even if it is not a perfect black body, it is reasonable to assume the spectral shape, $ S_0(\lambda) $, and color index, $ C $, have \textit{nearly} one-to-one relationship\footnote{For example, if you look at the color-color diagram of stars, A0, F0, and G0 stars all share similar $ \mathrm{U} - \mathrm{B} $ colors, i.e., color index and spectral shape are not one-to-one. This happens because (1) star spectra are not perfect black bodies and (2) filter profile is not ``flat'' as a function of $ \lambda $. But to the first-order approximation, it is acceptable.}. Fortunately most wildely used color indices (such as $ \mathrm{B}-\mathrm{V} $ or gri colors) are more like one-to-one for \emph{many} (but not all) cases. Thus, $ C $ is an indicator of $ S_0(\lambda) $, so the second term is roughly a function of $ C $, say $ c_2 \tilde{S}(C) $. The final assumption we make here is that the second term is $ c_2 \tilde{S} (C) \approx c_{3f} + c_{4f} C $ as the first-order approximation. Here $ c_{3f} $ and $ c_{4f} $ have subscript $ f $ because they depend on the \textit{filter} profile, but not on the spectral shape under our simplifying assumptions, because all the dependency from the spectral shape is absorbed into $ C $. Then
+Here, $ c_1 $ and $ c_2 $ are also constants. If the filter is fixed (e.g., $ V $-band or SDSS $ g' $ filter, etc), the only unknown thing in the second term in the parentheses is $ S_0(\lambda) $, i.e., the spectral shape. If it is a black body spectrum, the shape of $ S_0 $ is determined uniquely once the color index $ C $ is known. Even if it is not a perfect black body, it is reasonable to assume the spectral shape, $ S_0(\lambda) $, and color index, $ C $, have \textit{nearly} one-to-one relationship\footnote{For example, if you look at the color-color diagram of stars, A0, F0, and G0 stars all share similar $ U - B $ colors, i.e., color index and spectral shape are not one-to-one. This happens because (1) star spectra are not perfect black bodies and (2) filter profile is not ``flat'' as a function of $ \lambda $. But to the first-order approximation, it is acceptable.}. Fortunately most wildely used color indices (such as $ B - V $ or gri colors) are more like one-to-one for \emph{many} (but not all) cases. Thus, $ C $ is an indicator of $ S_0(\lambda) $, so the second term is roughly a function of $ C $, say $ c_2 \tilde{S}(C) $. Note that this logic does not change even if $ C $ were the \textit{observed} color index (not the \textit{true} color index), as I mentioned earlier. In theoretical development like we are doing here, choice of true color index makes the concept easier to understand. In practical observation, however, it is beneficial to use the observed color index (as you may see from many other literatures), because that is what you get from the observation and the true value is what is unknown.
+
+The final assumption we make here is that the second term is $ c_2 \tilde{S} (C) \approx c_{3f} + c_{4f} C $ as the first-order approximation. Here $ c_{3f} $ and $ c_{4f} $ have subscript $ f $ because they depend on the \textit{filter} profile, but not on the spectral shape under our simplifying assumptions, because all the dependency from the spectral shape is absorbed into $ C $. Then
 \begin{equation}
   m_f - m_{0f} 
   \approx 2.5 (c_1 + c_{3f} + c_{4f} C) X 
@@ -119,13 +136,13 @@ Here, $ c_1 $ and $ c_2 $ are also constants. If the filter is fixed (e.g., V-ba
  These are the origins of $ k_f' $ and $ k_f'' $ in \cref{eq: std}.
 
 To illustrate the result, I used the SDSS filter system as shown in \cref{fig:air-ext-bbrad} and calculated how much magnitude extinction happens depending on the black body temperature
-at airmass $ X = 1 $ in the following table. Note the color $ C $ can be any gri color, such as $ \mathrm{r}'-\mathrm{i}' $, and it is determined once the blackbody temperature is given.
+at airmass $ X = 1 $ in the following table. Note the color $ C $ can be any gri color, such as $ r'-\mathrm{i}' $, and it is determined once the blackbody temperature is given.
 
 \begin{table}[ht!]
 \centering
   \begin{tabular}{c||ccc}
    & \multicolumn{3}{c}{Extinction magnitude} \\
-   Blackbody & $ m_\mathrm{g'} - m_\mathrm{0 g'} $ & $ m_\mathrm{r'} - m_\mathrm{0 r'} $ & $ m_\mathrm{i'} - m_\mathrm{0 i'} $ \\
+   Blackbody & $ m_g' - m_{0 g'} $ & $ m_r' - m_{0 r'} $ & $ m_i' - m_\mathrm{0 i'} $ \\
   Temperature & $ = k_{g'}' + k_{g'}'' C $ & $ = k_{r'}' + k_{r'}'' C $ & $ = k_{i'}' + k_{i'}'' C $ \\
   \hline
   $ \SI{3000}{K} $  & $ \m{0.142} $ & $ \m{0.081} $ & $ \m{0.034} $ \\
@@ -141,15 +158,15 @@ at airmass $ X = 1 $ in the following table. Note the color $ C $ can be any gri
 \label{fig:air-ext-bbrad}
 \end{figure}
 
-As can be seen, \emph{the extinction is stronger for higher temperature (lower color index)}, so likely $ k_f'' < 0 $. However, the difference of extinction between the objects gets smaller as we look at longer wavelength. Thus, $ k_f'' \sim 0 $ except for B or u filters.
+As can be seen, \emph{the extinction is stronger for higher temperature (lower color index)}, so you can guess $ k_f'' < 0 $. However, the difference of extinction between the objects gets smaller as we look at longer wavelength. Thus, you can also guess $ k_f'' \sim 0 $ (except for short wavelength, e.g., $ B $ or $ u $).
 
-These facts can also be understood qualitatively. The higher the temperature the spectrum will have more fraction of energe at shorter wavelength. Considering that the atmospheric extinction is stronger at shorter wavelength (see black markers in \cref{fig:air-ext-bbrad}), high termperature object will get more ``penalty'' when it comes into the atmosphere. That is why high temperature object is more strongly extincted, i.e., $ k_f'' $ is negative. At the same time, since the amount of extinction drops significantly at wavelengths of r and i bands, and making $ k_f'' $ itself very small. 
+These facts can also be understood qualitatively. The higher the temperature the spectrum will have more fraction of energe at shorter wavelength. Considering that the atmospheric extinction is stronger at shorter wavelength (see black markers in \cref{fig:air-ext-bbrad}), high termperature object will get more ``penalty'' when it comes into the atmosphere. That is why high temperature object is more strongly extincted, i.e., $ k_f'' $ is negative. At the same time, since the amount of extinction drops significantly at wavelengths of $ r $ and $ i $ bands, and making $ k_f'' $ itself very small. 
 
-SmithJA+ (2002, AJ, 123, 2121) determined the coefficients for SDSS filters at 1.0 m Ritchey--Chr\'{e}tien telescope at the USNO Flagstaff Station, from the observations in 1998--2000 in \cref{tab: SDSS ext}. The $ k_f' $ value fluctuates much for each night (see Fig 6 of the original publication), so I just took representative values from visual inspection. The $ k_f'' $ values were obtained by two independent pipelines, \texttt{superExcal} (method 1) and \texttt{solve\_network} (method 2). Both are quite consistent except for the u filter. The color $ C $ used for each filter is the nearby filter color: $ \mathrm{u}'-\mathrm{g}' $ for $ \mathrm{u}' $, $ \mathrm{g}'-\mathrm{r}' $ for $ \mathrm{g}' $, etc, and $ \mathrm{i}' - \mathrm{z}' $ for both $ \mathrm{i}' $ and $ \mathrm{z}' $. The atmospheric extinction coefficients $ (k_f',\, k_f'') $ all change as a function of time. We just hope they are reasonably constant during our observation of our targets and standard stars. From experience, we know $ k_f'' $ is always very small for filters longer than u or B-band, but is not necessarily ignorable because $ k_f'' XC $ might be larger than the accuracy you want to obtain. 
+\texttt{SmithJA+(2002)}\footnote{\url{https://ui.adsabs.harvard.edu/abs/2002AJ....123.2121S/abstract}} determined the coefficients for SDSS filters at 1.0 m Ritchey--Chr\'{e}tien telescope at the USNO Flagstaff Station, from the observations in 1998--2000 (see \cref{tab: SDSS ext}). The $ k_f' $ value fluctuates much for each night (see Fig 6 of the original publication), so I just took representative values from visual inspection. They mention that the $ k_f'' $ values were obtained by two independent pipelines, \texttt{superExcal} (method 1) and \texttt{solve\_network} (method 2). Both are quite consistent except for the $ u $ filter. The color $ C $ used for each filter is the nearby filter color: $ u'-g' $ for $ u' $, $ g'-r' $ for $ g' $, etc, and $ i' - z' $ for both $ i' $ and $ z' $. The atmospheric extinction coefficients $ (k_f',\, k_f'') $ all change as a function of time. We just hope they are reasonably constant during our observation of our targets and standard stars. From experience, we know $ k_f'' $ is always very small for filters longer than u or B-band, but is not necessarily ignorable because $ k_f'' XC $ might be larger than the accuracy you want to obtain. 
 
 
 \begin{table}[ht!]
-\caption{The extinction coefficients of SDSS from SmithJA+ (2002, AJ, 123, 2121).}
+\caption{The extinction coefficients of SDSS from \texttt{SmithJA+(2002)}.}
 \label{tab: SDSS ext}
 \centering
   \begin{tabular}{c||lllll}
@@ -213,22 +230,22 @@ SmithJA+ (2002, AJ, 123, 2121) determined the coefficients for SDSS filters at 1
 \begin{ex}[Ignoring the Second Order Extinction Term]
 Consider an observation at $ X = 2 $ of $ C = 0.2 $ star. If you ignore the second order extinction term, you are making $ k_f'' XC = 0.4 k_f'' $ of uncertainty. According to \cref{tab: SDSS ext}, this is most likely smaller than 0.01 magnitude. 
 
-The Sun has $ C = \mathrm{g' - r'} \sim 0.5 $, and then the error for Sun-like star becomes $ 1.0 k_f'' $: It is $ < \m{0.01} $ for r, i, and z bands. It is about $ 0.02\mathrm{-}0.03 $ mag for $ \mathrm{u}' $.
+The Sun has $ C = g' - r' \sim 0.5 $, and then the error for Sun-like star becomes $ 1.0 k_f'' $: It is $ < \m{0.01} $ for r, i, and z bands. It is about $ 0.02\mathrm{-}0.03 $ mag for $ u' $.
 
-The red M0 stars have $ C = \mathrm{g' - r'} \lesssim 1.5 $ and the error is now up to $ 3.0 k_f'' $. The accuracy of $ \m{0.01} $ can be achieved in riz bands, but risky.
+The red M0 stars have $ C = g' - r' \lesssim 1.5 $ and the error is now up to $ 3.0 k_f'' $. The accuracy of $ \m{0.01} $ can be achieved in riz bands, but risky.
 \end{ex}
 
-The calculation above is only for SDSS observatory at altitude of 2.3 km. But fortunately, BuchheimB (2005, SASS, 24, 111) found that the $ k_f'' \lesssim 0.005 $ for V band even at many low-altitude observatories (including Bochum observatory at altitude 200 m, Vainu Bappu Observatory at altitude 700 m), so likely we expect the correction from the second-order extinction term is small enough.
+The calculation above is only for SDSS observatory at altitude of 2.3 km. But fortunately, \texttt{BuchheimB(2005)}\footnote{\url{https://ui.adsabs.harvard.edu/abs/2005SASS...24..111B/abstract}} found that the $ k_f'' \lesssim 0.005 $ for V band even at many low-altitude observatories (including Bochum observatory at altitude 200 m, Vainu Bappu Observatory at altitude 700 m), so likely we expect the correction from the second-order extinction term is small enough.
 
 
 \subsection{Transformation Coefficient}
-The sensitivity of the optics, such as filter, lens, mirror, and/or CCD cover glass, is also a function of $ \lambda $. The argument is identical to atmospheric extinction, but there is no $ X $ (similar parameter will be something like the optical depth of materials blocking CCD pixel, but that should be a device-dependent constant). Then the same logic leads us to the conclusion that there should be a color term which tunes the final output of the CCD count, and that is the $ \tilde{k}_f c $ (``transformation'') term. Here, $ c $ is the color index of the object after all the atmospheric extinction, and the true color before it enters telescopic optics. Once we assume there exists a function $ f_c $ such that $ f_c(C) = c $ is a one-to-one function and $ f_c(C) \approx \tilde{c}_5 + \tilde{c}_6 C $ for constants $ \tilde{c}_5 $ and $ \tilde{c}_6 $, the transformation term becomes $ k_f C + \tilde{c}_{7f} $ for the filter-dependent constant $ \tilde{c}_{7f} $. This constant is finally absorbed in to another filter-dependent constant, called the zero point, $ z_f $. Therefore we reach \cref{eq: std}.
+The sensitivity of the optics, such as filter, lens, mirror, and/or CCD cover glass, is also a function of $ \lambda $. The argument is identical to atmospheric extinction, but there is no $ X $ (similar parameter will be something like the optical depth of materials blocking CCD pixel, but that should be a device-dependent constant). Then the same logic leads us to the conclusion that there should be a color term which tunes the final output of the CCD count, and that is the $ \tilde{k}_f \times c $ (``transformation'') term. Here, $ c $ is the color index of the object after all the atmospheric extinction, and the true color before it enters telescopic optics. Once we assume there exists a function $ f_c $ such that $ f_c(C) = c $ is a one-to-one function and linearly approximate $ c = f_c(C) \approx \tilde{c}_5 + \tilde{c}_6 C $ for constants $ \tilde{c}_5 $ and $ \tilde{c}_6 $, the transformation term becomes $ k_f c = k_f C + \tilde{c}_{7f} $ for the filter-dependent constant $ \tilde{c}_{7f} $. This constant is finally absorbed in to another filter-dependent constant, called the zero point, $ z_f $. Therefore we reach \cref{eq: std}. Even now, the logic holds identically if we have selected $ C $ to be the observed color, not the true color. 
 
 The transformation coefficient, which I denoted $ k_f $, is fortunately nearly constant for the given device. Warner argues that it is enough to update $ k_f $ (Warner uses notation of $ T_f $) value only about 2--4 times a year, unless you physically changed the device elements (e.g., filter, CCD, lens, etc). Moreover, from experience, we know that this is nearly zero: $ |k_f| \lesssim 0.1 $. Many cases $ |k_f| \lesssim 0.01 $. Since the range of color indices are $ \mathrm{max}(\Delta C) \lesssim \m{1} $, we have $ |k_f C| \lesssim 0.1 $, and in many cases, $ |k_f C| \lesssim 0.01 $.
 
 
 \subsection{A Note on Linearity} \label{ss: linearity note}
-As we noted at the beginning part of this chapter, CCD is highly linear. That means, $ N = g N_e = \alpha N_\gamma $ where $ N $ is the pixel count (after \emph{bias} and \emph{dark} subtraction), $ N_e $ is the total number of photo-electrons, $ g $ is the electronic gain of the CCD (a constant; unit of counts per electrons), and $ N_\gamma $ is the photon incident to the CCD from the true photon number $ N_\mathrm{\gamma 0} $. No higher-order terms, no other constants. The $ \alpha $ value may differ from pixel to pixel due to the inhomogeneity of optics or CCD pixels, but they are homogeneized by the so-called \emph{flat fielding}, so here I can safely say it is strictly constant over all the pixels. 
+As we noted at the beginning part of this chapter, CCD is highly linear. That means, $ N = g N_e = \alpha N_\gamma $ where $ N $ is the pixel count (after \emph{bias} and \emph{dark} subtraction), $ N_e $ is the total number of photo-electrons, $ g $ is the electronic gain of the CCD (a constant; unit of counts per electrons), and $ N_\gamma $ is the photon incident to the CCD from the true photon number $ N_\mathrm{\gamma 0} $. No higher-order terms, no other constants. There is no CCD as of 2021 that returns $ N = \alpha' N_\gamma^2 $, etc. The $ \alpha $ value may differ from pixel to pixel due to the inhomogeneity of optics or CCD pixels, but they are homogeneized by the so-called \emph{flat fielding}, so here I can safely say it is strictly constant over all the pixels. 
 
 Any kind of extinction (atmosphere or optics in front of the CCD) is multiplicative only to the linear term, i.e., $ N_\gamma = N_{\gamma 0} \times \mathrm{something_1} $ (e.g., $ e^{-\tau} $). There is neither higher-order terms like $ N_{\gamma 0}^2 $ nor addition of constant. Therefore, $ N = \mathrm{something_2} \times N_\mathrm{\gamma 0} $ and the instrumental magnitude
 \begin{equation}
@@ -241,7 +258,7 @@ Thus, thanks to the linearity of CCD, we have \textbf{no additional coefficient 
 
 %In reality, the broad-band photometry (the  has some tricky problem. For a simple illustration, assume (1) we don't have atmosphere, (2) have a flat throughput: $ f(\lambda) = 1 $ for $ \lambda = [\lambda_1, \lambda_2] $ and zero otherwise, (3) CCD and optics has no wavelength-dependency in its sensitivity. We observed two stellar black-body spectra of temperatures $ T_a $ and $ T_b $ ($ T_a < T_b $). Because of different radii of or distance to the stars, consider they are shooting identical number of photons per time to Earth, i.e., $ \int_{\lambda_1}^{\lambda_2} S(\lambda) / (hc / \lambda) d\lambda $ is the same for two stars. The CCD will produce the same number of photo-electrons when it is hit by, e.g., 100 photons of $ \lambda_1 $ or 100 photons of $ \lambda_2 $. Thus, the two stars will appear to have identical brightness.
 
-To emphasize, \emph{you should not worry about whether to \emph{multiply} something in front of $ M_f $ or $ m_f $ to satisfy \cref{eq: std}}. Their coefficients \emph{must be unity}. From our experiences, most observational experts and electrical engineers would say that you should only care about this if you are sure that some parts of the optics have serious problems (e.g., your CCD underwent serious problem and shows non-linearity). 
+To emphasize, \emph{you should not worry about whether to \textbf{multiply} something in front of $ M_f $ or $ m_f $ to satisfy \cref{eq: std}}. Their coefficients \emph{must be unity}. From our experiences, most observational experts and electrical engineers would say that you should only care about this if you are sure that some parts of the optics have serious problems (e.g., your CCD underwent serious problem and shows non-linearity). 
 
 \subsection{A Note on Zero Point} \label{ss: zeropt}
 The zero point $ z_{f} $ is a constant to convert the instrumental magnitude (which is nothing but a $ -2.5 $ multiplied by $ \lg (\mathrm{count}) $) to a realistic standard magnitude system astronomers have been using. In intensity sence, this ``addition of a constant'' in magnitude represents a ``multiplication of a constant'' to the instrumental count to measure the intensity. 
@@ -256,9 +273,9 @@ The zero point $ z_{f} $ is a constant to convert the instrumental magnitude (wh
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-What is a typical value of zero point? From telescopes with diameter $ \gtrsim \SI{1}{m} $ in Seoul, let's say we are observing objects of around $ \m{15} $ with 100 seconds exposure. Say the sky-subtracted peak value of our target is\footnote{Because CCDs are usually operated in 16-bit unsigned integer mode which represents $ 0 $ to $ 65,535 $, and non-linearity appears around $ 40,000 $, the sky subtracted peak pixel value of an intermediate-brightness object in the FOV is order of $ \sim 10^4 $ after sky subtraction} $ \sim 10^4 $ and the integral of the profile gives intensity of $ \sim 10^{5} $, and the intensity per unit time is $ 10^3 $ (divided by exposure time). The instrumental magnitude is $ m \sim -2.5 \lg 10^3 = -7.5 $. This means $ z_f \sim 22.5 $. If we do realistic calculation, $ z_f $ is mostly within a range of 20 to 25. This is why, in IRAF, the default initial guess of $ z_f $ is 25 mag.
+What is a typical value of zero point? From telescopes with diameter $ \gtrsim \SI{1}{m} $ in Seoul, let's say we are observing objects of around $ \m{15} $ with 100 seconds exposure. Say the sky-subtracted peak value of our target is\footnote{Because CCDs are usually operated in 16-bit unsigned integer mode which represents $ 0 $ to $ 65,535 $, and non-linearity appears around $ 40,000\mathrm{-}60,000 $ ADU, the sky subtracted peak pixel value of an intermediate-brightness object in the FOV is order of $ \sim 10^4 $ after sky subtraction} $ \sim 10^4 $ and the integral of the profile gives intensity of $ \sim 10^{5} $, and the intensity per unit time is $ 10^3 $ (divided by exposure time). The instrumental magnitude is $ m \sim -2.5 \lg 10^3 = -7.5 $. This means $ z_f \sim 22.5 $. If we do realistic calculation, $ z_f $ is mostly within a range of 20 to 25. This is why, in IRAF, the default initial guess of $ z_f $ is 25 mag.
 
-Zero point must be a constant unless the device is affected by external disturbance in our simple model dealt in this chapter. In reality it is true that this zero point fluctuate at each exposure, and that is because of the imperfect readout process of CCD electronics. $ \Delta z_\mathrm{V} \approx 0 $ is assumed in this chapter. Although you may be unconfortable, but this is what is assumed even in professional space telescope data reduction processes, if this fact makes you more comfortable.
+Zero point must be a constant unless the device is affected by external disturbance in our simple model dealt in this chapter. In reality it is true that this zero point fluctuate at each exposure, and that is because of the imperfect readout process of CCD electronics. $ \Delta z_V \approx 0 $ is assumed in this chapter. Although you may be unconfortable, but this is what is assumed even in professional space telescope data reduction processes, if this fact makes you more comfortable.
 
 \section{Standardization Applied to Photometry}
 Now that we justified the usage of \cref{eq: std}, let's find the cases of application. The simplest case is the \textit{differential photometry}. 
@@ -279,7 +296,7 @@ The first term in the RHS, $ a_f (X) $, is a constant for all the stars in the s
   Consider observatinos made in wavelength ranges around V or gri bands. From \cref{tab: SDSS ext}, $ |k_f''| \sim 0.000 \mathrm{-} 0.020 $ and we expect that $ k_f \lesssim 0.02 $ for most optics. Since $ k_f'' $ is mostly negative, $ k_f - k_f'' X $ is likely be positive, but not always (see \cref{tab: SDSS ext}). Also we have $ 1 < X \lesssim 2 $ in most cases. Then if you play with many combinations of numbers, $ b_f(X) C = (k_f - k_f'' X) C \lesssim 0.05 C $ and most likely much smaller than that. Note that the color index is mostly $ -1 \lesssim C \lesssim +1 $.
 \end{ex}
 
-What we do now is to draw several test plots as in \cref{fig:zeropt}. It is better if the color of the stars span wider than about 0.5 ($ \mathrm{max}(C) - \mathrm{min} (C) \gtrsim 0.5 $). On the left side of the figure, I plotted $ M_f $ VS $ m_f $ for $ f = \mathrm{R} $ (Johnson--Cousins $ \mathrm{R_C} $ filter). The fitted slope is $ \sim 1.015 $, which is near the unity as we expect from linearity. Sometimes it becomes as high as 1.05 throughout the night. Below is a residual plot. Normally, since the uncertainty in the magnitude measurement increases for larger magnitude (fainter star), the scatter of the residual must increase at large magnitude. The right panel of the figure shows the residual as a function of catalogued stars. The color-dependent slope is 0.02, and it was $ \lesssim 0.05 $ throughout the night; this is small indeed as we expected above. As we do not know our target's color, assuming the color uncertainty of $ \pm 0.5 $ will give around $ \pm 0.03 $ \textbf{\emph{systematic offset to the magnitude}} of our target. Note that this is a systematic parallel shift in magnitude, not a random error. Therefore, the \emph{shape} of the light curve will not be affected by this, althought the magnitude \emph{value} may have been affected by a constant.
+What we do now is to draw several test plots as in \cref{fig:zeropt}. It is better if the color of the stars span wider than about 0.5 ($ \mathrm{max}(C) - \mathrm{min} (C) \gtrsim 0.5 $). On the left side of the figure, I plotted $ M_f $ VS $ m_f $ for $ f = R $ (Johnson--Cousins $ R_C $ filter). The fitted slope is $ \sim 1.015 $, which is near the unity as we expect from linearity. Sometimes it becomes as high as 1.05 throughout the night. Below is a residual plot. Normally, since the uncertainty in the magnitude measurement increases for larger magnitude (fainter star), the scatter of the residual must increase at large magnitude. The right panel of the figure shows the residual as a function of catalogued stars. The color-dependent slope is 0.02, and it was $ \lesssim 0.05 $ throughout the night; this is small indeed as we expected above. As we do not know our target's color, assuming the color uncertainty of $ \pm 0.5 $ will give around $ \pm 0.03 $ \textbf{\emph{systematic offset to the magnitude}} of our target. Note that this is a systematic parallel shift in magnitude, \textbf{not a random error}. Therefore, the \emph{shape} of the light curve will not be affected by this, althought the magnitude \emph{value} may have been affected by a constant.
 
 \begin{figure}[ht!]
 \centering
