@@ -49,6 +49,7 @@
 If you are familiar with the topics dealt in the class, you may rather easily follow the "[``tutorials/``](tutorials/)". These are mainly the things related to observational data reduction which I did while helping others. 
 
 * M1: The [OIII], [SII], and Hα imaging data from SNU-SAO 1m telescope on 2021-09-14 by Prof. Bon-Chul Koo, will be used by Rommy Aliste. The python script includes (hopefully) all the information needed. Please download the data from the tutorial_data directory (see README of the top directory of this repo).
+  * <img src="figs/M1_rgb_default.jpeg" style="zoom:8%;" />
 
 
 
