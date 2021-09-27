@@ -44,6 +44,14 @@
 
 
 
+## Part <u>T</u>: <u>T</u>utorials
+
+If you are familiar with the topics dealt in the class, you may rather easily follow the "[``tutorials/``](tutorials/)". These are mainly the things related to observational data reduction which I did while helping others. 
+
+* M1: The [OIII], [SII], and Hα imaging data from SNU-SAO 1m telescope on 2021-09-14 by Prof. Bon-Chul Koo, will be used by Rommy Aliste. The python script includes (hopefully) all the information needed.
+
+
+
 ## Part <u>S</u>: Non-Python <u>S</u>oftwares or <u>S</u>ervices
 
 * [S01_IRAF.md](Notebooks/S01_IRAF.md)
