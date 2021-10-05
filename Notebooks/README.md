@@ -42,6 +42,8 @@
    * Adopted by [PyReduc project](https://keheintz.github.io/PyReduc/) ([github](https://github.com/keheintz/PyReduc)) as of 2020 Apr.
 3. [SNUO 1m telescope](https://nbviewer.jupyter.org/github/ysBach/SNU_AOclass/blob/master/Notebooks/Spectroscopy_Example.ipynb): Spectrograph data from SNUO
 
+**Important NOTE**: When I made the lecture notes above, there was no useful tools I could find for spectroscopic data reduction/analysis as well as some theoretical explanations except for IRAF. As of 2021 Oct., I think [``PypeIt``](https://pypeit.readthedocs.io/en/release/index.html) is mature enough, so please give it a shot. Useful theoretical explanations are also available at their documentations ([here](https://pypeit.readthedocs.io/en/release/image_proc.html))
+
 
 
 ## Part <u>T</u>: <u>T</u>utorials
