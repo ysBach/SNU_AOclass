@@ -25,8 +25,8 @@ In this directory, I will put materials you can study and soem external referenc
   * This contains too much information for beginners... Maybe you can take a look at ``matplotlib`` part, etc, for fun.
 * Other free books/lectures/materials are everywhere (e.g., google "python free")
 * Or summarized at some places ([example](https://www.techrepublic.com/resource-library/whitepapers/getting-started-with-python-a-list-of-free-resources/#ftag=CAD-00-10aag7f))
-* Python visualization: [pyviz.org](https://pyviz.org/)
-
+* Python visualization: [pyviz.org](https://pyviz.org/), [datavizpyr](https://datavizpyr.com/) (python and R)
+* List of python-based Monte Carlo packages: https://gabriel-p.github.io/pythonMCMC/
 
 
 The materials below are from [SPLIT Program of SNU](https://eng.snu.ac.kr/reserve/split-program) (retrieved 2019 Sep)
