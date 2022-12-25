@@ -20,7 +20,7 @@ TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lec
 - In 2020: The name of the repo changed (Jan). All previous repos (2017, 2018) are **archived** (Jan).
 - In 2019: Made this repo.
 - In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_2018). Many documents changed from ipynb to md.
-- In 2017: Made GitHub repo [AO_2017](https://github.com/ysBach/AO_2017) and [website](https://ysbach.github.io/AO_2017/). 
+- In 2017: Made GitHub repo [AO_2017](https://github.com/ysBach/AO_2017) and [website](https://ysbach.github.io/AO_2017/).
 - In 2016: No GitHub, but just MS Word-based lecture notes of PyRAF.
 </p>
 </details>
@@ -42,14 +42,13 @@ For the first time only:
 ```
 $ git clone https://github.com/ysBach/SNU_AOclass.git
 ```
-
+</p>
+</details>
 From the second time:
 
 ```
 $ git pull
 ```
-</p>
-</details>
 
 
 
@@ -69,3 +68,14 @@ Each directory of the following contents has its own README file.
 
 (Plus. [Presentation files](Notebooks/ppt), which are just auxiliary seminar notes)
 
+
+
+## 4. Outstanding Student's Outputs
+
+* Jiyong Youn (@hletrd)
+  * [spectools](https://github.com/hletrd/spectools): long-slit spectral analysis (class of 2017)
+  * [PyPreprocessor](https://github.com/hletrd/PyPreprocessor): preprocessor in CLI (class of 2017)
+*
+
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E1HAMV5)

@@ -46,8 +46,12 @@ Excerpt from [StackOverflow](https://stackoverflow.com/questions/13321556/differ
 **Useful Video tutorials**
 
 * Nicolas: 
-* Long but worth-viewing tutorial:
-  * [NeuroHackademy 2021](https://youtu.be/Lsmt2rHPJDU)
+* NeuroHackademy 2021:
+  * [2021-07-21](https://youtu.be/Lsmt2rHPJDU)
+    * This is ~ 90min, concentrating on the CLI of git, including branching and merging. Somewhat complementary to the video below. 
+  * [2021-07-23](https://youtu.be/j3IbFKksJkQ)
+    * This is ~ 50min, similar to above, but more practical for beginners, imho (including the usage of ``.gitignore``).
+* 
 * [코딩 1시간만에 배우기 - 파이썬 (ft. 실리콘밸리 엔지니어) (Korean)](https://www.youtube.com/watch?v=M6kQTpIqpLs)
 * 얄팍한 코딩사전 (Korean; [channel](https://www.yalco.kr/26_git_tutorial_2/)):
   1. [Git은 뭐고 Github은 뭔가요?](https://youtu.be/Bd35Ze7-dIw)
