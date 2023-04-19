@@ -1,0 +1,1215 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HW astropy.fits &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/python_prep/99-HW_astropy-fits';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="HW pandas" href="99-HW_pandas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-1_Softwares.html">1. Software Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-2_UNIX.html">2. UNIX Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-3_Prepare_Python.html">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="00-python_prep.html">4. Python Preparation Course</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03-FITS_and_astropy.html">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/99-HW_swtools.html">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/python_prep/99-HW_astropy-fits.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/python_prep/99-HW_astropy-fits.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/python_prep/99-HW_astropy-fits.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HW astropy.fits</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-1-6-points">Problem Set 1  [6 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-2-22-points">Problem Set 2 [22 points]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-3-28-points">Problem Set 3 [28 points]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-4-optional-50-points">Problem Set 4 (optional) [50 points]</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hw-astropy-fits">
+<span id="id1"></span><h1>HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code><a class="headerlink" href="#hw-astropy-fits" title="Permalink to this headline">#</a></h1>
+<section id="problem-set-1-6-points">
+<h2>Problem Set 1  [6 points]<a class="headerlink" href="#problem-set-1-6-points" title="Permalink to this headline">#</a></h2>
+<p>Answer the following [2 points each]</p>
+<ol class="arabic simple">
+<li><p>Search for the official documentation of <code class="docutils literal notranslate"><span class="pre">astropy.io.fits</span></code>. What is the URL to this doc?</p></li>
+<li><p>Read the doc. You don’t have to read all but just skim through it and grasp an idea how <code class="docutils literal notranslate"><span class="pre">astropy.io.fits</span></code> is used, how the header is accessed, etc. Click many links in the doc, and familiarize yourself to it.  (Answer: I did|I didn’t)</p></li>
+<li><p>Go to a doc about <a class="reference external" href="https://docs.astropy.org/en/stable/nddata/utils.html#cutout-images">“Cutout images”</a>. You may have to have basic understanding of WCS as well as python. Find references by yourself. Also for WCS, you may have to learn <code class="docutils literal notranslate"><span class="pre">astropy.wcs</span></code> by clicking many links provided there. Familiarize yourself with the idea of <code class="docutils literal notranslate"><span class="pre">Cutout2D</span></code> and its usage. (Answer: I did|I didn’t)</p></li>
+</ol>
+</section>
+<section id="problem-set-2-22-points">
+<h2>Problem Set 2 [22 points]<a class="headerlink" href="#problem-set-2-22-points" title="Permalink to this headline">#</a></h2>
+<p>Here we will learn how to <em>use astropy</em>. Start solving the problems after running the code below:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.nddata</span> <span class="kn">import</span> <span class="n">CCDData</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">SAVEPATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>  <span class="c1"># &lt;-- You may tune here for your computer</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>While answering the problems, follow these rules:</p>
+<ol class="arabic simple">
+<li><p><strong>Never use <code class="docutils literal notranslate"><span class="pre">for</span></code> or <code class="docutils literal notranslate"><span class="pre">while</span></code> loop</strong>.</p></li>
+<li><p>You <strong>should not import any other packages</strong>.</p></li>
+<li><p>Answer to each problem must be a <strong>one-line of python code</strong>.</p></li>
+<li><p>For each problem, I gave hints. <strong>It is also homework for you to search for those on google</strong>.</p></li>
+</ol>
+<section id="problems">
+<h3>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>Make a primary HDU object called <code class="docutils literal notranslate"><span class="pre">hdu</span></code> with data is <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">fits.PrimaryHDU</span></code></p></li>
+</ul>
+</li>
+<li><p>Change the <code class="docutils literal notranslate"><span class="pre">dtype</span></code> of <code class="docutils literal notranslate"><span class="pre">hdu.data</span></code> into float 32.</p>
+<ul class="simple">
+<li><p>Hint: to change the dtype, you can do <code class="docutils literal notranslate"><span class="pre">HDU_object.data</span> <span class="pre">=</span> <span class="pre">HDU_object.data.astype(dtype)</span></code>.</p></li>
+<li><p>Hint: you can use <code class="docutils literal notranslate"><span class="pre">np.float32</span></code> for float 32.</p></li>
+</ul>
+</li>
+<li><p>Save it as <code class="docutils literal notranslate"><span class="pre">SAVEPATH</span> <span class="pre">/</span> <span class="pre">&quot;test.fits&quot;</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">.writeto()</span></code></p></li>
+</ul>
+</li>
+<li><p>Open the fits file in <code class="docutils literal notranslate"><span class="pre">HDUList</span></code> type. Let’s call this <code class="docutils literal notranslate"><span class="pre">hdul</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">fits.open</span></code></p></li>
+</ul>
+</li>
+<li><p>Print the information of that <code class="docutils literal notranslate"><span class="pre">HDUList</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">.info()</span></code></p></li>
+</ul>
+</li>
+<li><p>Check whether the loaded fits data is identical to <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">np.testing.assert_allclose</span></code> to the 0-th extension of the <code class="docutils literal notranslate"><span class="pre">HDUList</span></code> you loaded.</p></li>
+</ul>
+</li>
+<li><p>Extract the header of the 0-th extension of <code class="docutils literal notranslate"><span class="pre">hdul</span></code>. Call it <code class="docutils literal notranslate"><span class="pre">hdr_hdu</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">.header</span></code></p></li>
+<li><p>Note: Even though you didn’t specify any header information, the header is automatically generated when you saved <code class="docutils literal notranslate"><span class="pre">hdu</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Open the fits file as <code class="docutils literal notranslate"><span class="pre">CCDData</span></code>. Call this <code class="docutils literal notranslate"><span class="pre">ccd</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">CCDData.read</span></code></p></li>
+<li><p>Hint: you may use any unit you want.</p></li>
+</ul>
+</li>
+<li><p>Check whether the loaded ccd data is identical to <code class="docutils literal notranslate"><span class="pre">data</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">np.testing.assert_allclose</span></code> to the <code class="docutils literal notranslate"><span class="pre">ccd.data</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Extract the header of the <code class="docutils literal notranslate"><span class="pre">ccd</span></code>. Call it <code class="docutils literal notranslate"><span class="pre">hdr_ccd</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: use <code class="docutils literal notranslate"><span class="pre">.header</span></code></p></li>
+<li><p>Note: Even though you didn’t specify any header information, the header is automatically generated when you saved <code class="docutils literal notranslate"><span class="pre">hdu</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Check whether the two headers (<code class="docutils literal notranslate"><span class="pre">hdr_hdul</span></code>)</p></li>
+</ol>
+</section>
+</section>
+<section id="problem-set-3-28-points">
+<h2>Problem Set 3 [28 points]<a class="headerlink" href="#problem-set-3-28-points" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p>Prepare the FITS file <code class="docutils literal notranslate"><span class="pre">SNUO_STX16803-kw4-4-4-20190602-135247-R-60.0_bdfw.fits</span></code> from our Tutorial Data link (see README of our lecture note repo). As indicated in <a class="reference external" href="http://astronomy.net">astronomy.net</a> homework, this file has intentionally broken WCS information, but it does not matter for the problems below.</p></li>
+<li><p>Please use python 3.6+ (Never use python 2).</p></li>
+<li><p>For other packages: Although I didn’t run all the tests, likely there will be no problem if you use decently recent versions of any packages used in the homework (any version released after 2017).</p></li>
+</ul>
+<p>Please run the following code before you start (<strong>MODIFY APPROPRIATELY</strong>):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you are not using Jupyter, comment the &quot;%&quot; lines below</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="o">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="s1">&#39;retina&#39;</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">notebook</span>  <span class="c1"># comment this line if you encounter error.</span>
+
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.nddata</span> <span class="kn">import</span> <span class="n">Cutout2D</span>
+<span class="kn">from</span> <span class="nn">astropy.wcs</span> <span class="kn">import</span> <span class="n">WCS</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">rcParams</span>
+<span class="kn">from</span> <span class="nn">mpl_toolkits.axes_grid1</span> <span class="kn">import</span> <span class="n">ImageGrid</span>
+
+<span class="c1"># Modify below to the relative path to the directory where you saved the FITS file.</span>
+<span class="n">DATADIR</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;../../Tutorial_Data/&quot;</span><span class="p">)</span>
+
+<span class="c1"># We need to do it in a separate cell. See:</span>
+<span class="c1"># https://github.com/jupyter/notebook/issues/3385</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;default&#39;</span><span class="p">)</span>
+<span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span><span class="mi">12</span><span class="p">})</span>
+
+<span class="n">allfits</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">DATADIR</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;SNUO*_bdfw.fits&quot;</span><span class="p">))</span>
+
+<span class="n">imgrid_kw</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+    <span class="n">nrows_ncols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+    <span class="n">axes_pad</span><span class="o">=</span><span class="p">(</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">),</span>
+    <span class="n">label_mode</span><span class="o">=</span><span class="s2">&quot;1&quot;</span><span class="p">,</span>
+    <span class="n">share_all</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">cbar_location</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">,</span>
+    <span class="n">cbar_mode</span><span class="o">=</span><span class="s2">&quot;each&quot;</span><span class="p">,</span>
+    <span class="n">cbar_size</span><span class="o">=</span><span class="s2">&quot;7%&quot;</span><span class="p">,</span>
+    <span class="n">cbar_pad</span><span class="o">=</span><span class="s2">&quot;2%&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<section id="id2">
+<h3>Problems<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h3>
+<p>Answer the following questions. Provide codes. Also provide results if something is printed out or plotted from the code. [2 pts each, unless specified]</p>
+<ol class="arabic simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">fpath</span></code> as the path to the file.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">fpath</span> <span class="pre">=</span> <span class="pre">allfits[&lt;an</span> <span class="pre">int&gt;]</span></code></p></li>
+</ul>
+<ol class="arabic" start="2">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">hdul</span></code> as an HDUList object of that file.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">hdul</span> <span class="pre">=</span> <span class="pre">fits.open(?)</span></code></p></li>
+</ul>
+</li>
+<li><p>Print out the information of the <code class="docutils literal notranslate"><span class="pre">hdul</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">hdul.info()</span></code></p></li>
+</ul>
+</li>
+<li><p>How many header keywords are there in the 0-th extension of <code class="docutils literal notranslate"><span class="pre">hdul</span></code>?</p></li>
+<li><p>Print out the header of the 0th HDU.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">hdul[0].?</span></code> or <code class="docutils literal notranslate"><span class="pre">hdul[&quot;PRIMARY&quot;].?</span></code></p></li>
+</ul>
+</li>
+<li><p>From the header, what is the header keyword for [1 point each]:</p>
+<ol class="arabic simple">
+<li><p>the start of the exposure</p></li>
+<li><p>the filter used</p></li>
+<li><p>the object observed</p></li>
+<li><p>the longitude of the observatory</p></li>
+</ol>
+<ul class="simple">
+<li><p>Hint: No code is needed. Also, you may ignore all the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> and <code class="docutils literal notranslate"><span class="pre">HISTORY</span></code> in headers.</p></li>
+</ul>
+</li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">hdr</span></code> as the header of the primary header. What is the pixel scale (arcsecond per pixel)? Provide a code and result to calculate it from <code class="docutils literal notranslate"><span class="pre">hdr</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">hdr</span> <span class="pre">=</span> <span class="pre">hdul[0].?</span></code></p></li>
+<li><p>Find the focal length of the telescope and pixel size from <code class="docutils literal notranslate"><span class="pre">hdr</span></code>.</p></li>
+</ul>
+</li>
+<li><p>From <code class="docutils literal notranslate"><span class="pre">PROCESS</span></code> and the <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> after it, what “process” has been done to this file?</p></li>
+<li><p>Display the data. You may use the following code (Tune <code class="docutils literal notranslate"><span class="pre">&gt;&gt;FILLHERE&lt;&lt;</span></code> values to make y-axis value increase upwards). I intentionally used <code class="docutils literal notranslate"><span class="pre">ImageGrid</span></code>, which is different from lecture notes so that you can learn different APIs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">vv</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">vmin</span><span class="o">=</span><span class="mi">1900</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">2000</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ImageGrid</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="o">**</span><span class="n">imgrid_kw</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">cbar_axes</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">vv</span><span class="p">,</span> <span class="n">origin</span><span class="o">=&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">cax</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Cut a rectangular region centered at <code class="docutils literal notranslate"><span class="pre">(555,</span> <span class="pre">505)</span></code> and size of <code class="docutils literal notranslate"><span class="pre">(70,</span> <span class="pre">70)</span></code> in x, y directions, respectively.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">cut</span> <span class="pre">=</span> <span class="pre">Cutout2D(hdul[0].data,</span> <span class="pre">position=(?,</span> <span class="pre">?),</span> <span class="pre">size=(?,</span> <span class="pre">?),</span> <span class="pre">wcs=WCS(hdul[0].header))</span></code></p></li>
+<li><p><strong>WARNING</strong>: Python indexing is <code class="docutils literal notranslate"><span class="pre">(y,</span> <span class="pre">x)</span></code>, <strong>not</strong> <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>. Which one should we use, <code class="docutils literal notranslate"><span class="pre">position</span> <span class="pre">=</span> <span class="pre">(505,</span> <span class="pre">555)</span></code> or <code class="docutils literal notranslate"><span class="pre">(555,</span> <span class="pre">505)</span></code>? Find and read the documentation for <code class="docutils literal notranslate"><span class="pre">Cutout2D</span></code> and write a proper answer. If you’re wrong here, all of your answers below will be wrong.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wcs</span></code> keyword is used to propagate WCS information (<a class="reference external" href="https://docs.astropy.org/en/stable/nddata/utils.html#saving-a-2d-cutout-to-a-fits-file-with-an-updated-wcs">link</a>)</p></li>
+</ul>
+</li>
+<li><p>Overplot where the rectangular cut is made. You may use the following code. Modify as you wish. Fill in the <code class="docutils literal notranslate"><span class="pre">&gt;&gt;FILLHERE&lt;&lt;</span></code> parts by searching appropriate docs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">ImageGrid</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="mi">111</span><span class="p">,</span> <span class="o">**</span><span class="n">imgrid_kw</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">cax</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">grid</span><span class="o">.</span><span class="n">cbar_axes</span><span class="p">):</span>
+    <span class="n">im</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">vv</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">)</span>
+    <span class="n">cb</span> <span class="o">=</span> <span class="n">cax</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+
+
+<span class="n">cut</span><span class="o">.</span><span class="n">plot_on_original</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="c1"># https://docs.astropy.org/en/stable/api/astropy.nddata.utils.Cutout2D.html#astropy.nddata.utils.Cutout2D.plot_on_original</span>
+
+<span class="c1">### inset_axes tutorial: https://matplotlib.org/3.2.1/gallery/subplots_axes_and_figures/zoom_inset_axes.html</span>
+<span class="c1"># inset axes....</span>
+<span class="n">axins</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">inset_axes</span><span class="p">([</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">])</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_xlim</span><span class="p">(),</span> <span class="o">*</span><span class="n">ax</span><span class="o">.</span><span class="n">get_ylim</span><span class="p">()),</span> <span class="o">**</span><span class="n">vv</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s2">&quot;lower&quot;</span><span class="p">)</span>
+
+<span class="c1"># sub region of the original image</span>
+<span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">cut</span><span class="o">.</span><span class="n">bbox_original</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">]</span>
+<span class="n">y1</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">cut</span><span class="o">.</span><span class="n">bbox_original</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">]</span>
+
+<span class="n">axins</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_xticklabels</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">axins</span><span class="o">.</span><span class="n">set_yticklabels</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">indicate_inset_zoom</span><span class="p">(</span><span class="n">axins</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="c1"># https://matplotlib.org/3.2.1/api/_as_gen/matplotlib.axes.Axes.indicate_inset.html#matplotlib.axes.Axes.indicate_inset</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Save the cutout region as a new FITS file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">new_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">cut</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>    <span class="c1"># set data</span>
+<span class="n">new_hdu</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cut</span><span class="o">.</span><span class="n">wcs</span><span class="o">.</span><span class="n">to_header</span><span class="p">())</span>  <span class="c1"># implement WCS information</span>
+
+<span class="n">new_hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="s2">&quot;test.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_verify</span><span class="o">=</span><span class="s1">&#39;fix&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Test whether WCS is correctly implemented.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hdu_orig</span> <span class="o">=</span> <span class="n">hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">hdu_crop</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;test.fits&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">wcs_orig</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">hdu_orig</span><span class="p">)</span>
+<span class="n">wcs_crop</span> <span class="o">=</span> <span class="n">WCS</span><span class="p">(</span><span class="n">hdu_crop</span><span class="p">)</span>
+
+<span class="c1"># Due to the API, we need 2-D</span>
+<span class="n">pos_orig</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span>
+    <span class="n">cut</span><span class="o">.</span><span class="n">to_original_position</span><span class="p">(</span><span class="n">cut</span><span class="o">.</span><span class="n">center_cutout</span><span class="p">)</span>  <span class="c1"># Center of the Cutout2D in the original (x, y)</span>
+<span class="p">)</span>
+<span class="n">pos_crop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span>
+     <span class="n">cut</span><span class="o">.</span><span class="n">center_cutout</span>
+<span class="p">)</span>
+
+<span class="n">radec_orig_wcs</span> <span class="o">=</span> <span class="n">wcs_orig</span><span class="o">.</span><span class="n">wcs_pix2world</span><span class="p">(</span><span class="n">pos_orig</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">radec_crop_wcs</span> <span class="o">=</span> <span class="n">wcs_crop</span><span class="o">.</span><span class="n">wcs_pix2world</span><span class="p">(</span><span class="n">pos_crop</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">radec_orig_all</span> <span class="o">=</span> <span class="n">wcs_orig</span><span class="o">.</span><span class="n">all_pix2world</span><span class="p">(</span><span class="n">pos_orig</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">radec_crop_all</span> <span class="o">=</span> <span class="n">wcs_crop</span><span class="o">.</span><span class="n">all_pix2world</span><span class="p">(</span><span class="n">pos_crop</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference [ΔRA, ΔDEC] (arcsec) =&quot;</span><span class="p">,</span> <span class="mi">3600</span><span class="o">*</span><span class="p">(</span><span class="n">radec_orig_wcs</span> <span class="o">-</span> <span class="n">radec_crop_wcs</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Difference [ΔRA, ΔDEC] (arcsec) =&quot;</span><span class="p">,</span> <span class="mi">3600</span><span class="o">*</span><span class="p">(</span><span class="n">radec_orig_all</span> <span class="o">-</span> <span class="n">radec_crop_all</span><span class="p">))</span>
+<span class="c1"># Difference [ΔRA, ΔDEC] (arcsec) = [[0. 0.]]</span>
+<span class="c1"># Difference [ΔRA, ΔDEC] (arcsec) = [[-0.47574813 -0.16822854]]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Delete the <code class="docutils literal notranslate"><span class="pre">test.fits</span></code> file.</p></li>
+</ol>
+<div class="dropdown tip admonition">
+<p class="admonition-title">A note on WCS</p>
+<p>In astropy, there are two ways to convert pixel (X/Y) ⟷ world coordinate (RA/DEC) described in <a class="reference external" href="https://docs.astropy.org/en/stable/wcs/index.html#getting-started">here</a>. Simply put:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wcs</span></code>: Only simple calculation is done</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code>: Calculates all detailed calculations.</p></li>
+</ol>
+<p>Therefore, calculations using <code class="docutils literal notranslate"><span class="pre">all</span></code> (<code class="docutils literal notranslate"><span class="pre">all_pix2world</span></code>) must be more correct than <code class="docutils literal notranslate"><span class="pre">wcs</span></code> (<code class="docutils literal notranslate"><span class="pre">wcs_pix2world</span></code>). From the code above, however, it is the opposite. What’s wrong here?</p>
+<p>First, the fact that our FITS file has an intentionally broken WCS information <strong>does not</strong> matter, because it only scales <code class="docutils literal notranslate"><span class="pre">PC</span></code> parameters in the WCS header: If you try with updated WCS, it still gives discrepancy of ~ 0.1 arcsec order in both RA/DEC (<code class="docutils literal notranslate"><span class="pre">Difference</span> <span class="pre">[ΔRA,</span> <span class="pre">ΔDEC]</span> <span class="pre">(arcsec)</span> <span class="pre">=</span> <span class="pre">[[0.24009913</span> <span class="pre">0.02912163]]</span></code>). It seems like, when using <code class="docutils literal notranslate"><span class="pre">Cutout2D</span></code>, <strong>not all of the WCS information is transferred correctly</strong> (not clearly stated but you can get some hint from the doc <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.nddata.utils.Cutout2D.html">here</a>). Thus, “details” of the original WCS is not propagated to cutout, and this is the reason why the <code class="docutils literal notranslate"><span class="pre">wcs_pix2world</span></code> gives identical result, while <code class="docutils literal notranslate"><span class="pre">all_pix2world</span></code> gives slightly different result. If <code class="docutils literal notranslate"><span class="pre">Cutout2D</span></code> correctly transfers all WCS information, then we would see the difference = 0 for <code class="docutils literal notranslate"><span class="pre">all_pix2world</span></code>, and non-zero difference in <code class="docutils literal notranslate"><span class="pre">wcs_pix2world</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="problem-set-4-optional-50-points">
+<h2>Problem Set 4 (optional) [50 points]<a class="headerlink" href="#problem-set-4-optional-50-points" title="Permalink to this headline">#</a></h2>
+<p><strong>Skip this unless the TA asks you to solve these.</strong> (For undergraduate class, it is a bit too advanced, and the <strong>TA will likely skip this problem set</strong>.)</p>
+<p>Please use python 3.6+ (Never use python 2).</p>
+<p>For other packages: Although I didn’t run all the tests, likely there will be no problem if you use decently recent versions of any packages used in the homework (any version released after 2017).</p>
+<p>Here we will learn how to use <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code>. Please run the following code before you start:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.modeling.functional_models</span> <span class="kn">import</span> <span class="n">Gaussian2D</span>
+<span class="kn">from</span> <span class="nn">astropy.nddata</span> <span class="kn">import</span> <span class="n">CCDData</span>
+<span class="kn">from</span> <span class="nn">photutils.psf</span> <span class="kn">import</span> <span class="n">IntegratedGaussianPRF</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">top</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;tmp&#39;</span><span class="p">)</span>
+<span class="n">top</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">final_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">bias_adu</span> <span class="o">=</span> <span class="mi">1000</span>      <span class="c1"># ADU</span>
+<span class="n">sens_center_xy</span> <span class="o">=</span> <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="n">sens_sigma</span> <span class="o">=</span> <span class="mi">100</span>     <span class="c1"># pixel</span>
+<span class="n">dark_epsec</span> <span class="o">=</span> <span class="mf">0.1</span>     <span class="c1"># epsec = e/sec = electron per second (per pixel)</span>
+<span class="n">exptime</span> <span class="o">=</span> <span class="mi">300</span>        <span class="c1"># seconds</span>
+<span class="n">gain_epadu</span> <span class="o">=</span> <span class="mf">1.36</span>    <span class="c1"># epadu = e/ADU = electron per ADU</span>
+<span class="n">rdnoise_e</span> <span class="o">=</span> <span class="mf">9.0</span>      <span class="c1"># electrons</span>
+<span class="n">seeing_arcsec</span> <span class="o">=</span> <span class="mf">2.5</span>  <span class="c1"># arcsec (FWHM)</span>
+<span class="n">pixel_scale</span> <span class="o">=</span> <span class="mf">0.9</span>    <span class="c1"># arcsec per pixel</span>
+<span class="n">skylevel_e</span> <span class="o">=</span> <span class="mi">500</span>     <span class="c1"># electrons</span>
+
+<span class="c1"># Stars&#39; properties.</span>
+<span class="c1">#   Flux = integrated flux in electrons,</span>
+<span class="c1">#   x_0/y_0 = center positions in pixel</span>
+<span class="n">stars_props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="mi">70000</span><span class="p">,</span> <span class="n">x_0</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">20</span><span class="p">),</span>
+                   <span class="n">B</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="mi">30000</span><span class="p">,</span> <span class="n">x_0</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span>
+                   <span class="n">C</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">flux</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">x_0</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">y_0</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+                   <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">add_rdnoise</span><span class="p">(</span><span class="n">image_adu</span><span class="p">,</span> <span class="n">rdnoise_e</span><span class="p">,</span> <span class="n">gain_epadu</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Adds readnoise</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    image_adu : array-like</span>
+<span class="sd">        The image to add readnoise, in ADU unit.</span>
+<span class="sd">    rdnoise_e, gain_epadu : float</span>
+<span class="sd">        The readnoise and gain in electrons and electrons per ADU, respectively.</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    ------</span>
+<span class="sd">    _result : ndarray</span>
+<span class="sd">        The noise-added image.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">rdnoise</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="n">rdnoise_e</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">image_adu</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">_result</span> <span class="o">=</span> <span class="n">image_adu</span> <span class="o">+</span> <span class="n">rdnoise</span> <span class="o">/</span> <span class="n">gain_epadu</span>
+    <span class="k">return</span> <span class="n">_result</span>
+
+</pre></div>
+</div>
+<p>While answering the problems, follow these rules:</p>
+<ol class="arabic simple">
+<li><p>You <strong>should not import any other packages</strong>.</p></li>
+<li><p>You <strong>should not define any functions.</strong></p></li>
+<li><p>For each problem, I gave hints. <strong>It is also homework for you to search for those on google</strong>.</p></li>
+</ol>
+<p>The final raw image (<code class="docutils literal notranslate"><span class="pre">final_image</span></code>) will have the following header:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SIMPLE</span>  <span class="o">=</span>                    <span class="n">T</span> <span class="o">/</span> <span class="n">conforms</span> <span class="n">to</span> <span class="n">FITS</span> <span class="n">standard</span>
+<span class="n">BITPIX</span>  <span class="o">=</span>                   <span class="mi">16</span> <span class="o">/</span> <span class="n">array</span> <span class="n">data</span> <span class="nb">type</span>
+<span class="n">NAXIS</span>   <span class="o">=</span>                    <span class="mi">2</span> <span class="o">/</span> <span class="n">number</span> <span class="n">of</span> <span class="n">array</span> <span class="n">dimensions</span>
+<span class="n">NAXIS1</span>  <span class="o">=</span>                  <span class="mi">100</span>
+<span class="n">NAXIS2</span>  <span class="o">=</span>                   <span class="mi">50</span>
+<span class="n">OBJECT</span>  <span class="o">=</span> <span class="s1">&#39;2019AO2test&#39;</span>        <span class="o">/</span> <span class="n">The</span> <span class="n">observed</span> <span class="n">target</span>
+<span class="n">BUNIT</span>   <span class="o">=</span> <span class="s1">&#39;adu     &#39;</span>           <span class="o">/</span> <span class="n">Pixel</span> <span class="n">value</span> <span class="n">unit</span>
+<span class="n">IMAGETYP</span><span class="o">=</span> <span class="s1">&#39;Light Frame&#39;</span>        <span class="o">/</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">image</span>
+<span class="n">EXPTIME</span> <span class="o">=</span>                <span class="mf">300.0</span> <span class="o">/</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="n">Exposure</span> <span class="n">time</span>
+<span class="n">GAIN</span>    <span class="o">=</span>                 <span class="mf">1.36</span> <span class="o">/</span> <span class="p">[</span><span class="n">e</span><span class="o">-/</span><span class="n">ADU</span><span class="p">]</span> <span class="n">The</span> <span class="n">electron</span> <span class="n">gain</span> <span class="n">factor</span><span class="o">.</span>
+<span class="n">RDNOISE</span> <span class="o">=</span>                  <span class="mf">9.0</span> <span class="o">/</span> <span class="p">[</span><span class="n">e</span><span class="o">-</span><span class="p">]</span> <span class="n">The</span> <span class="p">(</span><span class="n">Gaussian</span><span class="p">)</span> <span class="n">read</span> <span class="n">noise</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Answer the following questions. [2 points each]</p>
+<ol class="arabic">
+<li><p>Make a bias map called <code class="docutils literal notranslate"><span class="pre">bias</span></code>, assuming the mean bias level is 1000 ADU.</p>
+<ul class="simple">
+<li><p>Hint: Pure bias map must be a constant, so <code class="docutils literal notranslate"><span class="pre">bias</span> <span class="pre">=</span> <span class="pre">np.ones_like(?)</span> <span class="pre">*</span> <span class="pre">bias_adu</span></code></p></li>
+</ul>
+</li>
+<li><p>Add readnoise to <code class="docutils literal notranslate"><span class="pre">bias</span></code> using <code class="docutils literal notranslate"><span class="pre">add_rdnoise</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: Just use <code class="docutils literal notranslate"><span class="pre">bias</span> <span class="pre">=</span> <span class="pre">add_rdnoise(image_adu=bias,</span> <span class="pre">rdnoise_e=rdnoise_e,</span> <span class="pre">gain_epadu=gain_epadu)</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">np.mean(bias)</span></code> is as you expected.</p></li>
+<li><p>Save this <code class="docutils literal notranslate"><span class="pre">bias</span></code> as a FITS file to <code class="docutils literal notranslate"><span class="pre">top/'bias.fits'</span></code> which resembles the <code class="docutils literal notranslate"><span class="pre">final_image</span></code>’s header above.</p>
+<ul>
+<li><p>Hint: Use the following</p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">bias_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">bias</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">))</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;BUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;adu&quot;</span><span class="p">,</span> <span class="s2">&quot;Pixel Unit Value&quot;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;OBJECT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span> <span class="s2">&quot;The observed target&quot;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;EXPTIME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;[s] Exposure time&#39;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;IMAGETYP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Bias Frame&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of image&#39;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.36</span><span class="p">,</span> <span class="s1">&#39;[e-/ADU] The electron gain factor.&#39;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="s1">&#39;[e-] The (Gaussian) read noise.&#39;</span><span class="p">)</span>
+<span class="n">bias_hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;bias.fits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Make a dark frame called <code class="docutils literal notranslate"><span class="pre">dark_300s</span></code>, from <code class="docutils literal notranslate"><span class="pre">exptime</span></code> and <code class="docutils literal notranslate"><span class="pre">dark_epsec</span></code>, and assuming dark current is Poissonian.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">dark_300s</span> <span class="pre">=</span> <span class="pre">np.random.poisson(dark_epsec</span> <span class="pre">*</span> <span class="pre">?,</span> <span class="pre">size=final_image.shape)</span></code> .</p></li>
+</ul>
+</li>
+<li><p>Add readnoise to <code class="docutils literal notranslate"><span class="pre">dark_300s</span></code> using <code class="docutils literal notranslate"><span class="pre">add_rdnoise</span></code> and overwrite <code class="docutils literal notranslate"><span class="pre">dark_300s</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">dark_300s</span> <span class="pre">=</span> <span class="pre">add_rdnoise(image_adu=dark_300s/?,</span> <span class="pre">rdnoise_e=rdnoise_e,</span> <span class="pre">gain_epadu=gain_epadu)</span></code></p></li>
+</ul>
+</li>
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">np.mean(dark_300s)</span></code> is as you expected.</p></li>
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">dark_300s</span></code> as a FITS file to <code class="docutils literal notranslate"><span class="pre">top/'dark_300.fits'</span></code> which resembles the <code class="docutils literal notranslate"><span class="pre">final_image</span></code>’s header above.</p>
+<ul>
+<li><p>Hint: Use the following</p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">dark_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">dark_300s</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">))</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;BUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="s2">&quot;Pixel Unit Value&quot;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;OBJECT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;dark&quot;</span><span class="p">,</span> <span class="s2">&quot;The observed target&quot;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;EXPTIME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="s1">&#39;[s] Exposure time&#39;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;IMAGETYP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Dark Frame&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of image&#39;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.36</span><span class="p">,</span> <span class="s1">&#39;[e-/ADU] The electron gain factor.&#39;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="s1">&#39;[e-] The (Gaussian) read noise.&#39;</span><span class="p">)</span>
+<span class="n">dark_hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>Consider the vignetting (sensitivity or the “flat”) is in the form of a circular Gaussian, centered at <code class="docutils literal notranslate"><span class="pre">sens_center_xy</span></code> and standard deviation <code class="docutils literal notranslate"><span class="pre">sens_sigma</span></code> pixel. Let’s make the flat map based on these.</p>
+<ol class="arabic simple" start="9">
+<li><p>First, make meshgrid <code class="docutils literal notranslate"><span class="pre">xx</span></code> and <code class="docutils literal notranslate"><span class="pre">yy</span></code>, which will contain the x and y values for each of the <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">100)</span></code> pixels. The resulting <code class="docutils literal notranslate"><span class="pre">xx</span></code> and <code class="docutils literal notranslate"><span class="pre">yy</span></code> will have the same shape as <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">100)</span></code>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Hint: Use <code class="docutils literal notranslate"><span class="pre">np.mgrid[]</span> </code>, i.e., <code class="docutils literal notranslate"><span class="pre">yy,</span> <span class="pre">xx</span> <span class="pre">=</span> <span class="pre">np.mgrid[:final_image.shape[?],</span> <span class="pre">:final_image.shape[?]]</span></code></p></li>
+</ul>
+<ol class="arabic" start="10">
+<li><p>Check <code class="docutils literal notranslate"><span class="pre">xx</span></code> indeed is the x-values of the <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">100)</span></code>-shaped image.</p></li>
+<li><p>Make the r-square map called <code class="docutils literal notranslate"><span class="pre">rsq</span></code>, which is of shape <code class="docutils literal notranslate"><span class="pre">(50,</span> <span class="pre">100)</span></code> and contains the distance from the position <code class="docutils literal notranslate"><span class="pre">sens_center_xy</span></code>.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">rsq</span> <span class="pre">=</span> <span class="pre">(xx</span> <span class="pre">-</span> <span class="pre">sens_center_xy[?])**2</span> <span class="pre">+</span> <span class="pre">(yy</span> <span class="pre">-</span> <span class="pre">sens_center_xy[?])**2</span></code></p></li>
+</ul>
+</li>
+<li><p>Finally, use the Gaussian function to make the sensitivity map.</p>
+<ul class="simple">
+<li><p>Hint: <code class="docutils literal notranslate"><span class="pre">sens</span> <span class="pre">=</span> <span class="pre">np.exp(-?</span> <span class="pre">/</span> <span class="pre">(2</span> <span class="pre">*</span> <span class="pre">?**2))</span></code>.</p></li>
+<li><p>If you want to view the flat pattern, you can do <code class="docutils literal notranslate"><span class="pre">plt.imshow(sens,</span> <span class="pre">origin='lower')</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">sens</span></code> as a FITS file to <code class="docutils literal notranslate"><span class="pre">top/'flat.fits'</span></code> which resembles the <code class="docutils literal notranslate"><span class="pre">final_image</span></code>’s header above.</p>
+<ul>
+<li><p>Hint: Use the following</p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sens_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">sens</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">))</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;BUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;dimensionless&#39;</span><span class="p">,</span> <span class="s2">&quot;Pixel Unit Value&quot;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;OBJECT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;flat&quot;</span><span class="p">,</span> <span class="s2">&quot;The observed target&quot;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;EXPTIME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="s1">&#39;[s] Exposure time&#39;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;IMAGETYP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Light Frame&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of image&#39;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.36</span><span class="p">,</span> <span class="s1">&#39;[e-/ADU] The electron gain factor.&#39;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="s1">&#39;[e-] The (Gaussian) read noise.&#39;</span><span class="p">)</span>
+<span class="n">sens_hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+<p>Let’s now add three stars. The seeing FWHM is <code class="docutils literal notranslate"><span class="pre">seeing_arcsec</span></code> in arcsecond and the pixel scale is <code class="docutils literal notranslate"><span class="pre">pixel_scale</span></code> (arcsec/pixel). Assume circular Gaussian PSF.</p>
+<ol class="arabic" start="14">
+<li><p>Prove that the FWHM of a circular Gaussian profile is <span class="math notranslate nohighlight">\(\mathrm{FWHM} = 2\sqrt{2\ln 2} \sigma\)</span> for standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>.</p>
+<ul class="simple">
+<li><p>Hint: Gaussian profile has <span class="math notranslate nohighlight">\(f(r|A,\, \sigma) = A e^{-r^2/2\sigma^2}\)</span> and the FWHM is defined as <span class="math notranslate nohighlight">\(f(r=\mathrm{FWHM}/2) = A/2\)</span>.</p></li>
+<li><p><strong>Just answer “I did”</strong>. No need to provide equations.</p></li>
+</ul>
+</li>
+<li><p>Fill in the blanks to make the image of stars.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">final_image</span><span class="p">)</span> <span class="o">*</span> <span class="n">skylevel_e</span>  <span class="c1"># Initialize with sky values</span>
+<span class="n">seeing_sigma_pix</span> <span class="o">=</span> <span class="n">seeing_arcsec</span> <span class="o">/</span> <span class="n">pixel_scale</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">stars_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">IntegratedGaussianPRF</span><span class="p">(</span><span class="o">**</span><span class="n">prop</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+    <span class="n">stars</span> <span class="o">+=</span> <span class="n">g</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>  <span class="c1"># Add the star to stars</span>
+
+<span class="n">stars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="n">stars</span><span class="p">)</span> <span class="o">/</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span>  <span class="c1"># Poissonian sample and convert to ADU</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You can check the results by <code class="docutils literal notranslate"><span class="pre">plt.imshow(stars,</span> <span class="pre">origin='lower')</span></code></p></li>
+</ul>
+</li>
+<li><p>Make a new bias and dark. Using the previously made flat (<code class="docutils literal notranslate"><span class="pre">sens</span></code>), simulate a raw image (bias, dark added, flat pattern added, and add readnoise).</p>
+<ul class="simple">
+<li><p>Hint: The exposure time is 300s as described in the beginning of this homework.</p></li>
+<li><p>Hint: Make bias and dark as before, but do not add readnoise yet.</p></li>
+<li><p>Hint: Then <code class="docutils literal notranslate"><span class="pre">stars_adu</span> <span class="pre">=</span> <span class="pre">bias</span> <span class="pre">+</span> <span class="pre">(dark</span> <span class="pre">+</span> <span class="pre">sens*stars)/?</span></code>.</p></li>
+<li><p>Hint: Add readnoise now by <code class="docutils literal notranslate"><span class="pre">stars_adu</span> <span class="pre">=</span> <span class="pre">add_rdnoise(image_adu=stars_adu,</span> <span class="pre">rdnoise_e=rdnoise_e,</span> <span class="pre">gain_epadu=gain_epadu)</span></code></p></li>
+</ul>
+</li>
+<li><p>Save <code class="docutils literal notranslate"><span class="pre">stars_adu</span></code> as a FITS file to <code class="docutils literal notranslate"><span class="pre">top/'image0001.fits'</span></code> which resembles the <code class="docutils literal notranslate"><span class="pre">final_image</span></code>’s header above.</p>
+<ul>
+<li><p>Hint: Use the following (This is the <code class="docutils literal notranslate"><span class="pre">final_image</span></code>, so look at the sample header in the beginning of this homework):</p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">stars_hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">stars_adu</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int16&#39;</span><span class="p">))</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;BUNIT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="s2">&quot;Pixel Unit Value&quot;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;OBJECT&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="s2">&quot;The observed target&quot;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;EXPTIME&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="s1">&#39;[s] Exposure time&#39;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;IMAGETYP&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;Light Frame&#39;</span><span class="p">,</span> <span class="s1">&#39;Type of image&#39;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.36</span><span class="p">,</span> <span class="s1">&#39;[e-/ADU] The electron gain factor.&#39;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">9.0</span><span class="p">,</span> <span class="s1">&#39;[e-] The (Gaussian) read noise.&#39;</span><span class="p">)</span>
+<span class="n">stars_hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Now, load all the four FITS files using the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">master_paths</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">bias</span><span class="o">=</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;bias.fits&quot;</span><span class="p">,</span>
+                       <span class="n">dark</span><span class="o">=</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;dark_300.fits&quot;</span><span class="p">,</span>
+                       <span class="n">flat</span><span class="o">=</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;flat.fits&quot;</span><span class="p">)</span>
+<span class="n">master_frames</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">master_paths</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">master_frames</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">]</span>
+
+<span class="n">rawim</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001.fits&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Do bias, dark, and flat corrections.</p>
+<ul>
+<li><p>Hint: Use the following:</p></li>
+<li><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">hdr</span> <span class="o">=</span> <span class="n">rawim</span><span class="o">.</span><span class="n">header</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">_</span> <span class="o">=</span> <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;PROCESS&quot;</span><span class="p">]</span>
+<span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+    <span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;PROCESS&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+<span class="c1"># Bias subtraction</span>
+<span class="n">rawim_reduced</span> <span class="o">=</span> <span class="n">rawim</span><span class="o">.</span><span class="n">data</span> <span class="o">-</span> <span class="n">master_frames</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;PROCESS&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;B&quot;</span>
+<span class="n">hdr</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bias subtracted by </span><span class="si">{</span><span class="n">master_paths</span><span class="p">[</span><span class="s1">&#39;bias&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">rawim_reduced</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">hdr</span><span class="p">)</span>
+<span class="n">hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001_bxx.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Dark subtraction</span>
+<span class="c1">#   NOTE: our dark is already bias subtracted!</span>
+<span class="n">dark_exptime</span> <span class="o">=</span> <span class="n">master_frames</span><span class="p">[</span><span class="s1">&#39;dark&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">header</span><span class="p">[</span><span class="s1">&#39;EXPTIME&#39;</span><span class="p">]</span>
+<span class="n">targ_exptime</span> <span class="o">=</span> <span class="n">hdr</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">]</span>
+<span class="n">dark</span> <span class="o">=</span> <span class="n">master_frames</span><span class="p">[</span><span class="s1">&#39;dark&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+<span class="k">if</span> <span class="n">targ_exptime</span> <span class="o">==</span> <span class="n">dark_exptime</span><span class="p">:</span>
+    <span class="n">rawim_reduced</span> <span class="o">=</span> <span class="n">rawim_reduced</span> <span class="o">-</span> <span class="n">dark</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No corresponding dark frame found; &quot;</span>
+          <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;Scaling it from </span><span class="si">{</span><span class="n">dark_exptime</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">rawim_reduced</span> <span class="o">=</span> <span class="n">rawim_reduced</span> <span class="o">-</span> <span class="n">dark</span> <span class="o">*</span> <span class="p">(</span><span class="n">targ_exptime</span><span class="o">/</span><span class="n">dark_exptime</span><span class="p">)</span>
+<span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;PROCESS&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="s2">&quot;D&quot;</span>
+<span class="n">hdr</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Dark subtracted by </span><span class="si">{</span><span class="n">master_paths</span><span class="p">[</span><span class="s1">&#39;dark&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="n">header</span><span class="o">=&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+<span class="n">hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001_bdx.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Flat correction</span>
+<span class="c1">#   NOTE: our flat is already bias and dark subtracted!</span>
+<span class="n">flat_mean</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">master_frames</span><span class="p">[</span><span class="s1">&#39;flat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="n">flat_norm</span> <span class="o">=</span> <span class="n">master_frames</span><span class="p">[</span><span class="s1">&#39;flat&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="n">flat_mean</span>
+<span class="n">rawim_reduced</span> <span class="o">=</span> <span class="n">rawim_reduced</span> <span class="o">/</span> <span class="n">flat_norm</span>
+<span class="n">hdr</span><span class="p">[</span><span class="s2">&quot;PROCESS&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span>
+<span class="n">hdr</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Flat corrected by </span><span class="si">{</span><span class="n">master_paths</span><span class="p">[</span><span class="s1">&#39;flat&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (flat mean=</span><span class="si">{</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+<span class="n">hdu</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">rawim_reduced</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">),</span> <span class="n">header</span><span class="o">=</span><span class="n">hdr</span><span class="p">)</span>
+<span class="n">hdu</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001_bdf.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Fill in the blanks such that <code class="docutils literal notranslate"><span class="pre">image0001_bdf.fits</span></code> has the following header:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">SIMPLE</span>  <span class="o">=</span>                    <span class="n">T</span> <span class="o">/</span> <span class="n">conforms</span> <span class="n">to</span> <span class="n">FITS</span> <span class="n">standard</span>
+<span class="n">BITPIX</span>  <span class="o">=</span>                  <span class="o">-</span><span class="mi">32</span> <span class="o">/</span> <span class="n">array</span> <span class="n">data</span> <span class="nb">type</span>
+<span class="n">NAXIS</span>   <span class="o">=</span>                    <span class="mi">2</span> <span class="o">/</span> <span class="n">number</span> <span class="n">of</span> <span class="n">array</span> <span class="n">dimensions</span>
+<span class="n">NAXIS1</span>  <span class="o">=</span>                  <span class="mi">100</span>
+<span class="n">NAXIS2</span>  <span class="o">=</span>                   <span class="mi">50</span>
+<span class="n">BUNIT</span>   <span class="o">=</span> <span class="s1">&#39;adu     &#39;</span>           <span class="o">/</span> <span class="n">Pixel</span> <span class="n">Unit</span> <span class="n">Value</span>
+<span class="n">OBJECT</span>  <span class="o">=</span> <span class="s1">&#39;2019AO2test&#39;</span>        <span class="o">/</span> <span class="n">The</span> <span class="n">observed</span> <span class="n">target</span>
+<span class="n">EXPTIME</span> <span class="o">=</span>                  <span class="mi">300</span> <span class="o">/</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="n">Exposure</span> <span class="n">time</span>
+<span class="n">IMAGETYP</span><span class="o">=</span> <span class="s1">&#39;Light Frame&#39;</span>        <span class="o">/</span> <span class="n">Type</span> <span class="n">of</span> <span class="n">image</span>
+<span class="n">GAIN</span>    <span class="o">=</span>                 <span class="mf">1.36</span> <span class="o">/</span> <span class="p">[</span><span class="n">e</span><span class="o">-/</span><span class="n">ADU</span><span class="p">]</span> <span class="n">The</span> <span class="n">electron</span> <span class="n">gain</span> <span class="n">factor</span><span class="o">.</span>
+<span class="n">RDNOISE</span> <span class="o">=</span>                  <span class="mf">9.0</span> <span class="o">/</span> <span class="p">[</span><span class="n">e</span><span class="o">-</span><span class="p">]</span> <span class="n">The</span> <span class="p">(</span><span class="n">Gaussian</span><span class="p">)</span> <span class="n">read</span> <span class="n">noise</span><span class="o">.</span>
+<span class="n">PROCESS</span> <span class="o">=</span> <span class="s1">&#39;BDF     &#39;</span>
+<span class="n">HISTORY</span> <span class="n">Bias</span> <span class="n">subtracted</span> <span class="n">by</span> <span class="n">tmp</span><span class="o">/</span><span class="n">bias</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">HISTORY</span> <span class="n">Dark</span> <span class="n">subtracted</span> <span class="n">by</span> <span class="n">tmp</span><span class="o">/</span><span class="n">dark_300</span><span class="o">.</span><span class="n">fits</span>
+<span class="n">HISTORY</span> <span class="n">Flat</span> <span class="n">corrected</span> <span class="n">by</span> <span class="n">tmp</span><span class="o">/</span><span class="n">flat</span><span class="o">.</span><span class="n">fits</span> <span class="p">(</span><span class="n">flat</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.8796451091766357</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Display the images. Do you see the effect of reduction?</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span> <span class="n">sharex</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sharey</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">gridspec_kw</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">fpath</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001.fits&quot;</span><span class="p">,</span>
+                           <span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001_bdx.fits&quot;</span><span class="p">,</span>
+                           <span class="n">top</span><span class="o">/</span><span class="s2">&quot;image0001_bdf.fits&quot;</span><span class="p">]):</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="n">fpath</span><span class="p">)</span>
+    <span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">99</span><span class="p">])</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="n">vmin</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">fpath</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Delete your files and directory.</p></li>
+</ol>
+<p>[4 points]</p>
+<p>In the above, we used <code class="docutils literal notranslate"><span class="pre">IntegratedPRF</span></code>, which has slightly different meaning than PSF in <code class="docutils literal notranslate"><span class="pre">photutils</span></code>. Gaussian function will calculate the pixel value as the Gaussain function value at the pixel center (<span class="math notranslate nohighlight">\(f(x_i, y_i)\)</span> for the i-th pixel), while <code class="docutils literal notranslate"><span class="pre">IntegratedPRF</span></code> is the <strong>integrated</strong> value of the Gaussian function values within the pixel <span class="math notranslate nohighlight">\(\left( \int_{x_i - \Delta x/2}^{x_i + \Delta x/2} \int_{y_i - \Delta y/2}^{y_i + \Delta y/2} f(x, y) dx dy \right)\)</span>. To see the difference, we need a test.</p>
+<ol class="arabic" start="22">
+<li><p>Fill in the blanks to see the map of <span class="math notranslate nohighlight">\(\frac{\mathrm{IntegratedPRF\ case}-\mathrm{SimpleGaussian\ case}}{\mathrm{\mathrm{IntegratedPRF\ case} + \mathrm{sky}}}\)</span> (there’s no sky in the numerator because they cancel out):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, no noise will be added, because the purpose is to see the difference</span>
+<span class="c1"># (between Integrated PRF and simple Gaussian function value)</span>
+<span class="n">stars_psf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">final_image</span><span class="p">)</span>  <span class="c1"># Simple function value case</span>
+<span class="n">stars_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">final_image</span><span class="p">)</span>  <span class="c1"># Integrated value case</span>
+
+<span class="n">seeing_sigma_pix</span> <span class="o">=</span> <span class="n">seeing_arcsec</span> <span class="o">/</span> <span class="n">pixel_scale</span>
+<span class="n">seeing</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_stddev</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">,</span> <span class="n">y_stddev</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">stars_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="n">amp</span> <span class="o">=</span> <span class="n">prop</span><span class="p">[</span><span class="s2">&quot;flux&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">seeing_sigma_pix</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">g_psf</span> <span class="o">=</span> <span class="n">Gaussian2D</span><span class="p">(</span><span class="n">amplitude</span><span class="o">=</span><span class="n">amp</span><span class="p">,</span>
+                       <span class="n">x_mean</span><span class="o">=</span><span class="n">prop</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">],</span>
+                       <span class="n">y_mean</span><span class="o">=</span><span class="n">prop</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">],</span>
+                       <span class="o">**</span><span class="n">seeing</span><span class="p">)</span>
+    <span class="n">g_int</span> <span class="o">=</span> <span class="n">IntegratedGaussianPRF</span><span class="p">(</span><span class="o">**</span><span class="n">prop</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">)</span>
+    <span class="n">stars_psf</span> <span class="o">+=</span> <span class="n">g_psf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+    <span class="n">stars_int</span> <span class="o">+=</span> <span class="n">g_int</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">stars_int</span> <span class="o">-</span> <span class="n">stars_psf</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">stars_int</span> <span class="o">+</span> <span class="n">skylevel_e</span><span class="p">)</span>
+
+<span class="n">im</span> <span class="o">=</span> <span class="n">axs</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">diff</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=-</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">im</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">stars_psf</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">stars_int</span><span class="p">))</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In the code, the resulting image will show the fractional difference, assuming the sky was <code class="docutils literal notranslate"><span class="pre">skylevel_e</span> <span class="pre">=</span> <span class="pre">500</span></code> electrons. You can see the difference is large near the center and outskirt of the stars, although <strong>each star’s total flux is the same</strong> for both cases.</p>
+<p><img alt="" src="../../_images/IntegratedPRF_VS_SimpleGauss.png" /></p>
+<p>[4 points]</p>
+<p>Now let’s see how it changes for the sky level.</p>
+<ol class="arabic simple" start="23">
+<li><p>Fill in the blanks:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here, no noise will be added, because the purpose is to see the difference</span>
+<span class="c1"># (between Integrated PRF and simple Gaussian function value)</span>
+<span class="n">seeing_sigma_pix</span> <span class="o">=</span> <span class="n">seeing_arcsec</span> <span class="o">/</span> <span class="n">pixel_scale</span>
+<span class="n">seeing</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x_stddev</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">,</span> <span class="n">y_stddev</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">)</span>
+
+<span class="n">mins</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">maxs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">skylevels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;skylevel electrons: min difference, max difference&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">skylevel</span> <span class="ow">in</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">:</span>
+    <span class="n">stars_psf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">final_image</span><span class="p">)</span>  <span class="c1"># Simple function value case</span>
+    <span class="n">stars_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">final_image</span><span class="p">)</span>  <span class="c1"># Integrated value case</span>
+    <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">prop</span> <span class="ow">in</span> <span class="n">stars_props</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">amp</span> <span class="o">=</span> <span class="n">prop</span><span class="p">[</span><span class="s2">&quot;flux&quot;</span><span class="p">]</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">seeing_sigma_pix</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">g_psf</span> <span class="o">=</span> <span class="n">Gaussian2D</span><span class="p">(</span><span class="n">amplitude</span><span class="o">=</span><span class="n">amp</span><span class="p">,</span>
+                           <span class="n">x_mean</span><span class="o">=</span><span class="n">prop</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">],</span>
+                           <span class="n">y_mean</span><span class="o">=</span><span class="n">prop</span><span class="p">[</span><span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">],</span>
+                           <span class="o">**</span><span class="n">seeing</span><span class="p">)</span>
+        <span class="n">g_int</span> <span class="o">=</span> <span class="n">IntegratedGaussianPRF</span><span class="p">(</span><span class="o">**</span><span class="n">prop</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="n">seeing_sigma_pix</span><span class="p">)</span>
+        <span class="n">stars_psf</span> <span class="o">+=</span> <span class="n">g_psf</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+        <span class="n">stars_int</span> <span class="o">+=</span> <span class="n">g_int</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">)</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">stars_int</span> <span class="o">-</span> <span class="n">stars_psf</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">stars_int</span> <span class="o">+</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">)</span>
+    <span class="n">vmin</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="n">vmax</span> <span class="o">=</span> <span class="mi">100</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="n">mins</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vmin</span><span class="p">)</span>
+    <span class="n">maxs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vmax</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:18.0f}</span><span class="s2">: </span><span class="si">{:^13.5f}</span><span class="s2">%, </span><span class="si">{:^13.5f}</span><span class="s2">%&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">skylevel</span><span class="p">,</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">,</span> <span class="o">&gt;&gt;</span><span class="n">FILLHERE</span><span class="o">&lt;&lt;</span><span class="p">))</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">skylevels</span><span class="p">,</span> <span class="n">mins</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">skylevels</span><span class="p">,</span> <span class="n">maxs</span><span class="p">)</span>
+<span class="n">axs</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;skylevel [electrons]&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;min/max difference [%]&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The importance of this difference depends on the situation. If you just want a simple rough fitting to the profile, both will give similar results (centroid position, FWHM, etc). But if you want to get accurate PSF, it is better to choose Integrated version.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/python_prep"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="99-HW_pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></p>
+      </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-1-6-points">Problem Set 1  [6 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-2-22-points">Problem Set 2 [22 points]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problems">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-3-28-points">Problem Set 3 [28 points]</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Problems</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-set-4-optional-50-points">Problem Set 4 (optional) [50 points]</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

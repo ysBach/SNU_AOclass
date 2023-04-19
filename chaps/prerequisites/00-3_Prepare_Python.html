@@ -1,0 +1,647 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>3. (IMPORTANT) Python Environment &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/prerequisites/00-3_Prepare_Python';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="4. Python Preparation Course" href="../python_prep/00-python_prep.html" />
+    <link rel="prev" title="2. UNIX Shell" href="00-2_UNIX.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-1_Softwares.html">1. Software Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-2_UNIX.html">2. UNIX Shell</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_prep/00-python_prep.html">4. Python Preparation Course</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/03-FITS_and_astropy.html">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="99-HW_swtools.html">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_astropy-fits.html">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/prerequisites/00-3_Prepare_Python.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/prerequisites/00-3_Prepare_Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/prerequisites/00-3_Prepare_Python.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>(IMPORTANT) Python Environment</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-script">3.1. Installation Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-materials">3.1.1. Reading Materials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-if-installed-correctly">3.2. Check if Installed Correctly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshoot">3.3. Troubleshoot</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="important-python-environment">
+<span id="prepare-python"></span><h1><span class="section-number">3. </span>(IMPORTANT) Python Environment<a class="headerlink" href="#important-python-environment" title="Permalink to this headline">#</a></h1>
+<p>For this lecture notes, you need some packages to run the codes.</p>
+<div class="admonition-for-windows-users admonition">
+<p class="admonition-title">For Windows users</p>
+<p>If you want to use Windows, you have to sacrifice <code class="docutils literal notranslate"><span class="pre">fitsio</span></code> (unfortunately, their installation assumes <code class="docutils literal notranslate"><span class="pre">gcc</span></code>). Erase the installation of <code class="docutils literal notranslate"><span class="pre">fitsio</span></code> from the codes below.</p>
+</div>
+<p>If you are familiar with conda and virtual environment, please feel free to make a new env for this lecture note. If you don’t understand what this means, please ignore it (you will natually know what it is after few years of using conda and having numerous headaches and googling experiences).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are sick of the slow speed of <code class="docutils literal notranslate"><span class="pre">conda</span></code> and adventerous, give <a class="reference external" href="https://github.com/mamba-org/mamba"><code class="docutils literal notranslate"><span class="pre">mamba</span></code></a> a try.</p>
+</div>
+<section id="installation-script">
+<h2><span class="section-number">3.1. </span>Installation Script<a class="headerlink" href="#installation-script" title="Permalink to this headline">#</a></h2>
+<p>Copy and paste the following lines to the terminal (I am assuming you have anaconda installed, following <a class="reference internal" href="00-1_Softwares.html"><span class="doc std std-doc">00-1_Softwares.md</span></a>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">snuao</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.10</span> <span class="n">numpy</span><span class="o">=</span><span class="mf">1.24</span> <span class="n">scipy</span><span class="o">=</span><span class="mf">1.10</span> <span class="n">astropy</span><span class="o">=</span><span class="mf">5.2</span> <span class="n">pandas</span><span class="o">=</span><span class="mi">1</span> <span class="n">jupyter</span><span class="o">=</span><span class="mi">1</span> <span class="n">sep</span><span class="o">=</span><span class="mf">1.2</span> <span class="n">ccdproc</span><span class="o">=</span><span class="mf">2.4</span> <span class="n">photutils</span><span class="o">=</span><span class="mf">1.6</span> <span class="n">specutils</span><span class="o">=</span><span class="mf">1.10</span> <span class="o">-</span><span class="n">y</span>
+<span class="n">conda</span> <span class="n">activate</span> <span class="n">snuao</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">fitsio</span> <span class="o">-</span><span class="n">y</span>  <span class="c1"># Windows will raise error here; ignore this line if it does.</span>
+</pre></div>
+</div>
+<p><strong>This may take several minutes.</strong> Be patient, grab a cup of coffee and read the “Reading Materials” section below.</p>
+<p><em><strong>AFTER the above is finished</strong></em>, install the submodules:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">submodules</span><span class="o">/</span>
+<span class="n">cd</span> <span class="n">version_information</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">..</span>
+<span class="n">cd</span> <span class="n">astroquery</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">..</span>
+<span class="n">cd</span> <span class="n">ginga</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">..</span>
+<span class="n">cd</span> <span class="n">astroalign</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">..</span>
+<span class="n">cd</span> <span class="n">astroscrappy</span> <span class="o">&amp;&amp;</span> <span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">e</span> <span class="o">.</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="o">..</span>
+</pre></div>
+</div>
+<p>(basically any version of these may not break any part of the notebooks, hopefully…)</p>
+<p>Finally</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">astro</span><span class="o">-</span><span class="n">ndslice</span><span class="o">==</span><span class="mf">0.2</span> <span class="n">ysfitsutilpy</span><span class="o">==</span><span class="mf">0.2</span> <span class="n">ysphotutilpy</span><span class="o">==</span><span class="mf">0.1</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">deps</span>
+</pre></div>
+</div>
+<section id="reading-materials">
+<h3><span class="section-number">3.1.1. </span>Reading Materials<a class="headerlink" href="#reading-materials" title="Permalink to this headline">#</a></h3>
+<p>Somethings to read during the installation:</p>
+<dl class="simple myst">
+<dt><strong>Astropy</strong></dt><dd><p>The name of a project which devotes its human power in developing a <em>single</em> package containing tools useful for astronomers in Python language(<a class="reference external" href="https://github.com/astropy/astropy/wiki">GitHub</a>, <a class="reference external" href="http://www.astropy.org/">Official website</a>, <a class="reference external" href="http://docs.astropy.org/en/stable/">The most recent stable distribution documentation</a>).</p>
+</dd>
+<dt><strong>Affilated Packages</strong></dt><dd><p>Since astropy is a “single core” package, it doesn’t have many convenience functionalities for small specific fields of astronomy. So there are some affiliated packages which helps astronomers to fulfill their needs. You may find the list if them <a class="reference external" href="http://www.astropy.org/affiliated/">here</a>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The astropy (but not affiliated packages) must have been installed on your computer by default while installing Anaconda.</p>
+</div>
+<p>Among the Astropy affiliated packages, these will be heavily used:</p>
+<dl class="simple myst">
+<dt><a class="reference external" href="http://photutils.readthedocs.io/en/stable/">photutils</a></dt><dd><p>Photometry related functionalities</p>
+</dd>
+<dt><a class="reference external" href="http://ccdproc.readthedocs.io/en/stable/">ccdproc</a></dt><dd><p>CCD data manipulation</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/astropy/astroscrappy">astroscrappy</a></dt><dd><p>The cosmic ray rejection tool, which uses L.A.Cosmic algorithm (<a class="reference external" href="http://www.astro.yale.edu/dokkum/lacosmic/">van Dokkum 2001, PASP</a>).</p>
+</dd>
+<dt><a class="reference external" href="https://aplpy.github.io/">APLPy</a></dt><dd><p>Astronomical image displaying tool (you <em>may</em> use it in the future…?).</p>
+</dd>
+<dt><a class="reference external" href="https://astroquery.readthedocs.io/en/latest/">astroquery</a></dt><dd><p>Querying astronomical catalog data - unlike most of other packages, it is recommended to use the “developer’s version” of astroquery rather than stable version of it. This is why we install astroquery by <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code> rather than <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span></code>.</p>
+</dd>
+<dt><a class="reference external" href="https://github.com/esheldon/fitsio.git"><code class="docutils literal notranslate"><span class="pre">fitsio</span></code></a></dt><dd><p>The popular <code class="docutils literal notranslate"><span class="pre">cfitsio</span></code> in python.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">fitsio</span></code> is used (optionally) within <code class="docutils literal notranslate"><span class="pre">ysfitsutilpy</span></code> to boost the FITS I/O speed (factor of ~ 30x on macOS) when header is unnecessary.</p>
+</div>
+</section>
+</section>
+<section id="check-if-installed-correctly">
+<h2><span class="section-number">3.2. </span>Check if Installed Correctly<a class="headerlink" href="#check-if-installed-correctly" title="Permalink to this headline">#</a></h2>
+<p>Some packages has test module. Please run these to check if the installation worked correctly.</p>
+<details><summary>click</summary>
+<p>
+You can simply test the installation by tests. Run ipython or Jupyter notebook/lab, and type
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">astropy</span><span class="o">,</span> <span class="nn">photutils</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">photutils</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">astropy</span><span class="o">.</span><span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>These will take quite long time, especially astropy takes very long time. (So I didn’t show you the full result)</p>
+<p>You need to do it only once when you first installed these packages. If you want to test only some part of the whole package, you can specify the module, e.g., you can test <code class="docutils literal notranslate"><span class="pre">astropy.io.fits</span></code> by:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">astropy</span><span class="o">.</span><span class="n">test</span><span class="p">(</span><span class="n">package</span><span class="o">=</span><span class="s1">&#39;io.fits&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>While the test is going on, look at the names of the directories, like <code class="docutils literal notranslate"><span class="pre">astropy/table</span></code>, <code class="docutils literal notranslate"><span class="pre">astropy/units</span></code>, etc. These are the names we will encounter very frequently, so this test is not only to <strong>test</strong>, but also to get accustomed to the astropy and python language.</p>
+<p>Each dot(<code class="docutils literal notranslate"><span class="pre">.</span></code>) means <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">passed</span></code> and <code class="docutils literal notranslate"><span class="pre">x</span></code> means <code class="docutils literal notranslate"><span class="pre">test</span> <span class="pre">failed</span></code>. But some of the failures are just OK. <code class="docutils literal notranslate"><span class="pre">s</span></code> means it is skipped for some reason.</p>
+<p>An example test for <strong>Astropy 1.3.1 and Photutils 0.3.1</strong> (took ~ 10 mins):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>long<span class="w"> </span>long<span class="w"> </span><span class="nb">test</span><span class="w"> </span>explanations....<span class="o">)</span>
+<span class="o">========================</span><span class="w"> </span><span class="m">1056</span><span class="w"> </span>passed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>skipped,<span class="w"> </span><span class="m">2</span><span class="w"> </span>xfailed<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">82</span>.18<span class="w"> </span><span class="nv">seconds</span><span class="w"> </span><span class="o">========================</span>
+<span class="o">(</span>long<span class="w"> </span>long<span class="w"> </span><span class="nb">test</span><span class="w"> </span>explanations....<span class="o">)</span>
+Some<span class="w"> </span>tests<span class="w"> </span>are<span class="w"> </span>known<span class="w"> </span>to<span class="w"> </span>fail<span class="w"> </span>when<span class="w"> </span>run<span class="w"> </span>from<span class="w"> </span>the<span class="w"> </span>IPython<span class="w"> </span>prompt<span class="p">;</span><span class="w"> </span>especially,<span class="w"> </span>but<span class="w"> </span>not<span class="w"> </span>limited<span class="w"> </span>to<span class="w"> </span>tests<span class="w"> </span>involving<span class="w"> </span>logging<span class="w"> </span>and<span class="w"> </span>warning<span class="w"> </span>handling.<span class="w">  </span>Unless<span class="w"> </span>you<span class="w"> </span>are<span class="w"> </span>certain<span class="w"> </span>as<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>cause<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>failure,<span class="w"> </span>please<span class="w"> </span>check<span class="w"> </span>that<span class="w"> </span>the<span class="w"> </span>failure<span class="w"> </span>occurs<span class="w"> </span>outside<span class="w"> </span>IPython<span class="w"> </span>as<span class="w"> </span>well.<span class="w">  </span>See<span class="w"> </span>http://docs.astropy.org/en/stable/known_issues.html#failing-logging-tests-when-running-the-tests-in-ipython<span class="w"> </span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>information.
+<span class="o">==</span><span class="w"> </span><span class="m">24</span><span class="w"> </span>failed,<span class="w"> </span><span class="m">8717</span><span class="w"> </span>passed,<span class="w"> </span><span class="m">75</span><span class="w"> </span>skipped,<span class="w"> </span><span class="m">42</span><span class="w"> </span>xfailed,<span class="w"> </span><span class="m">1</span><span class="w"> </span>xpassed,<span class="w"> </span><span class="m">2</span><span class="w"> </span>pytest-warnings<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">573</span>.02<span class="w"> </span><span class="nv">seconds</span><span class="w"> </span><span class="o">==</span>
+</pre></div>
+</div>
+<p>The astropy will do the tests automatically (takes ~ 10 minutes). There might be some errors, but usually they are not important, so you can ignore them. If “<code class="docutils literal notranslate"><span class="pre">astropy.test()</span></code>” itself does not work, please check whether the installation of Anaconda had been done correctly.</p>
+</p>
+</details>
+</section>
+<section id="troubleshoot">
+<h2><span class="section-number">3.3. </span>Troubleshoot<a class="headerlink" href="#troubleshoot" title="Permalink to this headline">#</a></h2>
+<p>If you have any trouble installing the abovementioned packages, that’s a big problem. Please immediately contact the TA or open an issue at this repo.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-2_UNIX.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>UNIX Shell</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python_prep/00-python_prep.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Python Preparation Course</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installation-script">3.1. Installation Script</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-materials">3.1.1. Reading Materials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#check-if-installed-correctly">3.2. Check if Installed Correctly</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#troubleshoot">3.3. Troubleshoot</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,763 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>HW Software &amp; Tools &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/prerequisites/99-HW_swtools';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="HW Python Basic &amp; pathlib" href="../python_prep/99-HW_python_pathlib.html" />
+    <link rel="prev" title="2. Centering" href="../02-center.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-1_Softwares.html">1. Software Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-2_UNIX.html">2. UNIX Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-3_Prepare_Python.html">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_prep/00-python_prep.html">4. Python Preparation Course</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/03-FITS_and_astropy.html">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_astropy-fits.html">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/prerequisites/99-HW_swtools.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/prerequisites/99-HW_swtools.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/prerequisites/99-HW_swtools.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>HW Software & Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack-1-10-points">1-1. Slack (1) [10 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack-2-10-points">1-2. Slack (2) [10 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-1-4-points">2-1. GitHub (1) [4 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-2-optional-14-points">2-2. GitHub (2 optional) [14 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-3-optional-6-points">2-3. GitHub (3 optional) [6 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sao-ds9-astrometry-net-8-points">3. SAO ds9, <code class="docutils literal notranslate"><span class="pre">Astrometry.net</span></code> [8 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-conda-8-points">4. Python &amp; conda [8 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-image-analysis-28-points">5. Interactive Image Analysis [28 points]</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="hw-software-tools">
+<span id="hw-swtools"></span><h1>HW Software &amp; Tools<a class="headerlink" href="#hw-software-tools" title="Permalink to this headline">#</a></h1>
+<section id="slack-1-10-points">
+<h2>1-1. Slack (1) [10 points]<a class="headerlink" href="#slack-1-10-points" title="Permalink to this headline">#</a></h2>
+<p>(I will check each one of your Slack accounts in our workspace)</p>
+<ol class="arabic simple">
+<li><p>Watch the videos below (yes|no)</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://slack.com/#what-is-slack">https://slack.com/#what-is-slack</a> (2m 33s; retrieved 2020-04-14)</p></li>
+<li><p><a class="reference external" href="https://slack.com/features#why-slack">https://slack.com/features#why-slack</a> (1m 59s; retrieved 2020-04-14)</p></li>
+</ol>
+</li>
+<li><p>Join our workspace (Ask TA for the invitation).</p>
+<ul class="simple">
+<li><p><strong>NOTE</strong>: Refer to our lecture note <a class="reference internal" href="00-1_Softwares.html#softwares"><span class="std std-ref">Softwares</span></a> and follow the section for slack.</p></li>
+</ul>
+</li>
+<li><p>Change your name to your real name in English, profile picture to whatever you like.</p></li>
+<li><p>Send a DM (private message) to the TA saying hello.</p></li>
+<li><p>What are the differences between <strong>workspace</strong> and <strong>channels</strong>? (describe in about 1-2 lines)</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: see the lecture note.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="slack-2-10-points">
+<h2>1-2. Slack (2) [10 points]<a class="headerlink" href="#slack-2-10-points" title="Permalink to this headline">#</a></h2>
+<p>Open the DM(direct message) to yourself. Send messages to yourself (for testing purpose) following the items below. Do the followings, and <strong>take screenshots or photos</strong>.</p>
+<p>(Slack syntax ≈ facebook/instagram + markdown)</p>
+<ol class="arabic simple">
+<li><p>Call yourself by <code class="docutils literal notranslate"><span class="pre">&#64;&lt;yourname&gt;</span></code>. Tag a channel by <code class="docutils literal notranslate"><span class="pre">#notice</span></code>.</p></li>
+<li><p>Use backquote(<code class="docutils literal notranslate"><span class="pre">`</span></code>) to make an inline code (e.g., <code class="docutils literal notranslate"><span class="pre">`print(&quot;Hello,</span> <span class="pre">world!&quot;)`</span></code>). Your text should become a redish text with gray-boxed background.</p></li>
+<li><p>For longer code, Use three backquotes (<code class="docutils literal notranslate"><span class="pre">```</span></code>), and a gray block will appear. Make a simple code block with a content as you wish. Use shift+Enter for newline.</p></li>
+<li><p>Slack accepts many of markdown syntax. Write any message including bold (use <code class="docutils literal notranslate"><span class="pre">*</span></code> or ctrl+B), italic (use <code class="docutils literal notranslate"><span class="pre">_</span></code> or ctrl+I), and strikethrough (use <code class="docutils literal notranslate"><span class="pre">~</span></code> or ctrl+shift+X). Example: <code class="docutils literal notranslate"><span class="pre">**bold**,</span> <span class="pre">_italic_,</span> <span class="pre">and</span> <span class="pre">~strikethrough~</span></code></p>
+<ul class="simple">
+<li><p>TIP: In Slack, <code class="docutils literal notranslate"><span class="pre">*bold*</span></code> works. But in normal markdown, single asterisk means italic and only double asterisk means bold (sigh…).</p></li>
+</ul>
+</li>
+<li><p>Write any message using bullet list (use <code class="docutils literal notranslate"><span class="pre">*</span> <span class="pre">content</span></code> or ctrl+shift+8 and then use shift+enter), numbered list (use <code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">content</span></code> or ctrl+shift+7 and then use shift+enter), and quotation (use <code class="docutils literal notranslate"><span class="pre">&gt;</span> <span class="pre">content</span></code> or ctrl+shift+9 and then use shift+enter)</p></li>
+<li><p>Write any message using emoji by colon(<code class="docutils literal notranslate"><span class="pre">:</span></code>). Example: <code class="docutils literal notranslate"><span class="pre">:smirk::thumbsup:</span></code> (use autocomplete!)</p></li>
+<li><p>Write a message with, e.g., your github repo link (ctrl+shift+U)</p></li>
+<li><p>Open a thread to any of the message you wrote to yourself (by replying to any of the message).</p></li>
+<li><p>Add any reaction to any of the message.</p></li>
+<li><p>Share any message to yourself (it cannot be exported since it’s private message).</p></li>
+</ol>
+</section>
+<section id="github-1-4-points">
+<h2>2-1. GitHub (1) [4 points]<a class="headerlink" href="#github-1-4-points" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>What is a <code class="docutils literal notranslate"><span class="pre">repo</span></code> of GitHub?</p>
+<ul class="simple">
+<li><p><strong>ANSWER</strong>: repo = repository.</p></li>
+</ul>
+</li>
+<li><p>How can you download a github repo?</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: Search for <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="github-2-optional-14-points">
+<h2>2-2. GitHub (2 optional) [14 points]<a class="headerlink" href="#github-2-optional-14-points" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Skip this unless the TA asks you to solve these.<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">2 points each.
+(I will check whether you did these correctly by visiting your repo and looking at the commit histories)</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">Make a GitHub account. What’s your ID?</p></li>
+<li><p class="sd-card-text">Apply for GitHub student account at <a class="reference external" href="https://education.github.com/pack">here</a>. You will get the education pack soon (maybe it will take few days). Did you get the pack? (answer: yes|no)</p></li>
+<li><p class="sd-card-text">Make a test public repo by yourself using any name. Initialize with README. Make at least one commit by changing <code class="docutils literal notranslate"><span class="pre">README.md</span></code> or adding other files (see lecture presentation). What is the link to your repo?</p>
+<ul class="simple">
+<li><p class="sd-card-text">Note: You must be able to see your commit at GitHub within 1 minute. If you cannot, check whether you did add/commit/push correctly. Search on google by yourselves to learn how to do these.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Clone your repo to your local workspace by <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">&lt;repo_url&gt;</span></code> to the terminal (see lecture presentation PPT file)</p></li>
+<li><p class="sd-card-text">Write <code class="docutils literal notranslate"><span class="pre">*.txt</span></code> to the top line of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file. Then add/commit/push <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file.</p>
+<ul class="simple">
+<li><p class="sd-card-text">Tip: <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> is a hidden file. You may have to tune the file explorer (finer for mac) option to see this file.</p></li>
+<li><p class="sd-card-text">If you don’t see the hidden file <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>, it means you didn’t select anything for “Add .gitignore” when you were making the repo. Do <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">touch</span> <span class="pre">.gitignore</span></code> on terminal to make the file.</p></li>
+</ul>
+</li>
+<li><p class="sd-card-text">Make a fake file <code class="docutils literal notranslate"><span class="pre">test2.txt</span></code> (<code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">touch</span> <span class="pre">test2.txt</span></code>) and do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>. Can you see <code class="docutils literal notranslate"><span class="pre">test2.txt</span></code>? (answer: yes|no)</p></li>
+<li><p class="sd-card-text"><a class="reference external" href="https://help.github.com/en/github/managing-your-work-on-github/creating-an-issue">Open an issue</a> at your test repo (you can put any content as you like). Then modify any of the file in your local workspace. Do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> this file, make a commit with message like “Fixes #1”, and push. Is your issue closed? (answer: yes|no)</p>
+<ul class="simple">
+<li><p class="sd-card-text">I will visit your repo to check whether you correctly closed this issue.</p></li>
+<li><p class="sd-card-text">In the future (when you “work”), you may learn fork, commit to the forked repo, and request a pull request (PR). The way you closed your first <em>issue</em> is how you will do to close isseus.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</details></section>
+<section id="github-3-optional-6-points">
+<h2>2-3. GitHub (3 optional) [6 points]<a class="headerlink" href="#github-3-optional-6-points" title="Permalink to this headline">#</a></h2>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Skip this unless the TA asks you to solve these.<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">2 points each</p>
+<ol class="arabic simple">
+<li><p class="sd-card-text">What is your github repo address again? (because I just want to click this from your answer sheet…)</p></li>
+<li><p class="sd-card-text">I have visited all your repos and made at least one issue. Modify any file at your local workspace as you wish, commit with a message “Fixes #x” (x is the number of the issue I opened), and push to close the isse. (answer: I did)</p></li>
+<li><p class="sd-card-text">Edit your GitHub bio (profile) at <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;YourUserName&gt;</span></code>. (answer: I did)</p></li>
+</ol>
+</div>
+</details></section>
+<section id="sao-ds9-astrometry-net-8-points">
+<h2>3. SAO ds9, <code class="docutils literal notranslate"><span class="pre">Astrometry.net</span></code> [8 points]<a class="headerlink" href="#sao-ds9-astrometry-net-8-points" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Install the most recent version of SAO DS9 on your computer. (answer: yes|no)</p></li>
+<li><p>Follow the steps below:</p>
+<ol class="arabic simple">
+<li><p>Download <code class="docutils literal notranslate"><span class="pre">SNUO_STX16803-kw4-4-4-20190602-135247-R-60.0.fits</span></code> and <code class="docutils literal notranslate"><span class="pre">SNUO_STX16803-kw4-4-4-20190602-135247-R-60.0_bdfw.fits</span></code> from our Tutorial data link (see <a class="reference external" href="https://github.com/ysBach/SNU_AOclass">README</a>).</p></li>
+<li><p>The first FITS file will not be used, but it is the file before what is called the preprocessing (bias subtraction, dark subtraction, and flat fielding).</p></li>
+<li><p>Open the second one with SAO ds9.</p></li>
+<li><p>Can you see the RA/DEC information? (answer: yes|no)</p></li>
+</ol>
+</li>
+<li><p>Open the two FITS files you downloaded using SAO ds9. What differences can you find? List at least three of them (e.g., pixel values are different, visually different, etc).</p></li>
+<li><p>Actually, this WCS information is <strong>wrong</strong>, because I did 4x4 binning to reduce the file size after I obtained the WCS. Thus, we need to update this. Follow the steps below:</p>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">astrometry.net</span></code> web service (<a class="reference external" href="http://nova.astrometry.net/upload">link</a>).</p></li>
+<li><p>Choose the file (the second FITS file, <code class="docutils literal notranslate"><span class="pre">SNUO_STX16803-kw4-4-4-20190602-135247-R-60.0_bdfw.fits</span></code>)</p></li>
+<li><p>Click on <code class="docutils literal notranslate"><span class="pre">Advanced</span> <span class="pre">Settings</span> <span class="pre">[+]</span></code>, set the followings</p>
+<ul class="simple">
+<li><p><strong>Scale</strong> → <code class="docutils literal notranslate"><span class="pre">custom</span></code>, Units → “arcseconds per pixel”, Lower bound: 1, Upper bound: 2</p></li>
+<li><p><strong>CRPIX center</strong>: check</p></li>
+</ul>
+</li>
+<li><p>Click upload.</p></li>
+<li><p>After a success, go to results page and download the new FITS file.</p></li>
+<li><p>Find the positions of USNO URAT 1 stars in the field of view by using SAO ds9’s “Analysis-Catalogs-Optical-URAT1” (see the presentation file).</p></li>
+<li><p>Take a photo/screenshot of what you see and submit it.</p></li>
+</ol>
+</li>
+</ol>
+<p>If you have LINUX on your computer, you may try the offline version of the <a class="reference external" href="http://astrometry.net">astrometry.net</a>. This is many times essential for professional research. On mac, you can use <a class="reference external" href="https://formulae.brew.sh/formula/astrometry-net"><code class="docutils literal notranslate"><span class="pre">brew</span></code></a>. (TO BE UPDATED 2023-04-06. If this is not updated, please let me know — I must have forgotten.)</p>
+</section>
+<section id="python-conda-8-points">
+<h2>4. Python &amp; conda [8 points]<a class="headerlink" href="#python-conda-8-points" title="Permalink to this headline">#</a></h2>
+<p>2 points each</p>
+<p>I am assuming you have already downloaded/installed python (Anaconda recommended).</p>
+<ol class="arabic simple">
+<li><p>Turn on the terminal (or Anaconda Prompt for Windows users). Install astropy-related packages by the following command. See also section 5 of our lecture note <a class="reference internal" href="00-1_Softwares.html#softwares"><span class="std std-ref">Softwares</span></a>. Could you finish the installation? (yes|no)</p></li>
+<li><p>Open Jupyter notebook or IPython console (if you don’t know what these are, google it). Then import each of the above packages and print the versions of them (e.g., <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">ccdproc</span></code> and <code class="docutils literal notranslate"><span class="pre">print(ccdproc.__version__)</span></code>).</p></li>
+<li><p>While installing affiliated packages, what does <code class="docutils literal notranslate"><span class="pre">-c</span></code> mean? Answer in one word.</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: Search for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-c</span></code> on web.</p></li>
+</ul>
+</li>
+<li><p>If you do <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span></code>, what does it creat? Answer in one word.</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: Search for “conda environment” on web.</p></li>
+</ul>
+</li>
+</ol>
+<div class="dropdown admonition">
+<p class="admonition-title">Deprecated homework problems regarding IRAF</p>
+<ol class="arabic simple">
+<li><p>Why did I use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--set</span> <span class="pre">channel_priority</span> <span class="pre">false</span></code> when installing IRAF?</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: Search for conda channels and channel priority.</p></li>
+</ul>
+</li>
+<li><p>How can you make a new environment via Anaconda? (what is an environment for?)</p>
+<ul class="simple">
+<li><p><strong>TIP</strong>: Search for <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span></code>. You used it when you are installing IRAF.</p></li>
+</ul>
+</li>
+</ol>
+</div>
+</section>
+<section id="interactive-image-analysis-28-points">
+<h2>5. Interactive Image Analysis [28 points]<a class="headerlink" href="#interactive-image-analysis-28-points" title="Permalink to this headline">#</a></h2>
+<p>2 points each</p>
+<p>You may have downloaded the FITS files from <strong>SAO ds9</strong> part.</p>
+<p>First, open any one of these. Then:</p>
+<ol class="arabic simple">
+<li><p>Go to <code class="docutils literal notranslate"><span class="pre">Frame</span></code> → <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">Frame</span></code> and then <code class="docutils literal notranslate"><span class="pre">File</span></code> → <code class="docutils literal notranslate"><span class="pre">open</span></code> to open the other file. Click <code class="docutils literal notranslate"><span class="pre">Frame</span></code> → <code class="docutils literal notranslate"><span class="pre">Single</span> <span class="pre">Frame</span></code> and <code class="docutils literal notranslate"><span class="pre">Scale</span></code> → <code class="docutils literal notranslate"><span class="pre">ZScale</span></code>. (answer: I did|I didn’t)</p></li>
+<li><p>Press tab key on your keyboard. Set to ZScale if this frame hasn’t yet. (answer: yes|no)</p></li>
+<li><p>On one of the image, use your mouse wheel to zoom in/out, click mouse wheel button to move your center of view. Then press tab key. They are now mismatched with each other in the image frame. Go to <code class="docutils literal notranslate"><span class="pre">Frame</span></code> → <code class="docutils literal notranslate"><span class="pre">Match</span></code> → <code class="docutils literal notranslate"><span class="pre">Frame</span></code> → <code class="docutils literal notranslate"><span class="pre">Image</span></code> and hit tab keys. Are they spatially matched now? (answer: yes|no)</p>
+<ul class="simple">
+<li><p>When visually inspecting the data, you may also use <code class="docutils literal notranslate"><span class="pre">Frame</span></code> → <code class="docutils literal notranslate"><span class="pre">Match</span></code> → <code class="docutils literal notranslate"><span class="pre">Scale</span></code>//<code class="docutils literal notranslate"><span class="pre">Scale</span> <span class="pre">and</span> <span class="pre">Limits</span></code>, but these are not useful in our case.</p></li>
+</ul>
+</li>
+<li><p>Play with Scales (<code class="docutils literal notranslate"><span class="pre">Scale</span></code> → <code class="docutils literal notranslate"><span class="pre">Linear</span></code>, <code class="docutils literal notranslate"><span class="pre">Log</span></code>, …, <code class="docutils literal notranslate"><span class="pre">Histogram</span></code>) and Color. Select a scale and color combination of your favorite. Also choose your favorite style by tuning many options available from <code class="docutils literal notranslate"><span class="pre">Color</span></code> → <code class="docutils literal notranslate"><span class="pre">Colarbar</span></code>. Select <code class="docutils literal notranslate"><span class="pre">View</span></code> → <code class="docutils literal notranslate"><span class="pre">Horizontal</span> <span class="pre">Graph</span></code> and <code class="docutils literal notranslate"><span class="pre">Vertical</span> <span class="pre">Graph</span></code> to show both graphs. (answer: yes|no)</p></li>
+<li><p>Display the file <code class="docutils literal notranslate"><span class="pre">~~~~_bdfw.fits</span></code>. Select <code class="docutils literal notranslate"><span class="pre">Edit</span></code> → <code class="docutils literal notranslate"><span class="pre">Region</span></code>, and <code class="docutils literal notranslate"><span class="pre">Region</span></code> → <code class="docutils literal notranslate"><span class="pre">Shape</span></code> → <code class="docutils literal notranslate"><span class="pre">Circle</span></code>. Draw any circle near our object located roughly at (x, y) = (557, 504). Then click <code class="docutils literal notranslate"><span class="pre">Region</span></code> → <code class="docutils literal notranslate"><span class="pre">Centroid</span></code>. The region should now be centered at the star you chose. If not, move the region slightly so that it centers near the true center of the star, and click <code class="docutils literal notranslate"><span class="pre">Centroid</span></code> again. Did it find the correct center? (answer: yes|no)</p>
+<ul class="simple">
+<li><p>This centroiding algorithm in DS9 is not robust, so it may change depending on the initial condition. Don’t be too surprised if it changes when you click Centroid for many times…</p></li>
+</ul>
+</li>
+<li><p>Double click on the circle you drew, write <code class="docutils literal notranslate"><span class="pre">Text</span></code> you want to display, tune the <code class="docutils literal notranslate"><span class="pre">Radius</span></code> to <code class="docutils literal notranslate"><span class="pre">5</span></code> in the unit of  “<strong>Image</strong>” and click <code class="docutils literal notranslate"><span class="pre">Apply</span></code>. Select your favorite style of this “region”, by <code class="docutils literal notranslate"><span class="pre">Color</span></code>, <code class="docutils literal notranslate"><span class="pre">Width</span></code>, <code class="docutils literal notranslate"><span class="pre">Property</span></code>, and <code class="docutils literal notranslate"><span class="pre">Font</span></code>. Go to <code class="docutils literal notranslate"><span class="pre">Analysis</span></code> → <code class="docutils literal notranslate"><span class="pre">Statistics</span></code>. From the new window, write down <strong>sum</strong> and <strong>area(arcsec**2)</strong>, down to the precision of around 3 significant figures. These should be around 1.6e+5 and 7.6. This is the statistics of “target + sky”.</p></li>
+<li><p>Draw a region as in previous, but with <code class="docutils literal notranslate"><span class="pre">Region</span></code> → <code class="docutils literal notranslate"><span class="pre">Shape</span></code> → <code class="docutils literal notranslate"><span class="pre">Annulus</span></code>. Make it centered at the same star. Double click it, set <code class="docutils literal notranslate"><span class="pre">Inner</span></code> and <code class="docutils literal notranslate"><span class="pre">Outer</span></code> of <code class="docutils literal notranslate"><span class="pre">Radius</span></code> to <code class="docutils literal notranslate"><span class="pre">20</span></code> and <code class="docutils literal notranslate"><span class="pre">40</span></code> in the unit of “Image”, respectively. Click <code class="docutils literal notranslate"><span class="pre">Generate</span></code> and <code class="docutils literal notranslate"><span class="pre">Apply</span></code>. Go to <code class="docutils literal notranslate"><span class="pre">Analysis</span></code> → <code class="docutils literal notranslate"><span class="pre">Statistics</span></code> and write down <strong>surf_bri</strong>, <strong>mean</strong>, <strong>median</strong>, and <strong>stddev</strong>, down to the precision of around 3 significant figures. These should be around 20000, 2000, 2000, and 10. This is the statistics of the “sky”.</p>
+<ul class="simple">
+<li><p>Crudely speaking, mean and median must be similar and it’s nice if |mean - median| ≪ stddev. This is true in our case. Otherwise, we need to employ some empirical/mathematical tricks such as “MMM (mean-median-mode)” relationship, which we will learn later.</p></li>
+</ul>
+</li>
+<li><p>To see how the sky values are distributed, draw a circular region to the sky (where no visible object is there). Then <code class="docutils literal notranslate"><span class="pre">Analysis</span></code> → <code class="docutils literal notranslate"><span class="pre">Histogram</span></code>. Does it look like Gaussian? (answer: yes|no)</p></li>
+<li><p>Draw an annulus as in previous problem and center it to the same star. Double click it. (If you cannot, you may remove the previous regions, or click them and do <code class="docutils literal notranslate"><span class="pre">Region</span></code> → <code class="docutils literal notranslate"><span class="pre">Move</span> <span class="pre">to</span> <span class="pre">Back</span></code>) Set <code class="docutils literal notranslate"><span class="pre">Inner</span></code> and <code class="docutils literal notranslate"><span class="pre">Outer</span></code> of <code class="docutils literal notranslate"><span class="pre">Radius</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">20</span></code> in the unit of “Image”, respectively. Set <code class="docutils literal notranslate"><span class="pre">Annuli</span></code> to <code class="docutils literal notranslate"><span class="pre">20</span></code>. Click <code class="docutils literal notranslate"><span class="pre">Generate</span></code> and <code class="docutils literal notranslate"><span class="pre">Apply</span></code>. Show the radial profile by <code class="docutils literal notranslate"><span class="pre">Analysis</span></code> → <code class="docutils literal notranslate"><span class="pre">Radial</span> <span class="pre">profile</span></code>. The x-axis must be in arcseconds unit. Estimate FWHM.</p></li>
+<li><p>From the radial plot from previous problem: What is a rough estimate of sky value you find from this plot? Does this match with the <code class="docutils literal notranslate"><span class="pre">surf_bri</span></code> from previous problem?</p></li>
+<li><p>Roughly calculate <code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">=</span> <span class="pre">sum(circular</span> <span class="pre">region)</span> <span class="pre">-</span> <span class="pre">area(circular</span> <span class="pre">region)*surf_bri(annulus)</span></code> and instrumental magnitude <code class="docutils literal notranslate"><span class="pre">m_inst</span> <span class="pre">=</span> <span class="pre">-2.5</span> <span class="pre">log_{10}</span> <span class="pre">(I)</span></code> of your object.</p></li>
+<li><p>Congratulations! You have just finished your very first simple photometry in your life (answer: yay|yes|hooray|oh|wow|~~no~~).</p></li>
+<li><p>Do a similar calculation (calculate <code class="docutils literal notranslate"><span class="pre">I</span></code> and <code class="docutils literal notranslate"><span class="pre">m_inst</span></code>) for any nearby star (you can choose any star, which (a) does not have any nearby star (b) not too faint, not too bright). What is a rough position in X, Y,  <code class="docutils literal notranslate"><span class="pre">I</span></code>, and <code class="docutils literal notranslate"><span class="pre">m_inst</span></code>?</p></li>
+<li><p>Say that star has a catalogued magnitude <code class="docutils literal notranslate"><span class="pre">m_0</span></code>. Using Pogson’s formula, what is our target’s magnitude in terms of <code class="docutils literal notranslate"><span class="pre">m_0</span></code>?</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../02-center.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Centering</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../python_prep/99-HW_python_pathlib.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack-1-10-points">1-1. Slack (1) [10 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack-2-10-points">1-2. Slack (2) [10 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-1-4-points">2-1. GitHub (1) [4 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-2-optional-14-points">2-2. GitHub (2 optional) [14 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#github-3-optional-6-points">2-3. GitHub (3 optional) [6 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sao-ds9-astrometry-net-8-points">3. SAO ds9, <code class="docutils literal notranslate"><span class="pre">Astrometry.net</span></code> [8 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#python-conda-8-points">4. Python &amp; conda [8 points]</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interactive-image-analysis-28-points">5. Interactive Image Analysis [28 points]</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

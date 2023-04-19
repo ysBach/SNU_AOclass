@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>4.6. About astropy.fits &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/python_prep/03-FITS_and_astropy';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="1. Basics about FITS" href="../01-fits-basic.html" />
+    <link rel="prev" title="4.5. Pandas" href="02-pandas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-1_Softwares.html">1. Software Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-2_UNIX.html">2. UNIX Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/00-3_Prepare_Python.html">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="00-python_prep.html">4. Python Preparation Course</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../prerequisites/99-HW_swtools.html">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-HW_astropy-fits.html">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/python_prep/03-FITS_and_astropy.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/python_prep/03-FITS_and_astropy.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/python_prep/03-FITS_and_astropy.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>About astropy.fits</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-information-about-fits">4.6.1. Basic Information about FITS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">4.6.2. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fits-from-astropy">4.6.3. FITS from <code class="docutils literal notranslate"><span class="pre">Astropy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-fits-from-ndarray">Making FITS  from ndarray</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-saving-with-ccddata">Making and Saving with <code class="docutils literal notranslate"><span class="pre">CCDData</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-saving-fits-data-with-astropy-fits">Making and Saving FITS data with <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-fits">Reading FITS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-ccddata-read">Reading with <code class="docutils literal notranslate"><span class="pre">CCDData.read()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-fits-open">Reading with <code class="docutils literal notranslate"><span class="pre">fits.open()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-manipulating-header">Adding/Manipulating Header</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#header-fromstring"><code class="docutils literal notranslate"><span class="pre">Header.fromstring()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting">Setting</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-reading-mef-optional">Making/Reading MEF (optional)</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="about-astropy-fits">
+<span id="astropy-fits"></span><h1><span class="section-number">4.6. </span>About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code><a class="headerlink" href="#about-astropy-fits" title="Permalink to this headline">#</a></h1>
+<section id="basic-information-about-fits">
+<h2><span class="section-number">4.6.1. </span>Basic Information about FITS<a class="headerlink" href="#basic-information-about-fits" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><strong>FITS</strong> = see <a class="reference external" href="https://fits.gsfc.nasa.gov">this official web</a> and the <a class="reference external" href="https://fits.gsfc.nasa.gov/standard40/fits_standard40aa-le.pdf">latest FITS standard document</a>.</p>
+<ul>
+<li><p>In section 4.4.2 of the document above, some standard keywords which you will most frequently see are described, including <code class="docutils literal notranslate"><span class="pre">DATE-OBS</span></code>, <code class="docutils literal notranslate"><span class="pre">OBJECT</span></code>, <code class="docutils literal notranslate"><span class="pre">TELESCOP</span></code>, <code class="docutils literal notranslate"><span class="pre">INSTRUME</span></code>, <code class="docutils literal notranslate"><span class="pre">OBSERVER</span></code>, <code class="docutils literal notranslate"><span class="pre">BSCALE</span></code>, <code class="docutils literal notranslate"><span class="pre">BZERO</span></code>, <code class="docutils literal notranslate"><span class="pre">BUNIT</span></code>,  etc.</p></li>
+<li><p>Summary described in Appendix C.</p></li>
+<li><p>WCS is briefly explained in Ch 8.</p></li>
+</ul>
+</li>
+<li><p><strong>HDU</strong> = Header Data Unit</p></li>
+<li><p><strong>HDU List</strong> = python <code class="docutils literal notranslate"><span class="pre">list</span></code> of the HDU objects</p></li>
+<li><p><strong>MEF</strong> = Multi-Extension FITS</p></li>
+<li><p>A HDU is composed of Primary header (optionally with data) and other header &amp; data. The simplest one contains only the primary HDU. In many cases, more than one such HDU is present in one FITS file. That is called the MEF.</p></li>
+</ul>
+</section>
+<section id="prerequisites">
+<h2><span class="section-number">4.6.2. </span>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">#</a></h2>
+<p>Before you start this notebook,</p>
+<p><strong>MUST READ</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://learn.astropy.org/tutorials/FITS-images.html">Viewing and manipulating FITS images</a>: Tutorial using Horsehead nebula image</p></li>
+<li><p><a class="reference external" href="http://eso-python.github.io/ESOPythonTutorials/FITS-images.html">Same as above</a> but slightly different and the outputs are a bit outdated.</p></li>
+</ul>
+<p><strong>Highly recommended to read</strong>:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://learn.astropy.org/">learn astropy</a></p></li>
+<li><p>About FITS image from an <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/usage/image.html">astropy documentation</a>.</p></li>
+</ul>
+<p><strong>Other References</strong></p>
+<p>If you want, <strong>you may also look at these advaced tutorials</strong> for your own research purposes:</p>
+<ul class="simple">
+<li><p>Visit <a class="reference external" href="https://learn.astropy.org/">learn astropy</a> and select <code class="docutils literal notranslate"><span class="pre">fits</span></code> on the left sidebar</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">astropy.io</span> <span class="kn">import</span> <span class="n">fits</span>
+<span class="kn">from</span> <span class="nn">astropy.nddata</span> <span class="kn">import</span> <span class="n">CCDData</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="fits-from-astropy">
+<h2><span class="section-number">4.6.3. </span>FITS from <code class="docutils literal notranslate"><span class="pre">Astropy</span></code><a class="headerlink" href="#fits-from-astropy" title="Permalink to this headline">#</a></h2>
+<section id="making-fits-from-ndarray">
+<h3>Making FITS  from ndarray<a class="headerlink" href="#making-fits-from-ndarray" title="Permalink to this headline">#</a></h3>
+<p>If you only have ndarray (e.g., numpy array), how can we convert it to FITS?</p>
+<section id="making-and-saving-with-ccddata">
+<h4>Making and Saving with <code class="docutils literal notranslate"><span class="pre">CCDData</span></code><a class="headerlink" href="#making-and-saving-with-ccddata" title="Permalink to this headline">#</a></h4>
+<p>The simplest way is to use <code class="docutils literal notranslate"><span class="pre">CCDData</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">test_ccd_01</span> <span class="o">=</span> <span class="n">CCDData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_data_01</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;adu&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_01</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_ccd_01</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.nddata.ccddata.CCDData&#39;&gt;
+[[1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ ...
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OrderedDict()
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">unit</span></code> is a mandatory input for <code class="docutils literal notranslate"><span class="pre">CCDData</span></code> (which is, in my humble opinion, very annoying…)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">test_ccd_01.header</span></code> does not contain anything and returned as <code class="docutils literal notranslate"><span class="pre">OrderedDict()</span></code>.</p></li>
+</ol>
+<p><strong>It is always recommended to attach header to each FITS file</strong>, but let me just save it for simple example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;test_01.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>There is a specifically dedicated writer <a class="reference external" href="https://docs.astropy.org/en/stable/api/astropy.nddata.fits_ccddata_writer.html#astropy.nddata.fits_ccddata_writer"><code class="docutils literal notranslate"><span class="pre">fits_ccddata_writer</span></code></a> which is used to write a <code class="docutils literal notranslate"><span class="pre">CCDData</span></code> object to FITS file. Look at the doc for detailed saving options.</p>
+</section>
+<section id="making-and-saving-fits-data-with-astropy-fits">
+<h4>Making and Saving FITS data with <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code><a class="headerlink" href="#making-and-saving-fits-data-with-astropy-fits" title="Permalink to this headline">#</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">fits</span></code> is more general than <code class="docutils literal notranslate"><span class="pre">CCDData</span></code>, because, by principle, FITS should be able to contain virtually anything (including CCD image, star catalog, simulation data, etc). Thus, it’s more complicated if you are only interested in the data from CCD (now you understand why <code class="docutils literal notranslate"><span class="pre">CCDData</span></code> is named so).</p>
+<p>There are, thus, at least two ways to save our 2-D CCD-like data:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PrimaryHDU()</span></code>: A simple choice for the single extension case</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ImageHDU()</span></code>: A choice for the MEF case</p></li>
+</ol>
+<p>I here will show you how to make <code class="docutils literal notranslate"><span class="pre">HDUList</span></code> and save it using simple <code class="docutils literal notranslate"><span class="pre">PrimaryHDU()</span></code>. Below there’s a way for MEF in this note. Also you can check the <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/api/hdus.html">astropy doc on HDU</a> for other classes of HDU.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_01</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">test_hdu_01</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_data_01</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_hdu_01</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_hdu_01</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.io.fits.hdu.image.PrimaryHDU&#39;&gt;
+[[1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ ...
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># If you want, you can make HDUList.</span>
+<span class="c1"># But it is unnecessary because we have only one extension.</span>
+<span class="c1"># hdul = fits.HDUList([test_hdu_01])</span>
+
+<span class="n">test_hdu_01</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="s2">&quot;test_01.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_verify</span><span class="o">=</span><span class="s1">&#39;fix&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For the options when writing, please look at the official document (<a class="reference external" href="https://astropy.readthedocs.io/en/stable/io/fits/api/files.html#astropy.io.fits.writeto">here</a>).</p>
+</section>
+</section>
+<section id="reading-fits">
+<h3>Reading FITS<a class="headerlink" href="#reading-fits" title="Permalink to this headline">#</a></h3>
+<section id="reading-with-ccddata-read">
+<h4>Reading with <code class="docutils literal notranslate"><span class="pre">CCDData.read()</span></code><a class="headerlink" href="#reading-with-ccddata-read" title="Permalink to this headline">#</a></h4>
+<p>Let’s read this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01_read</span> <span class="o">=</span> <span class="n">CCDData</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;test_01.fits&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s2">&quot;adu&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_01_read</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">test_ccd_01_read</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.nddata.ccddata.CCDData&#39;&gt;
+[[1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ ...
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01_read</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                  -64 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                  100                                                  
+NAXIS2  =                  100                                                  
+EXTEND  =                    T                                                  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note now that the header is automatically generated when it is being saved!</p>
+<p>The <strong>mandatory</strong> keywords are generated (see the official standard FITS documentation in the beginning of this notebook).</p>
+<p>This means,</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SIMPLE</span> <span class="pre">=</span> <span class="pre">T</span></code>: It follows the FITS standard</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BITPIX</span> <span class="pre">=</span> <span class="pre">-64</span></code>: The data is in 64-bit float (see below)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NAXIS</span> <span class="pre">=</span> <span class="pre">2</span></code>: The data has 2 axis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NAXIS1</span> <span class="pre">=</span> <span class="pre">100</span></code> and <code class="docutils literal notranslate"><span class="pre">NAXIS2</span> <span class="pre">=</span> <span class="pre">100</span></code>: The data has 1st axis (X-axis, which is <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">axis</span> <span class="pre">1</span></code>) of length 100 and the 2nd axis (Y-axis, which is <code class="docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">axis</span> <span class="pre">0</span></code>) of length 100.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BUNIT</span> <span class="pre">=</span> <span class="pre">'adu</span>&#160;&#160;&#160; <span class="pre">'</span></code>: The unit of the pixel is in ADU.</p></li>
+</ol>
+<p>From <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/usage/image.html">astropy doc</a>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    BITPIX    Numpy Data Type
+    8         numpy.uint8 (note it is UNsigned integer)
+    16        numpy.int16
+    32        numpy.int32
+    -32       numpy.float32
+    -64       numpy.float64
+</pre></div>
+</div>
+</section>
+<section id="reading-with-fits-open">
+<h4>Reading with <code class="docutils literal notranslate"><span class="pre">fits.open()</span></code><a class="headerlink" href="#reading-with-fits-open" title="Permalink to this headline">#</a></h4>
+<p>Once it is saved, you can also read the FITS using <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01_hdul</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;test_01.fits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_01_hdul</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.io.fits.hdu.hdulist.HDUList&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now it’s not <code class="docutils literal notranslate"><span class="pre">CCDData</span></code>, but <code class="docutils literal notranslate"><span class="pre">HDUList</span></code> object. It’s like a python list, so you need to specify the index based on the information:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">test_ccd_01_hdul</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filename: test_01.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU       6   (100, 100)   float64   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_01_hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_01_hdul</span><span class="p">[</span><span class="s2">&quot;PRIMARY&quot;</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.io.fits.hdu.image.PrimaryHDU&#39;&gt;
+&lt;class &#39;astropy.io.fits.hdu.image.PrimaryHDU&#39;&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>As can be seen, you can use index or <code class="docutils literal notranslate"><span class="pre">Name</span></code> in the <code class="docutils literal notranslate"><span class="pre">.info()</span></code> result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">test_ccd_01_hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[[1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ ...
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]
+ [1. 1. 1. ... 1. 1. 1.]]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_01_hdul</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                  -64 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                  100                                                  
+NAXIS2  =                  100                                                  
+EXTEND  =                    T                                                  
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now you have identical result as the above <code class="docutils literal notranslate"><span class="pre">CCDData.read</span></code> case.</p>
+<p>You can also use other methods (see <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/api/files.html">File Handling and Convenience Functions</a>)</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getheader()</span></code>: only gets header</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getdata()</span></code>: only gets data</p></li>
+</ul>
+<p>But if you need both header and data, <strong>DON’T</strong> use these, but just use <code class="docutils literal notranslate"><span class="pre">.open()</span></code>. These are useful only when you need either one of the two.</p>
+<ul class="simple">
+<li><p><strong>NOTE</strong>: It’s also not recommended to use <code class="docutils literal notranslate"><span class="pre">setval()</span></code>, <code class="docutils literal notranslate"><span class="pre">delval()</span></code>, etc, unless you have definite reasons, because these overwrite the existing information. What if you have already used one of these but then found a mistake/bug in your code..? You have to re-download all the FITS files to start over again.</p></li>
+</ul>
+</section>
+</section>
+<section id="adding-manipulating-header">
+<h3>Adding/Manipulating Header<a class="headerlink" href="#adding-manipulating-header" title="Permalink to this headline">#</a></h3>
+<p>There are several ways to add header using <a class="reference external" href="https://docs.astropy.org/en/stable/io/fits/api/headers.html"><code class="docutils literal notranslate"><span class="pre">Header</span></code></a>.</p>
+<section id="header-fromstring">
+<h4><code class="docutils literal notranslate"><span class="pre">Header.fromstring()</span></code><a class="headerlink" href="#header-fromstring" title="Permalink to this headline">#</a></h4>
+<p>The most primitive way. Likely this is used only if you want to make a fixed example (such as bug report) or tutorial like this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_data_02</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+
+<span class="n">header_str</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;OBJECT  = &#39;dark    &#39;                                                            </span>
+<span class="s1">GAIN    =    1.360000014305115 / [e-/ADU] The electron gain factor.             </span>
+<span class="s1">RDNOISE =                  9.0 / [e-] The (Gaussian) read noise.                </span>
+<span class="s1">&#39;&#39;&#39;</span>
+<span class="n">header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="n">header_str</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">test_ccd_02</span> <span class="o">=</span> <span class="n">CCDData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_data_02</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;adu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_02</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OBJECT  = &#39;dark    &#39;                                                            
+GAIN    =    1.360000014305115 / [e-/ADU] The electron gain factor.             
+RDNOISE =                  9.0 / [e-] The (Gaussian) read noise.                
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_02</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;test2.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_ccd_02_read</span> <span class="o">=</span> <span class="n">CCDData</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;test2.fits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_02_read</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                  -64 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                   20                                                  
+NAXIS2  =                   10                                                  
+OBJECT  = &#39;dark    &#39;                                                            
+GAIN    =    1.360000014305115 / [e-/ADU] The electron gain factor.             
+RDNOISE =                  9.0 / [e-] The (Gaussian) read noise.                
+BUNIT   = &#39;adu     &#39;                                                            
+</pre></div>
+</div>
+</div>
+</div>
+<p>There are other similar methods, <code class="docutils literal notranslate"><span class="pre">.fromtextfile()</span></code> (when you have header in text file) and <code class="docutils literal notranslate"><span class="pre">fromkeys()</span></code> (when you have header in something like <code class="docutils literal notranslate"><span class="pre">dict</span></code>). See above <code class="docutils literal notranslate"><span class="pre">Header</span></code> doc.</p>
+</section>
+<section id="setting">
+<h4>Setting<a class="headerlink" href="#setting" title="Permalink to this headline">#</a></h4>
+<p>There are many ways to set header keyword, value and comment, once a <code class="docutils literal notranslate"><span class="pre">Header</span></code> object is given.</p>
+<ol class="arabic simple">
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">header[&lt;key&gt;]</span> <span class="pre">=</span> <span class="pre">&lt;value&gt;</span></code>.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">header[&lt;key&gt;]</span> <span class="pre">=</span> <span class="pre">(&lt;value&gt;,</span> <span class="pre">&lt;comment&gt;)</span></code>.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">header.set(&lt;key&gt;,</span> <span class="pre">&lt;value&gt;,</span> <span class="pre">[&lt;comment&gt;])</span></code>.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">header.add_comment(&lt;comment_message&gt;)</span></code>.</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">header.add_history(&lt;history&gt;)</span></code>.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">add_comment</span></code> is to add the key <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code>. <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> is to put information such as reference, explanation, etc, which are not very important to be included as the key-value pair.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">add_history</span></code> is to add the key <code class="docutils literal notranslate"><span class="pre">HISTORY</span></code>. <code class="docutils literal notranslate"><span class="pre">HISTORY</span></code> is to put information such as what is done at when.</p>
+<p>Both <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code> and <code class="docutils literal notranslate"><span class="pre">HISTORY</span></code> will appear at the end of the header, no matter at which time you added these.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">header</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">Header</span><span class="o">.</span><span class="n">fromstring</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>  <span class="c1"># empty header</span>
+
+<span class="c1"># 1) Basic setting</span>
+<span class="n">header</span><span class="p">[</span><span class="s2">&quot;object&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;dark&#39;</span>  <span class="c1"># header key will automatically be capitalized</span>
+
+<span class="c1"># 2) With comment</span>
+<span class="n">header</span><span class="p">[</span><span class="s2">&quot;GAIN&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.36</span><span class="p">,</span> <span class="s2">&quot;[e-/ADU] The electron gain factor.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 3) Using .set()</span>
+<span class="n">header</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">,</span> <span class="mf">9.0</span><span class="p">,</span> <span class="s2">&quot;[e-] The (Gaussian) read noise.&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s2">&quot;RDNOISE&quot;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">&quot;[e-] The (Gaussian) read noise. Oops, I am adding it again! What will happen?&quot;</span><span class="p">)</span>
+
+<span class="c1"># 4) Adding COMMENT line</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="s2">&quot;This is a testing fits file.&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="s2">&quot;This is the second comment.&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_comment</span><span class="p">(</span><span class="s2">&quot;What if the comment is too long? &quot;</span><span class="o">*</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># 5) Adding HISTORY line</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="s2">&quot;Bias subtracted 2019-01-01T00:00:01&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="s2">&quot;Dark corrected 2019-01-01T00:00:02&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="s2">&quot;Flat corrected 2019-01-01T00:00:03&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="s2">&quot;Cosmic ray rejected 2019-01-01T00:00:04&quot;</span><span class="p">)</span>
+<span class="n">header</span><span class="o">.</span><span class="n">add_history</span><span class="p">(</span><span class="s2">&quot;WCS added 2019-01-01T00:00:06&quot;</span><span class="p">)</span>
+
+<span class="n">test_ccd_03</span> <span class="o">=</span> <span class="n">CCDData</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">test_data_02</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;adu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_03</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>WARNING: VerifyWarning: Card is too long, comment will be truncated. [astropy.io.fits.card]
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>OBJECT  = &#39;dark    &#39;                                                            
+GAIN    =                 1.36 / [e-/ADU] The electron gain factor.             
+RDNOISE =                 10.0 / [e-] The (Gaussian) read noise. Oops, I am addi
+COMMENT This is a testing fits file.                                            
+COMMENT This is the second comment.                                             
+COMMENT What if the comment is too long? What if the comment is too long? What i
+COMMENT f the comment is too long? What if the comment is too long? What if the 
+COMMENT comment is too long? What if the comment is too long?                   
+HISTORY Bias subtracted 2019-01-01T00:00:01                                     
+HISTORY Dark corrected 2019-01-01T00:00:02                                      
+HISTORY Flat corrected 2019-01-01T00:00:03                                      
+HISTORY Cosmic ray rejected 2019-01-01T00:00:04                                 
+HISTORY WCS added 2019-01-01T00:00:06                                           
+</pre></div>
+</div>
+</div>
+</div>
+<p>From the result in <code class="docutils literal notranslate"><span class="pre">RDNOISE</span></code>, you can see the header is <em>overwritten</em> by the newer value and comment. Also, if the comment is too long, the comment will be truncated as the <code class="docutils literal notranslate"><span class="pre">WARNING</span></code> message says.</p>
+<p>From the long comment in <code class="docutils literal notranslate"><span class="pre">COMMENT</span></code>, you can see the linebreak occurs when it’s too long.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_03</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;test3.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_ccd_03_read</span> <span class="o">=</span> <span class="n">CCDData</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;test3.fits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_03_read</span><span class="o">.</span><span class="n">header</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>SIMPLE  =                    T / conforms to FITS standard                      
+BITPIX  =                  -64 / array data type                                
+NAXIS   =                    2 / number of array dimensions                     
+NAXIS1  =                   20                                                  
+NAXIS2  =                   10                                                  
+OBJECT  = &#39;dark    &#39;                                                            
+GAIN    =                 1.36 / [e-/ADU] The electron gain factor.             
+RDNOISE =                 10.0 / [e-] The (Gaussian) read noise. Oops, I am addi
+BUNIT   = &#39;adu     &#39;                                                            
+COMMENT This is a testing fits file.                                            
+COMMENT This is the second comment.                                             
+COMMENT What if the comment is too long? What if the comment is too long? What i
+COMMENT f the comment is too long? What if the comment is too long? What if the 
+COMMENT comment is too long? What if the comment is too long?                   
+HISTORY Bias subtracted 2019-01-01T00:00:01                                     
+HISTORY Dark corrected 2019-01-01T00:00:02                                      
+HISTORY Flat corrected 2019-01-01T00:00:03                                      
+HISTORY Cosmic ray rejected 2019-01-01T00:00:04                                 
+HISTORY WCS added 2019-01-01T00:00:06                                           
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="making-reading-mef-optional">
+<h3>Making/Reading MEF (optional)<a class="headerlink" href="#making-reading-mef-optional" title="Permalink to this headline">#</a></h3>
+<p>If you are not advanced FITS user, it’s generally better <strong>NOT</strong> to think about <strong>making</strong> MEF. It’s better to stick to single-extension FITS format.</p>
+<p>But for many cases, e.g., HST images, may contain MEF, because there are clear reasons. Thus, I add how to deal with MEF here.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">prim</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">PrimaryHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="n">header</span><span class="p">)</span>
+<span class="n">im1</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;SCI&quot;</span><span class="p">)</span>
+<span class="n">im2</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">ImageHDU</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)),</span> <span class="n">header</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;UNCERT&quot;</span><span class="p">)</span>
+<span class="n">hdul_mef</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">HDUList</span><span class="p">([</span><span class="n">prim</span><span class="p">,</span> <span class="n">im1</span><span class="p">,</span> <span class="n">im2</span><span class="p">])</span>
+<span class="n">hdul_mef</span><span class="o">.</span><span class="n">writeto</span><span class="p">(</span><span class="s2">&quot;test_mef.fits&quot;</span><span class="p">,</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">output_verify</span><span class="o">=</span><span class="s1">&#39;fix&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdul_mef_read</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;test_mef.fits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hdul_mef_read</span><span class="o">.</span><span class="n">info</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Filename: test_mef.fits
+No.    Name      Ver    Type      Cards   Dimensions   Format
+  0  PRIMARY       1 PrimaryHDU      17   ()      
+  1  SCI           1 ImageHDU         8   (10, 10)   float64   
+  2  UNCERT        1 ImageHDU         8   (10, 10)   float64   
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>None
+</pre></div>
+</div>
+</div>
+</div>
+<p>Each extension can be accessed by either (1) index (<code class="docutils literal notranslate"><span class="pre">No.</span></code>) or (2) <code class="docutils literal notranslate"><span class="pre">Name</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">hdul_mef_read</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">hdul_mef_read</span><span class="p">[</span><span class="s2">&quot;SCI&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">getdata()</span></code> or <code class="docutils literal notranslate"><span class="pre">getheader()</span></code>, etc, has <code class="docutils literal notranslate"><span class="pre">ext</span></code> and <code class="docutils literal notranslate"><span class="pre">extname</span></code> to select only one extension:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">hdul_mef_data_1</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="s2">&quot;test_mef.fits&quot;</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">hdul_mef_data_2</span> <span class="o">=</span> <span class="n">fits</span><span class="o">.</span><span class="n">getdata</span><span class="p">(</span><span class="s2">&quot;test_mef.fits&quot;</span><span class="p">,</span> <span class="n">extname</span><span class="o">=</span><span class="s2">&quot;UNCERT&quot;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">testing</span><span class="o">.</span><span class="n">assert_allclose</span><span class="p">(</span><span class="n">hdul_mef_data_1</span><span class="p">,</span> <span class="n">hdul_mef_data_1</span> <span class="o">-</span> <span class="n">hdul_mef_data_2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that, <code class="docutils literal notranslate"><span class="pre">CCDData</span></code> understands any extension named <code class="docutils literal notranslate"><span class="pre">'UNCERT'</span></code> as the standard deviation uncertainty map (or simple 1-sigma error map), and reads it as <code class="docutils literal notranslate"><span class="pre">astropy.nddata.nduncertainty.StdDevUncertainty</span></code>. Similarly, <code class="docutils literal notranslate"><span class="pre">'MASK'</span></code> is understood as mask. This is a reason why HST uses MEF than single-extension.</p>
+<p>You can see this in our example:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_mef_read</span> <span class="o">=</span> <span class="n">CCDData</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;test_mef.fits&quot;</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;adu&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO: first HDU with data is extension 1. [astropy.nddata.ccddata]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_ccd_mef_read</span><span class="o">.</span><span class="n">data</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.],
+       [1., 1., 1., 1., 1., 1., 1., 1., 1., 1.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">test_ccd_mef_read</span><span class="o">.</span><span class="n">uncertainty</span><span class="p">))</span>
+<span class="n">test_ccd_mef_read</span><span class="o">.</span><span class="n">uncertainty</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;astropy.nddata.nduncertainty.StdDevUncertainty&#39;&gt;
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>StdDevUncertainty([[0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.],
+                   [0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmpfitsfiles</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;test*.fits&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">fpath</span> <span class="ow">in</span> <span class="n">tmpfitsfiles</span><span class="p">:</span>
+    <span class="n">fpath</span><span class="o">.</span><span class="n">unlink</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/python_prep"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02-pandas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.5. </span>Pandas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../01-fits-basic.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Basics about FITS</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-information-about-fits">4.6.1. Basic Information about FITS</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prerequisites">4.6.2. Prerequisites</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fits-from-astropy">4.6.3. FITS from <code class="docutils literal notranslate"><span class="pre">Astropy</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-fits-from-ndarray">Making FITS  from ndarray</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-saving-with-ccddata">Making and Saving with <code class="docutils literal notranslate"><span class="pre">CCDData</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-saving-fits-data-with-astropy-fits">Making and Saving FITS data with <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-fits">Reading FITS</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-ccddata-read">Reading with <code class="docutils literal notranslate"><span class="pre">CCDData.read()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#reading-with-fits-open">Reading with <code class="docutils literal notranslate"><span class="pre">fits.open()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-manipulating-header">Adding/Manipulating Header</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#header-fromstring"><code class="docutils literal notranslate"><span class="pre">Header.fromstring()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#setting">Setting</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-reading-mef-optional">Making/Reading MEF (optional)</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,907 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>1. Software Tools &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/prerequisites/00-1_Softwares';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. UNIX Shell" href="00-2_UNIX.html" />
+    <link rel="prev" title="Philosophy" href="../00-Philosophy.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Software Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-2_UNIX.html">2. UNIX Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-3_Prepare_Python.html">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_prep/00-python_prep.html">4. Python Preparation Course</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/03-FITS_and_astropy.html">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="99-HW_swtools.html">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_astropy-fits.html">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/prerequisites/00-1_Softwares.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/prerequisites/00-1_Softwares.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/prerequisites/00-1_Softwares.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Software Tools</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github">1.1. Git and GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-tutorials">1.1.1. Git Tutorials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack">1.2. Slack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-join-slack-workspace">1.2.1. How to Join Slack Workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terms">1.2.2. Terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-chose-slack">1.2.3. Why We Chose Slack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-slack">1.2.4. Tips for Slack</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">1.3. Anaconda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iraf-pyraf-deprecated">1.4. IRAF/PyRAF (<em>deprecated</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editors">1.5. Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-displayer">1.6. Image Displayer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sao-ds9">1.6.1. SAO ds9</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ginga-astropy-affiliated">1.6.2. Ginga: Astropy Affiliated</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hw">1.7. HW</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="software-tools">
+<span id="softwares"></span><h1><span class="section-number">1. </span>Software Tools<a class="headerlink" href="#software-tools" title="Permalink to this headline">#</a></h1>
+<p>In this chapter, you will <strong>install</strong> the necessary apps/softwares/packages that we will use throughout this course. I also put links to tutorials, if you are interested in advanced usage.</p>
+<div class="admonition-references admonition">
+<p class="admonition-title">References</p>
+<p>Some selected references are in this repo (<a class="reference external" href="https://github.com/ysBach/AO2019/tree/master/references">link</a>): Find files with name starts with <code class="docutils literal notranslate"><span class="pre">S01</span></code>.</p>
+</div>
+<p>The installation may take some time. If you have nothing to do, read the next section while the installation is going on.</p>
+<ul class="simple">
+<li><p>If I say <strong>terminal</strong>, please understand it as terminal of UNIX/macOS or Git Bash of Windows.</p></li>
+</ul>
+<!-- ```{contents}
+``` -->
+<hr class="docutils" />
+<p>I will use these terms without explaining in detail thoughout the practical part of the lecture.</p>
+<dl class="simple myst">
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/IRAF"><strong>IRAF</strong></a></dt><dd><p>Image Reduction and Analysis Facility. Conventionally used by many astronomers to analyze CCD data.</p>
+</dd>
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/Association_of_Universities_for_Research_in_Astronomy"><strong>AURA</strong></a></dt><dd><p>Association of Universities for Research in Astronomy.</p>
+</dd>
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/National_Optical_Astronomy_Observatory"><strong>NOAO</strong></a></dt><dd><p>National Optical Astronomy Observatory. Developed and distributed IRAF.</p>
+</dd>
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/Space_Telescope_Science_Institute"><strong>STScI</strong></a></dt><dd><p>Space Telescope Science Institute. Took the role in developing PyRAF, but now (since around early 2010s) the direction is changed to use Python.</p>
+</dd>
+<dt><a class="reference external" href="http://www.stsci.edu/institute/software_hardware/pyraf"><strong>PyRAF</strong></a></dt><dd><p>Basically it is identical to IRAF. Just, it has a bit more mouse-interactive GUI. Now PyRAF is also kind of deprecated, as well as IRAF.</p>
+</dd>
+<dt><strong>SPP</strong></dt><dd><p>Sub-Set Preprocessor. A programming language made solely for IRAF.</p>
+</dd>
+</dl>
+<div class="dropdown admonition">
+<p class="admonition-title">A bit more on SPP</p>
+<p>Throughout your life as an observational astronomer, you may even never hear about SPP at all, depending on what you do. Here, I give a very brief excerpts that explain it.</p>
+<p><a class="reference external" href="http://stsdas.stsci.edu/documents/SUG/UG_51.html">STSDAS User Guide</a> says:</p>
+<blockquote>
+<div><p>Most IRAF and STSDAS applications are written in <strong>SPP</strong>, or Subset PreProcessor, which is <em>the native programming language of the IRAF system</em>. SPP is based on RATFOR–rational Fortran–and combines the familiarity of Fortran with some features of the C programming language.</p>
+</div></blockquote>
+<p><a class="reference external" href="http://stsdas.stsci.edu/documents/SPP/SP_4.html">SPP Reference Manual</a> says:</p>
+<blockquote>
+<div><p>The SPP language is <em>based on the Ratfor language</em>. Ratfor, in turn, is <em>based on Fortran</em>, with extensions for structured control flow, etc. The lexical form, operators, and control flow constructs are identical to those provided by Ratfor. The major differences are the data types, the form of a procedure, the addition of inline strings and character constants, the use of square brackets for arrays, and the task statement. In addition, the SPP I/O facilities provided are quite different and are tailored to the IRAF environment. The syntax of the SPP language is fairly straightforward and fundamentally similar to most other high-level languages. While it is based on the Ratfor language, there are elements of C as well as elements of Fortran. SPP is a preprocessed language. That is, there is no SPP compiler per se, but it is translated into another compilable language. In fact, <em>SPP is first translated into Ratfor, which is processed into Fortran</em>. The xc compiler performs all preprocessing, compilation, and linkage.</p>
+</div></blockquote>
+<p>You can see the SPP source codes (which ends with <code class="docutils literal notranslate"><span class="pre">.x</span></code>) at <code class="docutils literal notranslate"><span class="pre">$IRAFHOME</span></code>, i.e., <code class="docutils literal notranslate"><span class="pre">$ANACONDAHOME/envs/iraf/iraf/</span></code>,  e.g., <code class="docutils literal notranslate"><span class="pre">$IRAFHOME/noao/twodspec/longslit/transform/fitcoords.x</span></code>. The <code class="docutils literal notranslate"><span class="pre">.par</span></code> files are the parameter files which is related to <code class="docutils literal notranslate"><span class="pre">epar</span></code> of IRAF.</p>
+</div>
+<dl class="simple myst">
+<dt><strong>CL</strong>:</dt><dd><p>Command Language. CL is the scripting language used purely for IRAF.</p>
+</dd>
+</dl>
+<div class="dropdown admonition">
+<p class="admonition-title">A bit more on CL</p>
+<p>IRAF itself is made by <a class="reference external" href="http://stsdas.stsci.edu/documents/SPP/SP_3.html">SPP</a> language, developed purely for IRAF, and CL is used to realize some functionalities of IRAF and make scripts/codes. PyRAF is developed basically to overcome some limitations of these SPP/CL as a programming/scripting language (but failed, in my opinion).</p>
+</div>
+<dl class="simple myst">
+<dt><a class="reference external" href="https://en.wikipedia.org/wiki/Astropy"><strong>Astropy</strong></a></dt><dd><p>The <em>name of a project</em> dreaming for making a single core package that is useful for any astronomical studies. Not only to reproduce all the functionalities of IRAF, but to make it easier to develop original codes for any purpose.</p>
+</dd>
+<dt>* <a class="reference external" href="https://en.wikipedia.org/wiki/IDL_(programming_language)"><strong>IDL</strong></a></dt><dd><p>Interactive Data Language. A <em>commercial software</em> widely used in astronomy and bio-imaging fileds. There is a critical problem in license issue.</p>
+</dd>
+</dl>
+<hr class="docutils" />
+<section id="git-and-github">
+<h2><span class="section-number">1.1. </span>Git and GitHub<a class="headerlink" href="#git-and-github" title="Permalink to this headline">#</a></h2>
+<ol class="arabic simple">
+<li><p>Go to <a class="reference external" href="http://github.com/">GitHub</a> and make your own ID.</p>
+<ul class="simple">
+<li><p>The ID might be used in your future Resume (CV; 이력서).</p></li>
+</ul>
+</li>
+<li><p>Go to <a class="reference external" href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git">Git website</a> to download/install git for your OS.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Excerpt from <a class="reference external" href="https://stackoverflow.com/questions/13321556/difference-between-git-and-github">StackOverflow</a>:</p>
+<blockquote>
+<div><p><strong>Git</strong> is a revision control system, a tool to manage your source code history.</p>
+<p><strong>GitHub</strong> is a hosting service for Git repositories.</p>
+<p>So they are not the same thing: <strong>Git</strong> is the <strong>tool</strong>, <strong>GitHub</strong> is the <strong>service for projects that use Git</strong>.</p>
+<p>To get your code to GitHub, <a class="reference external" href="https://help.github.com/articles/create-a-repo/">have a look here</a>.</p>
+</div></blockquote>
+</div>
+<section id="git-tutorials">
+<h3><span class="section-number">1.1.1. </span>Git Tutorials<a class="headerlink" href="#git-tutorials" title="Permalink to this headline">#</a></h3>
+<p><strong>Useful Web Tutorials</strong>: <a class="reference external" href="https://36-750.github.io/tools/version-control/">https://36-750.github.io/tools/version-control/</a></p>
+<dl class="simple myst">
+<dt><strong>Nicolas (YouTube)</strong></dt><dd><p><a class="reference external" href="https://youtu.be/YFNQwo7iTNc">Explain Git Like I’m Five</a> in 2019, <a class="reference external" href="https://youtu.be/x_Yw2f161CU">Trying GitHub Copilot</a> in 2021.</p>
+</dd>
+</dl>
+<p><strong>NeuroHackademy 2021 (YouTube)</strong>
+:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://youtu.be/Lsmt2rHPJDU">2021-07-21</a>: This is ~ 90min, concentrating on the CLI of git, including branching and merging. Somewhat complementary to the video below.</p></li>
+<li><p><a class="reference external" href="https://youtu.be/j3IbFKksJkQ">2021-07-23</a>: This is ~ 50min, similar to above, but more practical for beginners, imho (including the usage of <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>).</p></li>
+</ol>
+<p><strong>얄팍한 코딩사전 (Korean; (YouTube))</strong>
+:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://youtu.be/Bd35Ze7-dIw">Git은 뭐고 Github은 뭔가요?</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=FXDjmsiv8fI&amp;ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84">가장 쉬운 Git 강좌 - (상) 혼자작업편</a></p></li>
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=GaKjTjwcKQo&amp;ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84">가장 쉬운 Git 강좌 - (하) Github편</a></p></li>
+</ol>
+<p><strong>Teccboi Wonie (Korean; YouTube)</strong>
+:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://www.youtube.com/watch?v=M6kQTpIqpLs">코딩 1시간만에 배우기 - 파이썬</a></p></li>
+</ol>
+</section>
+</section>
+<section id="slack">
+<h2><span class="section-number">1.2. </span>Slack<a class="headerlink" href="#slack" title="Permalink to this headline">#</a></h2>
+<p>Some useful links:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://slack.com/">Official slack</a>: log in and see what workspaces you are in.</p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Slack_(software)">Wikipedia</a></p></li>
+<li><p><a class="reference external" href="http://blog.naver.com/hivearena/220377857149">A random blog explaining Slack</a> (Korean)</p></li>
+</ul>
+<section id="how-to-join-slack-workspace">
+<h3><span class="section-number">1.2.1. </span>How to Join Slack Workspace<a class="headerlink" href="#how-to-join-slack-workspace" title="Permalink to this headline">#</a></h3>
+<ol class="arabic simple">
+<li><p>TA will announce the “<strong>invitation link</strong>” to you.</p></li>
+<li><p>Type your email and name.</p>
+<ul class="simple">
+<li><p><strong>Please use your real name in English</strong> (e.g., <code class="docutils literal notranslate"><span class="pre">Yoonsoo</span></code>); name is changable in the future</p></li>
+<li><p>You will use that email/pw for your future access to <strong>this</strong> workspace.</p></li>
+<li><p>I encourage you to <strong>download &amp; install the app</strong> at the <a class="reference external" href="https://slack.com/downloads/">downloads page</a>.</p>
+<ul>
+<li><p>Slack is usable on LINUX, Mac, Windows, Android phone, iPhone, etc.</p></li>
+<li><p>So I suggest you to <strong>install it both on your PC and phone</strong>.</p></li>
+<li><p>When login with your second device, put the workspace id (e.g., <code class="docutils literal notranslate"><span class="pre">2020AO1</span></code>) and use the email/pw you enrolled with your first device.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="terms">
+<h3><span class="section-number">1.2.2. </span>Terms<a class="headerlink" href="#terms" title="Permalink to this headline">#</a></h3>
+<p>The following analogy works:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Slack concept</p></th>
+<th class="head"><p>Similar concepts</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>workspace</strong></p></td>
+<td><p>A course in ETL, a website (모임, 그룹)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2018AO1</span></code>, <code class="docutils literal notranslate"><span class="pre">2019AO2</span></code>, <code class="docutils literal notranslate"><span class="pre">2020AO1</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>channels</strong></p></td>
+<td><p>boards in such group or website (게시판, 채팅채널)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">team_hrdiagram</span></code>, <code class="docutils literal notranslate"><span class="pre">announcement</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="why-we-chose-slack">
+<h3><span class="section-number">1.2.3. </span>Why We Chose Slack<a class="headerlink" href="#why-we-chose-slack" title="Permalink to this headline">#</a></h3>
+<p>Slack is a software to make co-work easier; basically a “chatting app”. We chose this for our communication platform because</p>
+<ol class="arabic simple">
+<li><p>It is <strong>OS-independent</strong>: Windows, mac, Linux, iOS, Android, Windows Phone, etc all can use slack without much difference. It works perfectly even on web-browsers.</p></li>
+<li><p>Supports channels (public, closed, private)</p></li>
+<li><p>It is widely used among company, labs, researchers, developers, … . It might be helpful for your future to get used to this widely used software as early as possible when you are allowed to make mistakes.</p></li>
+<li><p>Codes can be inserted (shown) cleanly than any other platforms (Kakaotalk, Line, Facebook, …).</p></li>
+<li><p>Can be integrated with, e.g., github, Dropbox, and Google Drive.</p></li>
+<li><p>All content inside Slack is searchable, including files, conversations, and people.</p></li>
+</ol>
+<p>Especially, 1, 4 and 5 are the main reasons we dropped Kakao-talk or the likes which we’ve used for years.</p>
+</section>
+<section id="tips-for-slack">
+<h3><span class="section-number">1.2.4. </span>Tips for Slack<a class="headerlink" href="#tips-for-slack" title="Permalink to this headline">#</a></h3>
+<p><img alt="" src="../../_images/slack.png" /></p>
+<p>In our workspace, <code class="docutils literal notranslate"><span class="pre">2020ao1.slack.com</span></code>, you can see the left side bar:</p>
+<ul class="simple">
+<li><p>At the top, you can see the workspace name and your ID. Click it and set your profile from the drop down menu.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">All</span> <span class="pre">Threads</span></code>: to see “threads”, which you will learn as time goes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Channels</span></code>: “boards” or “chatting channel” (게시판; 채팅채널)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Direct</span> <span class="pre">Messages</span></code>: You may click a person’s ID and send private messages.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Invite</span> <span class="pre">People</span></code>: You will see what it means after clicking it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Apps</span></code>: Slack has powerful “integration” with third party apps such as Google Drive and Github. You can add your own github repo and make it to send summary message to your group’s channel so that everyone can share information about the updates easily.</p></li>
+</ul>
+<p>You will mostly use the channels which will be made based on your group topics (e.g., <code class="docutils literal notranslate"><span class="pre">#active_comet</span></code>, <code class="docutils literal notranslate"><span class="pre">#GRB</span></code>, <code class="docutils literal notranslate"><span class="pre">#satellites</span></code>).</p>
+<p>Messaging is similar to Facebook or Instagram system + markdown.</p>
+<ul>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">&#64;</span></code> to call (tag) a person, such as “&#64;Yoonsoo”</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">#</span></code> to tag a channel</p></li>
+<li><p>Markdown (slightly different from major markdowns):</p>
+<ul>
+<li><p><strong>Bold</strong>: Embrace with asterisk (<code class="docutils literal notranslate"><span class="pre">*bold*</span></code>)</p></li>
+<li><p><em>Italic</em>:  Embrace with underscore (<code class="docutils literal notranslate"><span class="pre">_italic_</span></code>)</p></li>
+<li><p>~~Strike~~:  Embrace with tilde (<code class="docutils literal notranslate"><span class="pre">~strikethru~</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">short</span> <span class="pre">code</span></code>: Embrace with one single back quote (`)</p></li>
+<li><p>For long codes or <a class="reference external" href="https://www.thoughtco.com/preformatted-text-3468275">preformatted</a>, embrace with three back quotes (```):</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mt-0 sd-mb-2 sd-ml-0 sd-mr-0 sd-p-0 sd-example docutils">
+<div class="sd-row sd-g-0 sd-g-xs-0 sd-g-sm-0 sd-g-md-0 sd-g-lg-0 docutils">
+<div class="sd-col sd-d-flex-column sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 sd-example-item sd-example-source sd-rounded-top docutils">
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="sb">```</span>
+<span class="sb">  This is a</span>
+<span class="sb">     preformatted</span>
+<span class="sb">   line</span>
+<span class="sb">```</span>
+</pre></div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-column sd-col-12 sd-col-xs-12 sd-col-sm-12 sd-col-md-12 sd-col-lg-12 sd-example-item p-3 sd-example-result sd-rounded-bottom docutils">
+<div class="result-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">This</span> <span class="ow">is</span> <span class="n">a</span>
+     <span class="n">preformatted</span>
+   <span class="n">line</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>You may also use Emoji by typing <code class="docutils literal notranslate"><span class="pre">+:emoji_name:</span></code> or <code class="docutils literal notranslate"><span class="pre">ctrl+shift+\</span></code>.</p></li>
+<li><p>You can add file directly (drag and drop). If it’s a code or plane text, slack will show a snippet (short excerpt).</p>
+<ul class="simple">
+<li><p>If you hover on it, you can see some buttons to “react” like facebook, “comment”, “share file”, etc.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="anaconda">
+<h2><span class="section-number">1.3. </span>Anaconda<a class="headerlink" href="#anaconda" title="Permalink to this headline">#</a></h2>
+<p>All the IRAF/Astropy packages, as well as usual python packages, will be downloaded via a platform called <a class="reference external" href="https://www.continuum.io/downloads"><strong>Anaconda</strong></a>. When the download is done, install Anaconda following the website’s instruction.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If you are running out of space and really want very small essential package, try <strong>miniconda</strong>.</p>
+</div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>I recommend to use Anaconda3 and use Python <strong>3.10 or later</strong>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The support for Python 2 is ceased. See, e.g., <a class="reference external" href="https://www.python.org/dev/peps/pep-0373/">PEP373</a>, <a class="reference external" href="http://www.python3statement.org/">Python3Statement</a>. <a class="reference external" href="https://pythonclock.org/">python clock</a> was made  by Guido (The inventor of Python). All the <code class="docutils literal notranslate"><span class="pre">astropy</span></code> and its affiliated packages, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, and many more which you are familiar with, does not support Python 2 after 2019.</p>
+<p>For useful things in Python 3 compared to 2, see <a class="reference external" href="https://python-3-for-scientists.readthedocs.io/en/latest/python3_user_features.html">Python 3 for scientists</a>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If you use <strong>Windows</strong>, you will see a list of checkboxes while installing. For the checkbox related to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>, you should <strong>CHECK it</strong>. If you haven’t, I have no other solution but re-install anaconda.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If you are installing it on <strong>terminal</strong>, answer the questions like “add to PATH” with <code class="docutils literal notranslate"><span class="pre">yes</span></code>.</p>
+</div>
+</section>
+<section id="iraf-pyraf-deprecated">
+<h2><span class="section-number">1.4. </span>IRAF/PyRAF (<em>deprecated</em>)<a class="headerlink" href="#iraf-pyraf-deprecated" title="Permalink to this headline">#</a></h2>
+<div class="dropdown admonition">
+<p class="admonition-title">IRAF/PyRAF is deprecated</p>
+<p><strong>IRAF/PyRAF works only on UNIX, and you cannot run it correctly on Windows.</strong></p>
+<p>There have been a lot of different ways to install IRAF: First people had to download with a lot of commands including “<code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">..</span></code>”, “<code class="docutils literal notranslate"><span class="pre">wget</span> <span class="pre">blahblah</span></code>”, etc. Then STScI developed a huge pack of all necessary softwares, named <strong>Ureka</strong>. But using <em>Ureka is deprecated</em> since April 2016. Now we use <a class="reference external" href="http://astroconda.readthedocs.io/en/latest/installation.html"><strong>AstroConda</strong></a>. There are reasons for these transformations, and you may be able to find the reasons as time goes, if you are interested.</p>
+<p>In terminal, type the followings (This may take <strong>tens of minutes</strong> depending on the Internet connections!)</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda config --add channels http://ssb.stsci.edu/astroconda
+conda config --set channel_priority false
+conda create -n iraf python=2.7 iraf-all pyraf-all stsci
+</pre></div>
+</div>
+<p>The name of the environment, <code class="docutils literal notranslate"><span class="pre">iraf</span></code>, is <code class="docutils literal notranslate"><span class="pre">iraf27</span></code> in the original official website, but I just prefer <code class="docutils literal notranslate"><span class="pre">iraf</span></code> because it’s shorter. You can set it as any name you like.</p>
+</div>
+</section>
+<section id="editors">
+<h2><span class="section-number">1.5. </span>Editors<a class="headerlink" href="#editors" title="Permalink to this headline">#</a></h2>
+<p>There are bunch of different editors (including IDEs = Integrated Development Environment) to edit the codes. As of 2023, I guess the simplest choice would be <a class="reference external" href="https://code.visualstudio.com/">Microsoft Visual Studio Code (VS Code)</a>. As VS Code is a bit heavy when all linting options are turned on, you may prefer to use simpler text editors for quick edits.</p>
+<p>Other people may prefer <strong>spyder</strong>, <strong>Sublime Text 3</strong>, <strong>Atom</strong>, <strong>Wing</strong> IDE, <strong>PyDev</strong>, <strong>PyCharm</strong>, and even <strong>VI</strong> (vim) or <strong>Emacs</strong>. (Recently, vast majority of sublime text and atom users have migrated to VS code, AFAIK).</p>
+<p>If you can, I recommend using VI as a sub editor, or at least learn how to use it. I don’t use VI just because for me it is too difficult to use it.</p>
+</section>
+<section id="image-displayer">
+<h2><span class="section-number">1.6. </span>Image Displayer<a class="headerlink" href="#image-displayer" title="Permalink to this headline">#</a></h2>
+<p>In astronomical image reduction process, you need some tools to display images on computer screen to interactively investigate the images. There is a <em>historical standard</em>, which is kind of an <em>affiliated package of IRAF</em>, <a class="reference external" href="http://ds9.si.edu/site/Download.html">SAO ds9</a>. Some people (especially amateurs) use <a class="reference external" href="http://diffractionlimited.com/product/maxim-dl/">Maxim DL</a> or other programs, but they are mostly commercial. In the future, as Python gets more and more attention, Ginga (see below) will be another powerful option. I am not sure when Ginga will become quite <em>perfect</em>, but until then, I recommend you to use both of them. Their pros and cons will be explained from now.</p>
+<section id="sao-ds9">
+<h3><span class="section-number">1.6.1. </span>SAO ds9<a class="headerlink" href="#sao-ds9" title="Permalink to this headline">#</a></h3>
+<p>Many useful documentations and YouTube videos: <a class="reference external" href="https://sites.google.com/cfa.harvard.edu/saoimageds9/documentation?authuser=0">SAOImageDS9 - Documentation</a> (retrieved 2022-11-30).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Among the materials, I think this <a class="reference download internal" download="" href="../../_downloads/fe20106b87a0f880542c8a002bb75522/S01_BendoGJ_2020_DS9.pdf"><span class="xref download myst">lecture note by George J. Bendo</span></a> (or also at <a class="reference external" href="http://www.jb.man.ac.uk/~gbendo/Sci/Pict/DS9guide.pdf">http://www.jb.man.ac.uk/~gbendo/Sci/Pict/DS9guide.pdf</a>) is a perfect DS9 tutorial.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>For CIAO tutorials, you need to install CIAO environment from conda – not recommended if you don’t understand what it means.</p>
+</div>
+<p>SAO ds9 was made for Chandra X-ray observation, but became so powerful that it has been used for decades by virtually all astronomers.  It has many powerful features, and for me it’s more convenient than ginga. By the system default, you will use ds9 to open any FITS image.</p>
+<p>If you want to run ds9, you can do <code class="docutils literal notranslate"><span class="pre">ds9</span> <span class="pre">&amp;</span></code> on terminal. Once you’ve got used to ds9, you can do a bit advanced command such as</p>
+<div class="dropdown tip admonition">
+<p class="admonition-title">Example</p>
+<p>Do zscale to three images, color map of viridis (matplotlib standard), and show single frame only (hit tab key to change frames):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ds9 -zscale -cmap virids image01.fits image02.fits image03.fits -single &amp;
+</pre></div>
+</div>
+<p>Do zscale to all images, let the computer view of all image synced based on “IMAGE” coordinate, let all frames share the scale and limits for display, and show single frame only (hit tab key to change frames):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ds9 -zscale image*.fits -lock frame image -scale linear -lock scalelimits yes -single &amp;
+</pre></div>
+</div>
+<p>Same as above, but lock the view with WCS information:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ds9 -zscale image*.fits -lock frame wcs -scale linear -lock scalelimits yes -single &amp;
+</pre></div>
+</div>
+</div>
+<div class="dropdown admonition">
+<p class="admonition-title">Using DS9 in IRAF</p>
+<p>If you want to turn ds9 on IRAF console, put exclamation mark (!):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ecl&gt; !ds9 &amp;
+</pre></div>
+</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">!ds9</span> <span class="pre">image*.fits</span> <span class="pre">-single</span> <span class="pre">&amp;</span></code>, etc, will work identically. There is another task called <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> in IRAF. Type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ecl&gt; epar display
+</pre></div>
+</div>
+<p>to see the parameters. Some frequently used commands are the zscale command, e.g., <code class="docutils literal notranslate"><span class="pre">displ</span> <span class="pre">image*.fits</span> <span class="pre">z1=100</span> <span class="pre">z2=3000</span></code>.</p>
+<p>Be careful since <code class="docutils literal notranslate"><span class="pre">DISPLAY</span></code> shows different pixel values than actual value: See <a class="reference external" href="http://iraf.net/forum/viewtopic.php?showtopic=1469817">here</a>.</p>
+</div>
+<p>For more command line options, see <a class="reference external" href="http://ds9.si.edu/doc/ref/command.html">this link</a>.</p>
+</section>
+<section id="ginga-astropy-affiliated">
+<h3><span class="section-number">1.6.2. </span>Ginga: Astropy Affiliated<a class="headerlink" href="#ginga-astropy-affiliated" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://ginga.readthedocs.io/en/latest/">Ginga</a> (pronounced <em>ging-ga</em>, which means <em>galaxy</em> in Japanese; the reason for the name is explained in the link) is an affiliated package of astropy, and is a FITS image viewer.</p>
+<p>If you want to download it, type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>conda install -c astropy ginga
+</pre></div>
+</div>
+<p>It is made to serve the role as SAO ds9, but to perform some useful calculations that ds9 cannot do by default. ds9 has tremendous power when it is used <em>with</em> IRAF, but that is not a favorable solution for Python users. So Ginga is made to fully funtional with Python only, as well as to be able to interact with IRAF as ds9 does.</p>
+<p>You can use <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ginga</span> <span class="pre">&amp;</span></code> on terminal or <code class="docutils literal notranslate"><span class="pre">ecl&gt;</span> <span class="pre">!ginga</span> <span class="pre">&amp;</span></code> on IRAF console. Although you can do <code class="docutils literal notranslate"><span class="pre">ginga</span> <span class="pre">image.fits</span> <span class="pre">&amp;</span></code> as you did for ds9, it is usually better to use interactive drag-and-drop way to open image than command line. In <code class="docutils literal notranslate"><span class="pre">ginga</span></code>, you can also use <code class="docutils literal notranslate"><span class="pre">Operation</span> <span class="pre">-&gt;</span> <span class="pre">utils</span> <span class="pre">-&gt;</span> <span class="pre">FBrowser</span></code>.</p>
+<p>The most important feature of <code class="docutils literal notranslate"><span class="pre">ginga</span></code> is to use it for interactive FWHM estimation and radial profile check, which is done by <code class="docutils literal notranslate"><span class="pre">pick</span></code>: <a class="reference external" href="https://ginga.readthedocs.io/en/latest/manual/plugins_local/pick.html?highlight=pick">documentation</a>.</p>
+<p>I couldn’t find how to use Ginga with IRAF yet…. Though <a class="reference external" href="http://ginga.readthedocs.io/en/latest/manual/plugins_global/iraf.html">this official site</a> says you can, I could not succeeded in using it. I think this is a <a class="reference external" href="https://trello.com/c/6mt7oBXZ/44-iraf-plugin-implemented">known bug</a> that you actually cannot.</p>
+</section>
+</section>
+<section id="hw">
+<h2><span class="section-number">1.7. </span>HW<a class="headerlink" href="#hw" title="Permalink to this headline">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="99-HW_swtools.html#hw-swtools"><span class="std std-ref">HW for SW tools</span></a></p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../00-Philosophy.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Philosophy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="00-2_UNIX.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>UNIX Shell</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#git-and-github">1.1. Git and GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#git-tutorials">1.1.1. Git Tutorials</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slack">1.2. Slack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-join-slack-workspace">1.2.1. How to Join Slack Workspace</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#terms">1.2.2. Terms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-we-chose-slack">1.2.3. Why We Chose Slack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tips-for-slack">1.2.4. Tips for Slack</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#anaconda">1.3. Anaconda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iraf-pyraf-deprecated">1.4. IRAF/PyRAF (<em>deprecated</em>)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#editors">1.5. Editors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-displayer">1.6. Image Displayer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sao-ds9">1.6.1. SAO ds9</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ginga-astropy-affiliated">1.6.2. Ginga: Astropy Affiliated</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hw">1.7. HW</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

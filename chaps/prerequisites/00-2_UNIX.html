@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>2. UNIX Shell &#8212; SNU AO Class</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chaps/prerequisites/00-2_UNIX';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="3. (IMPORTANT) Python Environment" href="00-3_Prepare_Python.html" />
+    <link rel="prev" title="1. Software Tools" href="00-1_Softwares.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../../_static/logo.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    SNU AO Class
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Intro</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../00-Syllabus.html">An Example Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../00-Philosophy.html">Philosophy</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Prerequisite</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00-1_Softwares.html">1. Software Tools</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. UNIX Shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="00-3_Prepare_Python.html">3. (IMPORTANT) Python Environment</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../python_prep/00-python_prep.html">4. Python Preparation Course</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/01-numpy.html">4.4. Numpy Tutorial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/02-pandas.html">4.5. Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../python_prep/03-FITS_and_astropy.html">4.6. About <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Python in Astronomy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../01-fits-basic.html">1. Basics about FITS</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../02-center.html">2. Centering</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homework Assignments</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="99-HW_swtools.html">HW Software &amp; Tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_python_pathlib.html">HW Python Basic &amp; <code class="docutils literal notranslate"><span class="pre">pathlib</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_numpy.html">HW <code class="docutils literal notranslate"><span class="pre">numpy</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_pandas.html">HW <code class="docutils literal notranslate"><span class="pre">pandas</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../python_prep/99-HW_astropy-fits.html">HW <code class="docutils literal notranslate"><span class="pre">astropy.fits</span></code></a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/edit/master/JupyterBook/chaps/prerequisites/00-2_UNIX.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ysBach/SNU_AOclass/issues/new?title=Issue%20on%20page%20%2Fchaps/prerequisites/00-2_UNIX.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/chaps/prerequisites/00-2_UNIX.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>UNIX Shell</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-jargons">2.1. Some Jargons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial">2.2. Tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-editing-a-file">2.2.1. Making and Editing a File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-what-you-see-on-a-file">2.2.2. Writing What You See on a File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-script-file">2.2.3. Making a Script File</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="unix-shell">
+<span id="unix"></span><h1><span class="section-number">2. </span>UNIX Shell<a class="headerlink" href="#unix-shell" title="Permalink to this headline">#</a></h1>
+<p>This time, we will learn very basic things on UNIX. You can find good references from anywhere, and I will explain very basic things which are essential to follow the course materials.</p>
+<div class="dropdown admonition">
+<p class="admonition-title">References for this page in our repo</p>
+<p>Some selected references are in this repo (<a class="reference external" href="https://github.com/ysBach/AO2019/tree/master/references">link</a>):</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/ysBach/AO2019/blob/master/references/00_UNIX_Tutorial_01.pdf">00_UNIX_Tutorial_01.pdf</a> and <a class="reference external" href="https://github.com/ysBach/AO2019/blob/master/references/00_UNIX_Tutorial_02.pdf">00_UNIX_Tutorial_02.pdf</a> by UCSD.</p>
+<ul class="simple">
+<li><p>I think it is enough to read Tutorial 1 and 2 of the first file.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/ysBach/AO2019/blob/master/references/00_Park_Basic_LINUX.pdf">00_Park_Basic_LINUX.pdf</a> by Keunhong Park (former SNU graduate student) in <strong>Korean</strong>.</p></li>
+</ol>
+</div>
+<section id="some-jargons">
+<h2><span class="section-number">2.1. </span>Some Jargons<a class="headerlink" href="#some-jargons" title="Permalink to this headline">#</a></h2>
+<dl class="simple myst">
+<dt><strong>directory</strong></dt><dd><p>For Windows users, the word “directory” may not be familiar. It is similar to “folder”.</p>
+</dd>
+<dt><strong>terminal</strong></dt><dd><p>Decades ago, there was no “monitor” like today. Terminal was used as a tunnel between the computer or calculator and human (thus “terminal”). In other words, it displays things from computer to people OR gets input from person to computer. Nowadays, terminal means a program which does similar job, but with much powerful functionalities.</p>
+</dd>
+<dt><strong>shell</strong></dt><dd><p>Shell is an application running on terminal, and it interprets what people type to the terminal. Thus it is also called “command line interpreter” or just CLI. <code class="docutils literal notranslate"><span class="pre">bash</span></code> is one of such shells.</p>
+</dd>
+<dt><strong>prompt</strong></dt><dd><p>A serial of characters which indicates that the terminal is ready to get command from you. It’s <code class="docutils literal notranslate"><span class="pre">$</span></code> on Ubuntu and <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span></code> for Python.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ls</span></code></dt><dd><p>“List”. List the files and directories at where you are. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">ls</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cd</span></code></dt><dd><p>“Change Directory”. Move to that place. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">mv</span> <span class="pre">Documents/</span></code></p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">cp</span></code></dt><dd><p>“Copy”. Copy an object to a selected place. Example: <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">cp</span> <span class="pre">objectlist.txt</span> <span class="pre">newfile.txt</span></code>
+<code class="docutils literal notranslate"><span class="pre">mv</span></code>: “Move”
+<code class="docutils literal notranslate"><span class="pre">mkdir</span></code>: “Make Directory”
+<code class="docutils literal notranslate"><span class="pre">pwd</span></code>: “Present Working Directory”, i.e., your present location
+<code class="docutils literal notranslate"><span class="pre">chmod</span></code>: “Change Mode”
+<code class="docutils literal notranslate"><span class="pre">rm</span></code>: “Remove”
+<code class="docutils literal notranslate"><span class="pre">~</span></code>: The home directory. Type <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~</span></code> and then <code class="docutils literal notranslate"><span class="pre">pwd</span></code> to see what <code class="docutils literal notranslate"><span class="pre">~</span></code> means.
+<code class="docutils literal notranslate"><span class="pre">echo</span></code>: Similar to print functions in C or python languages.</p>
+</dd>
+</dl>
+<p>If you want, you can find manuals from <a class="reference external" href="https://ss64.com/bash/">here</a>.</p>
+</section>
+<section id="tutorial">
+<h2><span class="section-number">2.2. </span>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">#</a></h2>
+<p>Now I will show you how some simple commands work.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aaa@YPB:~$ ls
+00_Preface-English.ipynb  01_Installation.ipynb  02_Python_Basic.ipynb   html
+00_Preface-Korean.ipynb   01_LINUX_Shell.ipynb   03_Get_the_Taste.ipynb  README.md
+</pre></div>
+</div>
+<p>By default, you may see colors for different types, e.g., gray for normal files and blue for directories.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>aaa@YPB:~$ ll
+total 200
+drwxrwxr-x 5 aaa aaa  4096  3 15 03:13 ./
+drwxrwxr-x 5 aaa aaa  4096  3 14 01:18 ../
+-rw-rw-r-- 1 aaa aaa 22660  3 13 23:07 00_Preface-English.ipynb
+-rw-rw-r-- 1 aaa aaa 27503  3 13 15:22 00_Preface-Korean.ipynb
+-rw-rw-r-- 1 aaa aaa 16134  3 13 23:20 01_Installation.ipynb
+-rw-rw-r-- 1 aaa aaa  2184  3 15 03:13 01_LINUX_Shell.ipynb
+-rw-rw-r-- 1 aaa aaa 21730  3 13 23:48 02_Python_Basic.ipynb
+-rw-rw-r-- 1 aaa aaa 81065  3 14 03:19 03_Get_the_Taste.ipynb
+drwxrwxr-x 8 aaa aaa  4096  3 15 02:50 .git/
+drwxrwxr-x 2 aaa aaa  4096  3 14 22:43 html/
+drwxr-xr-x 2 aaa aaa  4096  3 15 02:51 .ipynb_checkpoints/
+-rw-rw-r-- 1 aaa aaa   342  3 14 00:03 README.md
+</pre></div>
+</div>
+<p>Here, the directory or files start with <code class="docutils literal notranslate"><span class="pre">.</span></code> are the ones which are <em>hidden</em>. The first column means the permissions (see some manual for <code class="docutils literal notranslate"><span class="pre">chmod</span></code>).</p>
+<section id="making-and-editing-a-file">
+<h3><span class="section-number">2.2.1. </span>Making and Editing a File<a class="headerlink" href="#making-and-editing-a-file" title="Permalink to this headline">#</a></h3>
+<p>Let’s make a test file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vi sample.txt
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">vi</span></code> is a default editor. Hit <code class="docutils literal notranslate"><span class="pre">i</span></code> and type “hello”. Hit <code class="docutils literal notranslate"><span class="pre">Esc</span></code>, and then colon (<code class="docutils literal notranslate"><span class="pre">:</span></code>). You will see the colon appeared at the bottom. Type “<code class="docutils literal notranslate"><span class="pre">wq</span></code>” and hit <code class="docutils literal notranslate"><span class="pre">Enter</span></code>. <code class="docutils literal notranslate"><span class="pre">wq</span></code> means write and quit. Then typing <code class="docutils literal notranslate"><span class="pre">ls</span></code> will show you a new file named “<code class="docutils literal notranslate"><span class="pre">sample.txt</span></code>”.</p>
+<p>Now let’s move it to a new directory. You can type</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>mkdir test         &lt;--- make directory named &quot;test&quot;
+cd test            &lt;--- go to that directory
+mv ../sample.txt . &lt;--- move the &quot;sample.txt&quot; to here (.)
+pwd                &lt;--- print your current location
+ls                 &lt;--- show file list
+</pre></div>
+</div>
+<p>You may want to rename or copy the file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cp sample.txt ..     &lt;--- copy sample.txt to the higher directory
+cp sample.txt qq.txt &lt;--- copy sample.txt to the higher directory with a new name &quot;qq.txt&quot;
+mv sample.txt pp.txt &lt;--- move sample.txt as pp.txt, i.e., identical to &quot;rename&quot;!
+</pre></div>
+</div>
+<p>How can we remove <code class="docutils literal notranslate"><span class="pre">pp.txt</span></code> and the directory <code class="docutils literal notranslate"><span class="pre">test</span></code>?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rm pp.txt    &lt;--- remove pp.txt
+cd ..
+rm -r test   &lt;--- remove test directory
+</pre></div>
+</div>
+<p>As you saw, to delete directory, you need an option “<code class="docutils literal notranslate"><span class="pre">-r</span></code>”, which means “recursive”. If you don’t do so, you will get an error message</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>rm test
+rm: cannot remove &#39;test/&#39;: Is a directory
+</pre></div>
+</div>
+</section>
+<section id="writing-what-you-see-on-a-file">
+<h3><span class="section-number">2.2.2. </span>Writing What You See on a File<a class="headerlink" href="#writing-what-you-see-on-a-file" title="Permalink to this headline">#</a></h3>
+<p>You may frequently need a list of filenames. For example, you want to open FITS files “abc.fits”, “def2.fits”, …, “zer0.fits”, which have no clue on the naming. One way is to make a text file contains the file names, and load it from Python. Then, you can use for loop to open each file sequentially.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ls *.fits &gt;&gt; list.txt
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">*</span></code> means “any string”, i.e., <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*.fits</span></code> will list any file ends with <code class="docutils literal notranslate"><span class="pre">.fits</span></code>. <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> means “add to”, or “append to”. That is, all the output of <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*.fits</span></code> will be added to a file named <code class="docutils literal notranslate"><span class="pre">list.txt</span></code>. If there is no file named <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">*.fits</span></code>, it will automatically make it.
+​
+ls *.fits &gt; list.txt
+Test what happens when you use “<code class="docutils literal notranslate"><span class="pre">&gt;</span></code>”.</p>
+</section>
+<section id="making-a-script-file">
+<h3><span class="section-number">2.2.3. </span>Making a Script File<a class="headerlink" href="#making-a-script-file" title="Permalink to this headline">#</a></h3>
+<p>This is a very simple shell script which gets 2 arguments (example is from <a class="reference external" href="http://www.macs.hw.ac.uk/~hwloidl/Courses/LinuxIntro/x984.html">here</a>). Copy the following and save it as <code class="docutils literal notranslate"><span class="pre">test.sh</span></code> file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1"># example of using arguments to a script</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My first name is </span><span class="nv">$1</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;My surname is </span><span class="nv">$2</span><span class="s2">&quot;</span>
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;Total number of arguments is </span><span class="nv">$#</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<p>Then on the terminal,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ chmod a+x name.sh
+$ ./test.sh Hans-Wolfgang Loidl
+</pre></div>
+</div>
+<p>You will see the output</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">My</span> <span class="n">first</span> <span class="n">name</span> <span class="ow">is</span> <span class="n">Hans</span><span class="o">-</span><span class="n">Wolfgang</span>
+<span class="n">My</span> <span class="n">surname</span> <span class="ow">is</span> <span class="n">Loidl</span>
+<span class="n">Total</span> <span class="n">number</span> <span class="n">of</span> <span class="n">arguments</span> <span class="ow">is</span> <span class="mi">2</span>
+</pre></div>
+</div>
+<p>If you want, you can learn loops, etc.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chaps/prerequisites"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00-1_Softwares.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Software Tools</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="00-3_Prepare_Python.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>(IMPORTANT) Python Environment</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#some-jargons">2.1. Some Jargons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tutorial">2.2. Tutorial</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-and-editing-a-file">2.2.1. Making and Editing a File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-what-you-see-on-a-file">2.2.2. Writing What You See on a File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-a-script-file">2.2.3. Making a Script File</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Yoonsoo P. Bach
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2022.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
