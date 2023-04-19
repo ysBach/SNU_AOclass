@@ -1,0 +1,15 @@
+[submodule "submodules/version_information"]
+	path = submodules/version_information
+	url = https://github.com/jrjohansson/version_information.git
+[submodule "submodules/astroquery"]
+	path = submodules/astroquery
+	url = https://github.com/astropy/astroquery.git
+[submodule "submodules/ginga"]
+	path = submodules/ginga
+	url = https://github.com/ejeschke/ginga.git
+[submodule "submodules/astroalign"]
+	path = submodules/astroalign
+	url = https://github.com/quatrope/astroalign
+[submodule "submodules/astroscrappy"]
+	path = submodules/astroscrappy
+	url = https://github.com/astropy/astroscrappy
