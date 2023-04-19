@@ -56,10 +56,6 @@ $ git pull
 
 The following lecture notes *only* gives you idea how to use tools for data reduction. **You must be aware of what you are doing!** Identical procedure to the lecture note may give different results, depending on what you've done other than what I did when I make the notes.
 
-
-
-Each directory of the following contents has its own README file.
-
 1. [Book material](Books/) (theoretical parts and codes)
 2. [Notebooks](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
 3. **Tutorial data** available [here](https://www.dropbox.com/sh/3a1j3495o08yweh/AACSPhIhLwut38yYX8mjvX3ka?dl=0) from my Dropbox.
@@ -69,12 +65,16 @@ Each directory of the following contents has its own README file.
 
 
 
-## 4. Outstanding Student's Outputs
+<details><summary>Outstanding Student's Outputs</summary>
+<p>
 
 * Jiyong Youn (@hletrd)
   * [spectools](https://github.com/hletrd/spectools): long-slit spectral analysis (class of 2017)
   * [PyPreprocessor](https://github.com/hletrd/PyPreprocessor): preprocessor in CLI (class of 2017)
 *
+
+</p>
+</details>
 
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/E1E1HAMV5)
