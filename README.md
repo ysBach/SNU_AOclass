@@ -58,7 +58,7 @@ The following lecture notes *only* gives you idea how to use tools for data redu
 
 1. [Book material](Books/) (theoretical parts and codes)
 2. [Notebooks](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
-3. **Tutorial data** available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7871080.svg)](https://doi.org/10.5281/zenodo.7871080)
+3. **Tutorial data** available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8266691.svg)](https://doi.org/10.5281/zenodo.8266691)
 
 (Plus. [Presentation files](ppt), which are just auxiliary seminar notes)
 
