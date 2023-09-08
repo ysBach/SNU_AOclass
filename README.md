@@ -61,7 +61,7 @@ The following lecture notes *only* give you an idea of how to use tools for data
 * This repo contains this README, theoretical part (book), presentations, and reference materials.
 * The lecture is mainly composed of
   1. **Theory**: [Book material](Books/) (theoretical parts and codes)
-  2. **Python Practice**: [Notebooks](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
+  2. **Python Practice**: [Jupyter-book in separate repo](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
   3. **Tutorial data**: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8327769.svg)](https://doi.org/10.5281/zenodo.8327769)
 
 (Plus. [Presentation files](ppt), which are just auxiliary seminar notes)
