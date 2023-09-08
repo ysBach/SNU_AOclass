@@ -1,5 +1,5 @@
 # SNU_AOclass
-TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lecture notes are primarily made by **Yoonsoo P. Bach**. I tried not to make typo, logically wrong statement, etc. If any problem is there in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
+TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lecture notes were primarily made by **Yoonsoo P. Bach**. I tried not to make typos, logically wrong statements, etc. If any problem is found in the note, that's solely my fault, so please be kind and let me know so that the notes can be updated.
 
 
 ## 1. Short History
@@ -8,6 +8,7 @@ TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lec
 
 | Semester    | Instructor                  | TA                                         |
 | ----------- | --------------------------- | ------------------------------------------ |
+| - 2023 spr  | professor Masateru Ishiguro | *, Yoonsoo P. Bach (unofficial)            |
 | 2020 Spring | professor Masateru Ishiguro | Jooyeon Geem, Yoonsoo P. Bach (unofficial) |
 | 2019 Fall   | professor Masateru Ishiguro | Hangbin Jo, Yoonsoo P. Bach (unofficial)   |
 | 2019 Spring | professor Masateru Ishiguro | Sunho Jin, Yoonsoo P. Bach (unofficial)    |
@@ -17,6 +18,7 @@ TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lec
 | 2017 Spring | professor Masateru Ishiguro | Yoonsoo P. Bach (& Na-Eun Shin)            |
 | 2016 Fall   | professor Masateru Ishiguro | Yoonsoo P. Bach                            |
 
+- In 2023: The repo is splitted into `SNU_AOclass` (this repo) and `SNU_AOpython` (see Python Practice in contents below).
 - In 2020: The name of the repo changed (Jan). All previous repos (2017, 2018) are **archived** (Jan).
 - In 2019: Made this repo.
 - In 2018: Made GitHub repo [link](https://github.com/ysBach/AO_2018). Many documents changed from ipynb to md.
@@ -31,7 +33,7 @@ TA seminar notes for the AO classes from 2016-present at SNU, Korea. All the lec
 
 <details><summary>click</summary>
 <p>
-You may have your preferences to use this repo. One of the possible suggestions is to clone/fork this repo and pull regularly to keep updated:
+You may have preferences for using this repo. One of the possible suggestions is to clone/fork this repo and pull regularly to keep updated:
 
 ```
 $ cd <Where you want to download this lecture note>
@@ -54,11 +56,11 @@ $ git pull
 
 ## 3. Seminar Contents
 
-The following lecture notes *only* gives you idea how to use tools for data reduction. **You must be aware of what you are doing!** Identical procedure to the lecture note may give different results, depending on what you've done other than what I did when I make the notes.
+The following lecture notes *only* give you an idea of how to use tools for data reduction. **You must be aware of what you are doing!** An identical procedure to the lecture note may give different results, depending on what you've done other than what I did when I made the notes.
 
-1. [Book material](Books/) (theoretical parts and codes)
-2. [Notebooks](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
-3. **Tutorial data** available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8266691.svg)](https://doi.org/10.5281/zenodo.8266691)
+1. Theory: [Book material](Books/) (theoretical parts and codes)
+2. Python Practice: [Notebooks](https://ysbach.github.io/SNU_AOpython/index.html) (practical parts including codes & HW assignments)
+3. **Tutorial data** is available here: [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.8327769.svg)](https://doi.org/10.5281/zenodo.8327769)
 
 (Plus. [Presentation files](ppt), which are just auxiliary seminar notes)
 
